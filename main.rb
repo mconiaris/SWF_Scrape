@@ -7,21 +7,44 @@ reader = PDF::Reader.new("files/Zak Knight.pdf")
 # puts reader.metadata
 # puts reader.page_count
 
+class Wrestler
+
+	def name(pdf)
+		wrestler_name = pdf.lines[0]
+  	wrestler_name.slice!(/OFFENSIVE CARD/)
+  	wrestler_name.strip!
+		@name = wrestler_name
+		puts @name
+	end
+
+	gc = Hash.new
+	oc = Hash.new
+	dc = Hash.new
+	s = Hash.new
+	ropes = Array.new
+	@sub
+	@tag_team
+	@singles_priority
+	@tag_team_priority
+	
+end
+
+wrestler = Wrestler.new
 
 reader.pages.each do |page|
    # puts page.fonts
    # puts page.raw_content
+   # puts page.class
+   
+   # Capture text in String variable
+   wrestler_text = page.text
+   puts wrestler_text
 
-   wrestler = page.text
-   # puts wrestler.class
-   puts wrestler
-   wrestler_name = wrestler.lines[0]
-   wrestler_name.slice!(/OFFENSIVE CARD/)
-   wrestler_name.strip!
-   puts wrestler_name
-   puts 'String length = ' + wrestler.lines[0].length.to_s
+   # Define Wrestler Name
+   wrestler.name(wrestler_text)
 
-   puts wrestler.lines[2]
+   #
+   puts wrestler_text.lines[2]
    # puts wrestler.lines[3]
    # puts wrestler.lines[4]
    # puts wrestler.lines[5]
