@@ -10,9 +10,12 @@ reader = PDF::Reader.new("files/Zak Knight.pdf")
 
 reader.pages.each do |page|
    # puts page.fonts
+   # puts page.raw_content
+
    wrestler = page.text
    puts wrestler.class
    puts wrestler
-   # puts page.raw_content
+   wrestler_name = wrestler.lines.first
+   puts wrestler_name
  end
 
