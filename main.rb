@@ -13,8 +13,8 @@ reader.pages.each do |page|
    # puts page.raw_content
 
    wrestler = page.text
-   puts wrestler.class
-   puts wrestler
+   # puts wrestler.class
+   # puts wrestler
    puts wrestler.lines[0]
    puts wrestler.lines[1]
    puts wrestler.lines[2]
