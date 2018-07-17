@@ -15,7 +15,11 @@ reader.pages.each do |page|
    wrestler = page.text
    # puts wrestler.class
    # puts wrestler
-   puts wrestler.lines[0].inspect
+   wrestler_name = wrestler.lines[0]
+   wrestler_name.slice!(/OFFENSIVE CARD/)
+   wrestler_name.strip!
+   puts wrestler_name
+   puts 'String length = ' + wrestler.lines[0].length.to_s
    # puts wrestler.lines[1]
    # puts wrestler.lines[2]
    # puts wrestler.lines[3]
