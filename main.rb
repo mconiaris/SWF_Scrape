@@ -9,14 +9,6 @@ reader = PDF::Reader.new("files/Zak Knight.pdf")
 
 class Wrestler
 
-	def name(pdf)
-		wrestler_name = pdf.lines[0]
-  	wrestler_name.slice!(/OFFENSIVE CARD/)
-  	wrestler_name.strip!
-		@name = wrestler_name
-		puts @name
-	end
-
 	gc = Hash.new
 	oc = Hash.new
 	dc = Hash.new
@@ -27,6 +19,13 @@ class Wrestler
 	@singles_priority
 	@tag_team_priority
 	
+	def name(pdf)
+		wrestler_name = pdf.lines[0]
+  	wrestler_name.slice!(/OFFENSIVE CARD/)
+  	wrestler_name.strip!
+		@name = wrestler_name
+		puts @name
+	end
 end
 
 wrestler = Wrestler.new
