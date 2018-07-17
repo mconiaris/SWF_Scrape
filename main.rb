@@ -1,4 +1,4 @@
-require 'pdr-reader'
+require 'pdf-reader'
 
 reader = PDF::Reader.new("files/Zak Knight.pdf")
 
