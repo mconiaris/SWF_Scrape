@@ -24,7 +24,7 @@ class Wrestler
   	wrestler_name.slice!(/OFFENSIVE CARD/)
   	wrestler_name.strip!
 		@name = wrestler_name
-		puts @name
+		puts "Wrestler Name: " + @name
 	end
 
 	def process_text(pdf)
@@ -33,11 +33,12 @@ class Wrestler
 	end
 
 	def read_text(pdf)
+		# Process line 2 into Wrestler objects
 		puts pdf.lines[2]
 		line = pdf.lines[2]
 		line.slice!(/GENERAL CARD/)
 		line.strip!
-		puts line
+		puts "read_text output: " + line
 		temp_string = process_text(line)
 
 		#Add Processed Text Into the Proper Hash
