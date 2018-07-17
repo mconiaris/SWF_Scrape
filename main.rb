@@ -18,7 +18,7 @@ class Wrestler
 	@tag_team
 	@singles_priority
 	@tag_team_priority
-	
+
 	def name(pdf)
 		wrestler_name = pdf.lines[0]
   	wrestler_name.slice!(/OFFENSIVE CARD/)
@@ -26,6 +26,27 @@ class Wrestler
 		@name = wrestler_name
 		puts @name
 	end
+
+	def process_text(pdf)
+		# Split original text into an array
+		temp_string = pdf.split(/(\d+)(\D+)(\d+)/)
+	end
+
+	def read_text(pdf)
+		puts pdf.lines[2]
+		line = pdf.lines[2]
+		line.slice!(/GENERAL CARD/)
+		line.strip!
+		puts line
+		temp_string = process_text(line)
+
+		#Add Processed Text Into the Proper Hash
+		puts temp_string[0]
+		puts temp_string[1]
+		puts temp_string[2]
+		puts temp_string[3]
+	end
+
 end
 
 wrestler = Wrestler.new
@@ -41,9 +62,10 @@ reader.pages.each do |page|
 
    # Define Wrestler Name
    wrestler.name(wrestler_text)
+   wrestler.read_text(wrestler_text)
 
    #
-   puts wrestler_text.lines[2]
+   
    # puts wrestler.lines[3]
    # puts wrestler.lines[4]
    # puts wrestler.lines[5]
