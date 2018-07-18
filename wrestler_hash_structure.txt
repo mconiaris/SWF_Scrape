@@ -1,0 +1,26 @@
+name: 'name'
+gc: Array
+	[0] GENERAL CARD
+		[x] Dice Roll (OC or DC or OC/TT)
+	[1] DEFENSIVE CARD
+		[x] Dice Roll (A, B, C, REVERSE)
+	[2] OFFENSIVE CARD
+		[X] Dice Roll
+			[0] Move
+			[1] Points
+			[2] P/A || Sub || (XX)
+	[3] SPECIALTY
+		[X] Dice Roll
+			[0] Points
+			[1] P/A || Sub
+	[4] Ropes
+		[x] Dice Roll
+			[0] Move
+			[1] Points
+			[2] P/A || Sub || (XX)
+	[5] Sub (range)
+	[6] Tag-Team (range)
+	[7] Priority
+		[0] Single
+		[1] Tag Team
+	[8] Set
