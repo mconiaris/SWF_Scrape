@@ -18,36 +18,14 @@ class Wrestler
 	@singles_priority
 	@tag_team_priority
 
-	def name(pdf)
-		wrestler_name = pdf.lines[0]
-  	wrestler_name.slice!(/OFFENSIVE CARD/)
-  	wrestler_name.strip!
-		@name = wrestler_name
-		puts "Wrestler Name: " + @name
-	end
-
-
-	def process_text(pdf)
-		# Split original text into an array
-		temp_string = pdf.split(/(\d+)(\D+)(\d+)/)
-	end
-
-
-	def read_text(pdf)
-		# Process line 2 into Wrestler objects
-		puts pdf.lines[2]
-		line = pdf.lines[2]
-		line.slice!(/GENERAL CARD/)
-		line.strip!
-		puts "read_text output: " + line
-		temp_string = process_text(line)
-		puts "temp string" + temp_string.to_s
-
-	end
-
+	wrestler = Wrestler.new
 end
 
-wrestler = Wrestler.new
+
+def process_text(pdf)
+	# Split original text into an array
+	temp_string = pdf.split(/(\d+)(\D+)(\d+)/)
+end
 
 reader.pages.each do |page|
    # puts page.fonts
@@ -59,7 +37,21 @@ reader.pages.each do |page|
    puts wrestler_text
 
    # Define Wrestler Name
-   wrestler.name(wrestler_text)
+   wrestler_name = wrestler_text.lines[0]
+   wrestler_name.slice!(/OFFENSIVE CARD/)
+   wrestler_name.strip!
+   puts "Wrestler Name: " + wrestler_name
+
+   # Process line 2 into Wrestler objects
+   puts pdf.lines[2]
+   line = pdf.lines[2]
+   line.slice!(/GENERAL CARD/)
+   line.strip!
+   puts "read_text output: " + line
+   temp_string = process_text(line)
+   puts "temp string" + temp_string.to_s
+
+
    wrestler.read_text(wrestler_text)
 
    #
