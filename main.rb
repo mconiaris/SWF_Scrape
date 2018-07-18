@@ -41,6 +41,7 @@ class Wrestler
 		line.strip!
 		puts "read_text output: " + line
 		temp_string = process_text(line)
+		puts "temp string" + temp_string.to_s
 
 		#Add Processed Text Into the Proper Hash
 		oc = Hash.new
