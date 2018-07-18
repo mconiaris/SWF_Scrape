@@ -43,14 +43,6 @@ class Wrestler
 		temp_string = process_text(line)
 		puts "temp string" + temp_string.to_s
 
-		#Add Processed Text Into the Proper Hash
-		oc = Hash.new
-		puts "oc hash: "
-		puts oc
-		puts temp_string[0]
-		puts temp_string[1]
-		puts temp_string[2]
-		puts temp_string[3]
 	end
 
 end
