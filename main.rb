@@ -10,7 +10,6 @@ reader = PDF::Reader.new("files/Zak Knight.pdf")
 class Wrestler
 
 	gc = Hash.new
-	oc = Hash.new
 	dc = Hash.new
 	s = Hash.new
 	ropes = Array.new
@@ -27,10 +26,12 @@ class Wrestler
 		puts "Wrestler Name: " + @name
 	end
 
+
 	def process_text(pdf)
 		# Split original text into an array
 		temp_string = pdf.split(/(\d+)(\D+)(\d+)/)
 	end
+
 
 	def read_text(pdf)
 		# Process line 2 into Wrestler objects
@@ -42,6 +43,9 @@ class Wrestler
 		temp_string = process_text(line)
 
 		#Add Processed Text Into the Proper Hash
+		oc = Hash.new
+		puts "oc hash: "
+		puts oc
 		puts temp_string[0]
 		puts temp_string[1]
 		puts temp_string[2]
