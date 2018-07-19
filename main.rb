@@ -50,6 +50,7 @@ reader.pages.each do |page|
    puts "read_text output: " + line
    temp_string = process_text(line)
    puts "temp string" + temp_string.to_s
+   puts pdf.lines
 
 
    wrestler.read_text(wrestler_text)
