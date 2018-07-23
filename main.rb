@@ -43,16 +43,13 @@ reader.pages.each do |page|
    puts "Wrestler Name: " + wrestler_name
 
    # Process line 2 into Wrestler objects
-   puts pdf.lines[2]
-   line = pdf.lines[2]
+   puts wrestler_text.lines[2]
+   line = wrestler_text.lines[2]
    line.slice!(/GENERAL CARD/)
    line.strip!
    puts "read_text output: " + line
-   temp_string = process_text(line)
-   puts "temp string" + temp_string.to_s
 
 
-   wrestler.read_text(wrestler_text)
 
    #
    
