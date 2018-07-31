@@ -57,7 +57,7 @@ reader.pages.each do |page|
    puts wrestler_lines_array
 
    # Define Wrestler Name
-   wrestler_name = wrestler_text.lines[0]
+   wrestler_name = wrestler_lines_array[0]
    wrestler_name.slice!(/OFFENSIVE CARD/)
    wrestler_name.strip!
 
