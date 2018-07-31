@@ -14,6 +14,7 @@ class Wrestler
 		puts "New Wrestler Created"
 		@name = name
 		@gc = Hash.new
+		@oc = Hash.new
 		@dc = Hash.new
 		@specialty = Hash.new
 		@ropes = Array.new
@@ -74,6 +75,7 @@ reader.pages.each do |page|
    # Process line 2 into Wrestler objects
    puts "wrestler_lines_array[2]: " + wrestler_lines_array[2].to_s
    puts "wrestler_lines_array[2][2]: " + wrestler_lines_array[2][2].to_s
+   binding.pry
 
    #
    
