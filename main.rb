@@ -63,8 +63,10 @@ reader.pages.each do |page|
    line.slice!(/GENERAL CARD/)
    line.strip!
    puts "read_text output: " + line
-   line.slice(/(\d+)\s+(\w+)\s+(\d+)(\s+|.+)/)
-   puts line[0]
+   lines = line.split(' ')
+   puts "Line array output = " + lines.to_s
+   oc[lines[0].to_i] = Array.new(lines)
+   puts "oc hash output: " + oc.to_s
 
 
    #
