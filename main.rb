@@ -69,17 +69,6 @@ reader.pages.each do |page|
    oc = Hash.new
    
    # Process line 2 into Wrestler objects
-   puts "wrestler_text type: " + wrestler_text.lines.class.to_s
-   puts "\n"
-   puts wrestler_text.lines[2]
-   line = wrestler_text.lines[2]
-   line.slice!(/GENERAL CARD/)
-   line.strip!
-   puts "read_text output: " + line
-   lines = line.split(' ')
-   puts "Line array output = " + lines.to_s
-   oc[lines[0].to_i] = Array.new(lines)
-   puts "oc hash output: " + oc.to_s
 
 
    #
