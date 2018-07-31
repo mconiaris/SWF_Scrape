@@ -42,7 +42,19 @@ reader.pages.each do |page|
    
    # Capture text in String variable
    wrestler_text = page.text
-   puts wrestler_text
+   # puts wrestler_text
+
+   # Caputre text lines into an array
+   wrestler_text_array = wrestler_text.lines
+
+   # Split wrestler_text_array lines by line space
+   wrestler_lines_array = Array.new
+   wrestler_text_array.each {
+   	|w| w.split(' ')
+   	wrestler_lines_array.push(w)
+   }
+   puts "Wrestler lines array:"
+   puts wrestler_lines_array
 
    # Define Wrestler Name
    wrestler_name = wrestler_text.lines[0]
@@ -57,6 +69,7 @@ reader.pages.each do |page|
    oc = Hash.new
    
    # Process line 2 into Wrestler objects
+   puts "wrestler_text type: " + wrestler_text.lines.class.to_s
    puts "\n"
    puts wrestler_text.lines[2]
    line = wrestler_text.lines[2]
