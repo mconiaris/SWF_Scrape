@@ -50,14 +50,16 @@ reader.pages.each do |page|
    # Split wrestler_text_array lines by line space
    wrestler_lines_array = Array.new
    wrestler_text_array.each {
-   	|w| w.split(' ')
-   	wrestler_lines_array.push(w)
+   	|w| wrestler_lines_array.push(w.split(' '))
+   	puts w
    }
    puts "Wrestler lines array:"
    puts wrestler_lines_array
 
    # Define Wrestler Name
-   wrestler_name = wrestler_lines_array[0]
+   puts "wrestler_lines_array[0]" + wrestler_lines_array[0].to_s
+   wrestler_name = wrestler_lines_array[0].join(' ')
+   puts wrestler_name
    wrestler_name.slice!(/OFFENSIVE CARD/)
    wrestler_name.strip!
 
@@ -69,7 +71,8 @@ reader.pages.each do |page|
    oc = Hash.new
    
    # Process line 2 into Wrestler objects
-
+   puts "wrestler_lines_array[2]: " + wrestler_lines_array[2]
+   puts "wrestler_lines_array[2][2]: " + wrestler_lines_array[2][2]
 
    #
    
