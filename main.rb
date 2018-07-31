@@ -48,7 +48,6 @@ reader.pages.each do |page|
    wrestler_name = wrestler_text.lines[0]
    wrestler_name.slice!(/OFFENSIVE CARD/)
    wrestler_name.strip!
-   puts "Wrestler Name: " + wrestler_name
 
    # Create blank wrestler
    wrestler = Wrestler.new(wrestler_name)
