@@ -9,6 +9,7 @@ reader = PDF::Reader.new("files/Zak Knight.pdf")
 
 class Wrestler
 
+	@name
 	gc = Hash.new
 	dc = Hash.new
 	s = Hash.new
