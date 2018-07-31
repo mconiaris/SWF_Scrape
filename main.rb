@@ -71,8 +71,8 @@ reader.pages.each do |page|
    oc = Hash.new
    
    # Process line 2 into Wrestler objects
-   puts "wrestler_lines_array[2]: " + wrestler_lines_array[2]
-   puts "wrestler_lines_array[2][2]: " + wrestler_lines_array[2][2]
+   puts "wrestler_lines_array[2]: " + wrestler_lines_array[2].to_s
+   puts "wrestler_lines_array[2][2]: " + wrestler_lines_array[2][2].to_s
 
    #
    
