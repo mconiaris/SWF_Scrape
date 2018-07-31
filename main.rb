@@ -22,6 +22,10 @@ class Wrestler
 		@tag_team_priority
 	end
 
+	def get_name
+		@name
+	end
+
 end
 
 
@@ -48,7 +52,7 @@ reader.pages.each do |page|
 
    # Create blank wrestler
    wrestler = Wrestler.new(wrestler_name)
-   puts wrestler
+   puts "Wrestler Name: " + wrestler.get_name
    
 
    # Process line 2 into Wrestler objects
