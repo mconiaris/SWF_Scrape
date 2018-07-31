@@ -1,4 +1,5 @@
 require 'pdf-reader'
+require 'pry'
 
 reader = PDF::Reader.new("files/Zak Knight.pdf")
 
