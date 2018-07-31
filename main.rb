@@ -52,8 +52,10 @@ reader.pages.each do |page|
    # Create blank wrestler
    wrestler = Wrestler.new(wrestler_name)
    puts "Wrestler Name: " + wrestler.get_name
-   
 
+   # Create OC Hash
+   oc = Hash.new
+   
    # Process line 2 into Wrestler objects
    puts "\n"
    puts wrestler_text.lines[2]
@@ -61,7 +63,8 @@ reader.pages.each do |page|
    line.slice!(/GENERAL CARD/)
    line.strip!
    puts "read_text output: " + line
-
+   line.slice(/(\d+)\s+(\w+)\s+(\d+)(\s+|.+)/)
+   puts line[0]
 
 
    #
