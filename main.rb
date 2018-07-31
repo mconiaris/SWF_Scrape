@@ -9,17 +9,19 @@ reader = PDF::Reader.new("files/Zak Knight.pdf")
 
 class Wrestler
 
-	@name
-	gc = Hash.new
-	dc = Hash.new
-	s = Hash.new
-	ropes = Array.new
-	@sub
-	@tag_team
-	@singles_priority
-	@tag_team_priority
+	def initialize(name)
+		puts "New Wrestler Created"
+		@name = name
+		@gc = Hash.new
+		@dc = Hash.new
+		@specialty = Hash.new
+		@ropes = Array.new
+		@sub
+		@tag_team
+		@singles_priority
+		@tag_team_priority
+	end
 
-	wrestler = Wrestler.new
 end
 
 
@@ -33,8 +35,6 @@ reader.pages.each do |page|
    # puts page.raw_content
    # puts page.class
 
-   # Create blank wrestler
-   wrestler = Wrestler.new
    
    # Capture text in String variable
    wrestler_text = page.text
@@ -45,6 +45,11 @@ reader.pages.each do |page|
    wrestler_name.slice!(/OFFENSIVE CARD/)
    wrestler_name.strip!
    puts "Wrestler Name: " + wrestler_name
+
+   # Create blank wrestler
+   wrestler = Wrestler.new(wrestler_name)
+   puts wrestler
+   
 
    # Process line 2 into Wrestler objects
    puts wrestler_text.lines[2]
