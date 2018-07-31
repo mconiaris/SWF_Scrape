@@ -52,6 +52,7 @@ reader.pages.each do |page|
    
 
    # Process line 2 into Wrestler objects
+   puts "\n"
    puts wrestler_text.lines[2]
    line = wrestler_text.lines[2]
    line.slice!(/GENERAL CARD/)
