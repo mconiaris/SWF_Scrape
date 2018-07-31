@@ -31,6 +31,9 @@ reader.pages.each do |page|
    # puts page.fonts
    # puts page.raw_content
    # puts page.class
+
+   # Create blank wrestler
+   wrestler = Wrestler.new
    
    # Capture text in String variable
    wrestler_text = page.text
