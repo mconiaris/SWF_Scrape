@@ -74,7 +74,11 @@ reader.pages.each do |page|
    
    # Process line 2 into Wrestler objects
    puts "wrestler_lines_array[2]: " + wrestler_lines_array[2].to_s
-   puts "wrestler_lines_array[2][2]: " + wrestler_lines_array[2][2].to_s
+   oc[wrestler_lines_array[2][2].to_i] = Array.new(wrestler_lines_array[2])
+   oc[2].delete_at(0)
+   oc[2].delete_at(0)
+   oc[2].delete_at(0)
+
    binding.pry
 
    #
