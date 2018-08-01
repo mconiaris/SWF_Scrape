@@ -52,6 +52,9 @@ class Wrestler
 					w.strip!
 					set_name(w)
 					puts "Wrestler's Name: " + @name
+				when /\A\n/
+				else
+			binding.pry
 				end
 	  	}
 
@@ -76,5 +79,4 @@ reader.pages.each do |page|
    wrestler_text = page.text
    # puts wrestler_text
    wrestler.process_text(wrestler_text)
-			binding.pry
  end
