@@ -10,8 +10,7 @@ class Wrestler
 		@file_name
 		@name
 		@gc = Hash.new
-		@oc_moves = Array.new
-		@oc = Hash.new(@oc_moves)
+		@oc = Hash.new(@oc_moves = Array.new)
 		@dc = Hash.new
 		@specialty = Hash.new
 		@ropes = Array.new
