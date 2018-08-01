@@ -34,6 +34,8 @@ class Wrestler
 	end
 
 	def process_text(pdf)
+		# Create switch statement to determine REGEX
+		
 		# Split original text into an array
 		temp_string = pdf.split(/(\d+)(\D+)(\d+)/)
 	end
