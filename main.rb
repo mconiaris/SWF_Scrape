@@ -12,6 +12,7 @@ class Wrestler
 
 	def initialize(name)
 		puts "New Wrestler Created"
+		@file_name
 		@name = name
 		@gc = Hash.new
 		@oc = Hash.new
