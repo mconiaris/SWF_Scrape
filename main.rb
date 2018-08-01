@@ -10,10 +10,10 @@ reader = PDF::Reader.new("files/Zak Knight.pdf")
 
 class Wrestler
 
-	def initialize(name)
+	def initialize
 		puts "New Wrestler Created"
 		@file_name
-		@name = name
+		@name
 		@gc = Hash.new
 		@oc = Hash.new
 		@dc = Hash.new
@@ -27,6 +27,10 @@ class Wrestler
 
 	def get_name
 		@name
+	end
+
+	def set_name(name)
+		@name = name
 	end
 
 	def set_file_name(file_name)
@@ -64,7 +68,7 @@ reader.pages.each do |page|
    # Split wrestler_text_array lines by line space
    wrestler_lines_array = Array.new
    wrestler_text_array.each {
-   	|w| wrestler_lines_array.push(w.split(' '))
+   	|w| wrestler_lines_array.push(process_text(w))
    	puts w
    }
    puts "Wrestler lines array:"
