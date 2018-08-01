@@ -37,115 +37,49 @@ class Wrestler
 		@file_name = file_name
 	end
 
-	def process_text(wrestler_text_line)
-		# Create switch statement to determine REGEX
-		case wrestler_text_line
-		when condition
-		end
+	def process_text(wrestler_text)
+
+		# Caputre text lines into an array
+  	wrestler_text_array = wrestler_text.lines
+  	puts wrestler_text_array
+
+		# Split wrestler_text_array lines by line space
+	  wrestler_text_array.each {
+	  	|w| wrestler_text_array
+	  		puts "Processing Text: " + w
+	  		# Create switch statement to determine REGEX
+				case w
+				when /OFFENSIVE CARD/
+					# Define Wrestler Name
+					puts "Defining wrestler's name"
+					# Remove OFFENSIVE CARD from String text
+					w.slice!(/OFFENSIVE CARD/)
+					w.strip!
+					set_name(w)
+					puts "Wrestler's Name: " + @name
+				end
+	  	}
+
+		
 
 		# Split original text into an array
-		temp_string = pdf.split(/(\d+)(\D+)(\d+)/)
+		# temp_string = pdf.split(/(\d+)(\D+)(\d+)/)
 	end
 
 end
 
-
-
-
+# Run Program
 reader.pages.each do |page|
    # puts page.fonts
    # puts page.raw_content
    # puts page.class
 
-   
+   #Create Wrestler object
+   wrestler = Wrestler.new
+
    # Capture text in String variable
    wrestler_text = page.text
    # puts wrestler_text
-
-   # Caputre text lines into an array
-   wrestler_text_array = wrestler_text.lines
-
-   # Split wrestler_text_array lines by line space
-   wrestler_lines_array = Array.new
-   wrestler_text_array.each {
-   	|w| wrestler_lines_array.push(process_text(w))
-   	puts w
-   }
-   puts "Wrestler lines array:"
-   puts wrestler_lines_array
-
-   # Define Wrestler Name
-   puts "wrestler_lines_array[0]" + wrestler_lines_array[0].to_s
-   wrestler_name = wrestler_lines_array[0].join(' ')
-   puts wrestler_name
-   wrestler_name.slice!(/OFFENSIVE CARD/)
-   wrestler_name.strip!
-
-   # Create blank wrestler
-   wrestler = Wrestler.new(wrestler_name)
-   puts "Wrestler Name: " + wrestler.get_name
-
-   # Create OC Hash
-   oc = Hash.new
-   
-   # Process line 2 into Wrestler objects
-   puts "wrestler_lines_array[2]: " + wrestler_lines_array[2].to_s
-   oc[wrestler_lines_array[2][2].to_i] = Array.new(wrestler_lines_array[2])
-   oc[2].delete_at(0)
-   oc[2].delete_at(0)
-   oc[2].delete_at(0)
-
-   binding.pry
-
-   #
-   
-   # puts wrestler.lines[3]
-   # puts wrestler.lines[4]
-   # puts wrestler.lines[5]
-   # puts wrestler.lines[6]
-   # puts wrestler.lines[7]
-   # puts wrestler.lines[8]
-   # puts wrestler.lines[9]
-   # puts wrestler.lines[10]
-   # puts wrestler.lines[11]
-   # puts wrestler.lines[12]
-   # puts wrestler.lines[13]
-   # puts wrestler.lines[14]
-   # puts wrestler.lines[15]
-   # puts wrestler.lines[16]
-   # puts wrestler.lines[17]
-   # puts wrestler.lines[18]
-   # puts wrestler.lines[19]
-   # puts wrestler.lines[20]
-   # puts wrestler.lines[21]
-   # puts wrestler.lines[22]
-   # puts wrestler.lines[23]
-   # puts wrestler.lines[24]
-   # puts wrestler.lines[25]
-   # puts wrestler.lines[26]
-   # puts wrestler.lines[27]
-   # puts wrestler.lines[28]
-   # puts wrestler.lines[29]
-   # puts wrestler.lines[30]
-   # puts wrestler.lines[31]
-   # puts wrestler.lines[32]
-   # puts wrestler.lines[33]
-   # puts wrestler.lines[34]
-   # puts wrestler.lines[35]
-   # puts wrestler.lines[36]
-   # puts wrestler.lines[37]
-   # puts wrestler.lines[38]
-   # puts wrestler.lines[39]
-   # puts wrestler.lines[40]
-   # puts wrestler.lines[41]
-   # puts wrestler.lines[42]
-   # puts wrestler.lines[43]
-   # puts wrestler.lines[44]
-   # puts wrestler.lines[45]
-   # puts wrestler.lines[46]
-   # puts wrestler.lines[47]
-   # puts wrestler.lines[48]
-   # puts wrestler.lines[49]
-   # puts wrestler.lines[50]
+   wrestler.process_text(wrestler_text)
+			binding.pry
  end
-
