@@ -29,6 +29,10 @@ class Wrestler
 		@name
 	end
 
+	def set_file_name(file_name)
+		@file_name = file_name
+	end
+
 end
 
 
