@@ -32,8 +32,20 @@ class Wrestler
 		@file_name = file_name
 	end
 
-	def process_text(wrestler_text)
+	def process_offense(text)
+		# Assign OC Move
+		text.strip!
+		move = text.split(/(\d+)(\D+)(\d+)(.+|\z)/)
+		move.shift
+		move[1].strip!
+		move[3].strip!
+		@oc[move[0].to_i] = move
+		index = move[0].to_i
+		@oc[index].shift
+		binding.pry
+	end
 
+	def process_text(wrestler_text)
 		# Caputre text lines into an array
   	wrestler_text_array = wrestler_text.lines
   	puts wrestler_text_array
@@ -57,14 +69,33 @@ class Wrestler
 				when /GENERAL CARD/
 					w.slice!(/GENERAL CARD/)
 					w.strip!
-					temp_array = w.split(/(\d+)(\D+)(\d+)(\z)/)
+					temp_array = w.split(/(\d+)(\D+)(\d+)(.+|\z)/)
 					temp_array.shift
 					temp_array.shift
 					temp_array[0].strip!
 					@oc[2] = temp_array
 				else
 					w.strip!
-			binding.pry
+
+					# Assign GC
+					temp_array = w.split(/(\d)\s+(OC|DC|OC\/TT).+(\d).+(OC|DC|OC\/TT)(.+)/)
+					temp_array.shift
+					@gc[temp_array[0]] = temp_array[1]
+					@gc[temp_array[2]] = temp_array[3]
+
+					# Assign OC Move
+			# 		temp_array[4].strip!
+			# 		temp_move = temp_array[4]
+			# 		move = temp_move.split(/(\d+)(\D+)(\d+)(.+|\z)/)
+			# 		move.shift
+			# 		move[1].strip!
+			# 		move[3].strip!
+			# 		@oc[move[0].to_i] = move
+			# 		index = move[0].to_i
+			# 		@oc[index].shift
+			# binding.pry
+					process_offense(temp_array[4])
+					# process_offense(w)
 				end
 	  	}
 
