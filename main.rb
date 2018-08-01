@@ -84,18 +84,7 @@ class Wrestler
 					@gc[temp_array[2]] = temp_array[3]
 
 					# Assign OC Move
-			# 		temp_array[4].strip!
-			# 		temp_move = temp_array[4]
-			# 		move = temp_move.split(/(\d+)(\D+)(\d+)(.+|\z)/)
-			# 		move.shift
-			# 		move[1].strip!
-			# 		move[3].strip!
-			# 		@oc[move[0].to_i] = move
-			# 		index = move[0].to_i
-			# 		@oc[index].shift
-			# binding.pry
 					process_offense(temp_array[4])
-					# process_offense(w)
 				end
 	  	}
 
