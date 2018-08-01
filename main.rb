@@ -3,11 +3,6 @@ require 'pry'
 
 reader = PDF::Reader.new("files/Zak Knight.pdf")
 
-puts reader.pdf_version
-puts reader.info
-puts reader.metadata
-puts reader.page_count
-
 class Wrestler
 
 	def initialize
@@ -15,7 +10,8 @@ class Wrestler
 		@file_name
 		@name
 		@gc = Hash.new
-		@oc = Hash.new
+		@oc_moves = Array.new
+		@oc = Hash.new(@oc_moves)
 		@dc = Hash.new
 		@specialty = Hash.new
 		@ropes = Array.new
