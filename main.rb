@@ -53,7 +53,17 @@ class Wrestler
 					set_name(w)
 					puts "Wrestler's Name: " + @name
 				when /\A\n/
+					# Skips lines that just contain a newline character
+				when /GENERAL CARD/
+					w.slice!(/GENERAL CARD/)
+					w.strip!
+					temp_array = w.split(/(\d+)(\D+)(\d+)(\z)/)
+					temp_array.shift
+					temp_array.shift
+					temp_array[0].strip!
+					@oc[2] = temp_array
 				else
+					w.strip!
 			binding.pry
 				end
 	  	}
