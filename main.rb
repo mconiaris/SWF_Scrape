@@ -33,9 +33,12 @@ class Wrestler
 		@file_name = file_name
 	end
 
-	def process_text(pdf)
+	def process_text(wrestler_text_line)
 		# Create switch statement to determine REGEX
-		
+		case wrestler_text_line
+		when condition
+		end
+
 		# Split original text into an array
 		temp_string = pdf.split(/(\d+)(\D+)(\d+)/)
 	end
