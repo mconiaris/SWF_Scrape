@@ -33,13 +33,15 @@ class Wrestler
 		@file_name = file_name
 	end
 
+	def process_text(pdf)
+		# Split original text into an array
+		temp_string = pdf.split(/(\d+)(\D+)(\d+)/)
+	end
+
 end
 
 
-def process_text(pdf)
-	# Split original text into an array
-	temp_string = pdf.split(/(\d+)(\D+)(\d+)/)
-end
+
 
 reader.pages.each do |page|
    # puts page.fonts
