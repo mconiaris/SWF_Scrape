@@ -76,6 +76,7 @@ class Wrestler
 					puts "Current Wrestler Name: " + @name.to_s
 					puts "Current Wrestler GC: " + @gc.to_s
 					puts "Current Wrestler OC: " + @oc.to_s
+					puts "\n"
 				when /(\d)\s+(OC|DC|OC\/TT).+(\d).+(OC|DC|OC\/TT)(.+)/
 					# Assign GC
 					temp_array = w.split(/(\d)\s+(OC|DC|OC\/TT).+(\d).+(OC|DC|OC\/TT)(.+)/)
@@ -85,6 +86,7 @@ class Wrestler
 					puts "Current Wrestler Name: " + @name.to_s
 					puts "Current Wrestler GC: " + @gc.to_s
 					puts "Current Wrestler OC: " + @oc.to_s
+					puts "\n"
 
 					# Assign OC Move
 					process_offense(temp_array[4])
