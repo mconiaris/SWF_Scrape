@@ -42,7 +42,6 @@ class Wrestler
 		@oc[move[0].to_i] = move
 		index = move[0].to_i
 		@oc[index].shift
-		# binding.pry
 	end
 
 	def process_text(wrestler_text)
@@ -74,17 +73,20 @@ class Wrestler
 					temp_array.shift
 					temp_array[0].strip!
 					@oc[2] = temp_array
-				else
-					w.strip!
-
+					puts @oc
+				when /(\d)\s+(OC|DC|OC\/TT).+(\d).+(OC|DC|OC\/TT)(.+)/
 					# Assign GC
 					temp_array = w.split(/(\d)\s+(OC|DC|OC\/TT).+(\d).+(OC|DC|OC\/TT)(.+)/)
 					temp_array.shift
 					@gc[temp_array[0]] = temp_array[1]
 					@gc[temp_array[2]] = temp_array[3]
+					puts @gc
 
 					# Assign OC Move
 					process_offense(temp_array[4])
+				else
+		binding.pry
+
 				end
 	  	}
 
