@@ -73,16 +73,18 @@ class Wrestler
 					temp_array.shift
 					temp_array[0].strip!
 					@oc[2] = temp_array
-					puts @gc
-					puts @oc
+					puts "Current Wrestler Name: " + @name.to_s
+					puts "Current Wrestler GC: " + @gc.to_s
+					puts "Current Wrestler OC: " + @oc.to_s
 				when /(\d)\s+(OC|DC|OC\/TT).+(\d).+(OC|DC|OC\/TT)(.+)/
 					# Assign GC
 					temp_array = w.split(/(\d)\s+(OC|DC|OC\/TT).+(\d).+(OC|DC|OC\/TT)(.+)/)
 					temp_array.shift
 					@gc[temp_array[0]] = temp_array[1]
 					@gc[temp_array[2]] = temp_array[3]
-					puts @gc
-					puts @oc
+					puts "Current Wrestler Name: " + @name.to_s
+					puts "Current Wrestler GC: " + @gc.to_s
+					puts "Current Wrestler OC: " + @oc.to_s
 
 					# Assign OC Move
 					process_offense(temp_array[4])
