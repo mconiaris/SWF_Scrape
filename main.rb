@@ -87,6 +87,7 @@ class Wrestler
 					process_offense(temp_array[4])
 				else
 					puts "This needs to be checked."
+			binding.pry
 				end
 	  	}
 
@@ -115,4 +116,3 @@ reader.pages.each do |page|
  end
 
  puts wrestler
-			binding.pry
