@@ -62,7 +62,10 @@ class Wrestler
 					w.slice!(/OFFENSIVE CARD/)
 					w.strip!
 					set_name(w)
-					puts "Wrestler's Name: " + @name
+					puts "Current Wrestler Name: " + @name.to_s
+					puts "Current Wrestler GC: " + @gc.to_s
+					puts "Current Wrestler OC: " + @oc.to_s
+					puts "\n"
 				when /\A\n/
 					# Skips lines that just contain a newline character
 				when /GENERAL CARD/
