@@ -107,7 +107,7 @@ reader.pages.each do |page|
 
    # Capture text in String variable
    wrestler_text = page.text
-   # puts wrestler_text
+   puts wrestler_text
    wrestler.process_text(wrestler_text)
    puts wrestler
  end
