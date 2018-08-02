@@ -42,13 +42,13 @@ class Wrestler
 		@oc[move[0].to_i] = move
 		index = move[0].to_i
 		@oc[index].shift
-		binding.pry
+		# binding.pry
 	end
 
 	def process_text(wrestler_text)
 		# Caputre text lines into an array
   	wrestler_text_array = wrestler_text.lines
-  	puts wrestler_text_array
+  	# puts wrestler_text_array
 
 		# Split wrestler_text_array lines by line space
 	  wrestler_text_array.each {
@@ -109,4 +109,5 @@ reader.pages.each do |page|
    wrestler_text = page.text
    # puts wrestler_text
    wrestler.process_text(wrestler_text)
+   puts wrestler
  end
