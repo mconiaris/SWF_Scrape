@@ -68,6 +68,7 @@ class Wrestler
 					puts "\n"
 				when /\A\n/
 					# Skips lines that just contain a newline character
+					puts "No text to process."
 				when /GENERAL CARD/
 					w.slice!(/GENERAL CARD/)
 					w.strip!
