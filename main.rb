@@ -37,12 +37,17 @@ class Wrestler
 		text.strip!
 		move = text.split(/(\d+)(\D+)(\d+)(.+|\z)/)
 		move.shift
-		move[1].strip!
-		move[3].strip!
+		# Check for errors
+		if move[1] != nil
+			move[1].strip!
+		end
+		# Check to see if OFFENSIVE CARD move has a P/A, Sub, etc.
+		if move[3] != nil
+		 move[3].strip!
+		end
 		@oc[move[0].to_i] = move
 		index = move[0].to_i
 		@oc[index].shift
-		binding.pry
 	end
 
 	def process_text(wrestler_text)
@@ -68,23 +73,20 @@ class Wrestler
 					# Skips lines that just contain a newline character
 				when /GENERAL CARD/
 					w.slice!(/GENERAL CARD/)
-					w.strip!
-					temp_array = w.split(/(\d+)(\D+)(\d+)(.+|\z)/)
-					temp_array.shift
-					temp_array.shift
-					temp_array[0].strip!
-					@oc[2] = temp_array
-				else
+					process_offense(w)
+				when /(\d)\s+(OC|DC|TT).+(\d).+(OC|DC|TT)(.+)/
 					w.strip!
 
 					# Assign GC
-					temp_array = w.split(/(\d)\s+(OC|DC|OC\/TT).+(\d).+(OC|DC|OC\/TT)(.+)/)
+					temp_array = w.split(/(\d)\s+(OC|DC|TT).+(\d).+(OC|DC|TT)(.+)/)
 					temp_array.shift
 					@gc[temp_array[0]] = temp_array[1]
 					@gc[temp_array[2]] = temp_array[3]
 
 					# Assign OC Move
 					process_offense(temp_array[4])
+				else
+					puts "This needs to be checked."
 				end
 	  	}
 
@@ -109,4 +111,8 @@ reader.pages.each do |page|
    wrestler_text = page.text
    # puts wrestler_text
    wrestler.process_text(wrestler_text)
+   return wrestler
  end
+
+ puts wrestler
+			binding.pry
