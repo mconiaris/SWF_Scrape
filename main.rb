@@ -48,8 +48,8 @@ class Wrestler
 		@oc[move[0].to_i] = move
 		index = move[0].to_i
 		@oc[index].shift
-		puts @gc
-		puts @oc
+		puts @gc.sort.to_h
+		puts @oc.sort.to_h
 	end
 
 	def process_text(wrestler_text)
@@ -76,7 +76,7 @@ class Wrestler
 				when /GENERAL CARD/
 					w.slice!(/GENERAL CARD/)
 					process_offense(w)
-				when /(\d)\s+(OC|DC|TT).+(\d).+(OC|DC|TT)(.+)/
+				when /(\d)\s+(OC|DC|TT)\s+(\d+).+(OC|DC|TT)(.+)/
 					w.strip!
 
 					# Assign GC
