@@ -48,6 +48,8 @@ class Wrestler
 		@oc[move[0].to_i] = move
 		index = move[0].to_i
 		@oc[index].shift
+		puts @gc
+		puts @oc
 	end
 
 	def process_text(wrestler_text)
