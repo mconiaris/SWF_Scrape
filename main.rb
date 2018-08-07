@@ -89,6 +89,9 @@ class Wrestler
 					process_offense(temp_array[4])
 				when /\s+(OC|DC|TT)\s+(\d+)\s+(.+)/
 					process_offense(w)
+				when /DEFENSIVE CARD/
+					w.slice!(/DEFENSIVE CARD/)
+					process_offense(w)
 				else
 					puts "This needs to be checked."
 			binding.pry
