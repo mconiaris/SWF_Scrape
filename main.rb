@@ -53,10 +53,11 @@ class Wrestler
 		puts "\n\n"
 	end
 
+	# Fix issue with 3 OC 8 OC?TT to see why it is not loading.
 	def process_defense(text)
 		puts "processing defense"
 		text.strip!
-		moves = text.split(/(\d)\s+(A|B|C|REVERSE)\s+(\d)\s+(A|B|C|REVERSE)\s+(\d+\s+.+)/)
+		moves = text.split(/(\d)\s+(A|B|C|REVERSE)\s+(\d+)\s+(A|B|C|REVERSE)\s+(\d+\s+.+)/)
 		off = moves[5]
 		@dc[moves[1]] = moves[2]
 		@dc[moves[3]] = moves[4]
@@ -65,7 +66,7 @@ class Wrestler
 		puts "Offensive Card: " + @oc.sort.to_h.to_s
 		puts "Defensive Card: " + @dc.sort.to_h.to_s
 		puts "\n\n"
-					binding.pry
+		binding.pry
 	end
 
 	def process_text(wrestler_text)
@@ -96,6 +97,7 @@ class Wrestler
 					w.strip!
 
 					# Assign GC
+					# Look into 10, 11 & 12 GC, which are not working properly.
 					temp_array = w.split(/(\d)\s+(OC|DC|TT).+(\d+).+(OC|DC|TT)(.+)/)
 					temp_array.shift
 					@gc[temp_array[0]] = temp_array[1]
@@ -112,7 +114,7 @@ class Wrestler
 					process_defense(w)
 				else
 					puts "This needs to be checked."
-			binding.pry
+			# binding.pry
 				end
 	  	}
 
