@@ -50,6 +50,22 @@ class Wrestler
 		@oc[index].shift
 		puts @gc.sort.to_h
 		puts @oc.sort.to_h
+		puts "\n\n"
+	end
+
+	def process_defense(text)
+		puts "processing defense"
+		text.strip!
+		moves = text.split(/(\d)\s+(A|B|C|REVERSE)\s+(\d)\s+(A|B|C|REVERSE)\s+(\d+\s+.+)/)
+		off = moves[5]
+		@dc[moves[1]] = moves[2]
+		@dc[moves[3]] = moves[4]
+		process_offense(off)
+		puts "General Card: " + @gc.sort.to_h.to_s
+		puts "Offensive Card: " + @oc.sort.to_h.to_s
+		puts "Defensive Card: " + @dc.sort.to_h.to_s
+		puts "\n\n"
+					binding.pry
 	end
 
 	def process_text(wrestler_text)
@@ -80,7 +96,7 @@ class Wrestler
 					w.strip!
 
 					# Assign GC
-					temp_array = w.split(/(\d)\s+(OC|DC|TT).+(\d).+(OC|DC|TT)(.+)/)
+					temp_array = w.split(/(\d)\s+(OC|DC|TT).+(\d+).+(OC|DC|TT)(.+)/)
 					temp_array.shift
 					@gc[temp_array[0]] = temp_array[1]
 					@gc[temp_array[2]] = temp_array[3]
@@ -92,6 +108,8 @@ class Wrestler
 				when /DEFENSIVE CARD/
 					w.slice!(/DEFENSIVE CARD/)
 					process_offense(w)
+				when /\s?(\d)\s+(A|B|C|REVERSE)\s+(\d+)\s+(A|B|C|REVERSE)\s+(\d+)\s+(.+)/
+					process_defense(w)
 				else
 					puts "This needs to be checked."
 			binding.pry
