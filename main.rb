@@ -66,7 +66,7 @@ class Wrestler
 		puts "Offensive Card: " + @oc.sort.to_h.to_s
 		puts "Defensive Card: " + @dc.sort.to_h.to_s
 		puts "\n\n"
-		binding.pry
+		# binding.pry
 	end
 
 	def process_text(wrestler_text)
@@ -114,7 +114,7 @@ class Wrestler
 					process_defense(w)
 				else
 					puts "This needs to be checked."
-			# binding.pry
+			binding.pry
 				end
 	  	}
 
