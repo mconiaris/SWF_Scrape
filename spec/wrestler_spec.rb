@@ -1,3 +1,5 @@
+require 'pdf-reader'
+require 'pry'
 require 'wrestler'
 
 # Main Spec
@@ -11,5 +13,8 @@ describe Wrestler do
 end
 
 describe 'PDF Reader' do
-
+	it 'loads the Zak Knight PDF as a Reader file' do
+		reader = PDF::Reader.new("files/Zak Knight.pdf")
+		expect(reader.class).to eql(PDF::Reader)
+	end
 end
