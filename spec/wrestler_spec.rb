@@ -1,6 +1,6 @@
 require 'pdf-reader'
 require 'pry'
-require_relative 'wrestler'
+require 'wrestler'
 
 # Main Spec
 RSpec.describe Wrestler do
