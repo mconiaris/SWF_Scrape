@@ -8,6 +8,7 @@ TBD
 
 ## Documentation
 - RSpec: https://relishapp.com/rspec/rspec-core/v/3-8/docs
+- Rspec (Conventions): http://www.betterspecs.org/
 
 ## Tutorials
 - How to scrape a document: https://medium.com/@luke_duncan/how-to-scrape-a-pdf-for-keywords-using-ruby-a8ffa47c186e
