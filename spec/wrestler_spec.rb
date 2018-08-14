@@ -31,6 +31,10 @@ RSpec.describe Wrestler do
 		it 'has a process_defense method' do
 			expect(@wrestler.respond_to?(:process_defense)).to eq(true)
 		end
+		# process_text
+		it 'has a process_text method' do
+			expect(@wrestler.respond_to?(:process_text)).to eq(true)
+		end
 	end
 
 end
