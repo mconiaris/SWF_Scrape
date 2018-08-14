@@ -25,6 +25,9 @@ RSpec.describe Wrestler do
 		it 'has a set_file_name method' do
 			expect(@wrestler.respond_to?(:set_file_name)).to eq(true)
 		end
+		it 'has a process_offense method' do
+			expect(@wrestler.respond_to?(:process_offense)).to eq(true)
+		end
 	end
 
 end
