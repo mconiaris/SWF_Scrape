@@ -16,6 +16,9 @@ RSpec.describe Wrestler do
 		it 'has a name value of nil' do
 			expect(@wrestler.get_name).to eq(nil)
 		end
+		it 'has a get_name method' do
+			expect(@wrestler.respond_to?(:get_name)).to eq(true)
+		end
 	end
 
 end
