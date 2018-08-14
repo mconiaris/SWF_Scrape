@@ -6,7 +6,6 @@ require 'wrestler'
 RSpec.describe Wrestler do
 	before(:example) do
 		@wrestler = Wrestler.new
-		puts 'before block executes.'
 	end
 
 	describe '#initialize' do
