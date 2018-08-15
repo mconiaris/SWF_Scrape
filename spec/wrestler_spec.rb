@@ -15,23 +15,23 @@ RSpec.describe Wrestler do
 		it 'that has a name value of nil' do
 			expect(@wrestler.get_name).to eq(nil)
 		end
-		it 'that has a get_name method' do
+		it 'responds to #get_name method' do
 			expect(@wrestler.respond_to?(:get_name)).to eq(true)
 		end
-		it 'that has a set_name method' do
+		it 'responds to #set_name' do
 			expect(@wrestler.respond_to?(:set_name)).to eq(true)
 		end
-		it 'that has a set_file_name method' do
+		it 'responds to #set_file_name' do
 			expect(@wrestler.respond_to?(:set_file_name)).to eq(true)
 		end
-		it 'that has a process_offense method' do
+		it 'responds to #process_offense' do
 			expect(@wrestler.respond_to?(:process_offense)).to eq(true)
 		end
-		it 'that has a process_defense method' do
+		it 'responds to #process_defense' do
 			expect(@wrestler.respond_to?(:process_defense)).to eq(true)
 		end
 		# process_text
-		it 'that has a process_text method' do
+		it 'responds to #process_text' do
 			expect(@wrestler.respond_to?(:process_text)).to eq(true)
 		end
 	end
