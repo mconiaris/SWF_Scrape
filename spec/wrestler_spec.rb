@@ -2,6 +2,7 @@
 RSpec.describe Wrestler do
 	before(:example) do
 		@wrestler = Wrestler.new
+		binding.pry
 	end
 
 	describe '#initialize' do
@@ -32,4 +33,14 @@ RSpec.describe Wrestler do
 		end
 	end
 
+	# context '#reader' do
+	# 	before(:context) do
+	# 		@wrestler = Wrestler.new
+	# 		@wrestler_text = @wrestler.reader("../files/Zak Knight.pdf")
+	# 	end
+
+	# 	it 'turns a PDF into text' do
+	# 		binding.pry
+	# 	end
+	# end
 end
