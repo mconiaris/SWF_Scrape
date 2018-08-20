@@ -1,23 +1,7 @@
-require 'pdf-reader'
 require 'pry'
+require_relative 'reader'
 require_relative 'wrestler'
 
-reader = PDF::Reader.new("files/Zak Knight.pdf")
+reader("files/Zak Knight.pdf")
 
-# Run Program
-reader.pages.each do |page|
-   # puts page.fonts
-   # puts page.raw_content
-   # puts page.class
-
-   #Create Wrestler object
-   wrestler = Wrestler.new
-
-   # Capture text in String variable
-   wrestler_text = page.text
-   # puts wrestler_text
-   wrestler.process_text(wrestler_text)
-   return wrestler
- end
-
- puts wrestler
+puts wrestler
