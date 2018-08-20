@@ -2,7 +2,6 @@
 RSpec.describe Wrestler do
 	before(:example) do
 		@wrestler = Wrestler.new
-		binding.pry
 	end
 
 	describe '#initialize' do
