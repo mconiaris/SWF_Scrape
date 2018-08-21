@@ -17,22 +17,21 @@ class Wrestler
 		@tag_team_priority
 	end
 
+	# This is now showing up in Rspec
+	# def pdf_to_text(wrestler)
+	# 	reader = PDF::Reader.new(wrestler)
 
-	def pdf_to_text(wrestler)
-		reader = PDF::Reader.new(wrestler)
+	# 	# Run Program
+	# 	reader.pages.each do |page|
+	# 	 # puts page.fonts
+	# 	  # puts page.raw_content
+	# 	  # puts page.class
 
-		# Run Program
-		reader.pages.each do |page|
-		 # puts page.fonts
-		  # puts page.raw_content
-		  # puts page.class
-
-		  # Capture text in String variable
-		  wrestler_text = page.text
-		  return wrestler_text
-		end
-	end
-
+	# 	  # Capture text in String variable
+	# 	  wrestler_text = page.text
+	# 	  return wrestler_text
+	# 	end
+	# end
 
 	def get_name
 		@name

@@ -32,14 +32,18 @@ RSpec.describe Wrestler do
 		end
 	end
 
-	# context '#reader' do
-	# 	before(:context) do
-	# 		@wrestler = Wrestler.new
-	# 		@wrestler_text = @wrestler.reader("../files/Zak Knight.pdf")
-	# 	end
+	context '#reader' do
+		before(:context) do
+			@wrestler = Wrestler.new
+			binding.pry
+		end
 
-	# 	it 'turns a PDF into text' do
-	# 		binding.pry
-	# 	end
-	# end
+		after(:context) do
+			# binding.pry
+			@wrestler_text = @wrestler.pdf_to_text("files/Zak Knight.pdf")
+		end
+
+		it 'turns a PDF into text' do
+		end
+	end
 end
