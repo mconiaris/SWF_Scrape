@@ -1,5 +1,6 @@
 require 'pdf-reader'
 
+# TODO: Pass text as an argument?
 class Wrestler
 
 	def initialize
@@ -17,7 +18,12 @@ class Wrestler
 		@tag_team_priority
 	end
 
-	# This is now showing up in Rspec
+	def does_something
+		@something = "This does something"
+		return @something
+	end
+
+	# This is not showing up in Rspec
 	def pdf_to_text(wrestler)
 		reader = PDF::Reader.new(wrestler)
 
