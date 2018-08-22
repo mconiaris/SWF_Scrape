@@ -127,7 +127,7 @@ class Wrestler
 					process_defense(w)
 				else
 					puts "This needs to be checked."
-			binding.pry
+			# binding.pry
 				end
 	  	}
 		# Split original text into an array
