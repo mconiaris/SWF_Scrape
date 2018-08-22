@@ -35,7 +35,6 @@ RSpec.describe Wrestler do
 	context '#reader' do
 		before(:context) do
 			@wrestler = Wrestler.new
-			binding.pry
 		end
 
 		after(:context) do
