@@ -32,7 +32,7 @@ RSpec.describe Wrestler do
 		end
 	end
 
-	context '#reader' do
+	context '#pdf_to_text' do
 		before(:context) do
 			@wrestler = Wrestler.new
 			# binding.pry
