@@ -24,6 +24,7 @@ class Wrestler
 	end
 
 	# This is not showing up in Rspec
+	# TODO? Create a class to do this?
 	def pdf_to_text(wrestler)
 		reader = PDF::Reader.new(wrestler)
 
