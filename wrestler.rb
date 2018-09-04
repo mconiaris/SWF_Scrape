@@ -18,6 +18,7 @@ class Wrestler
 		@tag_team_priority
 	end
 
+	# TODO: Write test to see if this works at least
 	def does_something
 		@something = "This does something"
 		return @something
