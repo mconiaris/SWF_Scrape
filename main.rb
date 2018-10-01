@@ -5,7 +5,7 @@ require_relative 'wrestler'
 @wrestler = Wrestler.new
 # binding.pry
 @wrestler_text = @wrestler.pdf_to_text("files/Zak Knight.pdf")
-binding.pry
+# binding.pry
 
 # puts wrestler_text
 @wrestler.process_text(wrestler_text)
