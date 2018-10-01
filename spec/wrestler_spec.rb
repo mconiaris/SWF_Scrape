@@ -29,7 +29,6 @@ RSpec.describe Wrestler do
 		# process_text
 		it 'responds to #process_text' do
 			expect(@wrestler.respond_to?(:process_text)).to eq(true)
-			binding.pry
 		end
 	end
 
