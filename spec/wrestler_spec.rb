@@ -46,7 +46,7 @@ RSpec.describe Wrestler do
 		# end
 
 		it 'turns a PDF into text' do
-			@wrestler_text = @wrestler.pdf_to_text("files/Zak Knight.pdf")
+			wrestler_text = @wrestler.pdf_to_text("files/Zak Knight.pdf")
 		end
 	end
 end
