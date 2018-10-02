@@ -46,6 +46,7 @@ RSpec.describe Wrestler do
 		# end
 
 		it 'turns a PDF into text' do
+			# binding.pry
 			wrestler_text = @wrestler.pdf_to_text("files/Zak Knight.pdf")
 		end
 	end

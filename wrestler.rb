@@ -18,12 +18,7 @@ class Wrestler
 		@tag_team_priority
 	end
 
-	# TODO: Write test to see if this works at least
-	def does_something
-		@something = "This does something"
-		return @something
-	end
-
+	
 	# This is not showing up in Rspec
 	# TODO? Create a class to do this?
 	def pdf_to_text(wrestler)
@@ -43,6 +38,11 @@ class Wrestler
 
 	def get_name
 		@name
+	end
+
+	# TODO: Write test to see if this works at least
+	def does_something
+		@something = "This does something"
 	end
 
 	def set_name(name)
