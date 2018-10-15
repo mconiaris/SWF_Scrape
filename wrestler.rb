@@ -35,6 +35,10 @@ class Wrestler
 		end
 	end
 
+	def process_pdf
+		puts 'processing PDF'
+	end
+
 	def get_name
 		@name
 	end

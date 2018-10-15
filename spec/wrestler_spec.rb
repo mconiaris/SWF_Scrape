@@ -30,6 +30,10 @@ RSpec.describe Wrestler do
 		it 'responds to #process_text' do
 			expect(@wrestler.respond_to?(:process_text)).to eq(true)
 		end
+		it 'responds to #pdf_to_text' do
+			expect(@wrestler.respond_to?(:pdf_to_text)).to eq(true)
+			binding.pry
+		end
 	end
 
 	context '#pdf_to_text' do
@@ -46,7 +50,7 @@ RSpec.describe Wrestler do
 		# end
 
 		it 'turns a PDF into text' do
-			binding.pry
+			# binding.pry
 			wrestler_text = @wrestler.pdf_to_text("files/Zak Knight.pdf")
 			pending
 		end
