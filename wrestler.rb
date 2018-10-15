@@ -32,7 +32,6 @@ class Wrestler
 
 		  # Capture text in String variable
 		  wrestler_text = page.text
-		  return wrestler_text
 		end
 	end
 
