@@ -40,11 +40,6 @@ class Wrestler
 		@name
 	end
 
-	# TODO: Write test to see if this works at least
-	def does_something
-		@something = "This does something"
-	end
-
 	def set_name(name)
 		@name = name
 	end
