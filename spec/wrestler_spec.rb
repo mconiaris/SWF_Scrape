@@ -32,7 +32,7 @@ RSpec.describe Wrestler do
 		end
 		it 'responds to #pdf_to_text' do
 			expect(@wrestler.respond_to?(:pdf_to_text)).to eq(true)
-			binding.pry
+			# binding.pry
 		end
 	end
 

@@ -47,10 +47,6 @@ class Wrestler
 		@name = name
 	end
 
-	def get_sub
-		@sub
-	end
-
 	def set_file_name(file_name)
 		@file_name = file_name
 	end
