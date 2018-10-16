@@ -3,7 +3,7 @@ require 'pdf-reader'
 # TODO: Pass text as an argument?
 class Wrestler
 		attr_accessor :name
-		attr_accessor :file_name
+		attr_accessor :card_name
 
 	# TODO: Add source doc at initialize?
 	def initialize
