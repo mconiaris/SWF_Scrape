@@ -2,12 +2,12 @@ require 'pdf-reader'
 
 # TODO: Pass text as an argument?
 class Wrestler
+		attr_accessor :name
+		attr_accessor :file_name
 
 	# TODO: Add source doc at initialize?
 	def initialize
 		puts "New Wrestler Created"
-		attr_accessor :name
-		@file_name
 		@gc = Hash.new
 		@oc = Hash.new(@oc_moves = Array.new)
 		@dc = Hash.new
@@ -22,7 +22,7 @@ class Wrestler
 	# This is not showing up in Rspec
 	# TODO? Create a class to do this?
 	def process_source(wrestler)
-		binding.pry
+		# binding.pry
 		reader = PDF::Reader.new(wrestler)
 
 		# Run Program
@@ -34,10 +34,6 @@ class Wrestler
 		  # Capture text in String variable
 		  wrestler_text = page.text
 		end
-	end
-
-	def set_file_name(file_name)
-		@file_name = file_name
 	end
 
 	def process_offense(text)
@@ -79,6 +75,7 @@ class Wrestler
 
 	def process_text(wrestler_text)
 		# Caputre text lines into an array
+  	binding.pry
   	wrestler_text_array = wrestler_text.lines
   	puts wrestler_text_array
 
