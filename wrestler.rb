@@ -6,6 +6,7 @@ class Wrestler
 	# TODO: Add source doc at initialize?
 	def initialize
 		puts "New Wrestler Created"
+		attr_accessor :name
 		@file_name
 		@name
 		@gc = Hash.new
@@ -34,16 +35,6 @@ class Wrestler
 		  # Capture text in String variable
 		  wrestler_text = page.text
 		end
-	end
-
-	
-
-	def get_name
-		@name
-	end
-
-	def set_name(name)
-		@name = name
 	end
 
 	def set_file_name(file_name)
