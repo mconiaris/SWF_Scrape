@@ -8,7 +8,6 @@ class Wrestler
 		puts "New Wrestler Created"
 		attr_accessor :name
 		@file_name
-		@name
 		@gc = Hash.new
 		@oc = Hash.new(@oc_moves = Array.new)
 		@dc = Hash.new
