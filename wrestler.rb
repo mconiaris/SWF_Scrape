@@ -75,7 +75,6 @@ class Wrestler
 
 	def process_text(wrestler_text)
 		# Caputre text lines into an array
-  	binding.pry
   	wrestler_text_array = wrestler_text.lines
   	puts wrestler_text_array
 
