@@ -17,7 +17,6 @@ class Wrestler
 		@singles_priority
 		@tag_team_priority
 	end
-
 	
 	# This is not showing up in Rspec
 	# TODO? Create a class to do this?
@@ -35,9 +34,6 @@ class Wrestler
 		end
 	end
 
-	def process_pdf
-		puts 'processing PDF'
-	end
 
 	def get_name
 		@name

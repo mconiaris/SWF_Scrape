@@ -29,10 +29,10 @@ RSpec.describe Wrestler do
 		# process_text
 		it 'responds to #process_text' do
 			expect(@wrestler.respond_to?(:process_text)).to eq(true)
+			binding.pry
 		end
 		it 'responds to #pdf_to_text' do
 			expect(@wrestler.respond_to?(:pdf_to_text)).to eq(true)
-			# binding.pry
 		end
 	end
 
