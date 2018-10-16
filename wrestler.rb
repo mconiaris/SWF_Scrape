@@ -20,7 +20,7 @@ class Wrestler
 	
 	# This is not showing up in Rspec
 	# TODO? Create a class to do this?
-	def pdf_to_text(wrestler)
+	def process_source(wrestler)
 		reader = PDF::Reader.new(wrestler)
 
 		# Run Program
