@@ -3,6 +3,7 @@ require 'pdf-reader'
 # TODO: Pass text as an argument?
 class Wrestler
 
+	# TODO: Add source doc at initialize?
 	def initialize
 		puts "New Wrestler Created"
 		@file_name
@@ -21,6 +22,7 @@ class Wrestler
 	# This is not showing up in Rspec
 	# TODO? Create a class to do this?
 	def process_source(wrestler)
+		binding.pry
 		reader = PDF::Reader.new(wrestler)
 
 		# Run Program
@@ -34,6 +36,7 @@ class Wrestler
 		end
 	end
 
+	
 
 	def get_name
 		@name
