@@ -8,4 +8,7 @@ class Scraper
 	def initialize(card)
 		@reader = PDF::Reader.new(card)
 	end
+
+	def capture_text
+	end
 end
