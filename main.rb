@@ -1,6 +1,6 @@
 require 'pdf-reader'
 require 'pry'
-require 'scraper'
+require_relative 'lib/scraper'
 require_relative 'wrestler'
 
 # Create Wrestler object
