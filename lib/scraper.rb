@@ -4,6 +4,7 @@ class Scraper
 
 	attr_accessor :reader
 
+	# Uses pdf-reader gem to take PDFS and turns them into text.
 	def initialize(card)
 		@reader = PDF::Reader.new(card)
 	end
