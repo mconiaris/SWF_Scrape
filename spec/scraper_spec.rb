@@ -21,5 +21,7 @@ RSpec.describe Scraper do
 			end
 		end
 	end
+
+	#TODO: Describe the behavior of the capture_text method
 end
 
