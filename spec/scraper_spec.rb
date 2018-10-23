@@ -4,7 +4,7 @@ RSpec.describe Scraper do
 	end
 	
 	describe 'Scraper#initialize' do
-		context 'when the Zak Knight PDF is loaded' do
+		context 'when the Zak Knight PDF is given as an argument' do
 			it "should have one page" do
 				expect(@scrape.reader.page_count).to eq(1)
 			end
