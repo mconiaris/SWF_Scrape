@@ -8,4 +8,5 @@ require_relative 'wrestler'
 
 #TODO: Moves this to scraper.rb and call it from here.
 # Scrape PDF
-@reader = PDF::Reader.new("files/Zak Knight.pdf")
+@scrape = Scraper.new("files/Zak Knight.pdf")
+binding.pry
