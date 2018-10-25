@@ -11,5 +11,6 @@ class Scraper
 
 	#TODO: Take reader text and do something with it.
 	def capture_text
+		puts @scrape.reader.page(1).text
 	end
 end
