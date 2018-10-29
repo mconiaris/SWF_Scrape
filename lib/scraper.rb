@@ -2,6 +2,7 @@ require 'pdf-reader'
 
 class Scraper
 
+	attr_accessor :card
 	attr_accessor :reader
 
 	# Uses pdf-reader gem to take PDFS and turns them into text.
