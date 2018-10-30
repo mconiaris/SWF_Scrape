@@ -21,14 +21,5 @@ RSpec.describe Scraper do
 			end
 		end
 	end
-
-	after(:context) do
-		puts 'After context'
-	end
-
-	#TODO: Describe the behavior of the capture_text method
-	describe "Scraper#capture_text" do
-	end
-
 end
 
