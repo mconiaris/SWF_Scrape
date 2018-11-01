@@ -28,6 +28,7 @@ RSpec.describe Scraper do
 		end
 	end
 
+	# TODO: Getting an error. Needs to be fixed.
 	before(:example) do
 		@scrape = Scraper.new("files/Zak Knight.pdf")
 		@card_text = @scrape.capture_text
