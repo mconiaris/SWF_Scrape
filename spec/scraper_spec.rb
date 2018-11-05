@@ -17,7 +17,7 @@ RSpec.describe Scraper do
 				expect(@scrape.reader.page(1).text).to include("Zak Knight")
 			end
 			it 'should have Zak Knight in the first line' do
-				expect(@scrape.card.include?('Zak Knight')).to eq(true)
+				expect(@scrape.card[0].include?('Zak Knight')).to eq(true)
 			end
 		end
 	end
