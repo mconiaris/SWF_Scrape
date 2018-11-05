@@ -19,8 +19,7 @@ RSpec.describe Scraper do
 			# TODO: Factor this test out to test caputre_text
 			# TODO: Perhaps create it's own block with it's own initialize
 			it 'should have Zak Knight in the first line' do
-				@card = @scrape.reader.page(1).text
-				expect(@card.include?('Zak Knight')).to eq(true)
+				expect(@scrape.card.include?('Zak Knight')).to eq(true)
 			end
 		end
 	end
