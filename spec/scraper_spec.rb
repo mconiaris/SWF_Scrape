@@ -16,8 +16,6 @@ RSpec.describe Scraper do
 			it "should include 'Zak Knight' in the text." do
 				expect(@scrape.reader.page(1).text).to include("Zak Knight")
 			end
-			# TODO: Factor this test out to test caputre_text
-			# TODO: Perhaps create it's own block with it's own initialize
 			it 'should have Zak Knight in the first line' do
 				expect(@scrape.card.include?('Zak Knight')).to eq(true)
 			end
