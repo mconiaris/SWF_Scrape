@@ -1,6 +1,7 @@
 RSpec.describe Scraper do
 	before(:context) do
 		@scrape = Scraper.new("files/Zak Knight.pdf")
+		@card_text = @scrape.capture_text
 	end
 	
 	context 'when the Zak Knight PDF is given as an argument' do
@@ -26,18 +27,11 @@ RSpec.describe Scraper do
 				expect(@card.include?('Zak Knight')).to eq(true)
 			end
 		end
-	end
-
-	# TODO: Getting an error. Needs to be fixed.
-	before(:example) do
-		@scrape = Scraper.new("files/Zak Knight.pdf")
-		@card_text = @scrape.capture_text
-	end
-	
-	describe 'Scraper#capture_text' do
-		context 'when the text is converted into an Array' do
-			it "the first line should include Zak Knight" do
-				expect(@card_text).to include('Zak Knight')
+		describe 'Scraper#capture_text' do
+			context 'when the text is converted into an Array' do
+				it "the first line should include Zak Knight" do
+					expect(@card_text).to include('Zak Knight')
+				end
 			end
 		end
 	end
