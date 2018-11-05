@@ -40,5 +40,6 @@ RSpec.describe Scraper do
 				expect(@card_text).to include('Zak Knight')
 			end
 		end
+	end
 end
 
