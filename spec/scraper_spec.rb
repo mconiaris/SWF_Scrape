@@ -20,6 +20,8 @@ RSpec.describe Scraper do
 				expect(@scrape.card[0].include?('Zak Knight')).to eq(true)
 			end
 		end
+		describe 'Scraper#process_card' do
+		end
 	end
 end
 
