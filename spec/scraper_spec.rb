@@ -3,8 +3,8 @@ RSpec.describe Scraper do
 		@scrape = Scraper.new("files/Zak Knight.pdf")
 	end
 	
-	describe 'Scraper#initialize' do
-		context 'when the Zak Knight PDF is given as an argument' do
+	context 'when the Zak Knight PDF is given as an argument' do
+		describe 'Scraper#initialize' do
 			it "should have one page" do
 				expect(@scrape.reader.page_count).to eq(1)
 			end
