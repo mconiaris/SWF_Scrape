@@ -21,7 +21,7 @@ RSpec.describe Scraper do
 			end
 		end
 		describe 'Scraper#process_card' do
-			#Create respond_to test
+			#TODO: Create respond_to test
 		end
 	end
 end
