@@ -33,5 +33,9 @@ class Scraper
 				end
 			end
 		}
+		# TODO: Divide left array GC & DC lines in half
+		# TODO: Convert arrays into one hash
+		# TODO: Create Wrestler object
+		# TODO: Add hash to Wrestler object
 	end
 end
