@@ -10,4 +10,8 @@ class Scraper
 		@reader = PDF::Reader.new(card)
 		@card = reader.page(1).text.lines
 	end
+
+	# Takes the text and converts it to a wrestler object.
+	def process_card
+	end
 end
