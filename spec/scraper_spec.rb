@@ -21,7 +21,9 @@ RSpec.describe Scraper do
 			end
 		end
 		describe 'Scraper#process_card' do
-			#TODO: Create respond_to test
+			it 'responds to #process_card method' do
+				expect(@scrape.respond_to?(:process_card)).to eq(true)
+			end
 		end
 	end
 end
