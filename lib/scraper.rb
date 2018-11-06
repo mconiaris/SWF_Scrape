@@ -12,7 +12,26 @@ class Scraper
 	end
 
 	# Takes the text and converts it to a wrestler object.
-	def process_card
+	def process_card(card)
 		puts 'processing card'
+		
+		# Create temporary containers for card info
+		left = Array.new
+		right = Array.new
+
+		card.each {
+			|x| if x != nil && x != "\n"
+
+				if x.strip != nil
+					left.push(x[0..35].strip)
+					puts x[0..35].strip + " added to left array."
+				end
+
+				if x[36..x.size] != nil
+					right.push(x[36..x.size].strip)
+					puts x[36..x.size].strip + " added to right array."
+				end
+			end
+		}
 	end
 end

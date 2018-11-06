@@ -9,4 +9,6 @@ require_relative 'wrestler'
 #TODO: Moves this to scraper.rb and call it from here.
 # Scrape PDF
 @scrape = Scraper.new("files/Zak Knight.pdf")
-binding.pry
+card = @scrape.card
+@scrape.process_card(card)
+# binding.pry
