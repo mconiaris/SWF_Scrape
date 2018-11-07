@@ -27,5 +27,6 @@ RSpec.describe Scraper do
 		end
 	end
 	# TODO: Add tests to confirm hash that creates Wrestler object
+	# TODO: Expect Hasn-name to eq: Zak Knight
 end
 
