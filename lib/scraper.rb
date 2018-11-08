@@ -97,6 +97,18 @@ class Scraper
 		card_hash[:OC11] = right[10].split(/\d+\s+(.+)/)[1]
 		card_hash[:OC12] = right[11].split(/\d+\s+(.+)/)[1]
 
+		# Add Ropes to hash
+		card_hash[:R02] = right[13].split(/\d+\s+(.+)/)[1]
+		card_hash[:R03] = right[14].split(/\d+\s+(.+)/)[1]
+		card_hash[:R04] = right[15].split(/\d+\s+(.+)/)[1]
+		card_hash[:R05] = right[16].split(/\d+\s+(.+)/)[1]
+		card_hash[:R06] = right[17].split(/\d+\s+(.+)/)[1]
+		card_hash[:R07] = right[18].split(/\d+\s+(.+)/)[1]
+		card_hash[:R08] = right[19].split(/\d+\s+(.+)/)[1]
+		card_hash[:R09] = right[20].split(/\d+\s+(.+)/)[1]
+		card_hash[:R10] = right[21].split(/\d+\s+(.+)/)[1]
+		card_hash[:R11] = right[22].split(/\d+\s+(.+)/)[1]
+		card_hash[:R12] = right[23].split(/\d+\s+(.+)/)[1]
 
 		binding.pry
 		# TODO: Divide left array GC & DC lines in half
