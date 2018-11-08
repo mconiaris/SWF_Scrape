@@ -79,6 +79,10 @@ class Scraper
 		# Add Sub, tag and priority values to hash
 		card_hash[:Sub1] = left[23].split(/SUB\s+:\s+(\d+)\s+-\s+(\d+)/)[1]
 		card_hash[:Sub2] = left[23].split(/SUB\s+:\s+(\d+)\s+-\s+(\d+)/)[2]
+		card_hash[:Tag1] = left[24].split(/TAG-TEAM\s+:\s+(\d+)\s+-\s+(\d+)/)[1]
+		card_hash[:Tag2] = left[24].split(/TAG-TEAM\s+:\s+(\d+)\s+-\s+(\d+)/)[2]
+		card_hash[:PriorityS] = left[25].split(/PRIORITY\s+:\s+(\d)\/(\d)/)[1]
+		card_hash[:PriorityT] = left[25].split(/PRIORITY\s+:\s+(\d)\/(\d)/)[2]
 
 		binding.pry
 		# TODO: Divide left array GC & DC lines in half
