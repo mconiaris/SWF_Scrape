@@ -52,7 +52,7 @@ class Scraper
 		card_hash[:GC11] = left[6][16..left.length].strip.split[1]
 
 		# Add OC12 to hash
-		card_hash[:OC12] = left[7].strip.split[1]
+		card_hash[:GC12] = left[7].strip.split[1]
 
 		# Strip DC redundant text and put values into the hash
 		card_hash[:DC02] = left[9][0..15].strip.split[1]
@@ -85,6 +85,17 @@ class Scraper
 		card_hash[:PriorityT] = left[25].split(/PRIORITY\s+:\s+(\d)\/(\d)/)[2]
 
 		# Add Offensive Card to hash
+		card_hash[:OC02] = right[1].split(/\d+\s+(.+)/)[1]
+		card_hash[:OC03] = right[2].split(/\d+\s+(.+)/)[1]
+		card_hash[:OC04] = right[3].split(/\d+\s+(.+)/)[1]
+		card_hash[:OC05] = right[4].split(/\d+\s+(.+)/)[1]
+		card_hash[:OC06] = right[5].split(/\d+\s+(.+)/)[1]
+		card_hash[:OC07] = right[6].split(/\d+\s+(.+)/)[1]
+		card_hash[:OC08] = right[7].split(/\d+\s+(.+)/)[1]
+		card_hash[:OC09] = right[8].split(/\d+\s+(.+)/)[1]
+		card_hash[:OC10] = right[9].split(/\d+\s+(.+)/)[1]
+		card_hash[:OC11] = right[10].split(/\d+\s+(.+)/)[1]
+		card_hash[:OC12] = right[11].split(/\d+\s+(.+)/)[1]
 
 
 		binding.pry
