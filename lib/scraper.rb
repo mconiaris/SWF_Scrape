@@ -76,6 +76,10 @@ class Scraper
 		card_hash[:S5] = left[21].split(/\d\s(.+)/)[1]
 		card_hash[:S6] = left[22].split(/\d\s(.+)/)[1]
 
+		# Add Sub, tag and priority values to hash
+		card_hash[:Sub1] = left[23].split(/SUB\s+:\s+(\d+)\s+-\s+(\d+)/)[1]
+		card_hash[:Sub2] = left[23].split(/SUB\s+:\s+(\d+)\s+-\s+(\d+)/)[2]
+
 		binding.pry
 		# TODO: Divide left array GC & DC lines in half
 		# TODO: Convert arrays into one hash
