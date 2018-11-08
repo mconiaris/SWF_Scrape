@@ -12,3 +12,4 @@ require_relative 'wrestler'
 card = @scrape.card
 @scrape.process_card(card)
 # binding.pry
+# TODO Add functionality to select files from computer.
