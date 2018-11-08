@@ -40,16 +40,16 @@ class Scraper
 		card_hash[:name] = left[0]
 
 		# Strip out empty spaces and redundant OC text
-		card_hash[:OC02] = left[2][0..15].strip.split[1]
-		card_hash[:OC03] = left[3][0..15].strip.split[1]
-		card_hash[:OC04] = left[4][0..15].strip.split[1]
-		card_hash[:OC05] = left[5][0..15].strip.split[1]
-		card_hash[:OC06] = left[6][0..15].strip.split[1]
-		card_hash[:OC07] = left[2][16..left.length].strip.split[1]
-		card_hash[:OC08] = left[3][16..left.length].strip.split[1]
-		card_hash[:OC09] = left[4][16..left.length].strip.split[1]
-		card_hash[:OC10] = left[5][16..left.length].strip.split[1]
-		card_hash[:OC11] = left[6][16..left.length].strip.split[1]
+		card_hash[:GC02] = left[2][0..15].strip.split[1]
+		card_hash[:GC03] = left[3][0..15].strip.split[1]
+		card_hash[:GC04] = left[4][0..15].strip.split[1]
+		card_hash[:GC05] = left[5][0..15].strip.split[1]
+		card_hash[:GC06] = left[6][0..15].strip.split[1]
+		card_hash[:GC07] = left[2][16..left.length].strip.split[1]
+		card_hash[:GC08] = left[3][16..left.length].strip.split[1]
+		card_hash[:GC09] = left[4][16..left.length].strip.split[1]
+		card_hash[:GC10] = left[5][16..left.length].strip.split[1]
+		card_hash[:GC11] = left[6][16..left.length].strip.split[1]
 
 		# Add OC12 to hash
 		card_hash[:OC12] = left[7].strip.split[1]
@@ -83,6 +83,9 @@ class Scraper
 		card_hash[:Tag2] = left[24].split(/TAG-TEAM\s+:\s+(\d+)\s+-\s+(\d+)/)[2]
 		card_hash[:PriorityS] = left[25].split(/PRIORITY\s+:\s+(\d)\/(\d)/)[1]
 		card_hash[:PriorityT] = left[25].split(/PRIORITY\s+:\s+(\d)\/(\d)/)[2]
+
+		# Add Offensive Card to hash
+
 
 		binding.pry
 		# TODO: Divide left array GC & DC lines in half
