@@ -33,6 +33,17 @@ class Scraper
 				end
 			end
 		}
+		# Create Hash for card and add vales.
+		card_hash = Hash.new
+		card_hash[:name] = left[0]
+
+		# Strip out empty spaces and redundant OC & DC text
+		card_hash[:OC02] = left[2][0..15].strip.split[1]
+		card_hash[:OC03] = left[3][0..15].strip.split[1]
+
+		card_hash[:OC07] = left[2][16..left.length].strip.split[1]
+		card_hash[:OC08] = left[3][16..left.length].strip.split[1]
+		binding.pry
 		# TODO: Divide left array GC & DC lines in half
 		# TODO: Convert arrays into one hash
 		# TODO: Create Wrestler object
