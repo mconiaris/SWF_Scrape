@@ -43,7 +43,7 @@ class Scraper
 
 		card_hash[:OC07] = left[2][16..left.length].strip.split[1]
 		card_hash[:OC08] = left[3][16..left.length].strip.split[1]
-		binding.pry
+		# binding.pry
 		# TODO: Divide left array GC & DC lines in half
 		# TODO: Convert arrays into one hash
 		# TODO: Create Wrestler object

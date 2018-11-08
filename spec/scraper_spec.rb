@@ -24,6 +24,10 @@ RSpec.describe Scraper do
 			it 'responds to #process_card method' do
 				expect(@scrape.respond_to?(:process_card)).to eq(true)
 			end
+			it 'returns and hash' do
+				card = @scrape.card
+				expect(@scrape.process_card(card)).to be_kind_of(Hash)
+			end
 		end
 	end
 	# TODO: Add tests to confirm hash that creates Wrestler object
