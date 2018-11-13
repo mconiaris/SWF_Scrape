@@ -1,7 +1,6 @@
 RSpec.describe Wrestler do
 	before(:context) do
 		scrape = Scraper.new("files/Zak Knight.pdf")
-		binding.pry
 		@wrestler = Wrestler.new(scrape.card)
 	end
 
