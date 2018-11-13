@@ -111,7 +111,6 @@ class Scraper
 		card_hash[:R12] = right[23].split(/\d+\s+(.+)/)[1]
 
 		card_hash[:Set] = right[24]
-		binding.pry
 		return card_hash
 
 		# TODO: Create Wrestler object
