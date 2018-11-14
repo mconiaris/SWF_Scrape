@@ -1,8 +1,8 @@
 class Wrestler
 
-	attr_accessor :name
+	attr_accessor :values
 
 	def initialize(card)
-		wrestler = Hash.new(card)
+		@values = card
 	end
 end
