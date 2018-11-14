@@ -6,7 +6,6 @@ RSpec.describe Wrestler do
 		@wrestler = Wrestler.new(hashed_card)
 	end
 
-	# TODO: Make this test pass.
 	describe "Wrestler#initialize when passed the Zak Knight card" do
   	it 'creates an instance of a Wrestler object' do
   		expect(@wrestler).to be_an_instance_of(Wrestler)
