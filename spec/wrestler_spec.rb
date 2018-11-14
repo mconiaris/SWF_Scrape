@@ -7,7 +7,7 @@ RSpec.describe Wrestler do
 	end
 
 	# TODO: Make this test pass.
-	describe "Wrestler initialized in before(:context)" do
+	describe "Wrestler#initialize when passed the Zak Knight card" do
   	it "has a key value pair of name: Zak Knight" do
     	expect(@wrestler.values[:name]).to eq('Zak Knight')
     end
