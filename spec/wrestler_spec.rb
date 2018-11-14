@@ -8,6 +8,9 @@ RSpec.describe Wrestler do
 
 	# TODO: Make this test pass.
 	describe "Wrestler#initialize when passed the Zak Knight card" do
+  	it 'creates an instance of a Wrestler object' do
+  		expect(@wrestler).to be_an_instance_of(Wrestler)
+  	end
   	it "has a key value pair of name: Zak Knight" do
     	expect(@wrestler.values[:name]).to eq('Zak Knight')
     end
