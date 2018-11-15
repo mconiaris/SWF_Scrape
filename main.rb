@@ -17,6 +17,6 @@ moves = @scrape.process_card(card)
 # Create Wrestler object
 @wrestler = Wrestler.new(moves)
 @analyzer = Analyzer.new
-binding.pry
+@analyzer.analyze(@wrestler)
 
 # TODO Add functionality to select files from computer.
