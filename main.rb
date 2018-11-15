@@ -1,5 +1,6 @@
 require 'pdf-reader'
 require 'pry'
+require_relative 'lib/analyzer'
 require_relative 'lib/scraper'
 require_relative 'lib/wrestler'
 
@@ -15,6 +16,7 @@ moves = @scrape.process_card(card)
 
 # Create Wrestler object
 @wrestler = Wrestler.new(moves)
+@analyzer = Analyzer.new
 binding.pry
 
 # TODO Add functionality to select files from computer.
