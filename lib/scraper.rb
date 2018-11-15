@@ -112,8 +112,5 @@ class Scraper
 
 		card_hash[:Set] = right[24]
 		return card_hash
-
-		# TODO: Create Wrestler object
-		# TODO: Add hash to Wrestler object
 	end
 end
