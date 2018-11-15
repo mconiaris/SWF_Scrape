@@ -2,7 +2,7 @@ class Analyzer
 
 	attr_accessor :statistics
 
-	def initialize(card)
+	def initialize(wrestler)
 		@statistics = Hash.new
 		binding.pry
 	end
