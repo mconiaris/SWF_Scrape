@@ -19,4 +19,6 @@ moves = @scrape.process_card(card)
 @analyzer = Analyzer.new
 @analyzer.analyze(@wrestler)
 
+# TODO: In scraper, have values be put into an array,
+# including dice roll number and % of roll.
 # TODO Add functionality to select files from computer.
