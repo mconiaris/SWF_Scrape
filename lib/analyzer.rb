@@ -6,4 +6,7 @@ class Analyzer
 		@statistics = Hash.new
 	end
 
+	def analyze(wrestler)
+	end
+
 end
