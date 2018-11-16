@@ -98,17 +98,17 @@ class Scraper
 		card_hash[:OC12] = Array.new(['OC', 12, right[11].split(/\d+\s+(.+)/)[1]]) 
 
 		# Add Ropes to hash
-		card_hash[:R02] = right[13].split(/\d+\s+(.+)/)[1]
-		card_hash[:R03] = right[14].split(/\d+\s+(.+)/)[1]
-		card_hash[:R04] = right[15].split(/\d+\s+(.+)/)[1]
-		card_hash[:R05] = right[16].split(/\d+\s+(.+)/)[1]
-		card_hash[:R06] = right[17].split(/\d+\s+(.+)/)[1]
-		card_hash[:R07] = right[18].split(/\d+\s+(.+)/)[1]
-		card_hash[:R08] = right[19].split(/\d+\s+(.+)/)[1]
-		card_hash[:R09] = right[20].split(/\d+\s+(.+)/)[1]
-		card_hash[:R10] = right[21].split(/\d+\s+(.+)/)[1]
-		card_hash[:R11] = right[22].split(/\d+\s+(.+)/)[1]
-		card_hash[:R12] = right[23].split(/\d+\s+(.+)/)[1]
+		card_hash[:R02] = Array.new(['R', 2, right[13].split(/\d+\s+(.+)/)[1]]) 
+		card_hash[:R03] = Array.new(['R', 3, right[14].split(/\d+\s+(.+)/)[1]]) 
+		card_hash[:R04] = Array.new(['R', 4, right[15].split(/\d+\s+(.+)/)[1]]) 
+		card_hash[:R05] = Array.new(['R', 5, right[16].split(/\d+\s+(.+)/)[1]]) 
+		card_hash[:R06] = Array.new(['R', 6, right[17].split(/\d+\s+(.+)/)[1]]) 
+		card_hash[:R07] = Array.new(['R', 7, right[18].split(/\d+\s+(.+)/)[1]]) 
+		card_hash[:R08] = Array.new(['R', 8, right[19].split(/\d+\s+(.+)/)[1]]) 
+		card_hash[:R09] = Array.new(['R', 9, right[20].split(/\d+\s+(.+)/)[1]]) 
+		card_hash[:R10] = Array.new(['R', 10, right[21].split(/\d+\s+(.+)/)[1]]) 
+		card_hash[:R11] = Array.new(['R', 11, right[22].split(/\d+\s+(.+)/)[1]]) 
+		card_hash[:R12] = Array.new(['R', 12, right[23].split(/\d+\s+(.+)/)[1]]) 
 
 		card_hash[:Set] = right[24]
 		return card_hash
