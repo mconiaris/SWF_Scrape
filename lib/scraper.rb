@@ -40,19 +40,19 @@ class Scraper
 		card_hash[:name] = left[0]
 
 		# Strip out empty spaces and redundant OC text
-		card_hash[:GC02] = left[2][0..15].strip.split[1]
-		card_hash[:GC03] = left[3][0..15].strip.split[1]
-		card_hash[:GC04] = left[4][0..15].strip.split[1]
-		card_hash[:GC05] = left[5][0..15].strip.split[1]
-		card_hash[:GC06] = left[6][0..15].strip.split[1]
-		card_hash[:GC07] = left[2][16..left.length].strip.split[1]
-		card_hash[:GC08] = left[3][16..left.length].strip.split[1]
-		card_hash[:GC09] = left[4][16..left.length].strip.split[1]
-		card_hash[:GC10] = left[5][16..left.length].strip.split[1]
-		card_hash[:GC11] = left[6][16..left.length].strip.split[1]
+		card_hash[:GC02] = Array.new(['GC', 2, left[2][0..15].strip.split[1]])
+		card_hash[:GC03] = Array.new(['GC', 3, left[3][0..15].strip.split[1]])
+		card_hash[:GC04] = Array.new(['GC', 4, left[4][0..15].strip.split[1]]) 
+		card_hash[:GC05] = Array.new(['GC', 5, left[5][0..15].strip.split[1]]) 
+		card_hash[:GC06] = Array.new(['GC', 6, left[6][0..15].strip.split[1]]) 
+		card_hash[:GC07] = Array.new(['GC', 7, left[2][16..left.length].strip.split[1]]) 
+		card_hash[:GC08] = Array.new(['GC', 8, left[3][16..left.length].strip.split[1]]) 
+		card_hash[:GC09] = Array.new(['GC', 9, left[4][16..left.length].strip.split[1]]) 
+		card_hash[:GC10] = Array.new(['GC', 10, left[5][16..left.length].strip.split[1]]) 
+		card_hash[:GC11] = Array.new(['GC', 11, left[6][16..left.length].strip.split[1]]) 
 
 		# Add OC12 to hash
-		card_hash[:GC12] = left[7].strip.split[1]
+		card_hash[:GC12] = Array.new(['GC', 12, left[7].strip.split[1]])
 
 		# Strip DC redundant text and put values into the hash
 		card_hash[:DC02] = left[9][0..15].strip.split[1]
