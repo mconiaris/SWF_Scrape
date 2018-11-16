@@ -9,8 +9,8 @@ class Analyzer
 	def analyze(wrestler)
 		wrestler.values.each {
 			|key, value| puts "#{key}: #{value}"
-		}
 		binding.pry
+		}
 	end
 
 end
