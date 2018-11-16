@@ -69,12 +69,12 @@ class Scraper
 
 		# Add Specialty Values to hash
 		card_hash[:Specialty] = left[16]
-		card_hash[:S1] = left[17].split(/\d\s(.+)/)[1]
-		card_hash[:S2] = left[18].split(/\d\s(.+)/)[1]
-		card_hash[:S3] = left[19].split(/\d\s(.+)/)[1]
-		card_hash[:S4] = left[20].split(/\d\s(.+)/)[1]
-		card_hash[:S5] = left[21].split(/\d\s(.+)/)[1]
-		card_hash[:S6] = left[22].split(/\d\s(.+)/)[1]
+		card_hash[:S1] = Array.new(['S', 1, left[17].split(/\d\s(.+)/)[1]]) 
+		card_hash[:S2] = Array.new(['S', 2, left[18].split(/\d\s(.+)/)[1]]) 
+		card_hash[:S3] = Array.new(['S', 3, left[19].split(/\d\s(.+)/)[1]]) 
+		card_hash[:S4] = Array.new(['S', 4, left[20].split(/\d\s(.+)/)[1]]) 
+		card_hash[:S5] = Array.new(['S', 5, left[21].split(/\d\s(.+)/)[1]]) 
+		card_hash[:S6] = Array.new(['S', 6, left[22].split(/\d\s(.+)/)[1]]) 
 
 		# Add Sub, tag and priority values to hash
 		card_hash[:Sub1] = left[23].split(/SUB\s+:\s+(\d+)\s+-\s+(\d+)/)[1]
