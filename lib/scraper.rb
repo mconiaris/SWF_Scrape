@@ -85,17 +85,17 @@ class Scraper
 		card_hash[:PriorityT] = left[25].split(/PRIORITY\s+:\s+(\d)\/(\d)/)[2]
 
 		# Add Offensive Card to hash
-		card_hash[:OC02] = right[1].split(/\d+\s+(.+)/)[1]
-		card_hash[:OC03] = right[2].split(/\d+\s+(.+)/)[1]
-		card_hash[:OC04] = right[3].split(/\d+\s+(.+)/)[1]
-		card_hash[:OC05] = right[4].split(/\d+\s+(.+)/)[1]
-		card_hash[:OC06] = right[5].split(/\d+\s+(.+)/)[1]
-		card_hash[:OC07] = right[6].split(/\d+\s+(.+)/)[1]
-		card_hash[:OC08] = right[7].split(/\d+\s+(.+)/)[1]
-		card_hash[:OC09] = right[8].split(/\d+\s+(.+)/)[1]
-		card_hash[:OC10] = right[9].split(/\d+\s+(.+)/)[1]
-		card_hash[:OC11] = right[10].split(/\d+\s+(.+)/)[1]
-		card_hash[:OC12] = right[11].split(/\d+\s+(.+)/)[1]
+		card_hash[:OC02] = Array.new(['OC', 2, right[1].split(/\d+\s+(.+)/)[1]]) 
+		card_hash[:OC03] = Array.new(['OC', 3, right[2].split(/\d+\s+(.+)/)[1]]) 
+		card_hash[:OC04] = Array.new(['OC', 4, right[3].split(/\d+\s+(.+)/)[1]]) 
+		card_hash[:OC05] = Array.new(['OC', 5, right[4].split(/\d+\s+(.+)/)[1]]) 
+		card_hash[:OC06] = Array.new(['OC', 6, right[5].split(/\d+\s+(.+)/)[1]]) 
+		card_hash[:OC07] = Array.new(['OC', 7, right[6].split(/\d+\s+(.+)/)[1]]) 
+		card_hash[:OC08] = Array.new(['OC', 8, right[7].split(/\d+\s+(.+)/)[1]]) 
+		card_hash[:OC09] = Array.new(['OC', 9, right[8].split(/\d+\s+(.+)/)[1]]) 
+		card_hash[:OC10] = Array.new(['OC', 10, right[9].split(/\d+\s+(.+)/)[1]]) 
+		card_hash[:OC11] = Array.new(['OC', 11, right[10].split(/\d+\s+(.+)/)[1]]) 
+		card_hash[:OC12] = Array.new(['OC', 12, right[11].split(/\d+\s+(.+)/)[1]]) 
 
 		# Add Ropes to hash
 		card_hash[:R02] = right[13].split(/\d+\s+(.+)/)[1]
