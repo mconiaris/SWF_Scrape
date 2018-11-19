@@ -25,9 +25,7 @@ class Analyzer
 			|key, value| k = key.to_s
 			
 				if k[0..1] == 'GC'
-					puts "#{key}: #{value}"
 					gc_oc_roll += analyze_gc(key, value)
-					puts "gc_oc_roll total: #{gc_oc_roll}"
 				elsif k[0..1] == 'DC'
 					puts "#{key}: #{value}"
 				elsif k[0] == 'S'
