@@ -18,6 +18,7 @@ class Analyzer
 
 	def analyze(wrestler)
 
+		w = Hash.new
 		gc_oc_roll = 0
 
 		wrestler.values.each {
@@ -43,6 +44,9 @@ class Analyzer
 					puts "#{key}: #{value}"
 				end
 		}
+		w[:oc_probability] = gc_oc_roll
+		w[:dc_probability] = 1 - gc_oc_roll
+		return w
 	end
 
 	def analyze_gc(k, v)

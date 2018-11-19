@@ -18,7 +18,6 @@ moves = @scrape.process_card(card)
 @wrestler = Wrestler.new(moves)
 @analyzer = Analyzer.new
 @analyzer.analyze(@wrestler)
-binding.pry
 
 # TODO: In scraper, have values be put into an array,
 # including dice roll number and % of roll.
