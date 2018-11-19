@@ -8,4 +8,6 @@ RSpec.describe Analyzer do
 			expect(@analyze.respond_to?(:analyze_gc))
 		end
 	end
+
+	# TODO: Make tests to confirm math is right.
 end
