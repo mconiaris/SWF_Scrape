@@ -11,16 +11,22 @@ class Analyzer
 	SEVEN = '6/36'.to_r
 
 
+
 	def initialize
 		@statistics = Hash.new
 	end
 
 	def analyze(wrestler)
+
+		gc_oc_roll = 0
+
 		wrestler.values.each {
 			|key, value| k = key.to_s
 			
 				if k[0..1] == 'GC'
 					puts "#{key}: #{value}"
+					gc_oc_roll += analyze_gc(key, value)
+					puts "gc_oc_roll total: #{gc_oc_roll}"
 				elsif k[0..1] == 'DC'
 					puts "#{key}: #{value}"
 				elsif k[0] == 'S'
@@ -39,7 +45,49 @@ class Analyzer
 		}
 	end
 
-	def analyze_gc(roll)
+	def analyze_gc(k, v)
+		if v.include?('OC')
+			case k
+			when :GC02
+				puts "#{TWO_TWELVE} added."
+				return TWO_TWELVE
+			when :GC03
+				puts "#{THREE_ELEVEN} added"
+				return THREE_ELEVEN
+			when :GC04
+				puts "#{FOUR_TEN} added."
+				return FOUR_TEN
+			when :GC05
+				puts "#{FIVE_NINE} added"
+				return FIVE_NINE
+			when :GC06
+				puts "#{SIX_EIGHT} added"
+				return SIX_EIGHT
+			when :GC07
+				puts "#{SEVEN} added"
+				return SEVEN
+			when :GC08
+				puts "#{SIX_EIGHT} added."
+				return SIX_EIGHT
+			when :GC09
+				puts "#{FIVE_NINE} added."
+				return FIVE_NINE
+			when :GC10
+				puts "#{FOUR_TEN} added."
+				return FOUR_TEN
+			when :GC11
+				puts "#{THREE_ELEVEN} added."
+				return THREE_ELEVEN
+			when :GC12
+				puts "#{TWO_TWELVE} added."
+				return TWO_TWELVE
+			else
+				return 0
+			end
+		else
+			puts "DC, nothing added."
+			return 0
+		end
 	end
 
 end
