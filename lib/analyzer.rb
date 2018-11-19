@@ -39,4 +39,7 @@ class Analyzer
 		}
 	end
 
+	def analyze_gc(roll)
+	end
+
 end
