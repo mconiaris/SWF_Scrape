@@ -16,6 +16,8 @@ class Analyzer
 		@statistics = Hash.new
 	end
 
+	# Takes in Wrestler card information and calculates
+	# the probablities and points totals.
 	def analyze(wrestler)
 
 		w = Hash.new
