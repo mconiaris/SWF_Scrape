@@ -1,6 +1,15 @@
 class Analyzer
 
 	attr_accessor :statistics
+	
+	# Constants for Dice Rolls
+	TWO_TWELVE = '1/36'.to_r
+	THREE_ELEVEN = '2/36'.to_r
+	FOUR_TEN = '3/36'.to_r
+	FIVE_NINE = '4/36'.to_r
+	SIX_EIGHT = '5/36'.to_r
+	SEVEN = '6/36'.to_r
+
 
 	def initialize
 		@statistics = Hash.new
@@ -28,7 +37,6 @@ class Analyzer
 					puts "#{key}: #{value}"
 				end
 		}
-		binding.pry
 	end
 
 end
