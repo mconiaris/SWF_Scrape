@@ -24,6 +24,8 @@ class Analyzer
 		gc_oc_roll = 0
 		s_points = 0
 		s_pin_attempts = 0
+		s_stats_array = []
+
 
 		wrestler.values.each {
 			|key, value| k = key.to_s
@@ -32,9 +34,9 @@ class Analyzer
 					gc_oc_roll += analyze_gc(key, value)
 				elsif k[0..1] == 'DC'
 					puts "#{key}: #{value}"
-				elsif k[0] == "S" && k[1] != "p"
+				elsif k[0] == "S" && k[1] != "p" && k[1] != 'e'
 					puts "#{key}: #{value}"
-					s_stats = analyze_s(key, value)
+					s_stats_array.push(analyze_s(key, value))
 				elsif k[0..2] == 'Sub'
 					puts "#{key}: #{value}"
 				elsif k[0..2] == 'Tag'
@@ -49,6 +51,9 @@ class Analyzer
 		}
 		w[:oc_probability] = gc_oc_roll
 		w[:dc_probability] = 1 - gc_oc_roll
+		p_a = sum_of_s_array(s_stats_array)
+		w[:s_pin_attempt_count] = p_a[:s_pin_attempt_count]
+		w[:s_points] = p_a[:s_points]
 		return w
 	end
 
@@ -86,6 +91,28 @@ class Analyzer
 	end
 
 	def analyze_s(k, v)
+		v.split
+	end
+
+	def sum_of_s_array(s_array)
+
+		# TODO: Figure out DQ rolls in S.
+		# Calculate number of points
+		b = s_array.map {
+			|x| x[0].to_i
+		}
+
+		# Count number of P/A or sub attempts
+		a = s_array.map { 
+			|x| x[1] 
+		}
+		a.delete_if { 
+			|x| x == nil 
+		}
+		s_stats = Hash.new
+		s_stats[:s_pin_attempt_count] = a.size
+		s_stats[:s_points] = b.sum
+		return s_stats
 	end
 
 end
