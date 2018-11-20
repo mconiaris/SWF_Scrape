@@ -21,6 +21,7 @@ stats = @analyzer.analyze(@wrestler)
 
 # Add stats to wrestler instance
 @wrestler.statistics = stats
+puts "#{@wrestler.values[:name]}: #{@wrestler.statistics}"
 
 # TODO: In scraper, have values be put into an array,
 # including dice roll number and % of roll.
