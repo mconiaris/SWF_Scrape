@@ -28,8 +28,6 @@ class Analyzer
 			
 				if k[0..1] == 'GC'
 					gc_oc_roll += analyze_gc(key, value)
-				elsif k[0..1] == 'DC'
-					puts "#{key}: #{value}"
 				elsif k[0] == 'S'
 					puts "#{key}: #{value}"
 				elsif k[0..2] == 'Sub'
