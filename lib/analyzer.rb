@@ -34,6 +34,7 @@ class Analyzer
 					puts "#{key}: #{value}"
 				elsif k[0] == 'S'
 					puts "#{key}: #{value}"
+					s_stats = analyze_s(key, value)
 				elsif k[0..2] == 'Sub'
 					puts "#{key}: #{value}"
 				elsif k[0..2] == 'Tag'
