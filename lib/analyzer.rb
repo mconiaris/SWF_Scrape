@@ -82,4 +82,7 @@ class Analyzer
 		end
 	end
 
+	def analyze_s(k, v)
+	end
+
 end
