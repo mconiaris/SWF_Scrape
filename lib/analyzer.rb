@@ -22,6 +22,8 @@ class Analyzer
 
 		w = Hash.new
 		gc_oc_roll = 0
+		s_points = 0
+		s_pin_attempts = 0
 
 		wrestler.values.each {
 			|key, value| k = key.to_s
