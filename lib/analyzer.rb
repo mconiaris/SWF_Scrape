@@ -53,43 +53,31 @@ class Analyzer
 		if v.include?('OC')
 			case k
 			when :GC02
-				puts "#{TWO_TWELVE} added."
 				return TWO_TWELVE
 			when :GC03
-				puts "#{THREE_ELEVEN} added"
 				return THREE_ELEVEN
 			when :GC04
-				puts "#{FOUR_TEN} added."
 				return FOUR_TEN
 			when :GC05
-				puts "#{FIVE_NINE} added"
 				return FIVE_NINE
 			when :GC06
-				puts "#{SIX_EIGHT} added"
 				return SIX_EIGHT
 			when :GC07
-				puts "#{SEVEN} added"
 				return SEVEN
 			when :GC08
-				puts "#{SIX_EIGHT} added."
 				return SIX_EIGHT
 			when :GC09
-				puts "#{FIVE_NINE} added."
 				return FIVE_NINE
 			when :GC10
-				puts "#{FOUR_TEN} added."
 				return FOUR_TEN
 			when :GC11
-				puts "#{THREE_ELEVEN} added."
 				return THREE_ELEVEN
 			when :GC12
-				puts "#{TWO_TWELVE} added."
 				return TWO_TWELVE
 			else
 				return 0
 			end
 		else
-			puts "DC, nothing added."
 			return 0
 		end
 	end
