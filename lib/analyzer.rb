@@ -32,7 +32,7 @@ class Analyzer
 					gc_oc_roll += analyze_gc(key, value)
 				elsif k[0..1] == 'DC'
 					puts "#{key}: #{value}"
-				elsif k[0] == 'S'
+				elsif k[0] == "S" && k[1] != "p"
 					puts "#{key}: #{value}"
 					s_stats = analyze_s(key, value)
 				elsif k[0..2] == 'Sub'
