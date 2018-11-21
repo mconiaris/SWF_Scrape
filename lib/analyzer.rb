@@ -34,6 +34,7 @@ class Analyzer
 					gc_oc_roll += analyze_gc(key, value)
 				elsif k[0..1] == 'DC'
 					puts "#{key}: #{value}"
+					binding.pry
 				elsif k[0] == "S" && k[1] != "p" && k[1] != 'e'
 					puts "#{key}: #{value}"
 					s_stats_array.push(analyze_s(key, value))
@@ -89,6 +90,11 @@ class Analyzer
 			return 0
 		end
 	end
+
+	
+	def analyze_dc(k, v)
+	end
+
 
 	def analyze_s(k, v)
 		v.split

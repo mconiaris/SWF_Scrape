@@ -9,6 +9,12 @@ RSpec.describe Analyzer do
 		end
 	end
 
+	describe '#analyze_dc' do
+		it "should respond_to analyze_dc" do
+			expect(@analyze.respond_to?(:analyze_dc))
+		end
+	end
+
 	describe '#analyze_s' do
 		it "should respond_to analyze_s" do
 			expect(@analyze.respond_to?(:analyze_s))
@@ -17,5 +23,5 @@ RSpec.describe Analyzer do
 
 	# TODO: Make tests to confirm math is right.
 	# TODO: Create test that deals with DQs in Specialty moves.
-	
+
 end
