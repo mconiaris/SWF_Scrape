@@ -21,6 +21,12 @@ RSpec.describe Analyzer do
 		end
 	end
 
+	describe '#submission_probability' do
+		it "should respond_to submission_probability" do
+			expect(@analyze.respond_to?(:submission_probability))
+		end
+	end
+
 	# TODO: Make tests to confirm math is right.
 	# TODO: Create test that deals with DQs in Specialty moves.
 

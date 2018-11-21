@@ -37,7 +37,6 @@ class Analyzer
 
 		wrestler.values.each {
 			|key, value| k = key.to_s
-			
 				if k[0..1] == 'GC'
 					gc_oc_roll += analyze_gc(key, value)
 				elsif k[0..1] == 'DC'
@@ -47,6 +46,7 @@ class Analyzer
 					puts "#{key}: #{value}"
 					s_stats_array.push(analyze_s(key, value))
 				elsif k[0..2] == 'Sub'
+					puts "Why won't this pry?"
 					puts "#{key}: #{value}"
 				elsif k[0..2] == 'Tag'
 					puts "#{key}: #{value}"
@@ -56,6 +56,9 @@ class Analyzer
 					puts "#{key}: #{value}"
 				elsif k[0] == 'R'
 					puts "#{key}: #{value}"
+				else
+					puts "#{key}: #{value}"
+						
 				end
 		}
 		w[:oc_probability] = gc_oc_roll
@@ -64,6 +67,8 @@ class Analyzer
 		p_a = sum_of_s_array(s_stats_array)
 		w[:s_pin_attempt_count] = p_a[:s_pin_attempt_count]
 		w[:s_points] = p_a[:s_points]
+		w[:sub_probability] = sub_tag_probability(wrestler.values[:Sub1], wrestler.values[:Sub2])
+		w[:tag_probability] = sub_tag_probability(wrestler.values[:Tag1], wrestler.values[:Tag2])
 		# binding.pry
 		return w
 	end
@@ -179,5 +184,43 @@ class Analyzer
 			DC_R * roll
 		end
 	end
+
+	# Takes SUB or TAG values and calculates probability 
+	# a card rolling that range.
+	def sub_tag_probability(a, b)
+		num_range = 0
+		s = Range.new(a.to_i, b.to_i)
+		
+		s.each { |x|
+			if x == 2
+				num_range += TWO_TWELVE
+			elsif x == 3
+				num_range += THREE_ELEVEN
+			elsif x == 4
+				num_range += FOUR_TEN
+			elsif x == 5
+				num_range += FIVE_NINE
+			elsif x == 6
+				num_range += SIX_EIGHT
+			elsif x == 7
+				num_range += SEVEN
+			elsif x == 8
+				num_range += SIX_EIGHT
+			elsif x == 9
+				num_range += FIVE_NINE
+			elsif x == 10
+				num_range += FOUR_TEN
+			elsif x == 11
+				num_range += THREE_ELEVEN
+			elsif x == 12
+				num_range += TWO_TWELVE
+			else
+				puts "Incorrect number."
+			end
+		}
+			return num_range	
+
+	end
+
 
 end
