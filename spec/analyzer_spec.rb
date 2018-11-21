@@ -16,4 +16,6 @@ RSpec.describe Analyzer do
 	end
 
 	# TODO: Make tests to confirm math is right.
+	# TODO: Create test that deals with DQs in Specialty moves.
+	
 end
