@@ -45,13 +45,6 @@ class Analyzer
 				elsif k[0] == "S" && k[1] != "p" && k[1] != 'e'
 					puts "#{key}: #{value}"
 					s_stats_array.push(analyze_s(key, value))
-				elsif k[0..2] == 'Sub'
-					puts "Why won't this pry?"
-					puts "#{key}: #{value}"
-				elsif k[0..2] == 'Tag'
-					puts "#{key}: #{value}"
-				elsif k[0..2] == 'Pri'
-					puts "#{key}: #{value}"
 				elsif k[0..1] == 'OC'
 					puts "#{key}: #{value}"
 				elsif k[0] == 'R'
@@ -69,6 +62,8 @@ class Analyzer
 		w[:s_points] = p_a[:s_points]
 		w[:sub_probability] = sub_tag_probability(wrestler.values[:Sub1], wrestler.values[:Sub2])
 		w[:tag_probability] = sub_tag_probability(wrestler.values[:Tag1], wrestler.values[:Tag2])
+		w[:singles_priority] = wrestler.values[:PriorityS]
+		w[:tag_priority] = wrestler.values[:PriorityT]
 		# binding.pry
 		return w
 	end
