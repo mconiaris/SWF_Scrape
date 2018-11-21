@@ -10,6 +10,12 @@ class Analyzer
 	SIX_EIGHT = '5/36'.to_r
 	SEVEN = '6/36'.to_r
 
+	# Constants for DC
+	DC_A = 2
+	DC_B = 0
+	DC_C = 4
+	DC_R = 1
+
 
 
 	def initialize
@@ -21,7 +27,9 @@ class Analyzer
 	def analyze(wrestler)
 
 		w = Hash.new
+		dc_points = 0
 		gc_oc_roll = 0
+		reverse = 0
 		s_points = 0
 		s_pin_attempts = 0
 		s_stats_array = []
@@ -34,7 +42,7 @@ class Analyzer
 					gc_oc_roll += analyze_gc(key, value)
 				elsif k[0..1] == 'DC'
 					puts "#{key}: #{value}"
-					binding.pry
+					dc_points += analyze_dc(key, value)
 				elsif k[0] == "S" && k[1] != "p" && k[1] != 'e'
 					puts "#{key}: #{value}"
 					s_stats_array.push(analyze_s(key, value))
@@ -52,9 +60,11 @@ class Analyzer
 		}
 		w[:oc_probability] = gc_oc_roll
 		w[:dc_probability] = 1 - gc_oc_roll
+		w[:dc_points_per_roll] = dc_points * w[:dc_probability].to_f
 		p_a = sum_of_s_array(s_stats_array)
 		w[:s_pin_attempt_count] = p_a[:s_pin_attempt_count]
 		w[:s_points] = p_a[:s_points]
+		# binding.pry
 		return w
 	end
 
@@ -93,13 +103,44 @@ class Analyzer
 
 	
 	def analyze_dc(k, v)
+		case k
+		when :DC02
+			return dc_point_roll(TWO_TWELVE, v)
+		when :DC03
+			dc_point_roll(THREE_ELEVEN, v)
+		when :DC04
+			return dc_point_roll(FOUR_TEN, v)
+		when :DC05
+			return dc_point_roll(FIVE_NINE, v)
+		when :DC06
+			return dc_point_roll(SIX_EIGHT, v)
+		when :DC07
+			return dc_point_roll(SEVEN, v)
+		when :DC08
+			return dc_point_roll(SIX_EIGHT, v)
+		when :DC09
+			return dc_point_roll(FIVE_NINE, v)
+		when :DC10
+			return dc_point_roll(FOUR_TEN, v)
+		when :DC11
+			return dc_point_roll(THREE_ELEVEN, v)
+		when :DC12
+			return dc_point_roll(TWO_TWELVE, v)
+		else
+			return 0
+		end
+	else
+		return 0
 	end
 
 
+	# For Specialty math
 	def analyze_s(k, v)
 		v.split
 	end
 
+
+	# For Specialty math
 	def sum_of_s_array(s_array)
 
 		# TODO: Figure out DQ rolls in S.
@@ -119,6 +160,24 @@ class Analyzer
 		s_stats[:s_pin_attempt_count] = a.size
 		s_stats[:s_points] = b.sum
 		return s_stats
+	end
+
+
+	# For DC Math
+	def dc_point_roll(roll, result)
+		if result == 'A'
+			puts result
+			DC_A * roll
+		elsif result == 'B'
+			puts result
+			return 0
+		elsif result == 'C'
+			puts result
+			DC_C * roll
+		elsif result == "REVERSE"
+			puts result
+			DC_R * roll
+		end
 	end
 
 end
