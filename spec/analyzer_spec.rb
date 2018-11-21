@@ -27,6 +27,12 @@ RSpec.describe Analyzer do
 		end
 	end
 
+	describe '#offense_points' do
+		it "should respond_to offense_points" do
+			expect(@analyze.respond_to?(:offense_points))
+		end
+	end
+
 	# TODO: Make tests to confirm math is right.
 	# TODO: Create test that deals with DQs in Specialty moves.
 

@@ -47,6 +47,7 @@ class Analyzer
 					s_stats_array.push(analyze_s(key, value))
 				elsif k[0..1] == 'OC'
 					puts "#{key}: #{value}"
+					binding.pry
 				elsif k[0] == 'R'
 					puts "#{key}: #{value}"
 				else
@@ -212,8 +213,10 @@ class Analyzer
 				puts "Incorrect number."
 			end
 		}
-			return num_range	
+			return num_range
+	end
 
+	def offense_points
 	end
 
 
