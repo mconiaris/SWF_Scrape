@@ -40,10 +40,10 @@ class Analyzer
 				if k[0..1] == 'GC'
 					gc_oc_roll += analyze_gc(key, value)
 				elsif k[0..1] == 'DC'
-					puts "#{key}: #{value}"
+					# puts "#{key}: #{value}"
 					dc_points += analyze_dc(key, value)
 				elsif k[0] == "S" && k[1] != "p" && k[1] != 'e'
-					puts "#{key}: #{value}"
+					# puts "#{key}: #{value}"
 					s_stats_array.push(analyze_s(key, value))
 				elsif k[0..1] == 'OC'
 					puts "#{key}: #{value}"
@@ -51,7 +51,6 @@ class Analyzer
 					puts "#{key}: #{value}"
 				else
 					puts "#{key}: #{value}"
-						
 				end
 		}
 		w[:oc_probability] = gc_oc_roll
@@ -166,16 +165,16 @@ class Analyzer
 	# For DC Math
 	def dc_point_roll(roll, result)
 		if result == 'A'
-			puts result
+			# puts result
 			DC_A * roll
 		elsif result == 'B'
-			puts result
+			# puts result
 			return 0
 		elsif result == 'C'
-			puts result
+			# puts result
 			DC_C * roll
 		elsif result == "REVERSE"
-			puts result
+			# puts result
 			DC_R * roll
 		end
 	end

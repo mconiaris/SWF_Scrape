@@ -24,12 +24,12 @@ class Scraper
 
 				if x.strip != nil
 					left.push(x[0..35].strip)
-					puts x[0..35].strip + " added to left array."
+					# puts x[0..35].strip + " added to left array."
 				end
 
 				if x[36..x.size] != nil
 					right.push(x[36..x.size].strip)
-					puts x[36..x.size].strip + " added to right array."
+					# puts x[36..x.size].strip + " added to right array."
 				end
 			end
 		}
