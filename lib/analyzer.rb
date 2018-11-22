@@ -33,6 +33,7 @@ class Analyzer
 		s_points = 0
 		s_pin_attempts = 0
 		s_stats_array = []
+		xx_probability = 0
 
 
 		wrestler.values.each {
@@ -47,7 +48,7 @@ class Analyzer
 					s_stats_array.push(analyze_s(key, value))
 				elsif k[0..1] == 'OC'
 					puts "#{key}: #{value}"
-					binding.pry
+					offense_points(key, value)
 				elsif k[0] == 'R'
 					puts "#{key}: #{value}"
 				else
@@ -216,8 +217,87 @@ class Analyzer
 			return num_range
 	end
 
-	def offense_points
+	# Calculates points for OC and Ropes, and also calls
+	# methods to determine probability of XX, P/A, * and
+	# DQ.
+	def offense_points(k, v)
+		xx_probability = 0
+		puts v
+		
+		oc_values_array = v.split
+		if oc_values_array.last != ('(XX)' || '(DQ)' || 'P/A' || '*')
+			points_per_move(k, oc_values_array)
+		elsif oc_values_array.last == '(XX)'
+			x = oc_values_array.drop(1)
+			points_per_move(k, x)
+			xx_probability += dq_pa_s_xx_probability(k)
+		end
 	end
 
+	# Multiplies 2d6 chance of rolling a particular move
+	# by the value of the points scored by the move
+	def points_per_move(key, array)
 
+		oc_points_per_move = 0
+
+		k = key.to_s
+
+		case k
+		when 'OC02'
+			oc_points_per_move += (TWO_TWELVE * array[1].to_i)
+		when 'OC03'
+			oc_points_per_move += (THREE_ELEVEN * array[1].to_i)
+		when 'OC04'
+			oc_points_per_move += (FOUR_TEN * array[1].to_i)
+		when 'OC05'
+			oc_points_per_move += (FIVE_NINE * array[1].to_i)
+		when 'OC06'
+			oc_points_per_move += (SIX_EIGHT * array[1].to_i)
+		when 'OC07'
+			oc_points_per_move += (SEVEN * array[1].to_i)
+		when 'OC08'
+			oc_points_per_move += (SIX_EIGHT * array[1].to_i)
+		when 'OC09'
+			oc_points_per_move += (FIVE_NINE * array[1].to_i)
+		when 'OC10'
+			oc_points_per_move += (FOUR_TEN * array[1].to_i)
+		when 'OC11'
+			oc_points_per_move += (THREE_ELEVEN * array[1].to_i)
+		when 'OC12'
+			oc_points_per_move += (TWO_TWELVE * array[1].to_i)
+		end
+		return oc_points_per_move
+	end
+
+	# Calculates DQ, P/A, XX and Specialty probabilities.
+	def dq_pa_s_xx_probability(key)
+		xx = 0
+
+		case key
+		when :OC02
+			xx += TWO_TWELVE
+		when :OC03
+			xx += THREE_ELEVEN
+		when :OC04
+			xx += FOUR_TEN
+		when :OC05
+			xx += FIVE_NINE
+		when :OC06
+			xx += SIX_EIGHT
+		when :OC07
+			xx += SEVEN
+		when :OC08
+			xx += SIX_EIGHT
+		when :OC09
+			xx += FIVE_NINE
+		when :OC10
+			xx += FOUR_TEN
+		when :OC11
+			xx += THREE_ELEVEN
+		when :OC12
+			xx += TWO_TWELVE
+		end
+
+		return xx
+	end
 end
