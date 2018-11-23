@@ -30,8 +30,9 @@ class Analyzer
 		dc_points = 0
 		gc_oc_roll = 0
 		oc_points = 0
-		points_array = []
+		oc_points_array = []
 		reverse = 0
+		ropes_points_array = []
 		s_points = 0
 		s_pin_attempts = 0
 		s_stats_array = []
@@ -51,9 +52,10 @@ class Analyzer
 				elsif k[0..1] == 'OC'
 					puts "#{key}: #{value}"
 					puts "\n"
-					points_array << create_oc_ropes_moves_array(key, value)
+					oc_points_array << create_oc_ropes_moves_array(key, value)
 				elsif k[0] == 'R'
 					puts "#{key}: #{value}"
+					ropes_points_array << create_oc_ropes_moves_array(key, value)
 				else
 					puts "#{key}: #{value}"
 				end
