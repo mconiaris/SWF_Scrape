@@ -30,6 +30,7 @@ class Analyzer
 		dc_points = 0
 		gc_oc_roll = 0
 		oc_points = 0
+		points_array = []
 		reverse = 0
 		s_points = 0
 		s_pin_attempts = 0
@@ -50,13 +51,14 @@ class Analyzer
 				elsif k[0..1] == 'OC'
 					puts "#{key}: #{value}"
 					puts "\n"
-					# binding.pry
+					points_array << create_oc_ropes_moves_array(key, value)
 				elsif k[0] == 'R'
 					puts "#{key}: #{value}"
 				else
 					puts "#{key}: #{value}"
 				end
 		}
+					binding.pry
 		w[:oc_probability] = gc_oc_roll
 		w[:dc_probability] = 1 - gc_oc_roll
 		w[:dc_points_per_roll] = dc_points * w[:dc_probability].to_f
@@ -216,6 +218,57 @@ class Analyzer
 			end
 		}
 			return num_range
+	end
+
+	def calculate_probability(key)
+		k = key[2..3]
+
+		case k
+		when '02'
+			return TWO_TWELVE
+		when '03'
+			return THREE_ELEVEN
+		when '04'
+			return FOUR_TEN
+		when '05'
+			return FIVE_NINE
+		when '06'
+			return SIX_EIGHT
+		when '07'
+			return SEVEN
+		when '08'
+			return SIX_EIGHT
+		when '09'
+			return FIVE_NINE
+		when '10'
+			return FOUR_TEN
+		when '11'
+			return THREE_ELEVEN
+		when '12'
+			return TWO_TWELVE
+		else
+			return 0
+		end
+	else
+		return 0
+	end
+
+	# Takes move string, splits it, and then adds
+	# points, XX, *, P/A, DQ and probability into 
+	# an array for analysis.
+	def create_oc_ropes_moves_array(key, move)
+		m = move.split
+		puts m
+
+		if (m.last != '*') && (m.last != '(XX)') && m.last != ('P/A') && m.last != ('(DQ)')
+			x = [calculate_probability(key), m.last]
+		elsif m.last == '(S)'
+			x = [calculate_probability(key), m.last]
+		elsif move == 'ROPES'
+			x = [calculate_probability(key), move]
+		else
+			x = [calculate_probability(key), m[-2], m[-1]]
+		end	
 	end
 
 end
