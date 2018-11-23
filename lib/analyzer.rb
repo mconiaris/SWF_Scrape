@@ -29,6 +29,7 @@ class Analyzer
 		w = Hash.new
 		dc_points = 0
 		gc_oc_roll = 0
+		oc_points = 0
 		reverse = 0
 		s_points = 0
 		s_pin_attempts = 0
@@ -48,24 +49,25 @@ class Analyzer
 					s_stats_array.push(analyze_s(key, value))
 				elsif k[0..1] == 'OC'
 					puts "#{key}: #{value}"
-					offense_points(key, value)
+					oc_points += offense_points(key, value)
 				elsif k[0] == 'R'
 					puts "#{key}: #{value}"
 				else
 					puts "#{key}: #{value}"
 				end
 		}
+		points = total_oc_points(oc_points.to_f)
 		w[:oc_probability] = gc_oc_roll
 		w[:dc_probability] = 1 - gc_oc_roll
 		w[:dc_points_per_roll] = dc_points * w[:dc_probability].to_f
 		p_a = sum_of_s_array(s_stats_array)
 		w[:s_pin_attempt_count] = p_a[:s_pin_attempt_count]
 		w[:s_points] = p_a[:s_points]
+		w[:oc_points] = points
 		w[:sub_probability] = sub_tag_probability(wrestler.values[:Sub1], wrestler.values[:Sub2])
 		w[:tag_probability] = sub_tag_probability(wrestler.values[:Tag1], wrestler.values[:Tag2])
 		w[:singles_priority] = wrestler.values[:PriorityS]
 		w[:tag_priority] = wrestler.values[:PriorityT]
-		# binding.pry
 		return w
 	end
 
@@ -221,16 +223,14 @@ class Analyzer
 	# methods to determine probability of XX, P/A, * and
 	# DQ.
 	def offense_points(k, v)
-		xx_probability = 0
 		puts v
 		
 		oc_values_array = v.split
 		if oc_values_array.last != ('(XX)' || '(DQ)' || 'P/A' || '*')
 			points_per_move(k, oc_values_array)
-		elsif oc_values_array.last == '(XX)'
+		else
 			x = oc_values_array.drop(1)
 			points_per_move(k, x)
-			xx_probability += dq_pa_s_xx_probability(k)
 		end
 	end
 
@@ -269,35 +269,9 @@ class Analyzer
 		return oc_points_per_move
 	end
 
-	# Calculates DQ, P/A, XX and Specialty probabilities.
-	def dq_pa_s_xx_probability(key)
-		xx = 0
-
-		case key
-		when :OC02
-			xx += TWO_TWELVE
-		when :OC03
-			xx += THREE_ELEVEN
-		when :OC04
-			xx += FOUR_TEN
-		when :OC05
-			xx += FIVE_NINE
-		when :OC06
-			xx += SIX_EIGHT
-		when :OC07
-			xx += SEVEN
-		when :OC08
-			xx += SIX_EIGHT
-		when :OC09
-			xx += FIVE_NINE
-		when :OC10
-			xx += FOUR_TEN
-		when :OC11
-			xx += THREE_ELEVEN
-		when :OC12
-			xx += TWO_TWELVE
-		end
-
-		return xx
+	# Sums oc points, 
+	def total_oc_points(oc_points)
+		return oc_points
 	end
+
 end
