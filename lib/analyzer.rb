@@ -49,23 +49,20 @@ class Analyzer
 					s_stats_array.push(analyze_s(key, value))
 				elsif k[0..1] == 'OC'
 					puts "#{key}: #{value}"
-					puts "oc_points equals: #{oc_points}"
 					puts "\n"
-					binding.pry
+					# binding.pry
 				elsif k[0] == 'R'
 					puts "#{key}: #{value}"
 				else
 					puts "#{key}: #{value}"
 				end
 		}
-		points = total_oc_points(oc_points.to_f)
 		w[:oc_probability] = gc_oc_roll
 		w[:dc_probability] = 1 - gc_oc_roll
 		w[:dc_points_per_roll] = dc_points * w[:dc_probability].to_f
 		p_a = sum_of_s_array(s_stats_array)
 		w[:s_pin_attempt_count] = p_a[:s_pin_attempt_count]
 		w[:s_points] = p_a[:s_points]
-		w[:oc_points] = points
 		w[:sub_probability] = sub_tag_probability(wrestler.values[:Sub1], wrestler.values[:Sub2])
 		w[:tag_probability] = sub_tag_probability(wrestler.values[:Tag1], wrestler.values[:Tag2])
 		w[:singles_priority] = wrestler.values[:PriorityS]
