@@ -29,6 +29,7 @@ class Analyzer
 		w = Hash.new
 		dc_points = 0
 		gc_oc_roll = 0
+		oc_pa_probability = 0
 		oc_points = 0
 		oc_points_array = []
 		reverse = 0
@@ -65,7 +66,8 @@ class Analyzer
 		# Calculate OC points
 		oc_points = calculate_oc_ropes_points(oc_points_array)
 		ropes_points = calculate_oc_ropes_points(ropes_points_array)
-		binding.pry
+		oc_prob_hash = calculate_pa_ropes_sub_xx_dq(oc_points_array)
+
 		w[:oc_probability] = gc_oc_roll
 		w[:dc_probability] = 1 - gc_oc_roll
 		w[:dc_points_per_roll] = dc_points * w[:dc_probability].to_f
@@ -285,6 +287,34 @@ class Analyzer
 			p += (x[0].to_f * x[1].to_f)
 		}
 		return p.to_f
+	end
+
+	def calculate_pa_ropes_sub_xx_dq(array)
+		prob = {}
+
+		dq = 0.to_f
+		pa = 0.to_f
+		ropes = 0.to_f
+		s = 0.to_f
+		xx = 0.to_f
+
+		array.each { |a|
+			if a[1] == 'ROPES'
+				ropes += a[0].to_f
+			elsif a[2] != nil
+				case a[2]
+				when '*'
+					s += a[0].to_f
+				when '(DQ)'
+					dq += a[0].to_f
+				when '(XX)'
+					xx = a[0].to_f
+				when 'P/A'
+					pa += a[0].to_f
+				end
+			end
+		}
+			prob = { :s => s, :dq => dq, :xx => xx, :pa => pa, :ropes => ropes }
 	end
 
 end
