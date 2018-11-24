@@ -32,6 +32,7 @@ class Analyzer
 		oc_points = 0
 		oc_points_array = []
 		reverse = 0
+		ropes_points = 0
 		ropes_points_array = []
 		s_points = 0
 		s_pin_attempts = 0
@@ -63,6 +64,7 @@ class Analyzer
 
 		# Calculate OC points
 		oc_points = calculate_oc_ropes_points(oc_points_array)
+		ropes_points = calculate_oc_ropes_points(ropes_points_array)
 		binding.pry
 		w[:oc_probability] = gc_oc_roll
 		w[:dc_probability] = 1 - gc_oc_roll
