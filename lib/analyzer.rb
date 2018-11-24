@@ -67,6 +67,7 @@ class Analyzer
 		oc_points = calculate_oc_ropes_points(oc_points_array)
 		ropes_points = calculate_oc_ropes_points(ropes_points_array)
 		oc_prob_hash = calculate_pa_ropes_sub_xx_dq(oc_points_array)
+		ropes_prob_hash = calculate_pa_ropes_sub_xx_dq(ropes_points_array)
 
 		w[:oc_probability] = gc_oc_roll
 		w[:dc_probability] = 1 - gc_oc_roll
