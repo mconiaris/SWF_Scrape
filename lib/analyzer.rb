@@ -297,11 +297,14 @@ class Analyzer
 		pa = 0.to_f
 		ropes = 0.to_f
 		s = 0.to_f
+		specialty = 0.to_f
 		xx = 0.to_f
 
 		array.each { |a|
 			if a[1] == 'ROPES'
 				ropes += a[0].to_f
+			elsif a[1] == '(S)'
+				specialty = ropes += a[0].to_f
 			elsif a[2] != nil
 				case a[2]
 				when '*'
@@ -315,7 +318,7 @@ class Analyzer
 				end
 			end
 		}
-			prob = { :s => s, :dq => dq, :xx => xx, :pa => pa, :ropes => ropes }
+			prob = { :specialty => specialty, :s => s, :dq => dq, :xx => xx, :pa => pa, :ropes => ropes }
 	end
 
 end
