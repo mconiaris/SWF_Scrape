@@ -1,5 +1,8 @@
 class Analyzer
 
+	# TODO: Use SWF_Card_Analyzer Math to do final
+	# card analysis.
+
 	attr_accessor :statistics
 	
 	# Constants for Dice Rolls
@@ -68,7 +71,6 @@ class Analyzer
 		ropes_points = calculate_oc_ropes_points(ropes_points_array)
 		oc_prob_hash = calculate_pa_ropes_sub_xx_dq(oc_points_array)
 		ropes_prob_hash = calculate_pa_ropes_sub_xx_dq(ropes_points_array)
-
 		w[:oc_probability] = gc_oc_roll
 		w[:dc_probability] = 1 - gc_oc_roll
 		w[:dc_points_per_roll] = dc_points * w[:dc_probability].to_f
@@ -79,6 +81,7 @@ class Analyzer
 		w[:tag_probability] = sub_tag_probability(wrestler.values[:Tag1], wrestler.values[:Tag2])
 		w[:singles_priority] = wrestler.values[:PriorityS]
 		w[:tag_priority] = wrestler.values[:PriorityT]
+binding.pry
 		return w
 	end
 
