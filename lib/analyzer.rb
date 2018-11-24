@@ -60,7 +60,10 @@ class Analyzer
 					puts "#{key}: #{value}"
 				end
 		}
-					binding.pry
+
+		# Calculate OC points
+		oc_points = calculate_oc_ropes_points(oc_points_array)
+		binding.pry
 		w[:oc_probability] = gc_oc_roll
 		w[:dc_probability] = 1 - gc_oc_roll
 		w[:dc_points_per_roll] = dc_points * w[:dc_probability].to_f
@@ -271,6 +274,15 @@ class Analyzer
 		else
 			x = [calculate_probability(key), m[-2], m[-1]]
 		end	
+	end
+
+	def calculate_oc_ropes_points(array)
+		p = 0
+
+		array.each { |x|
+			p += (x[0].to_f * x[1].to_f)
+		}
+		return p.to_f
 	end
 
 end
