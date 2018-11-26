@@ -82,7 +82,7 @@ class Analyzer
 		w[:tag_probability] = sub_tag_probability(wrestler.values[:Tag1], wrestler.values[:Tag2])
 		w[:singles_priority] = wrestler.values[:PriorityS]
 		w[:tag_priority] = wrestler.values[:PriorityT]
-binding.pry
+
 		return w
 	end
 
@@ -308,7 +308,7 @@ binding.pry
 			if a[1] == 'ROPES'
 				ropes += a[0].to_f
 			elsif a[1] == '(S)'
-				specialty = ropes += a[0].to_f
+				specialty += a[0].to_f
 			elsif a[2] != nil
 				case a[2]
 				when '*'
