@@ -300,7 +300,7 @@ binding.pry
 		dq = 0.to_f
 		pa = 0.to_f
 		ropes = 0.to_f
-		s = 0.to_f
+		subm = 0.to_f
 		specialty = 0.to_f
 		xx = 0.to_f
 
