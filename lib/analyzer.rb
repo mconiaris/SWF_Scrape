@@ -68,9 +68,10 @@ class Analyzer
 
 		# Calculate OC points
 		oc_points = calculate_oc_ropes_points(oc_points_array)
-		ropes_points = calculate_oc_ropes_points(ropes_points_array)
 		oc_prob_hash = calculate_pa_ropes_sub_xx_dq(oc_points_array)
+		ropes_points = calculate_oc_ropes_points(ropes_points_array)
 		ropes_prob_hash = calculate_pa_ropes_sub_xx_dq(ropes_points_array)
+
 		w[:oc_probability] = gc_oc_roll
 		w[:dc_probability] = 1 - gc_oc_roll
 		w[:dc_points_per_roll] = dc_points * w[:dc_probability].to_f
@@ -311,7 +312,7 @@ binding.pry
 			elsif a[2] != nil
 				case a[2]
 				when '*'
-					s += a[0].to_f
+					subm += a[0].to_f
 				when '(DQ)'
 					dq += a[0].to_f
 				when '(XX)'
@@ -321,7 +322,7 @@ binding.pry
 				end
 			end
 		}
-			prob = { :specialty => specialty, :s => s, :dq => dq, :xx => xx, :pa => pa, :ropes => ropes }
+			prob = { :specialty => specialty, :subm => subm, :dq => dq, :xx => xx, :pa => pa, :ropes => ropes }
 	end
 
 end
