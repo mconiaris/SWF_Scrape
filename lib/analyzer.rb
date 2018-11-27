@@ -69,7 +69,12 @@ class Analyzer
 		# Calculate OC points
 		oc_points = calculate_oc_ropes_points(oc_points_array)
 		oc_prob_hash = calculate_pa_ropes_sub_xx_dq(oc_points_array)
+
+		# Multiply ropes values by oc_ropes_probability
+		# This is to calculate a X-per-roll.
+		oc_ropes_probability = oc_prob_hash[:ropes]
 		ropes_points = calculate_oc_ropes_points(ropes_points_array)
+		ropes_points = ropes_points * oc_ropes_probability
 		ropes_prob_hash = calculate_pa_ropes_sub_xx_dq(ropes_points_array)
 
 		w[:oc_probability] = gc_oc_roll
