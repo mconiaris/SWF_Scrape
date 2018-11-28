@@ -33,7 +33,9 @@ class Analyzer
 		gc_oc_roll_probability = 0
 		gc_dc_roll_probability = 0
 
+		dc_points_without_reverse = 0
 		dc_reverse_roll_probability = 0
+
 		
 		dc_points = 0
 		oc_pa_probability = 0
@@ -54,6 +56,7 @@ class Analyzer
 					gc_oc_roll_probability += calculate_gc_oc_roll_probability(key, value)
 				elsif k[0..1] == 'DC'
 					puts "#{key}: #{value}"
+					dc_points_without_reverse += calculate_dc_points(key, value)
 					# dc_points += analyze_dc(key, value)
 				elsif k[0] == "S" && k[1] != "p" && k[1] != 'e'
 					puts "#{key}: #{value}"
@@ -73,6 +76,9 @@ class Analyzer
 		# Calculate temporary Variables
 		gc_dc_roll_probability = calculate_gc_dc_roll_probability(gc_oc_roll_probability)
 		dc_reverse_roll_probability = calculate_reverse_roll_probability(wrestler.values, gc_dc_roll_probability)
+		# Take DC points and mulitply them by the DC roll
+		# probability.
+		dc_points_without_reverse = gc_dc_roll_probability * dc_points_without_reverse
 
 
 		# Add values to wrestler's hash
@@ -196,6 +202,23 @@ class Analyzer
 		return prob * gc_dc_roll_probability
 	end
 
+	# Tabulates the A, B & C return values and multiplies
+	# it by the probability of rolling them.
+	def calculate_dc_points(k,v)
+		case v
+		when 'A'
+			return DC_A * calculate_probability(k).to_f
+		when 'B'
+			# puts result
+			return 0
+		when 'C'
+			# puts result
+			return DC_C * calculate_probability(k).to_f
+		when "REVERSE"
+			# puts result
+			return 0
+		end
+	end
 
 
 
@@ -268,22 +291,7 @@ class Analyzer
 	# end
 
 
-	# # For DC Math
-	# def dc_point_roll(roll, result)
-	# 	if result == 'A'
-	# 		# puts result
-	# 		DC_A * roll
-	# 	elsif result == 'B'
-	# 		# puts result
-	# 		return 0
-	# 	elsif result == 'C'
-	# 		# puts result
-	# 		DC_C * roll
-	# 	elsif result == "REVERSE"
-	# 		# puts result
-	# 		DC_R * roll
-	# 	end
-	# end
+
 
 	# Takes SUB or TAG values and calculates probability 
 	# a card rolling that range.
