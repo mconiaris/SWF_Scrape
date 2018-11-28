@@ -67,16 +67,15 @@ class Analyzer
 		}
 
 		# Calculate OC points
-		oc_points = calculate_oc_ropes_points(oc_points_array)
+		oc_points = calculate_oc_ropes_points(oc_points_array, gc_oc_roll)
 		oc_prob_hash = calculate_pa_ropes_sub_xx_dq(oc_points_array)
-
+binding.pry
 		# Multiply ropes values by oc_ropes_probability
 		# This is to calculate a X-per-roll.
 		oc_ropes_probability = oc_prob_hash[:ropes]
 		ropes_points = calculate_oc_ropes_points(ropes_points_array)
 		ropes_points = ropes_points * oc_ropes_probability
 		ropes_prob_hash = calculate_pa_ropes_sub_xx_dq(ropes_points_array)
-
 		w[:oc_probability] = gc_oc_roll
 		w[:dc_probability] = 1 - gc_oc_roll
 		w[:dc_points_per_roll] = dc_points * w[:dc_probability].to_f
@@ -88,6 +87,7 @@ class Analyzer
 		w[:singles_priority] = wrestler.values[:PriorityS]
 		w[:tag_priority] = wrestler.values[:PriorityT]
 
+binding.pry
 		return w
 	end
 
@@ -290,14 +290,24 @@ class Analyzer
 		end	
 	end
 
-	def calculate_oc_ropes_points(array)
+	# Takes in 2d6/36 value of a roll on an OC card and
+	# the string value of the points total. It converts
+	# the String to a float and multiplies the value.
+	# It then multiplies that number by the probability
+	# that OC will be rolled in the General Card.
+	# This returns a points per roll float starting from
+	# the beginning of a round.
+	def calculate_oc_ropes_points(array, gc_oc_roll)
 		p = 0
 
 		array.each { |x|
 			p += (x[0].to_f * x[1].to_f)
 		}
-		return p.to_f
+		points = p * gc_oc_roll
+		
+		return points
 	end
+
 
 	def calculate_pa_ropes_sub_xx_dq(array)
 		prob = {}
