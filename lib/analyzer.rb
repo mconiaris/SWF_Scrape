@@ -30,8 +30,9 @@ class Analyzer
 	def analyze(wrestler)
 
 		w = Hash.new
+		gc_oc_roll_probability = 0
+		
 		dc_points = 0
-		gc_oc_roll = 0
 		oc_pa_probability = 0
 		oc_points = 0
 		oc_points_array = []
@@ -48,7 +49,7 @@ class Analyzer
 			|key, value| k = key.to_s
 				if k[0..1] == 'GC'
 					puts "#{key}: #{value}"
-					# gc_oc_roll += analyze_gc(key, value)
+					gc_oc_roll_probability += calculate_gc_oc_roll_probability(key, value)
 				elsif k[0..1] == 'DC'
 					puts "#{key}: #{value}"
 					# dc_points += analyze_dc(key, value)
@@ -67,6 +68,12 @@ class Analyzer
 				end
 		}
 
+		# Add values to wrestler's hash
+		w[:oc_probability] = gc_oc_roll_probability
+		w[:dc_probability] = calculate_gc_dc_roll_probability(gc_oc_roll_probability)
+
+		
+
 # 		# Calculate OC points
 # 		oc_points = calculate_oc_ropes_points(oc_points_array, gc_oc_roll)
 # 		oc_prob_hash = calculate_pa_ropes_sub_xx_dq(oc_points_array, gc_oc_roll)
@@ -76,8 +83,6 @@ class Analyzer
 # 		ropes_points = calculate_oc_ropes_points(ropes_points_array)
 # 		ropes_points = ropes_points * oc_ropes_probability
 # 		ropes_prob_hash = calculate_pa_ropes_sub_xx_dq(ropes_points_array)
-# 		w[:oc_probability] = gc_oc_roll
-# 		w[:dc_probability] = 1 - gc_oc_roll
 # 		w[:dc_points_per_roll] = dc_points * w[:dc_probability].to_f
 # 		p_a = sum_of_s_array(s_stats_array)
 # 		w[:s_pin_attempt_count] = p_a[:s_pin_attempt_count]
@@ -87,11 +92,14 @@ class Analyzer
 # 		w[:singles_priority] = wrestler.values[:PriorityS]
 # 		w[:tag_priority] = wrestler.values[:PriorityT]
 
-# binding.pry
+binding.pry
 		return w
 	end
 
 
+	# This returns the rational number (fraction) of a
+	# 2d6 roll so that it can be used to calculate the
+	# probabilty of rolls for GC, OC & DC.
 	def calculate_probability(key)
 		k = key[2..3]
 
@@ -126,45 +134,25 @@ class Analyzer
 	end
 	
 
+	def calculate_gc_oc_roll_probability(key, value)
+		oc_roll_probability = 0
 
+		# Converts symbol key into a string so it can be 
+		# passed to the calculate_probabily method.
+		k = key.to_s
 
+		if value.include?('OC')
+			oc_roll_probability += calculate_probability(k)
+		else return 0
+		end
+	end
 
+	# Takes in probability of an OC roll and uses it to
+	# determine the probability of a DC roll.
+	def calculate_gc_dc_roll_probability(oc_roll_probability)
+		return 36/36.to_r - oc_roll_probability
+	end
 
-
-	
-
-	# def analyze_gc(k, v)
-	# 	if v.include?('OC')
-	# 		case k
-	# 		when :GC02
-	# 			return TWO_TWELVE
-	# 		when :GC03
-	# 			return THREE_ELEVEN
-	# 		when :GC04
-	# 			return FOUR_TEN
-	# 		when :GC05
-	# 			return FIVE_NINE
-	# 		when :GC06
-	# 			return SIX_EIGHT
-	# 		when :GC07
-	# 			return SEVEN
-	# 		when :GC08
-	# 			return SIX_EIGHT
-	# 		when :GC09
-	# 			return FIVE_NINE
-	# 		when :GC10
-	# 			return FOUR_TEN
-	# 		when :GC11
-	# 			return THREE_ELEVEN
-	# 		when :GC12
-	# 			return TWO_TWELVE
-	# 		else
-	# 			return 0
-	# 		end
-	# 	else
-	# 		return 0
-	# 	end
-	# end
 
 	
 	# def analyze_dc(k, v)
