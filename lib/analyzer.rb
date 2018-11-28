@@ -44,7 +44,6 @@ class Analyzer
 		s_stats_array = []
 		xx_probability = 0
 
-
 		wrestler.values.each {
 			|key, value| k = key.to_s
 				if k[0..1] == 'GC'
@@ -71,6 +70,7 @@ class Analyzer
 		# Add values to wrestler's hash
 		w[:oc_probability] = gc_oc_roll_probability
 		w[:dc_probability] = calculate_gc_dc_roll_probability(gc_oc_roll_probability)
+		w[:tt_probability] = calculate_gc_tt_roll_probability(wrestler.values)
 
 		
 
@@ -92,7 +92,7 @@ class Analyzer
 # 		w[:singles_priority] = wrestler.values[:PriorityS]
 # 		w[:tag_priority] = wrestler.values[:PriorityT]
 
-binding.pry
+# binding.pry
 		return w
 	end
 
@@ -151,6 +151,19 @@ binding.pry
 	# determine the probability of a DC roll.
 	def calculate_gc_dc_roll_probability(oc_roll_probability)
 		return 36/36.to_r - oc_roll_probability
+	end
+
+
+	# Takes in wrestler card hash and searches for OC/TT
+	# rolls and then calculates their probability.
+	def calculate_gc_tt_roll_probability(wrestler_hash)
+		h = wrestler_hash.select { |k,v| v == 'OC/TT' }
+		prob = 0
+
+		h.each_key {
+			|k| prob += calculate_probability(k)
+		}
+		return prob
 	end
 
 
