@@ -134,6 +134,12 @@ class Analyzer
 	end
 	
 
+	# ============
+	# GENERAL CARD
+	# ============
+
+	# Takes in wrestler hash and calculates the
+	# probability of an OC roll.
 	def calculate_gc_oc_roll_probability(key, value)
 		oc_roll_probability = 0
 
@@ -165,6 +171,18 @@ class Analyzer
 		}
 		return prob
 	end
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 	
