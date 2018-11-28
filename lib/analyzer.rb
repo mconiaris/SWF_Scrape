@@ -31,6 +31,9 @@ class Analyzer
 
 		w = Hash.new
 		gc_oc_roll_probability = 0
+		gc_dc_roll_probability = 0
+
+		dc_reverse_roll_probability = 0
 		
 		dc_points = 0
 		oc_pa_probability = 0
@@ -67,9 +70,14 @@ class Analyzer
 				end
 		}
 
+		# Calculate temporary Variables
+		gc_dc_roll_probability = calculate_gc_dc_roll_probability(gc_oc_roll_probability)
+		dc_reverse_roll_probability = calculate_reverse_roll_probability(wrestler.values, gc_dc_roll_probability)
+
+
 		# Add values to wrestler's hash
 		w[:oc_probability] = gc_oc_roll_probability
-		w[:dc_probability] = calculate_gc_dc_roll_probability(gc_oc_roll_probability)
+		w[:dc_probability] = gc_dc_roll_probability
 		w[:tt_probability] = calculate_gc_tt_roll_probability(wrestler.values)
 
 		
@@ -173,8 +181,20 @@ class Analyzer
 	end
 
 
+	# ==============
+	# DEFENSIVE CARD
+	# ==============
+	# Takes in wrestler card hash and searches for OC/TT
+	# rolls and then calculates their probability.
+	def calculate_reverse_roll_probability(wrestler_hash, gc_dc_roll_probability)
+		h = wrestler_hash.select { |k,v| v == 'REVERSE' }
+		prob = 0
 
-
+		h.each_key {
+			|k| prob += calculate_probability(k)
+		}
+		return prob * gc_dc_roll_probability
+	end
 
 
 
