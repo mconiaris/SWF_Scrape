@@ -47,20 +47,21 @@ class Analyzer
 		wrestler.values.each {
 			|key, value| k = key.to_s
 				if k[0..1] == 'GC'
-					gc_oc_roll += analyze_gc(key, value)
+					puts "#{key}: #{value}"
+					# gc_oc_roll += analyze_gc(key, value)
 				elsif k[0..1] == 'DC'
-					# puts "#{key}: #{value}"
-					dc_points += analyze_dc(key, value)
+					puts "#{key}: #{value}"
+					# dc_points += analyze_dc(key, value)
 				elsif k[0] == "S" && k[1] != "p" && k[1] != 'e'
-					# puts "#{key}: #{value}"
-					s_stats_array.push(analyze_s(key, value))
+					puts "#{key}: #{value}"
+					# s_stats_array.push(analyze_s(key, value))
 				elsif k[0..1] == 'OC'
 					puts "#{key}: #{value}"
 					puts "\n"
-					oc_points_array << create_oc_ropes_moves_array(key, value)
+					# oc_points_array << create_oc_ropes_moves_array(key, value)
 				elsif k[0] == 'R'
 					puts "#{key}: #{value}"
-					ropes_points_array << create_oc_ropes_moves_array(key, value)
+					# ropes_points_array << create_oc_ropes_moves_array(key, value)
 				else
 					puts "#{key}: #{value}"
 				end
