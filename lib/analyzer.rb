@@ -84,7 +84,7 @@ class Analyzer
 		specialty_roll_probability_hash = calculate_specialty_dq_pa_subm_xx_probability(wrestler.values, '(S)')
 		submission_move_roll_probability_hash = calculate_specialty_dq_pa_subm_xx_probability(wrestler.values, '*')
 		xx_roll_probability_hash = calculate_specialty_dq_pa_subm_xx_probability(wrestler.values, '(XX)')
-
+binding.pry
 
 		# Add values to wrestler's hash
 		w[:oc_probability] = gc_oc_roll_probability
@@ -226,6 +226,9 @@ class Analyzer
 	end
 
 
+	# ==============
+	# OFFENSIVE CARD
+	# ==============
 	# Takes in a wrestler hash and calculates the
 	# probability of either (S), (XX), * or (DQ) rolls.
 	# It divides OC and Ropes cards into their own hashes,
