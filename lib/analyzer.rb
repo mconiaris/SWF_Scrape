@@ -85,7 +85,7 @@ class Analyzer
 		submission_move_roll_probability_hash = calculate_specialty_dq_pa_subm_xx_probability(wrestler.values, '*')
 		xx_roll_probability_hash = calculate_specialty_dq_pa_subm_xx_probability(wrestler.values, '(XX)')
 
-		calculate_specialty_points_and_attributes_hash = calculate_specialty_points_and_attributes(wrestler.values)
+		specialty_points_and_attributes_hash = calculate_specialty_points_and_attributes(wrestler.values)
 
 
 		# Add values to wrestler's hash
