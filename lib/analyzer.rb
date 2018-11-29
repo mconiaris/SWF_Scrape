@@ -76,22 +76,65 @@ class Analyzer
 		# Calculate temporary Variables
 		gc_dc_roll_probability = calculate_gc_dc_roll_probability(gc_oc_roll_probability)
 		
+		# DC roll probability x Reverse roll probability
 		dc_reverse_roll_probability = calculate_reverse_roll_probability(wrestler.values, gc_dc_roll_probability)
 		dc_points_without_reverse = gc_dc_roll_probability * dc_points_without_reverse
 
+		# 2d6 roll in Offensive and Ropes cards.
 		dq_roll_probability_hash = calculate_specialty_dq_pa_subm_xx_probability(wrestler.values, '(DQ)')
 		ropes_roll_probability_hash = calculate_specialty_dq_pa_subm_xx_probability(wrestler.values, 'ROPES')
 		specialty_roll_probability_hash = calculate_specialty_dq_pa_subm_xx_probability(wrestler.values, '(S)')
 		submission_move_roll_probability_hash = calculate_specialty_dq_pa_subm_xx_probability(wrestler.values, '*')
 		xx_roll_probability_hash = calculate_specialty_dq_pa_subm_xx_probability(wrestler.values, '(XX)')
 
+		# This is from the Specialty card only.
 		specialty_points_and_attributes_hash = calculate_specialty_points_and_attributes(wrestler.values)
 
 		# Calculate attributes of OC and Ropes cards
+		# 2d6 x Offensive Card roll or 2d6 * Ropes Card roll
 		oc_and_ropes_dq_probability = calculate_specialty_dq_pa_subm_xx_probability(wrestler.values, '(DQ)')
 		oc_and_ropes_pa_probability = calculate_specialty_dq_pa_subm_xx_probability(wrestler.values, 'P/A')
 		oc_and_ropes_subm_probability = calculate_specialty_dq_pa_subm_xx_probability(wrestler.values, '*')
 		oc_and_ropes_xx_probability = calculate_specialty_dq_pa_subm_xx_probability(wrestler.values, '(XX)')
+
+		# Seperate OC and Ropes cards and then calculate
+		# points per roll
+		oc_hash = wrestler.values.select { |k,v| k.to_s.include?('OC') }
+		ropes_hash = wrestler.values.select { |k,v| k.to_s.include?('R') }
+		
+		# Takes the oc_hash and ropes_hash and calculates
+		# the points per roll (2d6 * card). These values 
+		# do not include Specialty rolls.
+		oc_points_per_roll = calculate_oc_and_ropes_points(oc_hash)
+		ropes_points_per_roll = calculate_oc_and_ropes_points(ropes_hash)
+
+		# TODO: Create a total_points_per_roll method,
+		# which should include OC card, Ropes card,
+		# Specialty card and Reverse roll. This should be
+		# multiplied by gc_oc probability.
+
+		# TODO: Create a total_pa_probability_per_roll 
+		# method,which should include OC card, Ropes card,
+		# Specialty card and Reverse roll. This should be
+		# multiplied by gc_oc probability.
+
+
+		# TODO: Create a total_subm_probability_per_roll 
+		# method,which should include OC card, Ropes card,
+		# Specialty card and Reverse roll. This should be
+		# multiplied by gc_oc probability.
+
+
+		# TODO: Create a total_XX_probability_per_roll 
+		# method,which should include OC card, Ropes card,
+		# Specialty card and Reverse roll. This should be
+		# multiplied by gc_oc probability.
+
+		# TODO: Create a total_dq_probability_per_roll 
+		# method,which should include OC card, Ropes card,
+		# Specialty card and Reverse roll. This should be
+		# multiplied by gc_oc probability.
+
 
 		# Add values to wrestler's hash
 		w[:oc_probability] = gc_oc_roll_probability
@@ -236,6 +279,39 @@ class Analyzer
 	# ==============
 	# OFFENSIVE CARD
 	# ==============
+	# TODO: Factor out analyssis into a method to DRY
+	def calculate_oc_and_ropes_points(wrestler)
+
+		points_per_roll_array = []
+
+
+		wrestler.each { |k, v|
+			a = v.split
+
+			if a.last == '*'
+				a.pop
+				x = a.last.to_f * calculate_probability(k)
+				points_per_roll_array << x
+			elsif a.last == '(DQ)'
+				x = 5 * calculate_probability(k)
+				points_per_roll_array << x
+			elsif a.last == 'P/A'
+				a.pop
+				x = a.last.to_f * calculate_probability(k)
+				points_per_roll_array << x				
+			elsif a.last == '(XX)'
+				a.pop
+				x = a.last.to_f * calculate_probability(k)
+				points_per_roll_array << x
+			else
+				x = a.last.to_f * calculate_probability(k)
+				points_per_roll_array << x
+			end
+		}
+		return points_per_roll_array.sum
+	end
+
+
 	# Takes in a wrestler hash and calculates the
 	# probability of either (S), (XX), * or (DQ) rolls.
 	# It divides OC and Ropes cards into their own hashes,
