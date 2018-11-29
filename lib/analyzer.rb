@@ -252,6 +252,7 @@ binding.pry
 			s_r_prob = calculate_probability(k)
 		}
 
+		# Convert probability values into a hash
 		s_prob[:OC] = s_oc_prob
 		s_prob[:R] = s_r_prob
 
