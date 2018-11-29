@@ -75,10 +75,11 @@ class Analyzer
 
 		# Calculate temporary Variables
 		gc_dc_roll_probability = calculate_gc_dc_roll_probability(gc_oc_roll_probability)
+		
 		dc_reverse_roll_probability = calculate_reverse_roll_probability(wrestler.values, gc_dc_roll_probability)
-		# Take DC points and mulitply them by the DC roll
-		# probability.
 		dc_points_without_reverse = gc_dc_roll_probability * dc_points_without_reverse
+
+		specialty_probability_hash = calculate_specialty_dq_pa_subm_xx_probability(wrestler.values, '(S)')
 
 
 		# Add values to wrestler's hash
@@ -221,6 +222,34 @@ class Analyzer
 	end
 
 
+	# Takes in a wrestler hash and calculates the
+	# probability of either (S), (XX), * or (DQ) rolls.
+	# It divides OC and Ropes cards into their own hashes,
+	# determines the probabilities of both and then returns
+	# the values in a hash.
+	def calculate_specialty_dq_pa_subm_xx_probability(wrestler, move)
+		s_prob = Hash.new
+		s = wrestler.select { |k,v| v.include?(move) }
+		s_oc = s.select { |k,v| k.to_s.include?('OC') }
+		s_r = s.select { |k,v| k.to_s.include?('R') }
+
+		s_oc_prob = 0
+		s_r_prob = 0
+
+		s_oc.each_key { |k| 
+			s_oc_prob = calculate_probability(k)
+		}
+
+		# Does not include OC-Ropes roll probability
+		s_r.each_key { |k| 
+			s_r_prob = calculate_probability(k)
+		}
+
+		s_prob[:OC] = s_oc_prob
+		s_prob[:R] = s_r_prob
+
+		return s_prob
+	end
 
 
 
