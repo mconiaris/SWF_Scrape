@@ -84,7 +84,9 @@ class Analyzer
 		specialty_roll_probability_hash = calculate_specialty_dq_pa_subm_xx_probability(wrestler.values, '(S)')
 		submission_move_roll_probability_hash = calculate_specialty_dq_pa_subm_xx_probability(wrestler.values, '*')
 		xx_roll_probability_hash = calculate_specialty_dq_pa_subm_xx_probability(wrestler.values, '(XX)')
-binding.pry
+
+		calculate_specialty_points_and_attributes_hash = calculate_specialty_points_and_attributes(wrestler.values)
+
 
 		# Add values to wrestler's hash
 		w[:oc_probability] = gc_oc_roll_probability
@@ -260,6 +262,43 @@ binding.pry
 	end
 
 
+	# TODO factor out select hashes into a method for DRY
+	# Isolate the Specialty move and calculate the
+	# points and other values
+	def calculate_specialty_points_and_attributes(wrestler)
+		# Convert key Symbols to text and then isolate just
+		# the keys with a single number after it.
+		specialty_hash = Hash.new
+		s_points = 0
+
+		s = wrestler.select { |k,v| k.to_s =~ /S\d/ }
+
+		# Calculate probability of a P/A roll in (S)
+		s_sub_hash = s.select { |k,v| v.include?('*') }
+		s_sub_prob = s_sub_hash.size / 6.to_f
+
+		# Calculate probability of a DQ roll in (S)
+		s_dq_hash = s.select { |k,v| v.include?('(DQ)') }
+		s_dq_prob = s_dq_hash.size / 6.to_f
+
+		# Calculate probability of a P/A roll in (S)
+		s_pa_hash = s.select { |k,v| v.include?('P/A') }
+		s_pa_prob = s_pa_hash.size / 6.to_f
+
+		# Isolate integer values of (S) hash and sum them.
+		s.each_value { |v| x = v.split
+			s_points += x[0].to_i
+		}
+		s_points_average = s_points / 6
+
+		specialty_hash[:dq_probability] = s_dq_prob
+		specialty_hash[:pa_probability] = s_pa_prob
+		specialty_hash[:points_average] = s_points_average
+		specialty_hash[:submission_move_probability] = s_sub_prob
+		return specialty_hash
+	end
+
+
 
 
 
@@ -295,36 +334,6 @@ binding.pry
 	# 	end
 	# else
 	# 	return 0
-	# end
-
-
-# 	# For Specialty math
-# 	def analyze_s(k, v)
-# 		v.split
-# binding.pry
-# 	end
-
-
-	# # For Specialty math
-	# def sum_of_s_array(s_array)
-
-	# 	# TODO: Figure out DQ rolls in S.
-	# 	# Calculate number of points
-	# 	b = s_array.map {
-	# 		|x| x[0].to_i
-	# 	}
-
-	# 	# Count number of P/A or sub attempts
-	# 	a = s_array.map { 
-	# 		|x| x[1] 
-	# 	}
-	# 	a.delete_if { 
-	# 		|x| x == nil 
-	# 	}
-	# 	s_stats = Hash.new
-	# 	s_stats[:s_pin_attempt_count] = a.size
-	# 	s_stats[:s_points] = b.sum
-	# 	return s_stats
 	# end
 
 
