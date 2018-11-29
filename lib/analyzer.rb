@@ -79,7 +79,11 @@ class Analyzer
 		dc_reverse_roll_probability = calculate_reverse_roll_probability(wrestler.values, gc_dc_roll_probability)
 		dc_points_without_reverse = gc_dc_roll_probability * dc_points_without_reverse
 
-		specialty_probability_hash = calculate_specialty_dq_pa_subm_xx_probability(wrestler.values, '(S)')
+		dq_roll_probability_hash = calculate_specialty_dq_pa_subm_xx_probability(wrestler.values, '(DQ)')
+		ropes_roll_probability_hash = calculate_specialty_dq_pa_subm_xx_probability(wrestler.values, 'ROPES')
+		specialty_roll_probability_hash = calculate_specialty_dq_pa_subm_xx_probability(wrestler.values, '(S)')
+		submission_move_roll_probability_hash = calculate_specialty_dq_pa_subm_xx_probability(wrestler.values, '*')
+		xx_roll_probability_hash = calculate_specialty_dq_pa_subm_xx_probability(wrestler.values, '(XX)')
 
 
 		# Add values to wrestler's hash
