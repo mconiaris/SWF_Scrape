@@ -87,6 +87,11 @@ class Analyzer
 
 		specialty_points_and_attributes_hash = calculate_specialty_points_and_attributes(wrestler.values)
 
+		# Calculate attributes of OC and Ropes cards
+		oc_and_ropes_dq_probability = calculate_specialty_dq_pa_subm_xx_probability(wrestler.values, '(DQ)')
+		oc_and_ropes_pa_probability = calculate_specialty_dq_pa_subm_xx_probability(wrestler.values, 'P/A')
+		oc_and_ropes_subm_probability = calculate_specialty_dq_pa_subm_xx_probability(wrestler.values, '*')
+		oc_and_ropes_xx_probability = calculate_specialty_dq_pa_subm_xx_probability(wrestler.values, '(XX)')
 
 		# Add values to wrestler's hash
 		w[:oc_probability] = gc_oc_roll_probability
