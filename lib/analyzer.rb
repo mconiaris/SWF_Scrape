@@ -130,6 +130,11 @@ class Analyzer
 				dc_reverse_roll_probability, 
 				oc_points_per_roll_total)
 
+
+			# Calculate Total Card Values
+			card_points_per_round = oc_points_per_roll_total +
+				dc_points_per_roll_total
+
 		# TODO: Add (oc_points_per_roll_total x Reverse
 		# probability to card points per round total).
 
