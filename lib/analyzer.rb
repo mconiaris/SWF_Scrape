@@ -137,10 +137,9 @@ class Analyzer
 
 
 		# Add values to wrestler's hash
-		w[:oc_probability] = gc_oc_roll_probability
-		w[:dc_probability] = gc_dc_roll_probability
-		w[:tt_probability] = calculate_gc_tt_roll_probability(wrestler.values)
-
+		@statistics[:oc_probability] = gc_oc_roll_probability
+		@statistics[:dc_probability] = gc_dc_roll_probability
+		@statistics[:tt_probability] = calculate_gc_tt_roll_probability(wrestler.values)
 		
 
 # 		# Calculate OC points
@@ -161,8 +160,7 @@ class Analyzer
 # 		w[:singles_priority] = wrestler.values[:PriorityS]
 # 		w[:tag_priority] = wrestler.values[:PriorityT]
 
-# binding.pry
-		return w
+		return @statistics
 	end
 
 
