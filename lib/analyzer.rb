@@ -109,8 +109,21 @@ class Analyzer
 		oc_points_per_roll = calculate_oc_and_ropes_points(oc_hash)
 		ropes_points_per_roll = calculate_oc_and_ropes_points(ropes_hash)
 
-		# Adding Specialty Points to oc_points_per_roll
+		# Subtotals
+		oc_points_per_roll_subtotal = calculate_oc_points_per_roll_subtotal(oc_points_per_roll, gc_oc_roll_probability)
+		ropes_points_per_roll_subtotal = calculate_ropes_points_per_roll_subtotal(ropes_points_per_roll, gc_oc_roll_probability, ropes_roll_probability_hash[:OC])
 		specialty_points_per_roll = calculate_specialty_points_and_attributes_per_round(specialty_points_and_attributes_hash, gc_oc_roll_probability, oc_and_ropes_specialty_probability, ropes_roll_probability_hash)
+
+		# Calculate Total Points Per Roll
+		ropes_points_per_roll_total = 
+			specialty_points_per_roll[:ropes_points_per_roll] + 
+			ropes_points_per_roll_subtotal
+		oc_points_per_roll_total = 
+			ropes_points_per_roll_total + 
+			specialty_points_per_roll[:oc_points_per_roll] +
+			oc_points_per_roll_subtotal
+
+
 
 
 		# TODO: Create a total_points_per_roll method,
@@ -310,6 +323,22 @@ class Analyzer
 			end
 		}
 		return points_per_roll_array.sum
+	end
+
+	def calculate_oc_points_per_roll_subtotal(points, oc_prob)
+		x = points * oc_prob
+	end
+
+
+	# ==========
+	# ROPES CARD
+	# ==========
+	# Takes in the Ropes Points per GC Roll total and
+	# multiplies it by the probablilty of rollinc OC and
+	# then multip;ies it by the probability of rolling 
+	# Ropes
+	def calculate_ropes_points_per_roll_subtotal(points, oc_prob, ropes_prob)
+		x = points * oc_prob * ropes_prob
 	end
 
 
