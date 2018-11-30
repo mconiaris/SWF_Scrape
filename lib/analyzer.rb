@@ -114,16 +114,21 @@ class Analyzer
 		ropes_points_per_roll_subtotal = calculate_ropes_points_per_roll_subtotal(ropes_points_per_roll, gc_oc_roll_probability, ropes_roll_probability_hash[:OC])
 		specialty_points_per_roll = calculate_specialty_points_and_attributes_per_round(specialty_points_and_attributes_hash, gc_oc_roll_probability, oc_and_ropes_specialty_probability, ropes_roll_probability_hash)
 
-		# Calculate Total Points Per Roll
+		# Calculate Total OC Points Per Roll
 		ropes_points_per_roll_total = 
 			specialty_points_per_roll[:ropes_points_per_roll] + 
 			ropes_points_per_roll_subtotal
+		
 		oc_points_per_roll_total = 
 			ropes_points_per_roll_total + 
 			specialty_points_per_roll[:oc_points_per_roll] +
 			oc_points_per_roll_subtotal
 
+		dc_points_per_roll_total = calculate_dc_points_per_round_subtotal(dc_points_without_reverse)
 
+		# TODO: Add (oc_points_per_roll_total x Reverse
+		# probability to card points per round total).
+binding.pry
 
 
 		# TODO: Create a total_points_per_roll method,
@@ -288,6 +293,10 @@ class Analyzer
 			return 0
 		end
 	end
+
+def calculate_dc_points_per_round_subtotal(points)
+	binding.pry
+end
 
 
 	# ==============
