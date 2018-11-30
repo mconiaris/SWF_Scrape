@@ -196,8 +196,6 @@ class Analyzer
 		else
 			return 0
 		end
-	else
-		return 0
 	end
 	
 
