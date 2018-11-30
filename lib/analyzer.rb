@@ -378,46 +378,6 @@ class Analyzer
 	end
 
 
-
-
-
-
-
-	
-	# def analyze_dc(k, v)
-	# 	case k
-	# 	when :DC02
-	# 		return dc_point_roll(TWO_TWELVE, v)
-	# 	when :DC03
-	# 		dc_point_roll(THREE_ELEVEN, v)
-	# 	when :DC04
-	# 		return dc_point_roll(FOUR_TEN, v)
-	# 	when :DC05
-	# 		return dc_point_roll(FIVE_NINE, v)
-	# 	when :DC06
-	# 		return dc_point_roll(SIX_EIGHT, v)
-	# 	when :DC07
-	# 		return dc_point_roll(SEVEN, v)
-	# 	when :DC08
-	# 		return dc_point_roll(SIX_EIGHT, v)
-	# 	when :DC09
-	# 		return dc_point_roll(FIVE_NINE, v)
-	# 	when :DC10
-	# 		return dc_point_roll(FOUR_TEN, v)
-	# 	when :DC11
-	# 		return dc_point_roll(THREE_ELEVEN, v)
-	# 	when :DC12
-	# 		return dc_point_roll(TWO_TWELVE, v)
-	# 	else
-	# 		return 0
-	# 	end
-	# else
-	# 	return 0
-	# end
-
-
-
-
 	# Takes SUB or TAG values and calculates probability 
 	# a card rolling that range.
 	def sub_tag_probability(a, b)
@@ -453,75 +413,5 @@ class Analyzer
 		}
 			return num_range
 	end
-
-
-	# # Takes move string, splits it, and then adds
-	# # points, XX, *, P/A, DQ and probability into 
-	# # an array for analysis.
-	# def create_oc_ropes_moves_array(key, move)
-	# 	m = move.split
-	# 	puts m
-
-	# 	if (m.last != '*') && (m.last != '(XX)') && m.last != ('P/A') && m.last != ('(DQ)')
-	# 		x = [calculate_probability(key), m.last]
-	# 	elsif m.last == '(S)'
-	# 		x = [calculate_probability(key), m.last]
-	# 	elsif move == 'ROPES'
-	# 		x = [calculate_probability(key), move]
-	# 	else
-	# 		x = [calculate_probability(key), m[-2], m[-1]]
-	# 	end	
-	# end
-
-	# # Takes in 2d6/36 value of a roll on an OC card and
-	# # the string value of the points total. It converts
-	# # the String to a float and multiplies the value.
-	# # It then multiplies that number by the probability
-	# # that OC will be rolled in the General Card.
-	# # This returns a points per roll float starting from
-	# # the beginning of a round.
-	# def calculate_oc_ropes_points(array, gc_oc_roll)
-	# 	p = 0
-
-	# 	array.each { |x|
-	# 		p += (x[0].to_f * x[1].to_f)
-	# 	}
-	# 	points = p * gc_oc_roll
-
-	# 	return points
-	# end
-
-
-	# def calculate_pa_ropes_sub_xx_dq(array, gc_oc_roll)
-	# 	prob = {}
-
-	# 	dq = 0.to_f
-	# 	pa = 0.to_f
-	# 	ropes = 0.to_f
-	# 	subm = 0.to_f
-	# 	specialty = 0.to_f
-	# 	xx = 0.to_f
-
-	# 	array.each { |a|
-	# 		if a[1] == 'ROPES'
-	# 			ropes += a[0].to_f
-	# 		elsif a[1] == '(S)'
-	# 			specialty += a[0].to_f
-	# 		elsif a[2] != nil
-	# 			case a[2]
-	# 			when '*'
-	# 				binding.pry
-	# 				subm += a[0].to_f
-	# 			when '(DQ)'
-	# 				dq += a[0].to_f
-	# 			when '(XX)'
-	# 				xx = a[0].to_f
-	# 			when 'P/A'
-	# 				pa += a[0].to_f
-	# 			end
-	# 		end
-	# 	}
-	# 		prob = { :specialty => specialty * gc_oc_roll, :subm => subm * gc_oc_roll, :dq => dq * gc_oc_roll, :xx => xx * gc_oc_roll, :pa => pa * gc_oc_roll, :ropes => ropes * gc_oc_roll }
-	# end
 
 end
