@@ -124,11 +124,15 @@ class Analyzer
 			specialty_points_per_roll[:oc_points_per_roll] +
 			oc_points_per_roll_subtotal
 
-		dc_points_per_roll_total = calculate_dc_points_per_round_subtotal(dc_points_without_reverse)
+		dc_points_per_roll_total = 
+			calculate_dc_points_per_round_subtotal(
+				dc_points_without_reverse, 
+				dc_reverse_roll_probability, 
+				oc_points_per_roll_total)
 
 		# TODO: Add (oc_points_per_roll_total x Reverse
 		# probability to card points per round total).
-binding.pry
+
 
 
 		# TODO: Create a total_points_per_roll method,
@@ -294,8 +298,12 @@ binding.pry
 		end
 	end
 
-def calculate_dc_points_per_round_subtotal(points)
-	binding.pry
+# Takes in the DC Points per roll (without Reverse)
+# and adds them to (DC roll probability x Total OC points)
+def calculate_dc_points_per_round_subtotal(
+	dc_points, rev_prob, total_points)
+	
+	dc_points + (rev_prob * total_points)
 end
 
 
