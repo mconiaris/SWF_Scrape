@@ -34,6 +34,13 @@ RSpec.describe Analyzer do
 	end
 
 	# TODO: Make tests to confirm math is right.
+	describe '#analyze @statistics' do
+		it 'should return a hash' do
+			expect(@analyze.statistics.class).instance_of?(Hash)
+		end
+	end
+
+
 	# TODO: Create test that deals with DQs in Specialty moves.
 
 end
