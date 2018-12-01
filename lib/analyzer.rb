@@ -175,7 +175,7 @@ class Analyzer
 					xx_probability_per_round
 
 		submission_loss_probabilty = sub_tag_probability(wrestler.values[:Sub1], wrestler.values[:Sub2]).to_f
-
+		tag_team_save_probabilty = sub_tag_probability(wrestler.values[:Tag1], wrestler.values[:Tag2]).to_f
 
 		# TODO: Create a total_pa_probability_per_roll 
 		# method,which should include OC card, Ropes card,
