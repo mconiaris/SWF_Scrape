@@ -134,6 +134,14 @@ class Analyzer
 			# Calculate Total Card Values
 			card_points_per_round = oc_points_per_roll_total +
 				dc_points_per_roll_total
+			
+			pa_probability_per_round = 
+				calculate_total_dq_pa_sub_xx_per_round(
+					gc_oc_roll_probability, 
+					ropes_roll_probability_hash, 
+					oc_and_ropes_pa_probability,
+					specialty_roll_probability_hash,
+					specialty_points_and_attributes_hash[:pa_probability])
 
 
 
@@ -464,6 +472,53 @@ end
 		total = 0
 binding.pry
 		total = probability * args
+	end
+
+# OC Version
+# OC roll in GC (22/36)
+# Move roll in OC (2/36)
+
+
+# P/A per round OC + 
+# P/A per round (S)
+
+
+# pa_probability_per_round = 
+# 				calculate_total_dq_pa_sub_xx_per_round(
+# 					gc_oc_roll_probability, 
+# 					ropes_roll_probability_hash, 
+# 					oc_and_ropes_pa_probability,
+# 					specialty_roll_probability_hash,
+# 					specialty_points_and_attributes_hash[:pa_probability])
+
+
+
+	# Calculate (DQ | P/A | * | XX) probability per Round
+	def calculate_total_dq_pa_sub_xx_per_round(gc_oc_roll_prob, ropes_roll, attribute, s_prob, s_attribute)
+		
+		# Calculate OC (DQ | P/A | * | XX) probability 
+		# per round without (S)
+		x = gc_oc_roll_prob.to_f * attribute[:OC].to_f
+		# Calculate (S) OC (DQ | P/A | * | XX) probability 
+		# per round
+		y = gc_oc_roll_prob.to_f * s_prob[:OC].to_f * s_attribute
+
+		oc = x + y
+
+
+		# Ropes (DQ | P/A | * | XX) probability per round
+		# Calculate Ropes (DQ | P/A | * | XX) probability 
+		# per round without (S)
+		x_r = gc_oc_roll_prob.to_f * ropes_roll[:OC].to_f *
+			attribute[:R].to_f
+		# Calculate (S) Ropes (DQ | P/A | * | XX) probability 
+		# per round
+		y_r = gc_oc_roll_prob.to_f * ropes_roll[:OC].to_f *
+			s_prob[:R].to_f * s_attribute
+
+		r = x_r + y_r
+
+		total = oc + r
 	end
 
 
