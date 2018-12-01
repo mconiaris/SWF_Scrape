@@ -135,15 +135,8 @@ class Analyzer
 			card_points_per_round = oc_points_per_roll_total +
 				dc_points_per_roll_total
 
-		# TODO: Add (oc_points_per_roll_total x Reverse
-		# probability to card points per round total).
 
 
-
-		# TODO: Create a total_points_per_roll method,
-		# which should include OC card, Ropes card,
-		# Specialty card and Reverse roll. This should be
-		# multiplied by gc_oc probability.
 
 		# TODO: Create a total_pa_probability_per_roll 
 		# method,which should include OC card, Ropes card,
