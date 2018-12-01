@@ -174,6 +174,8 @@ class Analyzer
 					sub_probability_per_round +
 					xx_probability_per_round
 
+		submission_loss_probabilty = sub_tag_probability(wrestler.values[:Sub1], wrestler.values[:Sub2]).to_f
+
 
 		# TODO: Create a total_pa_probability_per_roll 
 		# method,which should include OC card, Ropes card,
@@ -217,8 +219,6 @@ class Analyzer
 # 		p_a = sum_of_s_array(s_stats_array)
 # 		w[:s_pin_attempt_count] = p_a[:s_pin_attempt_count]
 # 		w[:s_points] = p_a[:s_points]
-# 		w[:sub_probability] = sub_tag_probability(wrestler.values[:Sub1], wrestler.values[:Sub2])
-# 		w[:tag_probability] = sub_tag_probability(wrestler.values[:Tag1], wrestler.values[:Tag2])
 # 		w[:singles_priority] = wrestler.values[:PriorityS]
 # 		w[:tag_priority] = wrestler.values[:PriorityT]
 
