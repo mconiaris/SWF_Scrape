@@ -135,6 +135,14 @@ class Analyzer
 			card_points_per_round = oc_points_per_roll_total +
 				dc_points_per_roll_total
 			
+			dq_probability_per_round = 
+				calculate_total_dq_pa_sub_xx_per_round(
+					gc_oc_roll_probability, 
+					ropes_roll_probability_hash, 
+					oc_and_ropes_dq_probability,
+					specialty_roll_probability_hash,
+					specialty_points_and_attributes_hash[:dq_probability])
+
 			pa_probability_per_round = 
 				calculate_total_dq_pa_sub_xx_per_round(
 					gc_oc_roll_probability, 
@@ -142,6 +150,23 @@ class Analyzer
 					oc_and_ropes_pa_probability,
 					specialty_roll_probability_hash,
 					specialty_points_and_attributes_hash[:pa_probability])
+
+				sub_probability_per_round = 
+				calculate_total_dq_pa_sub_xx_per_round(
+					gc_oc_roll_probability, 
+					ropes_roll_probability_hash, 
+					oc_and_ropes_subm_probability,
+					specialty_roll_probability_hash,
+					specialty_points_and_attributes_hash[:submission_move_probability])
+
+				xx_probability_per_round = 
+				calculate_total_dq_pa_sub_xx_per_round(
+					gc_oc_roll_probability, 
+					ropes_roll_probability_hash, 
+					oc_and_ropes_xx_probability,
+					specialty_roll_probability_hash,
+					0)
+
 
 
 
