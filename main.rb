@@ -39,6 +39,7 @@ def scraping(file)
 	puts "Singles Priority: #{@wrestler.values[:PriorityS]}"
 	puts "Tag Team Priority: #{@wrestler.values[:PriorityT]}"
 	puts "Set: #{@wrestler.values[:Set]}"
+	puts "\n"
 end
 
 
