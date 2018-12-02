@@ -13,7 +13,7 @@ class Scraper
 
 	# Takes the text and converts it to a wrestler object.
 	def process_card(card)
-		puts 'processing card'
+		# puts 'processing card'
 		
 		# Create temporary containers for card info
 		left = Array.new
