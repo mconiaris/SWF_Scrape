@@ -177,33 +177,34 @@ class Analyzer
 		submission_loss_probabilty = sub_tag_probability(wrestler.values[:Sub1], wrestler.values[:Sub2]).to_f
 		tag_team_save_probabilty = sub_tag_probability(wrestler.values[:Tag1], wrestler.values[:Tag2]).to_f
 
-		# TODO: Create a total_pa_probability_per_roll 
-		# method,which should include OC card, Ropes card,
-		# Specialty card and Reverse roll. This should be
-		# multiplied by gc_oc probability.
+		# Adds up the points_per_round with the probability
+		# of rolling P/A, Sub, XX, or DQ and then subtracts
+		# it by the probability of submission.
+		total_card_rating = card_points_per_round +
+			dq_probability_per_round + 
+			pa_probability_per_round + 
+			sub_probability_per_round + 
+			xx_probability_per_round +
+			wrestler.values[:PriorityS].to_f -
+			submission_loss_probabilty
 
-
-		# TODO: Create a total_subm_probability_per_roll 
-		# method,which should include OC card, Ropes card,
-		# Specialty card and Reverse roll. This should be
-		# multiplied by gc_oc probability.
-
-
-		# TODO: Create a total_XX_probability_per_roll 
-		# method,which should include OC card, Ropes card,
-		# Specialty card and Reverse roll. This should be
-		# multiplied by gc_oc probability.
-
-		# TODO: Create a total_dq_probability_per_roll 
-		# method,which should include OC card, Ropes card,
-		# Specialty card and Reverse roll. This should be
-		# multiplied by gc_oc probability.
 
 
 		# Add values to wrestler's hash
 		@statistics[:oc_probability] = gc_oc_roll_probability
 		@statistics[:dc_probability] = gc_dc_roll_probability
 		@statistics[:tt_probability] = calculate_gc_tt_roll_probability(wrestler.values)
+		@statistics[:oc_card_points_per_round] = oc_points_per_roll_total
+		@statistics[:dc_card_points_per_round] = dc_points_per_roll_total
+		@statistics[:total_card_points_per_round] = card_points_per_round
+		@statistics[:dq_probability_per_round] = dq_probability_per_round
+		@statistics[:pa_probability_per_round] = pa_probability_per_round
+		@statistics[:sub_probability_per_round] = sub_probability_per_round
+		@statistics[:xx_probability_per_round] = xx_probability_per_round
+
+		@statistics[:card_rating] = total_card_rating
+
+
 		
 
 # 		# Calculate OC points
