@@ -40,6 +40,10 @@ def scraping(file)
 	puts "Tag Team Priority: #{@wrestler.values[:PriorityT]}"
 	puts "Set: #{@wrestler.values[:Set]}"
 	puts "\n"
+
+	f = File.new('files/results.csv', 'a')
+	f.write("#{@wrestler.values[:name]}, #{@wrestler.statistics[:card_rating]}, #{@wrestler.statistics[:oc_probability]}, #{@wrestler.statistics[:tt_probability]}, #{@wrestler.statistics[:total_card_points_per_round]}, #{@wrestler.statistics[:dq_probability_per_round]}, #{@wrestler.statistics[:pa_probability_per_round]}, #{@wrestler.statistics[:sub_probability_per_round]}, #{@wrestler.statistics[:xx_probability_per_round]}, #{@wrestler.statistics[:dq_probability_per_round]}, #{@wrestler.statistics[:submission_loss_probabilty]}#{@wrestler.statistics[:tag_team_save_probabilty]}#{@wrestler.values[:PriorityS]}#{@wrestler.values[:PriorityT]}#{@wrestler.values[:Set]}, \n")
+	f.close
 end
 
 
@@ -50,7 +54,9 @@ end
 
 # pwg_card = "files/Zak Knight.pdf"
 # scraping(pwg_card)
-scraping("/Users/mconiaris/Documents/SWF/SWF Original Game Card Sets/83/83_04CrusherBlackwell.pdf")
+
+
+# scraping("/Users/mconiaris/Documents/SWF/SWF Original Game Card Sets/83/83_13BillyGraham.pdf")
 
 # Cycle through input file for PDF files.
 File.open("files/input.txt", "r") do |f|
