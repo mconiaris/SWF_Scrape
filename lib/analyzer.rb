@@ -204,25 +204,6 @@ class Analyzer
 
 		@statistics[:card_rating] = total_card_rating
 
-
-		
-
-# 		# Calculate OC points
-# 		oc_points = calculate_oc_ropes_points(oc_points_array, gc_oc_roll)
-# 		oc_prob_hash = calculate_pa_ropes_sub_xx_dq(oc_points_array, gc_oc_roll)
-# 		# Multiply ropes values by oc_ropes_probability
-# 		# This is to calculate a X-per-roll.
-# 		oc_ropes_probability = oc_prob_hash[:ropes]
-# 		ropes_points = calculate_oc_ropes_points(ropes_points_array)
-# 		ropes_points = ropes_points * oc_ropes_probability
-# 		ropes_prob_hash = calculate_pa_ropes_sub_xx_dq(ropes_points_array)
-# 		w[:dc_points_per_roll] = dc_points * w[:dc_probability].to_f
-# 		p_a = sum_of_s_array(s_stats_array)
-# 		w[:s_pin_attempt_count] = p_a[:s_pin_attempt_count]
-# 		w[:s_points] = p_a[:s_points]
-# 		w[:singles_priority] = wrestler.values[:PriorityS]
-# 		w[:tag_priority] = wrestler.values[:PriorityT]
-
 		return @statistics
 	end
 
