@@ -4,9 +4,15 @@ require_relative 'lib/analyzer'
 require_relative 'lib/scraper'
 require_relative 'lib/wrestler'
 
+# puts "Enter in a card location: "
+# pwg_card = STDIN.gets.chomp
+# puts "Looking for #{pwg_card}." 
+# binding.pry
 
+pwg_card = "files/Zak Knight.pdf"
 # Scrape PDF
-@scrape = Scraper.new("files/Zak Knight.pdf")
+# @scrape = Scraper.new("files/Zak Knight.pdf")
+@scrape = Scraper.new(pwg_card)
 
 # Isolate card moves array
 card = @scrape.card
@@ -35,7 +41,7 @@ puts "Submission Loss Probability: #{@wrestler.statistics[:submission_loss_proba
 puts "Tag Team Save Probability: #{@wrestler.statistics[:tag_team_save_probabilty]}"
 puts "Singles Priority: #{@wrestler.values[:PriorityS]}"
 puts "Tag Team Priority: #{@wrestler.values[:PriorityT]}"
-puts "Name: #{@wrestler.values[:name]}"
+puts "Set: #{@wrestler.values[:Set]}"
 
 # TODO: Create unit tests for each method
 # TODO: Refactor code to make it clearer. Improve notes.
