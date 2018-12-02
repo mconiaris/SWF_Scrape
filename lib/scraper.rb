@@ -45,11 +45,11 @@ class Scraper
 		card_hash[:GC04] = left[4][0..15].strip.split[1] 
 		card_hash[:GC05] = left[5][0..15].strip.split[1] 
 		card_hash[:GC06] = left[6][0..15].strip.split[1] 
-		card_hash[:GC07] = left[2][16..left.length].strip.split[1]
-		card_hash[:GC08] = left[3][16..left.length].strip.split[1]
-		card_hash[:GC09] = left[4][16..left.length].strip.split[1]
-		card_hash[:GC10] = left[5][16..left.length].strip.split[1]
-		card_hash[:GC11] = left[6][16..left.length].strip.split[1]
+		card_hash[:GC07] = left[2][16..left[2].length].strip.split[1]
+		card_hash[:GC08] = left[3][16..left[3].length].strip.split[1]
+		card_hash[:GC09] = left[4][16..left[4].length].strip.split[1]
+		card_hash[:GC10] = left[5][16..left[5].length].strip.split[1]
+		card_hash[:GC11] = left[6][16..left[6].length].strip.split[1]
 
 		# Add OC12 to hash
 		card_hash[:GC12] = left[7].strip.split[1]
@@ -60,11 +60,11 @@ class Scraper
 		card_hash[:DC04] = left[11][0..15].strip.split[1]
 		card_hash[:DC05] = left[12][0..15].strip.split[1]
 		card_hash[:DC06] = left[13][0..15].strip.split[1]
-		card_hash[:DC07] = left[9][16..left.length].strip.split[1]
-		card_hash[:DC08] = left[10][16..left.length].strip.split[1]
-		card_hash[:DC09] = left[11][16..left.length].strip.split[1]
-		card_hash[:DC10] = left[12][16..left.length].strip.split[1]
-		card_hash[:DC11] = left[13][16..left.length].strip.split[1]
+		card_hash[:DC07] = left[9][16..left[9].length].strip.split[1]
+		card_hash[:DC08] = left[10][16..left[10].length].strip.split[1]
+		card_hash[:DC09] = left[11][16..left[11].length].strip.split[1]
+		card_hash[:DC10] = left[12][16..left[12].length].strip.split[1]
+		card_hash[:DC11] = left[13][16..left[13].length].strip.split[1]
 		card_hash[:DC12] = left[14].split[1]
 
 		# Add Specialty Values to hash

@@ -55,7 +55,7 @@ class Analyzer
 					# puts "#{key}: #{value}"
 					gc_oc_roll_probability += calculate_gc_oc_roll_probability(key, value)
 				elsif k[0..1] == 'DC'
-					# puts "#{key}: #{value}"
+					puts "#{key}: #{value}"
 					dc_points_without_reverse += calculate_dc_points(key, value)
 					# dc_points += analyze_dc(key, value)
 				elsif k[0] == "S" && k[1] != "p" && k[1] != 'e'
@@ -600,7 +600,7 @@ binding.pry
 		else
 			puts "Sub or Tag numbers are out of range."				
 		end
-		
+
 		return num_range.to_f
 	end
 

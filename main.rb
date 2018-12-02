@@ -48,9 +48,9 @@ end
 # TODO: Revise README.md
 # TODO: Add funcionality to select files and use the program.
 
-pwg_card = "files/Zak Knight.pdf"
-scraping(pwg_card)
-scraping("/Users/mconiaris/Documents/SWF/SWF Original Game Card Sets/83/83_02Andre.pdf")
+# pwg_card = "files/Zak Knight.pdf"
+# scraping(pwg_card)
+scraping("/Users/mconiaris/Documents/SWF/SWF Original Game Card Sets/83/83_04CrusherBlackwell.pdf")
 
 # Cycle through input file for PDF files.
 File.open("files/input.txt", "r") do |f|
