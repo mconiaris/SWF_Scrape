@@ -174,8 +174,8 @@ class Analyzer
 					sub_probability_per_round +
 					xx_probability_per_round
 
-		submission_loss_probabilty = sub_tag_probability(wrestler.values[:Sub1], wrestler.values[:Sub2]).to_f
-		tag_team_save_probabilty = sub_tag_probability(wrestler.values[:Tag1], wrestler.values[:Tag2]).to_f
+		submission_loss_probabilty = sub_tag_probability(wrestler.values[:Sub])
+		tag_team_save_probabilty = sub_tag_probability(wrestler.values[:Tag])
 
 		# Adds up the points_per_round with the probability
 		# of rolling P/A, Sub, XX, or DQ and then subtracts
@@ -534,41 +534,74 @@ binding.pry
 		total = oc + r
 	end
 
-
+	# TODO: Refator to DRY
 	# Takes SUB or TAG values and calculates probability 
 	# a card rolling that range.
-	def sub_tag_probability(a, b)
+	def sub_tag_probability(a)
 		num_range = 0
-		s = Range.new(a.to_i, b.to_i)
-		
-		s.each { |x|
+
+		if a.size == 2
+			s = Range.new(a[0].to_i, a[1].to_i)
+			
+			s.each { |x|
+				if x == 2
+					num_range += TWO_TWELVE
+				elsif x == 3
+					num_range += THREE_ELEVEN
+				elsif x == 4
+					num_range += FOUR_TEN
+				elsif x == 5
+					num_range += FIVE_NINE
+				elsif x == 6
+					num_range += SIX_EIGHT
+				elsif x == 7
+					num_range += SEVEN
+				elsif x == 8
+					num_range += SIX_EIGHT
+				elsif x == 9
+					num_range += FIVE_NINE
+				elsif x == 10
+					num_range += FOUR_TEN
+				elsif x == 11
+					num_range += THREE_ELEVEN
+				elsif x == 12
+					num_range += TWO_TWELVE
+				else
+					puts "Incorrect number."
+				end
+			}
+		elsif a.size == 1
+			x = a[0].to_i
 			if x == 2
-				num_range += TWO_TWELVE
-			elsif x == 3
-				num_range += THREE_ELEVEN
-			elsif x == 4
-				num_range += FOUR_TEN
-			elsif x == 5
-				num_range += FIVE_NINE
-			elsif x == 6
-				num_range += SIX_EIGHT
-			elsif x == 7
-				num_range += SEVEN
-			elsif x == 8
-				num_range += SIX_EIGHT
-			elsif x == 9
-				num_range += FIVE_NINE
-			elsif x == 10
-				num_range += FOUR_TEN
-			elsif x == 11
-				num_range += THREE_ELEVEN
-			elsif x == 12
-				num_range += TWO_TWELVE
-			else
-				puts "Incorrect number."
+					num_range += TWO_TWELVE
+				elsif x == 3
+					num_range += THREE_ELEVEN
+				elsif x == 4
+					num_range += FOUR_TEN
+				elsif x == 5
+					num_range += FIVE_NINE
+				elsif x == 6
+					num_range += SIX_EIGHT
+				elsif x == 7
+					num_range += SEVEN
+				elsif x == 8
+					num_range += SIX_EIGHT
+				elsif x == 9
+					num_range += FIVE_NINE
+				elsif x == 10
+					num_range += FOUR_TEN
+				elsif x == 11
+					num_range += THREE_ELEVEN
+				elsif x == 12
+					num_range += TWO_TWELVE
+				else
+					puts "Incorrect number."
 			end
-		}
-			return num_range
+		else
+			puts "Sub or Tag numbers are out of range."				
+		end
+		
+		return num_range.to_f
 	end
 
 end

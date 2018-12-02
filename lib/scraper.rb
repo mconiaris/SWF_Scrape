@@ -77,10 +77,10 @@ class Scraper
 		card_hash[:S6] = left[22].split(/\d\s(.+)/)[1]
 
 		# Add Sub, tag and priority values to hash
-		card_hash[:Sub1] = left[23].split(/SUB\s+:\s+(\d+)\s+-\s+(\d+)/)[1]
-		card_hash[:Sub2] = left[23].split(/SUB\s+:\s+(\d+)\s+-\s+(\d+)/)[2]
-		card_hash[:Tag1] = left[24].split(/TAG-TEAM\s+:\s+(\d+)\s+-\s+(\d+)/)[1]
-		card_hash[:Tag2] = left[24].split(/TAG-TEAM\s+:\s+(\d+)\s+-\s+(\d+)/)[2]
+		# TODO: Fix case when SUB only has one value
+		# TODO: Fix case when TT only has one value
+		card_hash[:Sub] = scrape_sub_and_tag(left[23])
+		card_hash[:Tag] = scrape_sub_and_tag(left[24])
 		card_hash[:PriorityS] = left[25].split(/PRIORITY\s+:\s+(\d)\/(\d)/)[1]
 		card_hash[:PriorityT] = left[25].split(/PRIORITY\s+:\s+(\d)\/(\d)/)[2]
 
@@ -114,5 +114,15 @@ class Scraper
 		
 		puts "Analyzing #{card_hash[:name]} of #{card_hash[:Set]}"
 		return card_hash
+	end
+
+	def scrape_sub_and_tag(value)
+		v = value.split
+		v.delete_at(0)
+		v.delete_at(0)
+		if v.size > 1
+			v.delete_at(1)
+		end
+		return v
 	end
 end
