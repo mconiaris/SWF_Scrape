@@ -23,6 +23,8 @@ stats = @analyzer.analyze(@wrestler)
 @wrestler.statistics = stats
 puts "#{@wrestler.values[:name]}: #{@wrestler.statistics}"
 
-# TODO: In scraper, have values be put into an array,
-# including dice roll number and % of roll.
-# TODO Add functionality to select files from computer.
+# TODO: Create unit tests for each method
+# TODO: Refactor code to make it clearer. Improve notes.
+# TODO: Revise README.md
+# TODO: Add funcionality to select files and use the program.
+
