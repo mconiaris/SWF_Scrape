@@ -202,7 +202,7 @@ class Analyzer
 		@statistics[:sub_probability_per_round] = sub_probability_per_round
 		@statistics[:xx_probability_per_round] = xx_probability_per_round
 		@statistics[:submission_loss_probabilty] = submission_loss_probabilty
-		@statistics[:tag_team_save_probabilty] = submission_loss_probabilty
+		@statistics[:tag_team_save_probabilty] = tag_team_save_probabilty
 		@statistics[:card_rating] = total_card_rating
 
 
