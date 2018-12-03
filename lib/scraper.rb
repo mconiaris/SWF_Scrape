@@ -80,8 +80,8 @@ class Scraper
 		# TODO: Fix case when TT only has one value
 		card_hash[:Sub] = scrape_sub_and_tag(left[23])
 		card_hash[:Tag] = scrape_sub_and_tag(left[24])
-		card_hash[:PriorityS] = left[25].split(/PRIORITY\s+:\s+(\d)\/(\d)/)[1]
-		card_hash[:PriorityT] = left[25].split(/PRIORITY\s+:\s+(\d)\/(\d)/)[2]
+		card_hash[:PriorityS] = scrape_priority(left[25])[0]
+		card_hash[:PriorityT] = scrape_priority(left[25])[1]
 
 		# Add Offensive Card to hash
 		card_hash[:OC02] = right[1].split(/\d+\s+(.+)/)[1]
@@ -122,6 +122,14 @@ class Scraper
 		if v.size > 1
 			v.delete_at(1)
 		end
+		return v
+	end
+
+	# Take in Priority text and split it twice to 
+	# isolate the characters needed.
+	def scrape_priority(value)
+		x = value.split
+		v = x[2].split('/')
 		return v
 	end
 end
