@@ -13,8 +13,8 @@ class Scraper
 
 	# Takes the text and converts it to a wrestler object.
 	def process_card(card)
-		# puts 'processing card'
-		
+		puts 'processing card'
+
 		# Create temporary containers for card info
 		left = Array.new
 		right = Array.new
@@ -143,7 +143,7 @@ class Scraper
 		if priority == '5+'
 			return '6'
 		else
-			return priority
+			return priority.to_i.to_s
 		end
 	end
 
@@ -152,7 +152,7 @@ class Scraper
 		if priority == '3+'
 			return '4'
 		else
-			return priority
+			return priority.to_i.to_s
 		end
 	end
 end
