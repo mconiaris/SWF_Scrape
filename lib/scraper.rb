@@ -141,7 +141,7 @@ class Scraper
 		if priority == '5+'
 			return '6'
 		else
-			return priority.to.i
+			return priority
 		end
 	end
 
