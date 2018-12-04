@@ -112,7 +112,7 @@ class Scraper
 		card_hash[:RO12] = right[23].split(/\d+\s+(.+)/)[1]
 
 		if right[24] != nil
-			card_hash[:Set] = right[24]
+			card_hash[:Set] = right[24][0]
 		end
 
 		puts "Analyzing #{card_hash[:name]} of #{card_hash[:Set]}"
@@ -234,7 +234,7 @@ class Scraper
 		card_hash[:RO12] = right[23].split(/\d+\s+(.+)/)[1]
 
 		if right[24] != nil
-			card_hash[:Set] = right[24]
+			card_hash[:Set] = right[24][0]
 		end
 
 		# Fix Issues with Reverse in Converted Scans
