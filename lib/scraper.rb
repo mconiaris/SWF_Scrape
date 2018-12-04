@@ -19,7 +19,6 @@ class Scraper
 		left = Array.new
 		right = Array.new
 
-		binding.pry
 		card.each {
 			|x| if x != nil && x != "\n"
 
@@ -36,7 +35,6 @@ class Scraper
 		}
 		# Create Hash for card and add vales.
 		card_hash = Hash.new
-
 		# Add card name to hash
 		card_hash[:name] = left[0]
 		# Strip out empty spaces and redundant OC text
@@ -148,7 +146,7 @@ class Scraper
 		card_hash = Hash.new
 
 		# Add card name to hash
-		card_hash[:name] = left[0]
+		card_hash[:name] = card[0][0..35].strip
 		# Strip out empty spaces and redundant OC text
 		card_hash[:GC02] = left[1][0..14].strip.split[1]
 		card_hash[:GC03] = left[2][0..14].strip.split[1]
@@ -163,7 +161,7 @@ class Scraper
 		card_hash[:GC11] = left[5][15..left[5].length].strip.split[1]
 
 		# Add OC12 to hash
-		card_hash[:GC12] = left[6].strip
+		card_hash[:GC12] = left[6].split('12')[1]
 
 		# Strip DC redundant text and put values into the hash
 		card_hash[:DC02] = left[7][0..14].strip.split[1]
@@ -177,7 +175,7 @@ class Scraper
 		card_hash[:DC09] = left[10][15..left[10].length].strip.split[1]
 		card_hash[:DC10] = left[11][15..left[11].length].strip.split[1]
 		card_hash[:DC11] = left[12][15..left[12].length].strip.split[1]
-		card_hash[:DC12] = left[13].strip.split[1]
+		card_hash[:DC12] = left[13].split('12')[1]
 
 		# Add Specialty Values to hash
 		card_hash[:Specialty] = left[15]
@@ -238,6 +236,21 @@ class Scraper
 		if right[24] != nil
 			card_hash[:Set] = right[24]
 		end
+
+		# Fix Issues with Reverse in Converted Scans
+		# Find DC keys with values of R and replace
+		# them with REVERSE values.
+		dc_hash = card_hash.select { |k,v| 
+			key = k.to_s
+			key.include?("DC")
+		}
+		keys = dc_hash.select { |k,v|
+			v[0] == "R"
+		}
+		keys.each { |k,v| 
+			card_hash[k] = "REVERSE"
+		}
+
 
 		puts "Analyzing #{card_hash[:name]} of my Special set"
 		return card_hash

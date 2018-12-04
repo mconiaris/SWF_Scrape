@@ -94,8 +94,8 @@ end
 
 
 # pwg_card = "/Users/mconiaris/dev/SWF_Scrape/files/Zak Knight.pdf"
-pwg_card = "/Users/mconiaris/dev/SWF_Scrape/files/Croomes, Adam 03 PDF.pdf"
-scraping_converted(pwg_card)
+# pwg_card = "/Users/mconiaris/dev/SWF_Scrape/files/Croomes, Adam 03 PDF.pdf"
+# scraping_converted(pwg_card)
 
 
 # scraping("/Users/mconiaris/Documents/SWF/SWF Original Game Card Sets/83/83_13BillyGraham.pdf")
@@ -110,7 +110,7 @@ f = File.new('files/results.csv', 'a')
 
 File.open("files/input.txt", "r") do |f|
   f.each_line do |line|
-    scraping(line.chomp)
+    scraping_converted(line.chomp)
   end  
   f.close
 end 
