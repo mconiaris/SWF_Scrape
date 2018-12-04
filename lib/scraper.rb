@@ -112,7 +112,10 @@ class Scraper
 		card_hash[:RO12] = right[23].split(/\d+\s+(.+)/)[1]
 
 		if right[24] != nil
-			card_hash[:Set] = right[24][0]
+			if card_hash[:Set].class == Array
+				card_hash[:Set] = right[24][0]
+			else
+				card_hash[:Set] = right[24]
 		end
 
 		puts "Analyzing #{card_hash[:name]} of #{card_hash[:Set]}"
@@ -132,16 +135,21 @@ class Scraper
 			|x| if x != nil && x != "\n"
 
 				if x.strip != nil
-					left.push(x[0..20].strip)
+					left.push(x[0..30].strip)
 					# puts x[0..35].strip + " added to left array."
 				end
 
-				if x[21..x.size] != nil
-					right.push(x[21..x.size].strip)
+				if x[31..x.size] != nil
+					right.push(x[31..x.size].strip)
 					# puts x[36..x.size].strip + " added to right array."
 				end
 			end
 		}
+
+
+
+
+
 		# Create Hash for card and add vales.
 		card_hash = Hash.new
 
