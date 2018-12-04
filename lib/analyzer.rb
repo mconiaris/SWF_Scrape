@@ -177,9 +177,11 @@ class Analyzer
 		submission_loss_probabilty = sub_tag_probability(wrestler.values[:Sub])
 		tag_team_save_probabilty = sub_tag_probability(wrestler.values[:Tag])
 
+		# TODO: Fix the 5+ Singles Priority Issue
 		# Adds up the points_per_round with the probability
 		# of rolling P/A, Sub, XX, or DQ and then subtracts
 		# it by the probability of submission.
+		binding.pry
 		total_card_rating = card_points_per_round +
 			dq_probability_per_round + 
 			pa_probability_per_round + 
@@ -487,24 +489,6 @@ binding.pry
 		total = probability * args
 	end
 
-# OC Version
-# OC roll in GC (22/36)
-# Move roll in OC (2/36)
-
-
-# P/A per round OC + 
-# P/A per round (S)
-
-
-# pa_probability_per_round = 
-# 				calculate_total_dq_pa_sub_xx_per_round(
-# 					gc_oc_roll_probability, 
-# 					ropes_roll_probability_hash, 
-# 					oc_and_ropes_pa_probability,
-# 					specialty_roll_probability_hash,
-# 					specialty_points_and_attributes_hash[:pa_probability])
-
-
 
 	# Calculate (DQ | P/A | * | XX) probability per Round
 	def calculate_total_dq_pa_sub_xx_per_round(gc_oc_roll_prob, ropes_roll, attribute, s_prob, s_attribute)
@@ -534,7 +518,7 @@ binding.pry
 		total = oc + r
 	end
 
-	# TODO: Refator to DRY
+	# TODO: Refactor to DRY
 	# Takes SUB or TAG values and calculates probability 
 	# a card rolling that range.
 	def sub_tag_probability(a)
