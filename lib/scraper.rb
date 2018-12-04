@@ -35,6 +35,7 @@ class Scraper
 		}
 		# Create Hash for card and add vales.
 		card_hash = Hash.new
+
 		# Add card name to hash
 		card_hash[:name] = left[0]
 		# Strip out empty spaces and redundant OC text
@@ -48,7 +49,6 @@ class Scraper
 		card_hash[:GC09] = left[4][16..left[4].length].strip.split[1]
 		card_hash[:GC10] = left[5][16..left[5].length].strip.split[1]
 		card_hash[:GC11] = left[6][16..left[6].length].strip.split[1]
-
 		# Add OC12 to hash
 		card_hash[:GC12] = left[7].strip.split[1]
 

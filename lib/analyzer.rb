@@ -53,10 +53,10 @@ class Analyzer
 			|key, value| k = key.to_s
 				if k[0..1] == 'GC'
 					puts "#{key}: #{value}"
-					gc_oc_roll_probability += calculate_gc_oc_roll_probability(key, value)
+					gc_oc_roll_probability += calculate_gc_oc_roll_probability(key, value.strip)
 				elsif k[0..1] == 'DC'
 					puts "#{key}: #{value}"
-					dc_points_without_reverse += calculate_dc_points(key, value)
+					dc_points_without_reverse += calculate_dc_points(key, value.strip)
 				elsif k[0] == "S" && k[1] != "p" && k[1] != 'e'
 					puts "#{key}: #{value}"
 					# s_stats_array.push(analyze_s(key, value))
