@@ -317,6 +317,8 @@ class Analyzer
 		when "REVERSE"
 			# puts result
 			return 0
+		when "Reverse"
+			return 0
 		end
 	end
 
