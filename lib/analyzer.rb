@@ -481,16 +481,6 @@ end
 	# TOTAL CARD
 	# ==========
 
-	# oc_points_per_roll + 
-	# (ropes_points_per_roll * ropes_roll_probability_hash[:OC] * ropes_points_per_roll)
-
-	def calculate_subtotal_points_per_roll(probability, *args)
-		total = 0
-binding.pry
-		total = probability * args
-	end
-
-
 	# Calculate (DQ | P/A | * | XX) probability per Round
 	def calculate_total_dq_pa_sub_xx_per_round(gc_oc_roll_prob, ropes_roll, attribute, s_prob, s_attribute)
 		
