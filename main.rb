@@ -51,13 +51,14 @@ end
 # TODO: Revise README.md
 # TODO: Add funcionality to select files and use the program.
 
-# pwg_card = "files/Zak Knight.pdf"
-# scraping(pwg_card)
+pwg_card = "/Users/mconiaris/dev/SWF_Scrape/files/Croomes, Adam 03 PDF.pdf"
+scraping(pwg_card)
 
 
 # scraping("/Users/mconiaris/Documents/SWF/SWF Original Game Card Sets/83/83_13BillyGraham.pdf")
 
 # Cycle through input file for PDF files.
+
 
 f = File.new('files/results.csv', 'a')
 	f.write("Name, Set, Singles Priority, Tag Team Priority, TT Probability, Card Rating, OC Probability, Total Card Points Per Round, DQ Probability Per Round, P/A Probability Per Round, Sub Probability Per Round, XX Probability Per Round, DQ Probability Per Round, Submission Loss Probabilty, Tag Team Save Probabilty, \n")
