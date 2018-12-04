@@ -80,8 +80,11 @@ class Scraper
 		# TODO: Fix case when TT only has one value
 		card_hash[:Sub] = scrape_sub_and_tag(left[23])
 		card_hash[:Tag] = scrape_sub_and_tag(left[24])
-		card_hash[:PriorityS] = scrape_priority(left[25])[0]
-		card_hash[:PriorityT] = scrape_priority(left[25])[1]
+		singles_priority = scrape_priority(left[25])[0]
+		tag_team_priority = scrape_priority(left[25])[1]
+
+		card_hash[:PriorityS] = calculate_singles_priority(singles_priority)
+		card_hash[:PriorityT] = calculate_tag_team_priority(tag_team_priority)
 
 		# Add Offensive Card to hash
 		card_hash[:OC02] = right[1].split(/\d+\s+(.+)/)[1]
@@ -131,5 +134,23 @@ class Scraper
 		x = value.split
 		v = x[2].split('/')
 		return v
+	end
+
+
+	def calculate_singles_priority(priority)
+		if priority == '5+'
+			return '6'
+		else
+			return priority.to.i
+		end
+	end
+
+
+	def calculate_tag_team_priority(priority)
+		if priority == '3+'
+			return '4'
+		else
+			return priority
+		end
 	end
 end

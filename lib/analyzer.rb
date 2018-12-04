@@ -181,7 +181,6 @@ class Analyzer
 		# Adds up the points_per_round with the probability
 		# of rolling P/A, Sub, XX, or DQ and then subtracts
 		# it by the probability of submission.
-		binding.pry
 		total_card_rating = card_points_per_round +
 			dq_probability_per_round + 
 			pa_probability_per_round + 
@@ -190,6 +189,8 @@ class Analyzer
 			wrestler.values[:PriorityS].to_f -
 			submission_loss_probabilty
 
+
+		# Revise Wrestler Priority Numbers
 
 
 		# Add values to wrestler's hash
@@ -587,5 +588,4 @@ binding.pry
 
 		return num_range.to_f
 	end
-
 end
