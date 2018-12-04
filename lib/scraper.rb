@@ -116,6 +116,7 @@ class Scraper
 				card_hash[:Set] = right[24][0]
 			else
 				card_hash[:Set] = right[24]
+			end
 		end
 
 		puts "Analyzing #{card_hash[:name]} of #{card_hash[:Set]}"
