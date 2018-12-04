@@ -112,8 +112,10 @@ class Scraper
 		card_hash[:RO11] = right[22].split(/\d+\s+(.+)/)[1]
 		card_hash[:RO12] = right[23].split(/\d+\s+(.+)/)[1]
 
-		card_hash[:Set] = right[24]
-		
+		if right[24] != nil
+			card_hash[:Set] = right[24]
+		end
+
 		puts "Analyzing #{card_hash[:name]} of #{card_hash[:Set]}"
 		return card_hash
 	end
