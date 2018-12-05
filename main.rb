@@ -108,13 +108,13 @@ f = File.new('files/results.csv', 'a')
 	f.close
 
 
-# For PDFs
-File.open("files/input.txt", "r") do |f|
-  f.each_line do |line|
-    scraping(line.chomp)
-  end  
-  f.close
-end 
+# # For PDFs
+# File.open("files/input.txt", "r") do |f|
+#   f.each_line do |line|
+#     scraping(line.chomp)
+#   end  
+#   f.close
+# end 
 
 # For my Specials
 File.open("files/input.txt", "r") do |f|
