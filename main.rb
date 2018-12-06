@@ -93,10 +93,6 @@ end
 # TODO: Add funcionality to select files and use the program.
 
 
-# pwg_card = "/Users/mconiaris/dev/SWF_Scrape/files/Zak Knight.pdf"
-# pwg_card = "/Users/mconiaris/dev/SWF_Scrape/files/Croomes, Adam 03 PDF.pdf"
-# scraping_converted(pwg_card)
-
 
 # scraping("/Users/mconiaris/Documents/SWF/SWF Original Game Card Sets/83/83_13BillyGraham.pdf")
 
