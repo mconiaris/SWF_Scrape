@@ -98,12 +98,12 @@ File.open("files/input.txt", "r") do |f|
   f.close
 end 
 
-# # For my Specials
-# File.open("files/input.txt", "r") do |f|
-#   f.each_line do |line|
-#     scraping_converted(line.chomp)
-#   end  
-#   f.close
-# end 
+# For my Specials
+File.open("files/input_converted.txt", "r") do |f|
+  f.each_line do |line|
+    scraping_converted(line.chomp)
+  end  
+  f.close
+end 
 
 
