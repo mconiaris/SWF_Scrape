@@ -83,27 +83,40 @@ end
 # scraping("/Users/mconiaris/Documents/SWF/SWF Original Game Card Sets/83/83_13BillyGraham.pdf")
 
 # Cycle through input file for PDF files.
-
-
 f = File.new('files/results.csv', 'a')
-	f.write("Name, Set, Singles Priority, Tag Team Priority, TT Probability, Card Rating, OC Probability, Total Card Points Per Round, DQ Probability Per Round, P/A Probability Per Round, Sub Probability Per Round, XX Probability Per Round, Submission Loss Probabilty, Tag Team Save Probabilty, \n")
-	f.close
+f.write("Name, Set, Singles Priority, Tag Team Priority, TT Probability, Card Rating, OC Probability, Total Card Points Per Round, DQ Probability Per Round, P/A Probability Per Round, Sub Probability Per Round, XX Probability Per Round, Submission Loss Probabilty, Tag Team Save Probabilty, \n")
+f.close
+
+puts "Press 1 for an original card or 2 for a scanned special."
+x = gets.chomp
+if x == '1'
+	# For PDFs
+	File.open("files/input.txt", "r") do |f|
+	  f.each_line do |line|
+	    scraping(line.chomp)
+	  end  
+	  f.close
+	end
+elsif x == '2'
+	# For my Specials
+	File.open("files/input_converted.txt", "r") do |f|
+	  f.each_line do |line|
+	    scraping_converted(line.chomp)
+	  end  
+	  f.close
+	end
+else
+	puts 'Inccorect option.'
+end
 
 
-# # For PDFs
-# File.open("files/input.txt", "r") do |f|
-#   f.each_line do |line|
-#     scraping(line.chomp)
-#   end  
-#   f.close
-# end 
 
-# For my Specials
-File.open("files/input_converted.txt", "r") do |f|
-  f.each_line do |line|
-    scraping_converted(line.chomp)
-  end  
-  f.close
-end 
+
+# f = File.new('files/results.csv', 'a')
+# 	f.write("Name, Set, Singles Priority, Tag Team Priority, TT Probability, Card Rating, OC Probability, Total Card Points Per Round, DQ Probability Per Round, P/A Probability Per Round, Sub Probability Per Round, XX Probability Per Round, Submission Loss Probabilty, Tag Team Save Probabilty, \n")
+# 	f.close
+
+
+
 
 
