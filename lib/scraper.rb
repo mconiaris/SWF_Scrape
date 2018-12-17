@@ -1,3 +1,4 @@
+
 require 'pdf-reader'
 
 class Scraper
