@@ -393,6 +393,13 @@ end
 	# the values in a hash.
 	def calculate_specialty_dq_pa_subm_xx_probability(wrestler, move)
 		s_prob = Hash.new
+
+		# Check for Problems in :Set attribute of hash.
+		if wrestler[:Set] == nil
+			wrestler[:Set] = 'Special'
+		end
+
+		# Check for nil valcues
 		s = wrestler.select { |k,v| v.include?(move) }
 		s_oc = s.select { |k,v| k.to_s.include?('OC') }
 		s_r = s.select { |k,v| k.to_s.include?('R') }
