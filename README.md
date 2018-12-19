@@ -3,6 +3,12 @@
 ## Description
 TBD
 
+## Directions for Use
+### Terminal
+Coming soon.
+### On the Web
+Coming soon.
+
 ## Dependencies
 - PDF Reader: https://github.com/yob/pdf-reader
 
