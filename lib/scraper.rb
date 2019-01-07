@@ -148,10 +148,6 @@ class Scraper
 			end
 		}
 
-
-
-
-
 		# Create Hash for card and add vales.
 		card_hash = Hash.new
 

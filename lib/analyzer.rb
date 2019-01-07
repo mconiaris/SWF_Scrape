@@ -392,6 +392,7 @@ end
 	# determines the probabilities of both and then returns
 	# the values in a hash.
 	def calculate_specialty_dq_pa_subm_xx_probability(wrestler, move)
+
 		s_prob = Hash.new
 
 		# Check for Problems in :Set attribute of hash.
