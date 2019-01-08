@@ -44,7 +44,6 @@ def scraping_converted(file)
 	@analyzer = Analyzer.new
 	stats = @analyzer.analyze(@wrestler)
 
-	# TODO: Move this printout to Wrestler Object
 	# Add stats to wrestler instance
 	@wrestler.statistics = stats
 	wrestler_output(@wrestler)
@@ -75,7 +74,6 @@ end
 
 # TODO: Create unit tests for each method
 # TODO: Refactor code to make it clearer. Improve notes.
-# TODO: Revise README.md
 # TODO: Add funcionality to select files and use the program.
 
 
