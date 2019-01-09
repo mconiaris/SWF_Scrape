@@ -5,6 +5,10 @@ require_relative 'lib/scraper'
 require_relative 'lib/wrestler'
 
 
+# TODO: Create unit tests for each method
+# TODO: Refactor code to make it clearer. Improve notes.
+# TODO: Add funcionality to select files and use the program.
+# TODO: Factor out scraping code to DRY
 
 def scraping(file)
 	# Scrape PDF
@@ -21,14 +25,12 @@ def scraping(file)
 	@analyzer = Analyzer.new
 	stats = @analyzer.analyze(@wrestler)
 
-	# TODO: Move this printout to Wrestler Object
 	# Add stats to wrestler instance
 	@wrestler.statistics = stats
 	@wrestler.wrestler_output(@wrestler)
 end
 
 
-# TODO: Factor out scraping code to DRY
 def scraping_converted(file)
 	# Scrape PDF
 	@scrape = Scraper.new(file)
@@ -49,14 +51,6 @@ def scraping_converted(file)
 	@wrestler.wrestler_output(@wrestler)
 end
 
-
-# TODO: Create unit tests for each method
-# TODO: Refactor code to make it clearer. Improve notes.
-# TODO: Add funcionality to select files and use the program.
-
-
-
-# scraping("/Users/mconiaris/Documents/SWF/SWF Original Game Card Sets/83/83_13BillyGraham.pdf")
 
 # Cycle through input file for PDF files.
 f = File.new('files/results.csv', 'a')
@@ -84,15 +78,3 @@ elsif x == '2'
 else
 	puts 'Inccorect option.'
 end
-
-
-
-
-# f = File.new('files/results.csv', 'a')
-# 	f.write("Name, Set, Singles Priority, Tag Team Priority, TT Probability, Card Rating, OC Probability, Total Card Points Per Round, DQ Probability Per Round, P/A Probability Per Round, Sub Probability Per Round, XX Probability Per Round, Submission Loss Probabilty, Tag Team Save Probabilty, \n")
-# 	f.close
-
-
-
-
-
