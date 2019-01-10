@@ -3,6 +3,12 @@ RSpec.describe Analyzer do
 		@analyze = Analyzer.new
 	end
 
+	describe '#initialize' do
+		it "should create an empty @statistics hash" do
+			expect(@analyze.statistics).to be_instance_of(Hash)
+		end
+	end	
+
 	describe '#analyze_gc' do
 		it "should respond_to analyze_gc" do
 			expect(@analyze.respond_to?(:analyze_gc))
