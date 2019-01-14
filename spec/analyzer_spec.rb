@@ -51,5 +51,7 @@ RSpec.describe Analyzer do
 
 
 	# TODO: Create test that deals with DQs in Specialty moves.
+	# TODO: Created unit tests for calculate_probility method"
+	
 
 end
