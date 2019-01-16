@@ -40,16 +40,24 @@ RSpec.describe Analyzer do
 			end
 		end
 
-		# TODO: Make tests to confirm math is right.
 		describe '#analyze @statistics' do
 			it 'should return a hash' do
 				expect(@analyze.statistics.class).instance_of?(Hash)
+			end
+		end
+
+		# Fix logic
+		describe '#calculate_probility' do
+			it 'should return 1/36 when \'OC02\' is passed to it' do
+				binding.pry
+				expect(@analyze.calculate_probability('OC02')).to eq(1/36)
 			end
 		end
 	end
 
 
 
+	# TODO: Make tests to confirm math is right.
 	# TODO: Create test that deals with DQs in Specialty moves.
 	# TODO: Create unit tests for calculate_probility method"
 	# TODO: Create unit tests for calculate_gc_oc_roll_probability
