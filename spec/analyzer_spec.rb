@@ -48,9 +48,8 @@ RSpec.describe Analyzer do
 
 		# Fix logic
 		describe '#calculate_probility' do
-			it 'should return 1/36 when \'OC02\' is passed to it' do
-				binding.pry
-				expect(@analyze.calculate_probability('OC02')).to eq(1/36)
+			it 'should return 1/36.to_r when \'OC02\' is passed to it' do
+				expect(@analyze.calculate_probability('OC02')).to eq(1/36.to_r)
 			end
 		end
 	end
