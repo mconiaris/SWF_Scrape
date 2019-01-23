@@ -54,6 +54,33 @@ RSpec.describe Analyzer do
 			it 'should return 2/36.to_r when \'OC03\' is passed to it' do
 				expect(@analyze.calculate_probability('OC03')).to eq(2/36.to_r)
 			end
+			it 'should return 3/36.to_r when \'OC04\' is passed to it' do
+				expect(@analyze.calculate_probability('OC04')).to eq(3/36.to_r)
+			end
+			it 'should return 4/36.to_r when \'OC05\' is passed to it' do
+				expect(@analyze.calculate_probability('OC05')).to eq(4/36.to_r)
+			end
+			it 'should return 5/36.to_r when \'OC06\' is passed to it' do
+				expect(@analyze.calculate_probability('OC06')).to eq(5/36.to_r)
+			end
+			it 'should return 6/36.to_r when \'OC07\' is passed to it' do
+				expect(@analyze.calculate_probability('OC07')).to eq(6/36.to_r)
+			end
+			it 'should return 5/36.to_r when \'OC08\' is passed to it' do
+				expect(@analyze.calculate_probability('OC08')).to eq(5/36.to_r)
+			end
+			it 'should return 4/36.to_r when \'OC09\' is passed to it' do
+				expect(@analyze.calculate_probability('OC09')).to eq(4/36.to_r)
+			end
+			it 'should return 3/36.to_r when \'OC10\' is passed to it' do
+				expect(@analyze.calculate_probability('OC10')).to eq(3/36.to_r)
+			end
+			it 'should return 2/36.to_r when \'OC11\' is passed to it' do
+				expect(@analyze.calculate_probability('OC11')).to eq(2/36.to_r)
+			end
+			it 'should return 1/36.to_r when \'OC12\' is passed to it' do
+				expect(@analyze.calculate_probability('OC12')).to eq(1/36.to_r)
+			end
 		end
 	end
 
