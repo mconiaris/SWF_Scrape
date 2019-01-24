@@ -86,6 +86,39 @@ RSpec.describe Analyzer do
 			it 'should return 1/36.to_r when GC02 and OC is passed' do
 				expect(@analyze.calculate_gc_oc_roll_probability('GC02', 'OC')).to eq(1/36.to_r)
 			end
+			it 'should return 2/36.to_r when GC03 and OC is passed' do
+				expect(@analyze.calculate_gc_oc_roll_probability('GC03', 'OC')).to eq(2/36.to_r)
+			end
+			it 'should return 3/36.to_r when GC04 and OC is passed' do
+				expect(@analyze.calculate_gc_oc_roll_probability('GC04', 'OC')).to eq(3/36.to_r)
+			end
+			it 'should return 4/36.to_r when GC05 and OC is passed' do
+				expect(@analyze.calculate_gc_oc_roll_probability('GC05', 'OC')).to eq(4/36.to_r)
+			end
+			it 'should return 5/36.to_r when GC06 and OC is passed' do
+				expect(@analyze.calculate_gc_oc_roll_probability('GC06', 'OC')).to eq(5/36.to_r)
+			end
+			it 'should return 6/36.to_r when GC07 and OC is passed' do
+				expect(@analyze.calculate_gc_oc_roll_probability('GC07', 'OC')).to eq(6/36.to_r)
+			end
+			it 'should return 5/36.to_r when GC08 and OC is passed' do
+				expect(@analyze.calculate_gc_oc_roll_probability('GC08', 'OC')).to eq(5/36.to_r)
+			end
+			it 'should return 4/36.to_r when GC09 and OC is passed' do
+				expect(@analyze.calculate_gc_oc_roll_probability('GC09', 'OC')).to eq(4/36.to_r)
+			end
+			it 'should return 3/36.to_r when GC10 and OC is passed' do
+				expect(@analyze.calculate_gc_oc_roll_probability('GC10', 'OC')).to eq(3/36.to_r)
+			end
+			it 'should return 2/36.to_r when GC11 and OC is passed' do
+				expect(@analyze.calculate_gc_oc_roll_probability('GC11', 'OC')).to eq(2/36.to_r)
+			end
+			it 'should return 1/36.to_r when GC12 and OC is passed' do
+				expect(@analyze.calculate_gc_oc_roll_probability('GC02', 'OC')).to eq(1/36.to_r)
+			end
+			it 'should return 1/36.to_r when GC02 and OC is passed' do
+				expect(@analyze.calculate_gc_oc_roll_probability('GC12', 'OC')).to eq(1/36.to_r)
+			end
 			it 'should return 0 when GC02 and DC is passed' do
 				expect(@analyze.calculate_gc_oc_roll_probability('GC02', 'DC')).to eq(0)
 			end
