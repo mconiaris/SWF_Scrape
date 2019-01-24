@@ -81,6 +81,15 @@ RSpec.describe Analyzer do
 				expect(@analyze.calculate_probability('OC12')).to eq(1/36.to_r)
 			end
 		end
+
+		describe '#calculate_gc_oc_roll_probability' do
+			it 'should return 1/36.to_r when GC02 and OC is passed' do
+				expect(@analyze.calculate_gc_oc_roll_probability('GC02', 'OC')).to eq(1/36.to_r)
+			end
+			it 'should return 0 when GC02 and DC is passed' do
+				expect(@analyze.calculate_gc_oc_roll_probability('GC02', 'DC')).to eq(0)
+			end
+		end
 	end
 
 
