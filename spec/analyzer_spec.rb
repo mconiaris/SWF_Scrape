@@ -122,6 +122,36 @@ RSpec.describe Analyzer do
 			it 'should return 0 when GC02 and DC is passed' do
 				expect(@analyze.calculate_gc_oc_roll_probability('GC02', 'DC')).to eq(0)
 			end
+			it 'should return 0 when GC03 and DC is passed' do
+				expect(@analyze.calculate_gc_oc_roll_probability('GC03', 'DC')).to eq(0)
+			end
+			it 'should return 0 when GC04 and DC is passed' do
+				expect(@analyze.calculate_gc_oc_roll_probability('GC04', 'DC')).to eq(0)
+			end
+			it 'should return 0 when GC05 and DC is passed' do
+				expect(@analyze.calculate_gc_oc_roll_probability('GC05', 'DC')).to eq(0)
+			end
+			it 'should return 0 when GC06 and DC is passed' do
+				expect(@analyze.calculate_gc_oc_roll_probability('GC06', 'DC')).to eq(0)
+			end
+			it 'should return 0 when GC07 and DC is passed' do
+				expect(@analyze.calculate_gc_oc_roll_probability('GC07', 'DC')).to eq(0)
+			end
+			it 'should return 0 when GC08 and DC is passed' do
+				expect(@analyze.calculate_gc_oc_roll_probability('GC08', 'DC')).to eq(0)
+			end
+			it 'should return 0 when GC09 and DC is passed' do
+				expect(@analyze.calculate_gc_oc_roll_probability('GC09', 'DC')).to eq(0)
+			end
+			it 'should return 0 when GC10 and DC is passed' do
+				expect(@analyze.calculate_gc_oc_roll_probability('GC10', 'DC')).to eq(0)
+			end
+			it 'should return 0 when GC11 and DC is passed' do
+				expect(@analyze.calculate_gc_oc_roll_probability('GC11', 'DC')).to eq(0)
+			end
+			it 'should return 0 when GC12 and DC is passed' do
+				expect(@analyze.calculate_gc_oc_roll_probability('GC12', 'DC')).to eq(0)
+			end
 		end
 	end
 

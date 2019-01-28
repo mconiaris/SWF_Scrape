@@ -254,7 +254,6 @@ class Analyzer
 	# Takes in wrestler hash and calculates the
 	# probability of an OC roll.
 	def calculate_gc_oc_roll_probability(key, value)
-		binding.pry
 		oc_roll_probability = 0
 
 		# Converts symbol key into a string so it can be 
