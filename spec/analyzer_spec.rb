@@ -1,3 +1,6 @@
+# TODO: Use Let with context nested into it.
+# TODO: Run rspec --profile 2 to test tests.
+
 RSpec.describe Analyzer do
 	before(:context) do
 		@analyze = Analyzer.new
