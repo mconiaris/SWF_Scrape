@@ -11,4 +11,5 @@ end
 
 group :test, :development do
 	gem 'pry'
+	gem 'rb-readline'
 end

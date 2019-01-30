@@ -1,12 +1,16 @@
 # TODO: Use Let with context nested into it.
 # TODO: Run rspec --profile 2 to test tests.
 
+# TODO: Fix let syntax. All of the tests are breaking.
 RSpec.describe Analyzer do
-	before(:context) do
-		@analyze = Analyzer.new
-	end
+	let(:analyze) { Analyzer.new }
+
+	# before(:context) do
+	# 	@analyze = Analyzer.new
+	# end
 
 	context 'when initialized' do
+		binding.pry
 		describe '#initialize' do
 			it "should create an empty @statistics hash" do
 				expect(@analyze.statistics).to be_instance_of(Hash)
