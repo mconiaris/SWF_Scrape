@@ -136,7 +136,9 @@ RSpec.describe Analyzer do
 		end
 	end
 
-
+	# return 36/36.to_r - oc_roll_probability
+	describe '#calculate_gc_dc_roll_probability' do
+	end
 
 
 	# TODO: Make tests to confirm math is right.
