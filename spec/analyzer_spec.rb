@@ -138,6 +138,14 @@ RSpec.describe Analyzer do
 
 	# return 36/36.to_r - oc_roll_probability
 	describe '#calculate_gc_dc_roll_probability' do
+		it 'should return 0/36 when a OC of 36/36 is passed' do
+			oc_prob = 36/36.to_r
+			expect(analyze.calculate_gc_dc_roll_probability(oc_prob)).to eq(0/36.to_r)
+		end
+		it 'should return 1/36 when a OC of 35/36 is passed' do
+			oc_prob = 35/36.to_r
+			expect(analyze.calculate_gc_dc_roll_probability(oc_prob)).to eq(1/36.to_r)
+		end
 	end
 
 
