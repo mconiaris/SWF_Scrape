@@ -188,6 +188,10 @@ RSpec.describe Analyzer do
 		end
 	end
 
+	# calculate_gc_tt_roll_probability(wrestler_hash)
+	describe '#calculate_gc_tt_roll_probability' do
+	end
+
 
 	# TODO: Make tests to confirm math is right.
 	# TODO: Create test that deals with DQs in Specialty moves.
