@@ -190,6 +190,10 @@ RSpec.describe Analyzer do
 
 	# calculate_gc_tt_roll_probability(wrestler_hash)
 	describe '#calculate_gc_tt_roll_probability' do
+		wrestler_hash = { :GC05 => 'OC', :GC06 => 'DC', :GC07 => 'OC', :GC08 => 'OC/TT' }
+		it 'should return (5/36) when a \':GC08 => \'OC/TT\'\' is passed' do
+			expect(analyze.calculate_gc_tt_roll_probability(wrestler_hash)).to eq(5/36.to_r)
+		end
 	end
 
 
