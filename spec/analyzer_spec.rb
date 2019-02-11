@@ -201,53 +201,77 @@ RSpec.describe Analyzer do
 
 	# return 36/36.to_r - oc_roll_probability
 	describe '#calculate_gc_dc_roll_probability' do
-		it 'should return 36/36 when a OC of 0/36 is passed' do
-			oc_prob = 0/36.to_r
-			expect(analyze.calculate_gc_dc_roll_probability(oc_prob)).to eq(36/36.to_r)
+		context 'when a OC of 0/36 is passed' do
+			it 'should return 36/36' do
+				oc_prob = 0/36.to_r
+				expect(analyze.calculate_gc_dc_roll_probability(oc_prob)).to eq(36/36.to_r)
+			end
 		end
-		it 'should return 35/36 when a OC of 1/36 is passed' do
-			oc_prob = 1/36.to_r
-			expect(analyze.calculate_gc_dc_roll_probability(oc_prob)).to eq(35/36.to_r)
+		context 'when a OC of 1/36 is passed' do
+			it 'should return 35/36' do
+				oc_prob = 1/36.to_r
+				expect(analyze.calculate_gc_dc_roll_probability(oc_prob)).to eq(35/36.to_r)
+			end
 		end
-		it 'should return 33/36 when a OC of 3/36 is passed' do
-			oc_prob = 3/36.to_r
-			expect(analyze.calculate_gc_dc_roll_probability(oc_prob)).to eq(33/36.to_r)
+		context 'when a OC of 3/36 is passed' do
+			it 'should return 33/36' do
+				oc_prob = 3/36.to_r
+				expect(analyze.calculate_gc_dc_roll_probability(oc_prob)).to eq(33/36.to_r)
+			end
 		end
-		it 'should return 30/36 when a OC of 6/36 is passed' do
-			oc_prob = 6/36.to_r
-			expect(analyze.calculate_gc_dc_roll_probability(oc_prob)).to eq(30/36.to_r)
+		context 'when a OC of 6/36 is passed' do
+			it 'should return 30/36' do
+				oc_prob = 6/36.to_r
+				expect(analyze.calculate_gc_dc_roll_probability(oc_prob)).to eq(30/36.to_r)
+			end
 		end
-		it 'should return 26/36 when a OC of 10/36 is passed' do
-			oc_prob = 10/36.to_r
-			expect(analyze.calculate_gc_dc_roll_probability(oc_prob)).to eq(26/36.to_r)
+		context 'when a OC of 10/36 is passed' do
+			it 'should return 26/36' do
+				oc_prob = 10/36.to_r
+				expect(analyze.calculate_gc_dc_roll_probability(oc_prob)).to eq(26/36.to_r)
+			end
 		end
-		it 'should return 21/36 when a OC of 15/36 is passed' do
-			oc_prob = 15/36.to_r
-			expect(analyze.calculate_gc_dc_roll_probability(oc_prob)).to eq(21/36.to_r)
+		context 'when a OC of 15/36 is passed' do
+			it 'should return 21/36' do
+				oc_prob = 15/36.to_r
+				expect(analyze.calculate_gc_dc_roll_probability(oc_prob)).to eq(21/36.to_r)
+			end
 		end
-		it 'should return 25/36 when a OC of 21/36 is passed' do
-			oc_prob = 21/36.to_r
-			expect(analyze.calculate_gc_dc_roll_probability(oc_prob)).to eq(15/36.to_r)
+		context 'when a OC of 21/36 is passed' do
+			it 'should return 25/36' do
+				oc_prob = 21/36.to_r
+				expect(analyze.calculate_gc_dc_roll_probability(oc_prob)).to eq(15/36.to_r)
+			end
 		end
-		it 'should return 10/36 when a OC of 26/36 is passed' do
-			oc_prob = 26/36.to_r
-			expect(analyze.calculate_gc_dc_roll_probability(oc_prob)).to eq(10/36.to_r)
+		context 'when a OC of 26/36 is passed' do
+			it 'should return 10/36 ' do
+				oc_prob = 26/36.to_r
+				expect(analyze.calculate_gc_dc_roll_probability(oc_prob)).to eq(10/36.to_r)
+			end
 		end
-		it 'should return 6/36 when a OC of 30/36 is passed' do
-			oc_prob = 30/36.to_r
-			expect(analyze.calculate_gc_dc_roll_probability(oc_prob)).to eq(6/36.to_r)
+		context 'when a OC of 30/36 is passed' do
+			it 'should return 6/36' do
+				oc_prob = 30/36.to_r
+				expect(analyze.calculate_gc_dc_roll_probability(oc_prob)).to eq(6/36.to_r)
+			end
 		end
-		it 'should return 3/36 when a OC of 33/36 is passed' do
-			oc_prob = 33/36.to_r
-			expect(analyze.calculate_gc_dc_roll_probability(oc_prob)).to eq(3/36.to_r)
+		context 'when a OC of 33/36 is passed' do
+			it 'should return 3/36' do
+				oc_prob = 33/36.to_r
+				expect(analyze.calculate_gc_dc_roll_probability(oc_prob)).to eq(3/36.to_r)
+			end
 		end
-		it 'should return 1/36 when a OC of 35/36 is passed' do
-			oc_prob = 35/36.to_r
-			expect(analyze.calculate_gc_dc_roll_probability(oc_prob)).to eq(1/36.to_r)
+		context 'when a OC of 35/36 is passed' do
+			it 'should return 1/36' do
+				oc_prob = 35/36.to_r
+				expect(analyze.calculate_gc_dc_roll_probability(oc_prob)).to eq(1/36.to_r)
+			end
 		end
-		it 'should return 0/36 when a OC of 36/36 is passed' do
-			oc_prob = 36/36.to_r
-			expect(analyze.calculate_gc_dc_roll_probability(oc_prob)).to eq(0/36.to_r)
+		context 'when a OC of 36/36 is passed' do
+			it 'should return 0/36' do
+				oc_prob = 36/36.to_r
+				expect(analyze.calculate_gc_dc_roll_probability(oc_prob)).to eq(0/36.to_r)
+			end
 		end
 	end
 
