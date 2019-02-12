@@ -351,8 +351,6 @@ RSpec.describe Analyzer do
 		end
 	end
 
-	# TODO: Wrap when X is passed into context blocks for above examples.
-
 	# calculate_reverse_roll_probability(wrestler_hash, gc_dc_roll_probability)
 	describe '#calculate_reverse_roll_probability' do
 	end
