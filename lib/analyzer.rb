@@ -291,6 +291,8 @@ class Analyzer
 	# ==============
 	# Takes in wrestler card hash and searches for OC/TT
 	# rolls and then calculates their probability.
+	# TODO: Modify code so that REVERSE can be isolated
+	# no matter the case. Also make rspec test.
 	def calculate_reverse_roll_probability(wrestler_hash, gc_dc_roll_probability)
 		h = wrestler_hash.select { |k,v| v == 'REVERSE' }
 		prob = 0
