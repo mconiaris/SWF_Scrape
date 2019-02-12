@@ -363,10 +363,11 @@ RSpec.describe Analyzer do
 				dc_hash = { :DC08 => 'A', :DC09 => 'DC', :DC10 => 'A', :DC11 => 'REVERSE', :DC12 => 'C' }
 			end
 		end
-		context 'when a \':GC12 value of \'REVERSE\' is passed' do
-			it 'should return (1/36)' do
+		context 'when a \':GC12 value of \'REVERSE\' and a DC roll probability of \'21/36.to_r\' is passed' do
+			it 'should return (7/432)' do
 				dc_hash = { :DC08 => 'A', :DC09 => 'DC', :DC10 => 'A', :DC11 => 'DC', :DC12 => 'REVERSE' }
-				expect(analyze.calculate_reverse_roll_probability(dc_hash)).to eq(1/36.to_r)
+				dc_roll_prob = 21/36.to_r
+				expect(analyze.calculate_reverse_roll_probability(dc_hash, dc_roll_prob)).to eq(7/432.to_r)
 			end
 		end 
 	end
