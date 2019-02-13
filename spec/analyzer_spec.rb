@@ -291,67 +291,67 @@ RSpec.describe Analyzer do
 		end
 		context 'when a \':GC02 => \'OC/TT\'\' is passed' do
 			it 'should return (1/36)' do
-				wrestler_hash = { :GC02 => 'OC/TT', :GC07 => 'OC', :GC08 => 'OC' }
+				wrestler_hash = wrestler_gc_hash({:GC02 => 'OC/TT'})
 				expect(analyze.calculate_gc_tt_roll_probability(wrestler_hash)).to eq(1/36.to_r)
 			end
 		end
 		context 'when a \':GC03 => \'OC/TT\'\' is passed' do
 			it 'should return (2/36)' do
-				wrestler_hash = { :GC03 => 'OC/TT', :GC05 => 'OC', :GC06 => 'DC', :GC07 => 'OC', :GC08 => 'OC' }
+				wrestler_hash = wrestler_gc_hash({:GC03 => 'OC/TT'})
 				expect(analyze.calculate_gc_tt_roll_probability(wrestler_hash)).to eq(2/36.to_r)
 			end
 		end
 		context 'when a \':GC04 => \'OC/TT\'\' is passed' do
 			it 'should return (3/36)' do
-				wrestler_hash = { :GC04 => 'OC/TT', :GC05 => 'OC', :GC06 => 'DC', :GC07 => 'OC', :GC08 => 'OC' }
+				wrestler_hash = wrestler_gc_hash({:GC04 => 'OC/TT'})
 				expect(analyze.calculate_gc_tt_roll_probability(wrestler_hash)).to eq(3/36.to_r)
 			end
 		end
 		context 'when a \':GC05 => \'OC/TT\'\' is passed' do
 			it 'should return (4/36)' do
-				wrestler_hash = { :GC05 => 'OC/TT', :GC06 => 'DC', :GC07 => 'OC', :GC08 => 'OC', :GC09 => 'OC' }
+				wrestler_hash = wrestler_gc_hash({:GC05 => 'OC/TT'})
 				expect(analyze.calculate_gc_tt_roll_probability(wrestler_hash)).to eq(4/36.to_r)
 			end
 		end
 		context 'when a \':GC06 => \'OC/TT\'\' is passed' do
 			it 'should return (5/36)' do
-				wrestler_hash = { :GC05 => 'OC', :GC06 => 'OC/TT', :GC07 => 'OC', :GC08 => 'OC', :GC09 => 'OC' }
+				wrestler_hash = wrestler_gc_hash({:GC06 => 'OC/TT'})
 				expect(analyze.calculate_gc_tt_roll_probability(wrestler_hash)).to eq(5/36.to_r)
 			end
 		end
 		context 'when a \':GC07 => \'OC/TT\'\' is passed' do
 			it 'should return (6/36)' do
-				wrestler_hash = { :GC05 => 'OC', :GC06 => 'DC', :GC07 => 'OC/TT', :GC08 => 'OC', :GC09 => 'OC' }
+				wrestler_hash = wrestler_gc_hash({:GC07 => 'OC/TT'})
 				expect(analyze.calculate_gc_tt_roll_probability(wrestler_hash)).to eq(6/36.to_r)
 			end
 		end
 		context 'when a \':GC08 => \'OC/TT\'\' is passed' do
 			it 'should return (5/36)' do
-				wrestler_hash = { :GC05 => 'OC', :GC06 => 'DC', :GC07 => 'OC', :GC08 => 'OC/TT', :GC09 => 'OC' }
+				wrestler_hash = wrestler_gc_hash({:GC08 => 'OC/TT'})
 				expect(analyze.calculate_gc_tt_roll_probability(wrestler_hash)).to eq(5/36.to_r)
 			end
 		end
 		context 'when a \':GC09 => \'OC/TT\'\' is passed' do
 			it 'should return (4/36)' do
-				wrestler_hash = { :GC05 => 'OC', :GC06 => 'DC', :GC07 => 'OC', :GC08 => 'OC', :GC09 => 'OC/TT' }
+				wrestler_hash = wrestler_gc_hash({:GC09 => 'OC/TT'})
 				expect(analyze.calculate_gc_tt_roll_probability(wrestler_hash)).to eq(4/36.to_r)
 			end
 		end
 		context 'when a \':GC10 => \'OC/TT\'\' is passed' do
 			it 'should return (3/36)' do
-				wrestler_hash = { :GC08 => 'OC', :GC09 => 'DC', :GC10 => 'OC/TT', :GC11 => 'OC', :GC12 => 'OC' }
+				wrestler_hash = wrestler_gc_hash({:GC10 => 'OC/TT'})
 				expect(analyze.calculate_gc_tt_roll_probability(wrestler_hash)).to eq(3/36.to_r)
 			end
 		end
 		context 'when a \':GC11 => \'OC/TT\'\' is passed' do
 			it 'should return (2/36)' do
-				wrestler_hash = { :GC08 => 'OC', :GC09 => 'DC', :GC10 => 'OC', :GC11 => 'OC/TT', :GC12 => 'OC' }
+				wrestler_hash = wrestler_gc_hash({:GC11 => 'OC/TT'})
 				expect(analyze.calculate_gc_tt_roll_probability(wrestler_hash)).to eq(2/36.to_r)
 			end
 		end
 		context 'when a \':GC12 => \'OC/TT\'\' is passed' do
 			it 'should return (1/36)' do
-				wrestler_hash = { :GC08 => 'OC', :GC09 => 'DC', :GC10 => 'OC', :GC11 => 'OC', :GC12 => 'OC/TT' }
+				wrestler_hash = wrestler_gc_hash({:GC12 => 'OC/TT'})
 				expect(analyze.calculate_gc_tt_roll_probability(wrestler_hash)).to eq(1/36.to_r)
 			end
 		end
