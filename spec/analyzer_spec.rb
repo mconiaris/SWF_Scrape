@@ -277,15 +277,21 @@ RSpec.describe Analyzer do
 
 	# calculate_gc_tt_roll_probability(wrestler_hash)
 	describe '#calculate_gc_tt_roll_probability' do
+		def wrestler_gc_hash(oc_values)
+			gc_hash = { :GC02 => 'OC', :GC03 => 'OC', :GC04 => 'DC', :GC05 => 'OC', 
+				:GC06 => 'DC', :GC07 => 'OC', :GC08 => 'OC', :GC09 => 'DC', :GC10 => 'OC', 
+				:GC11 => 'OC', :GC12 => 'OC' }
+			gc_hash.merge(oc_values)
+		end
 		context 'when a no values of \'OC/TT\' are passed' do
 			it 'should return (0/36)' do
-				wrestler_hash = { :GC05 => 'OC', :GC06 => 'DC', :GC07 => 'OC', :GC08 => 'OC' }
+				wrestler_hash = wrestler_gc_hash({})
 				expect(analyze.calculate_gc_tt_roll_probability(wrestler_hash)).to eq(0/36.to_r)
 			end
 		end
 		context 'when a \':GC02 => \'OC/TT\'\' is passed' do
 			it 'should return (1/36)' do
-				wrestler_hash = { :GC02 => 'OC/TT', :GC05 => 'OC', :GC06 => 'DC', :GC07 => 'OC', :GC08 => 'OC' }
+				wrestler_hash = { :GC02 => 'OC/TT', :GC07 => 'OC', :GC08 => 'OC' }
 				expect(analyze.calculate_gc_tt_roll_probability(wrestler_hash)).to eq(1/36.to_r)
 			end
 		end
