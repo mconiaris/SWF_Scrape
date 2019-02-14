@@ -458,6 +458,17 @@ RSpec.describe Analyzer do
 		end
 	end
 
+	# calculate_dc_points(k,v)
+	describe '#calculate_dc_points' do
+		context 'when a hash with a key of \':DC02\' and a value of \'B\' is passed' do
+			it 'returns 0' do
+				dc_key = :DC02
+				dc_value = 'B'
+				expect(analyze.calculate_dc_points(dc_key, dc_value)).to eq(0)
+			end
+		end
+	end
+
 
 	# TODO: Make tests to confirm math is right.
 	# TODO: Create test that deals with DQs in Specialty moves.
