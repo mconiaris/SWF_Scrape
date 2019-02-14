@@ -374,7 +374,7 @@ RSpec.describe Analyzer do
 		end
 		context 'when a \':GC03\' value of \'REVERSE\' and a DC roll probability of \'21/36.to_r\' is passed' do
 			it 'should return (7/216)' do
-				dc_hash = { :DC02 => 'B', :DC03 => 'REVERSE', :DC04 => 'B', :DC05 => 'A', :DC06 => 'B' }
+				dc_hash = wrestler_dc_hash({:DC03 => 'REVERSE'})
 				dc_roll_prob = 21/36.to_r
 				expect(analyze.calculate_reverse_roll_probability(dc_hash, dc_roll_prob)).to eq(7/216.to_r)
 			end
