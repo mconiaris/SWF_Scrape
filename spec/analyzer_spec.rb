@@ -458,6 +458,7 @@ RSpec.describe Analyzer do
 	# TODO: Create unit tests for calculate_probility method"
 	# TODO: Create unit tests for calculate_gc_oc_roll_probability
 	# TODO: Run rspec -w to print out warnings and fix issues.
+	# TODO: Create and/or tests like (x should be either OC or DC)
 	
 
 end
