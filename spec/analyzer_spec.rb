@@ -616,6 +616,9 @@ RSpec.describe Analyzer do
 		end
 	end
 
+	describe '#calculate_oc_and_ropes_points(wrestler)' do
+	end
+
 
 	# TODO: Make tests to confirm math is right.
 	# TODO: Create test that deals with DQs in Specialty moves.
