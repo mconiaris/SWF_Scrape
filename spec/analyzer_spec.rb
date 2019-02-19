@@ -616,7 +616,7 @@ RSpec.describe Analyzer do
 		end
 	end
 
-	describe '#calculate_oc_and_ropes_points(wrestler)' do
+	describe '#calculate_oc_and_ropes_points' do
 	end
 
 
