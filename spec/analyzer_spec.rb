@@ -617,6 +617,22 @@ RSpec.describe Analyzer do
 	end
 
 	describe '#calculate_oc_and_ropes_points' do
+		context 'when the Zak Knight OC values are passed' do
+			wrestler = {:OC02=>"Superkick 10",
+			 :OC03=>"Zodiac Sleeper 9 *",
+			 :OC04=>"Reverse Neckbreaker 8 (XX)",
+			 :OC05=>"Rainmaker (S)",
+			 :OC06=>"Zak Smack 7",
+			 :OC07=>"Bodyslam 8",
+			 :OC08=>"Forearm Smash 7",
+			 :OC09=>"Stomp 6",
+			 :OC10=>"European Uppercut 7",
+			 :OC11=>"Spinning Side Slam 8",
+			 :OC12=>"ROPES"}
+			it 'returns 6.416666666666667' do
+				expect(analyze.calculate_oc_and_ropes_points(wrestler)).to eq(6.416666666666667)
+			end
+		end
 	end
 
 
