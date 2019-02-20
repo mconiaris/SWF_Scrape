@@ -481,11 +481,11 @@ RSpec.describe Analyzer do
 				expect(analyze.calculate_dc_points(dc_key, dc_value)).to eq(0.16666666666666666)
 			end
 		end
-		xcontext 'when a hash with a key of \':DC05\' and a value of \'A\' is passed' do
+		context 'when a hash with a key of \':DC05\' and a value of \'A\' is passed' do
 			dc_key = :DC05
 			dc_value = 'A'
-			it 'returns 0' do
-				expect(analyze.calculate_dc_points(dc_key, dc_value)).to eq(0)
+			it 'returns 0.2222222222222222' do
+				expect(analyze.calculate_dc_points(dc_key, dc_value)).to eq(0.2222222222222222)
 			end
 		end
 		xcontext 'when a hash with a key of \':DC06\' and a value of \'A\' is passed' do
@@ -616,8 +616,8 @@ RSpec.describe Analyzer do
 		end
 	end
 
-	describe '#calculate_oc_and_ropes_points' do
 		context 'when the Zak Knight OC values are passed' do
+	describe '#calculate_oc_and_ropes_points' do
 			wrestler = {:OC02=>"Superkick 10",
 			 :OC03=>"Zodiac Sleeper 9 *",
 			 :OC04=>"Reverse Neckbreaker 8 (XX)",
