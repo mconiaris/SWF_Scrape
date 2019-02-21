@@ -663,11 +663,11 @@ RSpec.describe Analyzer do
 				expect(analyze.calculate_dc_points(dc_key, dc_value)).to eq(0.5555555555555556)
 			end
 		end
-		xcontext 'when a hash with a key of \':DC09\' and a value of \'C\' is passed' do
+		context 'when a hash with a key of \':DC09\' and a value of \'C\' is passed' do
 			dc_key = :DC09
 			dc_value = 'C'
-			it 'returns 0' do
-				expect(analyze.calculate_dc_points(dc_key, dc_value)).to eq(0)
+			it 'returns 0.4444444444444444' do
+				expect(analyze.calculate_dc_points(dc_key, dc_value)).to eq(0.4444444444444444)
 			end
 		end
 		xcontext 'when a hash with a key of \':DC10\' and a value of \'C\' is passed' do
