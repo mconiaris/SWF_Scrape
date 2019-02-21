@@ -495,18 +495,18 @@ RSpec.describe Analyzer do
 				expect(analyze.calculate_dc_points(dc_key, dc_value)).to eq(0.2777777777777778)
 			end
 		end
-		xcontext 'when a hash with a key of \':DC07\' and a value of \'A\' is passed' do
+		context 'when a hash with a key of \':DC07\' and a value of \'A\' is passed' do
 			dc_key = :DC07
 			dc_value = 'A'
-			it 'returns 0' do
-				expect(analyze.calculate_dc_points(dc_key, dc_value)).to eq(0)
+			it 'returns 0.3333333333333333' do
+				expect(analyze.calculate_dc_points(dc_key, dc_value)).to eq(0.3333333333333333)
 			end
 		end
-		xcontext 'when a hash with a key of \':DC08\' and a value of \'A\' is passed' do
+		context 'when a hash with a key of \':DC08\' and a value of \'A\' is passed' do
 			dc_key = :DC08
 			dc_value = 'A'
-			it 'returns 0' do
-				expect(analyze.calculate_dc_points(dc_key, dc_value)).to eq(0)
+			it 'returns 0.2777777777777778' do
+				expect(analyze.calculate_dc_points(dc_key, dc_value)).to eq(0.2777777777777778)
 			end
 		end
 		xcontext 'when a hash with a key of \':DC09\' and a value of \'A\' is passed' do
