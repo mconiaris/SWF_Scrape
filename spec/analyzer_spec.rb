@@ -684,7 +684,7 @@ RSpec.describe Analyzer do
 				expect(analyze.calculate_dc_points(dc_key, dc_value)).to eq(0.2222222222222222)
 			end
 		end
-		xcontext 'when a hash with a key of \':DC12\' and a value of \'C\' is passed' do
+		context 'when a hash with a key of \':DC12\' and a value of \'C\' is passed' do
 			dc_key = :DC12
 			dc_value = 'C'
 			it 'returns 0.1111111111111111' do
