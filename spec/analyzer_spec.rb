@@ -789,6 +789,10 @@ RSpec.describe Analyzer do
 		end
 	end
 
+	# calculate_oc_points_per_roll_subtotal(points, oc_prob)
+	describe '#calculate_oc_points_per_roll_subtotal' do
+	end
+
 
 	# TODO: Make tests to confirm math is right.
 	# TODO: Create test that deals with DQs in Specialty moves.
