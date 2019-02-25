@@ -770,8 +770,8 @@ RSpec.describe Analyzer do
 		end
 	end
 
-		context 'when the Zak Knight OC values are passed' do
 	describe '#calculate_oc_and_ropes_points' do
+		context 'when the Zak Knight OC values are passed' do
 			wrestler = {:OC02=>"Superkick 10",
 			 :OC03=>"Zodiac Sleeper 9 *",
 			 :OC04=>"Reverse Neckbreaker 8 (XX)",
