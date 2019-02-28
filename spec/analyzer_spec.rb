@@ -528,8 +528,8 @@ RSpec.describe Analyzer do
 		context 'when a hash with a key of \':DC11\' and a value of \'A\' is passed' do
 			dc_key = :DC11
 			dc_value = 'A'
-			it 'returns 0.1111111111111111' do
-				expect(analyze.calculate_dc_points(dc_key, dc_value)).to eq(0.1111111111111111)
+			it 'returns a value within 0.001 of 0.111' do
+				expect(analyze.calculate_dc_points(dc_key, dc_value)).to be_within(0.001).of(0.111)
 			end
 		end
 		context 'when a hash with a key of \':DC12\' and a value of \'A\' is passed' do
