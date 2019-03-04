@@ -799,8 +799,8 @@ RSpec.describe Analyzer do
 			end
 		end
 		context 'when a probability of \'11/18.to_r\' and a value of \'6.416666666666667\' is passed' do
-			it 'returns 3.9212962962962967' do
-				expect(analyze.calculate_oc_points_per_roll_subtotal(6.416666666666667, 11/18.to_r)).to eq(3.9212962962962967)
+			it 'returns a value within 0.001 of 3.921' do
+				expect(analyze.calculate_oc_points_per_roll_subtotal(6.416666666666667, 11/18.to_r)).to be_within(0.001).of(3.921)
 			end
 		end
 	end
