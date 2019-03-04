@@ -785,8 +785,8 @@ RSpec.describe Analyzer do
 			 :OC10=>"European Uppercut 7",
 			 :OC11=>"Spinning Side Slam 8",
 			 :OC12=>"ROPES"}
-			it 'returns 6.416666666666667' do
-				expect(analyze.calculate_oc_and_ropes_points(wrestler)).to eq(6.416666666666667)
+			it 'returns a value within 0.001 of 6.416' do
+				expect(analyze.calculate_oc_and_ropes_points(wrestler)).to be_within(0.001).of(6.416)
 			end
 		end
 	end
