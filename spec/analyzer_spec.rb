@@ -805,6 +805,9 @@ RSpec.describe Analyzer do
 		end
 	end
 
+	describe '#calculate_ropes_points_per_roll_subtotal' do
+	end
+
 
 	# TODO: Create test that deals with DQs in Specialty moves.
 	# TODO: Run rspec -w to print out warnings and fix issues.
