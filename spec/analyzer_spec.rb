@@ -805,7 +805,14 @@ RSpec.describe Analyzer do
 		end
 	end
 
+	# calculate_ropes_points_per_roll_subtotal(points, oc_prob, ropes_prob)
+	# points: 3.833333333333333, oc_prob: (11/18), ropes_prob: (1/36)
 	describe '#calculate_ropes_points_per_roll_subtotal' do
+		context 'when a points value of 3.833333333333333, a oc_prob of (11/18) and a ropes_prob of (1/36) is passed' do
+			it 'returns a value within 0.001 of 0.065' do
+				expect(analyze.calculate_ropes_points_per_roll_subtotal(3.833333333333333, 11/18.to_r, 1/36.to_r)).to be_within(0.001).of(0.065)
+			end
+		end
 	end
 
 
