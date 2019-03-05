@@ -806,10 +806,7 @@ RSpec.describe Analyzer do
 	end
 
 
-	# TODO: Make tests to confirm math is right.
 	# TODO: Create test that deals with DQs in Specialty moves.
-	# TODO: Create unit tests for calculate_probility method"
-	# TODO: Create unit tests for calculate_gc_oc_roll_probability
 	# TODO: Run rspec -w to print out warnings and fix issues.
 	# TODO: Create and/or tests like (x should be either OC or DC)
 	
