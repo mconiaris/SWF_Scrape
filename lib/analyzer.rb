@@ -390,6 +390,8 @@ end
 	# SPECIALTY CARD
 	# ==============
 
+	# TODO: Check to see if DQ and XX is calculated somewhere else
+
 	# Takes in a wrestler hash and calculates the
 	# probability of either (S), (XX), * or (DQ) rolls.
 	# It divides OC and Ropes cards into their own hashes,
@@ -424,6 +426,8 @@ end
 		# Convert probability values into a hash
 		s_prob[:OC] = s_oc_prob
 		s_prob[:R] = s_r_prob
+
+		binding.pry
 
 		return s_prob
 	end
