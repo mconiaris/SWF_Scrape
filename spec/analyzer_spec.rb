@@ -822,6 +822,8 @@ RSpec.describe Analyzer do
 
 	# calculate_specialty_dq_pa_subm_xx_probability(wrestler, move)
 	describe '#calculate_specialty_dq_pa_subm_xx_probability' do
+		it '' do
+		end
 	end
 	
 
