@@ -820,6 +820,11 @@ RSpec.describe Analyzer do
 		end
 	end
 
+	# calculate_specialty_dq_pa_subm_xx_probability(wrestler, move)
+	describe '#calculate_specialty_dq_pa_subm_xx_probability' do
+	end
+	
+
 
 	# TODO: Create test that deals with DQs in Specialty moves.
 	# TODO: Run rspec -w to print out warnings and fix issues.
