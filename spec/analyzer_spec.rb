@@ -793,9 +793,9 @@ RSpec.describe Analyzer do
 
 	# calculate_oc_points_per_roll_subtotal(points, oc_prob)
 	describe '#calculate_oc_points_per_roll_subtotal' do
-		context 'when a probability of \'16/32.to_r\' and a value of \'8.0\' is passed' do
-			it 'returns 4.0' do
-				expect(analyze.calculate_oc_points_per_roll_subtotal(8.0, 16/32.to_r)).to eq(4.0)
+		context 'when a probability of \'21/36.to_r\' and a value of \'8.0\' is passed' do
+			it 'returns a value within 0.001 of 3.921' do
+				expect(analyze.calculate_oc_points_per_roll_subtotal(8.0, 21/36.to_r)).to be_within(0.001).of(4.666)
 			end
 		end
 		context 'when a probability of \'11/18.to_r\' and a value of \'6.416666666666667\' is passed' do
