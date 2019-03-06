@@ -427,8 +427,6 @@ end
 		s_prob[:OC] = s_oc_prob
 		s_prob[:R] = s_r_prob
 
-		binding.pry
-
 		return s_prob
 	end
 
