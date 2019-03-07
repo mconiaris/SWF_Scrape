@@ -390,6 +390,7 @@ end
 	# SPECIALTY CARD
 	# ==============
 
+	# TODO: Fix logic error in caclulating percentage of P/A - it is overwriting values
 	# TODO: Check to see if DQ and XX is calculated somewhere else
 
 	# Takes in a wrestler hash and calculates the
@@ -426,7 +427,7 @@ end
 		# Convert probability values into a hash
 		s_prob[:OC] = s_oc_prob
 		s_prob[:R] = s_r_prob
-
+# binding.pry
 		return s_prob
 	end
 
