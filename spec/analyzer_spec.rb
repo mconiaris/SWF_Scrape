@@ -837,7 +837,7 @@ RSpec.describe Analyzer do
 		context 'when a wrestler object includes { :OC02=>"Superkick 10 P/A", :R07=>"Flying Body Press 10P/A" } and the move attribute is \'P/A\'' do
 			it 'returns a value of {:OC=>(1/36), :R=>6/36}' do
 				w = { :OC02=>"Superkick 10 P/A", :R07=>"Flying Body Press 10P/A" }
-				expect(analyze.calculate_specialty_dq_pa_subm_xx_probability(w, 'P/A')).to eq({:OC=>(1/36.to_r), :R=>6/36})
+				expect(analyze.calculate_specialty_dq_pa_subm_xx_probability(w, 'P/A')).to eq({:OC=>(1/36.to_r), :R=>6/36.to_r})
 			end
 		end
 		context 'when a wrestler object includes { :OC03=>"Zodiac Sleeper 9 *" } and the move attribute is \'*\'' do
@@ -853,9 +853,9 @@ RSpec.describe Analyzer do
 			end
 		end
 		context 'when a wrestler object includes { :OC03=>"Zodiac Sleeper 9 *", :R12=>"Dropkick 7 P/A" } and the move attribute is \'P/A\'' do
-			it 'returns a value of {:OC=>(2/36), :R=>1/36}' do
-				w = { :OC03=>"Zodiac Sleeper 9 *", :OC12=>"Dropkick 7 P/A" }
-				expect(analyze.calculate_specialty_dq_pa_subm_xx_probability(w, '*')).to eq({:OC=>(2/36.to_r), :R=>1/36})
+			it 'returns a value of {:OC=>0, :R=>(1/36) }' do
+				w = { :OC03=>"Zodiac Sleeper 9 *", :R12=>"Dropkick 7 P/A" }
+				expect(analyze.calculate_specialty_dq_pa_subm_xx_probability(w, 'P/A')).to eq({:OC=>0, :R=>1/36.to_r})
 			end
 		end
 	end

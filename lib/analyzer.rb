@@ -216,7 +216,7 @@ class Analyzer
 	# 2d6 roll so that it can be used to calculate the
 	# probabilty of rolls for GC, OC & DC.
 	def calculate_probability(key)
-		k = key[2..3]
+		k = key[-2..-1]
 
 		case k
 		when '02'
