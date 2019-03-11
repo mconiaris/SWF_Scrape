@@ -828,7 +828,7 @@ RSpec.describe Analyzer do
 				expect(analyze.calculate_specialty_dq_pa_subm_xx_probability(w, 'P/A')).to eq({:OC=>(1/36.to_r), :R=>0})
 			end
 		end
-		xcontext 'when a wrestler object includes { :OC02=>"Superkick 10 P/A", :OC07=>"Flying Body Press 10P/A" }' do
+		context 'when a wrestler object includes { :OC02=>"Superkick 10 P/A", :OC07=>"Flying Body Press 10P/A" }' do
 			it 'returns a value of {:OC=>(7/36), :R=>0}' do
 				w = { :OC02=>"Superkick 10 P/A", :OC07=>"Flying Body Press 10P/A" }
 				expect(analyze.calculate_specialty_dq_pa_subm_xx_probability(w, 'P/A')).to eq({:OC=>(7/36.to_r), :R=>0})
