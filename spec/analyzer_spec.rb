@@ -870,6 +870,12 @@ RSpec.describe Analyzer do
 				expect(analyze.calculate_specialty_dq_pa_subm_xx_probability(w, 'ROPES')).to eq({:OC=>1/36.to_r, :R=>0 })
 			end
 		end
+		context 'when a wrestler object includes { :OC04=>"DQ", :R05=>"DQ" } and the move attribute is \'DQ\'' do
+			it 'returns a value of {:OC=>3/36, :R=>4/36 }' do
+				w = { :OC04=>"DQ", :R05=>"DQ" }
+				expect(analyze.calculate_specialty_dq_pa_subm_xx_probability(w, 'DQ')).to eq({:OC=>3/36.to_r, :R=>4/36.to_r })
+			end
+		end
 	end
 	
 
