@@ -932,6 +932,9 @@ RSpec.describe Analyzer do
 			it 'returns a hash with a :pa_probability value within 0.001 of 0.333' do
 				expect(hash_result[:pa_probability]).to be_within(0.001).of(0.333)
 			end
+			it 'returns a hash with a :dq_probability value of 0' do
+				expect(hash_result[:points_average]).to be_within(0.001).of(10)
+			end
 		end
 	end
 	
