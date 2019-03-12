@@ -447,7 +447,7 @@ end
 		s_sub_prob = s_sub_hash.size / 6.to_f
 
 		# Calculate probability of a DQ roll in (S)
-		s_dq_hash = s.select { |k,v| v.include?('(DQ)') }
+		s_dq_hash = s.select { |k,v| v.include?('DQ') }
 		s_dq_prob = s_dq_hash.size / 6.to_f
 
 		# Calculate probability of a P/A roll in (S)
@@ -458,7 +458,12 @@ end
 		s.each_value { |v| x = v.split
 			s_points += x[0].to_i
 		}
-		s_points_average = s_points / 6
+		# Calculate Average Points from DQ Rolls
+		dq_points = s_dq_hash.size * 5
+		s_points += dq_points
+
+		s_points_average = s_points / 6.to_f
+
 
 		specialty_hash[:dq_probability] = s_dq_prob
 		specialty_hash[:pa_probability] = s_pa_prob
