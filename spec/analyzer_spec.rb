@@ -926,6 +926,9 @@ RSpec.describe Analyzer do
 			h = {  :S1=>"9", :S2=>"10", :S3=>"11 P/A", :S4=>"8 P/A", :S5=>"12", :S6=>"10" }
 			let(:hash_result) { analyze.calculate_specialty_points_and_attributes(h) }
 
+			it 'returns a hash with a :dq_probability value of 0' do
+				expect(hash_result[:dq_probability]).to eq(0)
+			end
 			it 'returns a hash with a :pa_probability value within 0.001 of 0.333' do
 				expect(hash_result[:pa_probability]).to be_within(0.001).of(0.333)
 			end
