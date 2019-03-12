@@ -464,6 +464,7 @@ end
 		specialty_hash[:pa_probability] = s_pa_prob
 		specialty_hash[:points_average] = s_points_average
 		specialty_hash[:submission_move_probability] = s_sub_prob
+
 		return specialty_hash
 	end
 
