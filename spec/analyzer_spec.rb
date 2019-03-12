@@ -960,7 +960,6 @@ RSpec.describe Analyzer do
 	
 
 
-	# TODO: Create test that deals with DQs in Specialty moves.
 	# TODO: Run rspec -w to print out warnings and fix issues.
 	# TODO: Create and/or tests like (x should be either OC or DC)
 	
