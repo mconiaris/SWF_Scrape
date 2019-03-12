@@ -919,6 +919,10 @@ RSpec.describe Analyzer do
 			end
 		end
 	end
+
+	# calculate_specialty_points_and_attributes(wrestler)
+	describe '#calculate_specialty_points_and_attributes' do
+	end
 	
 
 
