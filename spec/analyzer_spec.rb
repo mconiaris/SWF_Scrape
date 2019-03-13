@@ -957,6 +957,8 @@ RSpec.describe Analyzer do
 			end
 		end
 	end
+
+	# TODO: calculate_total_dq_pa_sub_xx_per_round(gc_oc_roll_prob, ropes_roll, attribute, s_prob, s_attribute)
 	
 
 
