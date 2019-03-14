@@ -492,7 +492,7 @@ end
 			hash[:points_average] * ropes_prob[:OC]
 
  		specialty_hash[:ropes_points_per_roll] = y
-
+binding.pry
  		return specialty_hash
 	end
 

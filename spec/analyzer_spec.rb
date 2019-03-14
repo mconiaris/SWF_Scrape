@@ -959,7 +959,8 @@ RSpec.describe Analyzer do
 	end
 
 	# TODO: calculate_total_dq_pa_sub_xx_per_round(gc_oc_roll_prob, ropes_roll, attribute, s_prob, s_attribute)
-	
+	describe '#alculate_specialty_points_and_attributes_per_round' do
+	end
 
 
 	# TODO: Run rspec -w to print out warnings and fix issues.
