@@ -958,8 +958,40 @@ RSpec.describe Analyzer do
 		end
 	end
 
-	# TODO: calculate_total_dq_pa_sub_xx_per_round(gc_oc_roll_prob, ropes_roll, attribute, s_prob, s_attribute)
-	describe '#alculate_specialty_points_and_attributes_per_round' do
+	# calculate_specialty_points_and_attributes_per_round(hash, oc_prob, s_prob, ropes_prob)
+	describe '#calculate_specialty_points_and_attributes_per_round' do
+		context "when a hash that includes: \n\'{:dq_probability=>0.0,\' \n\':pa_probability=>0.3333333333333333,\' \n\':points_average=>10.0,\' \n\':submission_move_probability=>0.0}\' \nis passed as the first parameter, \nan oc_prob of \'(11/18)\' is passed as the second parameter, \na s_prob of \'{:OC=>(1/9), :R=>(1/6)}\' as the third parameter, \nand a ropes_prob of \'{:OC=>(1/36), :R=>0}\' as the forth parameter." do
+			let(:result) {
+				h = {:dq_probability=>0.0, :pa_probability=>0.3333333333333333, :points_average=>10.0, :submission_move_probability=>0.0}
+			 	oc_prob = 11/18.to_r
+			 	s_prob = {:OC=>(1/9.to_r), :R=>(1/6.to_r)}
+			 	ropes_prob = {:OC=>(1/36.to_r), :R=>0.to_r}
+
+			 	analyze.calculate_specialty_points_and_attributes_per_round(h, oc_prob, s_prob, ropes_prob)
+			}	
+			it 'returns a hash with a :oc_points_per_roll within .001 of 0.679' do
+				expect(result[:oc_points_per_roll]).to be_within(0.001).of(0.679)
+			end
+			it 'returns a hash with a :ropes_points_per_roll a value within .001 of 0.028' do
+				expect(result[:oc_points_per_roll]).to be_within(0.001).of(0.679)
+			end
+		end
+		# context "when a hash that includes: \n\'{:dq_probability=>0.3333333333333333,\' \n\':pa_probability=>0.3333333333333333,\' \n\':points_average=>8.0,\' \n\':submission_move_probability=>0.3333333333333333}\' \nis passed as the first parameter, \nan oc_prob of \'(11/18)\' is passed as the second parameter, \na s_prob of \'{:OC=>(1/9), :R=>(1/6)}\' as the third parameter, \nand a ropes_prob of \'{:OC=>(1/36), :R=>0}\' as the forth parameter." do
+		# 	let(:result) {
+		# 		h = {:dq_probability=>0.3333333333333333, :pa_probability=>0.3333333333333333, :points_average=>8.0, :submission_move_probability=>0.3333333333333333}
+		# 	 	oc_prob = 11/18.to_r
+		# 	 	s_prob = {:OC=>(1/9.to_r), :R=>(1/6.to_r)}
+		# 	 	ropes_prob = {:OC=>(1/36.to_r), :R=>0.to_r}
+
+		# 	 	analyze.calculate_specialty_points_and_attributes_per_round(h, oc_prob, s_prob, ropes_prob)
+		# 	}	
+		# 	it 'returns a hash with a :oc_points_per_roll within .001 of 0.679' do
+		# 		expect(result[:oc_points_per_roll]).to be_within(0.001).of(0.679)
+		# 	end
+		# 	it 'returns a hash with a :ropes_points_per_roll a value within .001 of 0.028' do
+		# 		expect(result[:oc_points_per_roll]).to be_within(0.001).of(0.679)
+		# 	end
+		# end
 	end
 
 
