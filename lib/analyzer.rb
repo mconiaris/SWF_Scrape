@@ -474,7 +474,6 @@ end
 	end
 
 
-	# TODO: Calculate by hand to validate points per roll for Ropes.
 	# Returns points per roll of (S) move for OC and
 	# Ropes rolls.
 	def calculate_specialty_points_and_attributes_per_round(hash, oc_prob, s_prob, ropes_prob)
