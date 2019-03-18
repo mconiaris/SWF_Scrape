@@ -994,6 +994,10 @@ RSpec.describe Analyzer do
 		end
 	end
 
+	# calculate_total_dq_pa_sub_xx_per_round(gc_oc_roll_prob, ropes_roll, attribute, s_prob, s_attribute)
+	describe '#calculate_total_dq_pa_sub_xx_per_round(gc_oc_roll_prob, ropes_roll, attribute, s_prob, s_attribute)' do
+	end
+
 
 	# TODO: Run rspec -w to print out warnings and fix issues.
 	# TODO: Create and/or tests like (x should be either OC or DC)
