@@ -976,7 +976,7 @@ RSpec.describe Analyzer do
 				expect(result[:ropes_points_per_roll]).to be_within(0.001).of(0.028)
 			end
 		end
-		xcontext "when a hash that includes: \n\'{:dq_probability=>0.3333333333333333,\' \n\':pa_probability=>0.3333333333333333,\' \n\':points_average=>8.0,\' \n\':submission_move_probability=>0.3333333333333333}\' \nis passed as the first parameter, \nan oc_prob of \'(11/18)\' is passed as the second parameter, \na s_prob of \'{:OC=>(1/9), :R=>(1/6)}\' as the third parameter, \nand a ropes_prob of \'{:OC=>(1/36), :R=>0}\' as the forth parameter." do
+		context "when a hash that includes: \n\'{:dq_probability=>0.3333333333333333,\' \n\':pa_probability=>0.3333333333333333,\' \n\':points_average=>8.0,\' \n\':submission_move_probability=>0.3333333333333333}\' \nis passed as the first parameter, \nan oc_prob of \'(11/18)\' is passed as the second parameter, \na s_prob of \'{:OC=>(1/9), :R=>(1/6)}\' as the third parameter, \nand a ropes_prob of \'{:OC=>(1/36), :R=>0}\' as the forth parameter." do
 			let(:result) {
 				h = {:dq_probability=>0.3333333333333333, :pa_probability=>0.3333333333333333, :points_average=>8.0, :submission_move_probability=>0.3333333333333333}
 			 	oc_prob = 11/18.to_r
@@ -989,7 +989,7 @@ RSpec.describe Analyzer do
 				expect(result[:oc_points_per_roll]).to be_within(0.001).of(0.543)
 			end
 			it 'returns a hash with a :ropes_points_per_roll a value within .001 of 0.028' do
-				expect(result[:ropes_points_per_roll]).to be_within(0.001).of(0.679)
+				expect(result[:ropes_points_per_roll]).to be_within(0.001).of(0.022)
 			end
 		end
 	end
