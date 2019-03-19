@@ -996,6 +996,21 @@ RSpec.describe Analyzer do
 
 	# calculate_total_dq_pa_sub_xx_per_round(gc_oc_roll_prob, ropes_roll, attribute, s_prob, s_attribute)
 	describe '#calculate_total_dq_pa_sub_xx_per_round' do
+		context "when gc_oc_roll_prob = 11.18, \nropes_roll = { :OC=>(1/36), :R=>0 }, \nattribute = { :OC=>0, :R=>0 }, \ns_prob = { :OC=>(1/9), :R=>(1/6) }, \nand s_attribute = 0.0 is passed." do
+			let(:wrestler) {
+				gc_oc_roll_prob = 11.18.to_r
+				ropes_roll = { :OC=>(1/36), :R=>0 }
+				attribute = { :OC=>0, :R=>0 }
+				s_prob = { :OC=>(1/9), :R=>(1/6) }
+				s_attribute = 0.0
+
+				analyze.calculate_total_dq_pa_sub_xx_per_round(gc_oc_roll_prob, ropes_roll, attribute, s_prob, s_attribute)
+			}
+			it 'returns 0.0' do
+				expect(wrestler).to eq(0.0)
+			end
+		end
+
 	end
 
 
