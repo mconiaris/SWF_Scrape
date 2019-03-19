@@ -1024,7 +1024,10 @@ RSpec.describe Analyzer do
 				expect(wrestler).to be_within(0.001).of(0.054)
 			end
 		end
+	end
 
+	# sub_tag_probability(a)
+	describe 'sub_tag_probability' do
 	end
 
 
