@@ -999,15 +999,29 @@ RSpec.describe Analyzer do
 		context "when gc_oc_roll_prob = 11.18, \n\tropes_roll = { :OC=>(1/36), :R=>0 }, \n\tattribute = { :OC=>0, :R=>0 }, \n\ts_prob = { :OC=>(1/9), :R=>(1/6) }, and \n\ts_attribute = 0.0 \n\tis passed." do
 			let(:wrestler) {
 				gc_oc_roll_prob = 11.18.to_r
-				ropes_roll = { :OC=>(1/36), :R=>0 }
+				ropes_roll = { :OC=>1/36.to_r, :R=>0 }
 				attribute = { :OC=>0, :R=>0 }
-				s_prob = { :OC=>(1/9), :R=>(1/6) }
+				s_prob = { :OC=>1/9.to_r, :R=>1/6.to_r }
 				s_attribute = 0.0
 
 				analyze.calculate_total_dq_pa_sub_xx_per_round(gc_oc_roll_prob, ropes_roll, attribute, s_prob, s_attribute)
 			}
 			it 'returns 0.0' do
 				expect(wrestler).to eq(0.0)
+			end
+		end
+		context "when \n\tgc_oc_roll_prob = 11/18.to_f, \n\tropes_roll = { :OC=>1/36.to_f, :R=>0 }, \n\tattribute = { :OC=>1/12.to_f, :R=>0 }, \n\ts_prob = { :OC=>(1/9.to_f), :R=>(1/6.to_f) }, and \n\ts_attribute = 0.05555555556 \n\tis passed." do
+			let(:wrestler) {
+				gc_oc_roll_prob = 11/18.to_f
+				ropes_roll = { :OC=>1/36.to_f, :R=>0 }
+				attribute = { :OC=>1/12.to_f, :R=>0 }
+				s_prob = { :OC=>1/9.to_f, :R=>1/6.to_f }
+				s_attribute = 0.05555555556
+
+				analyze.calculate_total_dq_pa_sub_xx_per_round(gc_oc_roll_prob, ropes_roll, attribute, s_prob, s_attribute)
+			}
+			it 'returns a value within 0.001 of 0.054' do
+				expect(wrestler).to be_within(0.001).of(0.054)
 			end
 		end
 
