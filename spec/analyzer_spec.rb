@@ -1028,6 +1028,12 @@ RSpec.describe Analyzer do
 
 	# sub_tag_probability(a)
 	describe 'sub_tag_probability' do
+		context 'when \'["2", "5"]\' is passed' do
+			a = ["2", "5"]
+			it 'returns a value within 0.001 of 0.277' do
+				expect(analyze.sub_tag_probability(a)).to be_within(0.001).of(0.277)
+			end
+		end
 	end
 
 
