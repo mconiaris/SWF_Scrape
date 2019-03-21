@@ -1,8 +1,5 @@
 class Analyzer
 
-	# TODO: Use SWF_Card_Analyzer Math to do final
-	# card analysis.
-
 	attr_accessor :statistics
 	
 	# Constants for Dice Rolls
