@@ -34,6 +34,5 @@ RSpec.describe Scraper do
 			end
 		end
 	end
-	# TODO: Add tests to confirm hash that creates Wrestler object
 end
 
