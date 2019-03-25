@@ -57,15 +57,8 @@ class Analyzer
 				elsif k[0] == "S" && k[1] != "p" && k[1] != 'e'
 					# puts "#{key}: #{value}"
 					# s_stats_array.push(analyze_s(key, value))
-				elsif k[0..1] == 'OC'
-					# puts "#{key}: #{value}"
-					# puts "\n"
-					# oc_points_array << create_oc_ropes_moves_array(key, value)
-				elsif k[0] == 'R'
-					# puts "#{key}: #{value}"
-					# ropes_points_array << create_oc_ropes_moves_array(key, value)
 				else
-					# puts "#{key}: #{value}"
+					puts "#{key}: #{value}"
 				end
 		}
 
