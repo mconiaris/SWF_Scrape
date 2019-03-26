@@ -206,7 +206,6 @@ class Analyzer
 	# 2d6 roll so that it can be used to calculate the
 	# probabilty of rolls for GC, OC & DC.
 	def calculate_probability(key)
-
 		
 		if key.respond_to?(:to_i)
 			k = key[-2..-1].to_i
