@@ -57,15 +57,8 @@ class Analyzer
 				elsif k[0] == "S" && k[1] != "p" && k[1] != 'e'
 					# puts "#{key}: #{value}"
 					# s_stats_array.push(analyze_s(key, value))
-				elsif k[0..1] == 'OC'
-					# puts "#{key}: #{value}"
-					# puts "\n"
-					# oc_points_array << create_oc_ropes_moves_array(key, value)
-				elsif k[0] == 'R'
-					# puts "#{key}: #{value}"
-					# ropes_points_array << create_oc_ropes_moves_array(key, value)
 				else
-					# puts "#{key}: #{value}"
+					puts "#{key}: #{value}"
 				end
 		}
 
@@ -213,30 +206,36 @@ class Analyzer
 	# 2d6 roll so that it can be used to calculate the
 	# probabilty of rolls for GC, OC & DC.
 	def calculate_probability(key)
-		k = key[-2..-1]
+
+		
+		if key.respond_to?(:to_i)
+			k = key[-2..-1].to_i
+		else
+			k = key
+		end
 
 		case k
-		when '02'
+		when 2
 			return TWO_TWELVE
-		when '03'
+		when 3
 			return THREE_ELEVEN
-		when '04'
+		when 4
 			return FOUR_TEN
-		when '05'
+		when 5
 			return FIVE_NINE
-		when '06'
+		when 6
 			return SIX_EIGHT
-		when '07'
+		when 7
 			return SEVEN
-		when '08'
+		when 8
 			return SIX_EIGHT
-		when '09'
+		when 9
 			return FIVE_NINE
-		when '10'
+		when 10
 			return FOUR_TEN
-		when '11'
+		when 11
 			return THREE_ELEVEN
-		when '12'
+		when 12
 			return TWO_TWELVE
 		else
 			return 0
