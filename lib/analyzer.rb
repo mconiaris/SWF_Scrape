@@ -288,7 +288,7 @@ class Analyzer
 		prob = 0
 
 		h.each_key {
-			|k| prob += calculate_probability(k)
+			|k| prob += calculate_probability(symbol_to_integer(k))
 		}
 
 		return prob
