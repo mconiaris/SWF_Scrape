@@ -308,13 +308,13 @@ class Analyzer
 
 		case v
 		when 'A'
-			return DC_A * calculate_probability(k).to_f
+			return DC_A * calculate_probability(symbol_to_integer(k)).to_f
 		when 'B'
 			# puts result
 			return 0
 		when 'C'
 			# puts result
-			return DC_C * calculate_probability(k).to_f
+			return DC_C * calculate_probability(symbol_to_integer(k)).to_f
 		when "REVERSE"
 			# puts result
 			return 0
