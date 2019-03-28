@@ -203,6 +203,7 @@ class Analyzer
 
 
 	def symbol_to_integer(key)
+		k = key[-2..-1].to_i
 	end
 
 	# TODO: Refactor this.
@@ -212,8 +213,6 @@ class Analyzer
 	def calculate_probability(key)
 
 puts "Key = #{key} is a #{key.class}"
-
-		k = key[-2..-1].to_i
 
 		case k
 		when 2
