@@ -28,6 +28,17 @@ RSpec.describe Analyzer do
 		end
 	end
 
+	describe '#symbol_to_integer' do
+		context 'when \':GC02\' is passed' do
+			it 'should return an integer.' do
+				expect(analyze.symbol_to_integer(:GO02)).to be_a(Integer)
+			end
+			it 'that equals 2' do
+				expect(analyze.symbol_to_integer(:GO02)).to eq(2)
+			end
+		end
+	end
+
 	describe '#calculate_probability' do
 		context 'when when \'OC02\' is passed' do
 			it 'should return 1/36.to_r' do
