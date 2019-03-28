@@ -201,7 +201,9 @@ class Analyzer
 		return @statistics
 	end
 
-	
+
+	def symbol_to_integer(key)
+	end
 
 	# TODO: Refactor this.
 	# This returns the rational number (fraction) of a
