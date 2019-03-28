@@ -216,37 +216,26 @@ class Analyzer
 
 		case k
 		when 2
-			puts "k is #{k} is a #{k.class}\n\n"
 			return TWO_TWELVE
 		when 3
-			puts "k is #{k} is a #{k.class}\n\n"
 			return THREE_ELEVEN
 		when 4
-			puts "k is #{k} is a #{k.class}\n\n"
 			return FOUR_TEN
 		when 5
-			puts "k is #{k} is a #{k.class}\n\n"
 			return FIVE_NINE
 		when 6
-			puts "k is #{k} is a #{k.class}\n\n"
 			return SIX_EIGHT
 		when 7
-			puts "k is #{k} is a #{k.class}\n\n"
 			return SEVEN
 		when 8
-			puts "k is #{k} is a #{k.class}\n\n"
 			return SIX_EIGHT
 		when 9
-			puts "k is #{k} is a #{k.class}\n\n"
 			return FIVE_NINE
 		when 10
-			puts "k is #{k} is a #{k.class}\n\n"
 			return FOUR_TEN
 		when 11
-			puts "k is #{k} is a #{k.class}\n\n"
 			return THREE_ELEVEN
 		when 12
-			puts "k is #{k} is a #{k.class}\n\n"
 			return TWO_TWELVE
 		else
 			return 0
