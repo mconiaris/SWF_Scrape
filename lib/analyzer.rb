@@ -201,6 +201,8 @@ class Analyzer
 		return @statistics
 	end
 
+	
+
 	# TODO: Refactor this.
 	# This returns the rational number (fraction) of a
 	# 2d6 roll so that it can be used to calculate the
