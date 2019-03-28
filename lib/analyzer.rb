@@ -212,7 +212,6 @@ class Analyzer
 	# probabilty of rolls for GC, OC & DC.
 	def calculate_probability(key)
 
-		puts "Key = #{key} is a #{key.class}"
 		k = key
 
 		case k
