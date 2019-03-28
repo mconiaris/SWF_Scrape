@@ -245,6 +245,7 @@ class Analyzer
 	# Takes in wrestler hash and calculates the
 	# probability of an OC roll.
 	def calculate_gc_oc_roll_probability(key, value)
+
 		oc_roll_probability = 0
 
 		# Converts symbol key into a string so it can be 
@@ -273,6 +274,7 @@ class Analyzer
 		h.each_key {
 			|k| prob += calculate_probability(k)
 		}
+
 		return prob
 	end
 
@@ -291,12 +293,14 @@ class Analyzer
 		h.each_key {
 			|k| prob += calculate_probability(k)
 		}
+
 		return prob * gc_dc_roll_probability
 	end
 
 	# Tabulates the A, B & C return values and multiplies
 	# it by the probability of rolling them.
 	def calculate_dc_points(k,v)
+
 		case v
 		when 'A'
 			return DC_A * calculate_probability(k).to_f
