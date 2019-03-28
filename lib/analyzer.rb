@@ -546,29 +546,40 @@ end
 
 		if a.size == 2
 			s = Range.new(a[0].to_i, a[1].to_i)
-			
+
 			s.each { |x|
 				if x == 2
+					puts "When looking at sub probability: x is #{x} and is a #{x.class}\n\n"
 					num_range += TWO_TWELVE
 				elsif x == 3
+					puts "When looking at sub probability: x is #{x} and is a #{x.class}\n\n"
 					num_range += THREE_ELEVEN
 				elsif x == 4
+					puts "When looking at sub probability: x is #{x} and is a #{x.class}\n\n"
 					num_range += FOUR_TEN
 				elsif x == 5
+					puts "When looking at sub probability: x is #{x} and is a #{x.class}\n\n"
 					num_range += FIVE_NINE
 				elsif x == 6
+					puts "When looking at sub probability: x is #{x} and is a #{x.class}\n\n"
 					num_range += SIX_EIGHT
 				elsif x == 7
+					puts "When looking at sub probability: x is #{x} and is a #{x.class}\n\n"
 					num_range += SEVEN
 				elsif x == 8
+					puts "When looking at sub probability: x is #{x} and is a #{x.class}\n\n"
 					num_range += SIX_EIGHT
 				elsif x == 9
+					puts "When looking at sub probability: x is #{x} and is a #{x.class}\n\n"
 					num_range += FIVE_NINE
 				elsif x == 10
+					puts "When looking at sub probability: x is #{x} and is a #{x.class}\n\n"
 					num_range += FOUR_TEN
 				elsif x == 11
+					puts "When looking at sub probability: x is #{x} and is a #{x.class}\n\n"
 					num_range += THREE_ELEVEN
 				elsif x == 12
+					puts "When looking at sub probability: x is #{x} and is a #{x.class}\n\n"
 					num_range += TWO_TWELVE
 				else
 					puts "Incorrect number."
