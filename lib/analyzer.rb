@@ -266,7 +266,7 @@ class Analyzer
 
 		# Converts symbol key into a string so it can be 
 		# passed to the calculate_probabily method.
-		k = key.to_s
+		k = symbol_to_integer(key)
 
 		if value.include?('OC')
 			oc_roll_probability += calculate_probability(k)
