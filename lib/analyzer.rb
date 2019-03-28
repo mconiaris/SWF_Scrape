@@ -415,12 +415,12 @@ end
 		s_r_prob = 0
 
 		s_oc.each_key { |k| 
-			s_oc_prob += calculate_probability(k)
+			s_oc_prob += calculate_probability(symbol_to_integer(k))
 		}
 
 		# Does not include OC-Ropes roll probability
 		s_r.each_key { |k| 
-			s_r_prob += calculate_probability(k)
+			s_r_prob += calculate_probability(symbol_to_integer(k))
 		}
 
 		# Convert probability values into a hash
