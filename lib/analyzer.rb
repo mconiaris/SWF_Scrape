@@ -203,7 +203,7 @@ class Analyzer
 
 
 	def symbol_to_integer(key)
-		k = key[-2..-1].to_i
+		key[-2..-1].to_i
 	end
 
 	# TODO: Refactor this.
@@ -212,7 +212,8 @@ class Analyzer
 	# probabilty of rolls for GC, OC & DC.
 	def calculate_probability(key)
 
-puts "Key = #{key} is a #{key.class}"
+		puts "Key = #{key} is a #{key.class}"
+		k = key
 
 		case k
 		when 2
