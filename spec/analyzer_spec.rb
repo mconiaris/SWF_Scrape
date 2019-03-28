@@ -75,9 +75,9 @@ RSpec.describe Analyzer do
 				expect(analyze.calculate_probability(8)).to eq(5/36.to_r)
 			end
 		end
-		context 'when \'OC09\' is passed' do
+		context 'when an Integer of 9 is passed' do
 			it 'should return 4/36.to_r' do
-				expect(analyze.calculate_probability('OC09')).to eq(4/36.to_r)
+				expect(analyze.calculate_probability(9)).to eq(4/36.to_r)
 			end
 		end
 		context 'when \'OC10\' is passed' do
