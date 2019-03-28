@@ -346,21 +346,21 @@ end
 
 			if a.last == '*'
 				a.pop
-				x = a.last.to_f * calculate_probability(k)
+				x = a.last.to_f * calculate_probability(symbol_to_integer(k))
 				points_per_roll_array << x
 			elsif a.last == '(DQ)'
-				x = 5 * calculate_probability(k)
+				x = 5 * calculate_probability(symbol_to_integer(k))
 				points_per_roll_array << x
 			elsif a.last == 'P/A'
 				a.pop
-				x = a.last.to_f * calculate_probability(k)
+				x = a.last.to_f * calculate_probability(symbol_to_integer(k))
 				points_per_roll_array << x				
 			elsif a.last == '(XX)'
 				a.pop
-				x = a.last.to_f * calculate_probability(k)
+				x = a.last.to_f * calculate_probability(symbol_to_integer(k))
 				points_per_roll_array << x
 			else
-				x = a.last.to_f * calculate_probability(k)
+				x = a.last.to_f * calculate_probability(symbol_to_integer(k))
 				points_per_roll_array << x
 			end
 		}
