@@ -368,7 +368,7 @@ end
 	# then multip;ies it by the probability of rolling 
 	# Ropes
 	def calculate_ropes_points_per_roll_subtotal(points, oc_prob, ropes_prob)
-		x = points * oc_prob * ropes_prob
+		points * oc_prob * ropes_prob
 	end
 
 
