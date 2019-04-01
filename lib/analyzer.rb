@@ -356,7 +356,7 @@ end
 	# Takes in average points per OC and multiplies
 	# it by the probability of rolling OC
 	def calculate_oc_points_per_roll_subtotal(points, oc_prob)
-		x = points * oc_prob
+		points * oc_prob
 	end
 
 
