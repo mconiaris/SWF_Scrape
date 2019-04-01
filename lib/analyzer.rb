@@ -32,8 +32,6 @@ class Analyzer
 		dc_points_without_reverse = 0
 		dc_reverse_roll_probability = 0
 
-		
-		dc_points = 0
 		oc_pa_probability = 0
 		oc_points = 0
 		oc_points_array = []
