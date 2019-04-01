@@ -513,7 +513,7 @@ end
 
 		r = x_r + y_r
 
-		total = oc + r
+		oc + r
 	end
 
 	# TODO: Refactor to DRY
