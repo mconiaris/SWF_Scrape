@@ -32,7 +32,6 @@ class Analyzer
 		dc_points_without_reverse = 0
 		dc_reverse_roll_probability = 0
 
-		ropes_points = 0
 		ropes_points_array = []
 		s_points = 0
 		s_pin_attempts = 0
