@@ -26,7 +26,6 @@ class Analyzer
 	# the probablities and points totals.
 	def analyze(wrestler)
 
-		w = Hash.new
 		gc_oc_roll_probability = 0
 		gc_dc_roll_probability = 0
 
