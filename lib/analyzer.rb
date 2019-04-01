@@ -32,8 +32,6 @@ class Analyzer
 		dc_points_without_reverse = 0
 		dc_reverse_roll_probability = 0
 
-		xx_probability = 0
-
 		wrestler.values.each {
 			|key, value| k = key.to_s
 				if k[0..1] == 'GC'
