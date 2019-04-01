@@ -142,13 +142,6 @@ class Analyzer
 					specialty_roll_probability_hash,
 					0)
 
-				card_points_before_submission = 
-					card_points_per_round + 
-					dq_probability_per_round +
-					pa_probability_per_round +
-					sub_probability_per_round +
-					xx_probability_per_round
-
 		submission_loss_probabilty = sub_tag_probability(wrestler.values[:Sub])
 		tag_team_save_probabilty = sub_tag_probability(wrestler.values[:Tag])
 
