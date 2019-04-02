@@ -44,7 +44,7 @@ class Analyzer
 					# puts "#{key}: #{value}"
 					# s_stats_array.push(analyze_s(key, value))
 				else
-					puts "#{key}: #{value}"
+					puts "Else statement values: #{key}: #{value}"
 				end
 		}
 
