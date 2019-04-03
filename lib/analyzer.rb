@@ -142,8 +142,6 @@ class Analyzer
 					specialty_roll_probability_hash,
 					0)
 
-		tag_team_save_probabilty = sub_tag_probability(wrestler.values[:Tag])
-
 		# Adds up the points_per_round with the probability
 		# of rolling P/A, Sub, XX, or DQ and then subtracts
 		# it by the probability of submission.
@@ -171,7 +169,7 @@ class Analyzer
 		@statistics[:sub_probability_per_round] = sub_probability_per_round
 		@statistics[:xx_probability_per_round] = xx_probability_per_round
 		@statistics[:submission_loss_probabilty] = sub_tag_probability(wrestler.values[:Sub])
-		@statistics[:tag_team_save_probabilty] = tag_team_save_probabilty
+		@statistics[:tag_team_save_probabilty] = sub_tag_probability(wrestler.values[:Tag])
 		@statistics[:card_rating] = total_card_rating
 
 
