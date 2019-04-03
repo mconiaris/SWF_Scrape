@@ -27,6 +27,7 @@ def scraping(file)
 
 	# Add stats to wrestler instance
 	@wrestler.statistics = stats
+
 	@wrestler.wrestler_output(@wrestler)
 end
 
