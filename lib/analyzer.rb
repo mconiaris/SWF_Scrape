@@ -509,7 +509,6 @@ end
 		oc + r
 	end
 
-	# TODO: Refactor to DRY
 	# Takes SUB or TAG values and calculates probability 
 	# a card rolling that range.
 	def sub_tag_probability(a)
