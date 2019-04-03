@@ -142,7 +142,6 @@ class Analyzer
 					specialty_roll_probability_hash,
 					0)
 
-		submission_loss_probabilty = sub_tag_probability(wrestler.values[:Sub])
 		tag_team_save_probabilty = sub_tag_probability(wrestler.values[:Tag])
 
 		# Adds up the points_per_round with the probability
@@ -154,7 +153,7 @@ class Analyzer
 			sub_probability_per_round + 
 			xx_probability_per_round +
 			wrestler.values[:PriorityS].to_f -
-			submission_loss_probabilty
+			sub_tag_probability(wrestler.values[:Sub])
 
 
 		# Revise Wrestler Priority Numbers
@@ -171,7 +170,7 @@ class Analyzer
 		@statistics[:pa_probability_per_round] = pa_probability_per_round
 		@statistics[:sub_probability_per_round] = sub_probability_per_round
 		@statistics[:xx_probability_per_round] = xx_probability_per_round
-		@statistics[:submission_loss_probabilty] = submission_loss_probabilty
+		@statistics[:submission_loss_probabilty] = sub_tag_probability(wrestler.values[:Sub])
 		@statistics[:tag_team_save_probabilty] = tag_team_save_probabilty
 		@statistics[:card_rating] = total_card_rating
 
