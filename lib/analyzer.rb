@@ -22,6 +22,8 @@ class Analyzer
 		@statistics = Hash.new
 	end
 
+	# TODO: Set up attr_reader and writers (=) for variables
+	# TODO: Use getters to add values to hash directly
 	# Takes in Wrestler card information and calculates
 	# the probablities and points totals.
 	def analyze(wrestler)
