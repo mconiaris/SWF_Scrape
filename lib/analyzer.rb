@@ -145,7 +145,6 @@ class Analyzer
 		submission_loss_probabilty = sub_tag_probability(wrestler.values[:Sub])
 		tag_team_save_probabilty = sub_tag_probability(wrestler.values[:Tag])
 
-		# TODO: Fix the 5+ Singles Priority Issue
 		# Adds up the points_per_round with the probability
 		# of rolling P/A, Sub, XX, or DQ and then subtracts
 		# it by the probability of submission.
