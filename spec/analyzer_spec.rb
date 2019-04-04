@@ -1,7 +1,6 @@
 # TODO: Use Let with context nested into it.
 # TODO: Run rspec --profile 2 to test tests.
 
-# TODO: Fix let syntax. All of the tests are breaking.
 RSpec.describe Analyzer do
 	let(:analyze) { Analyzer.new }
 
