@@ -33,7 +33,7 @@ class Wrestler
 
 	def wrestler_values_output(wrestler)
 		f = File.new("files/#{wrestler.values[:name]}_values.csv", 'a')
-		f.write("Name, #{wrestler.values[:name]}\n")
-		f.write("Set, #{wrestler.values[:Set]}\n")
+		wrestler.values.each { |k, v|
+			f.write(k, ",", v, "\n")  }
 	end
 end
