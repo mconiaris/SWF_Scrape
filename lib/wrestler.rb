@@ -30,4 +30,10 @@ class Wrestler
 		f.write("#{wrestler.values[:name]},#{wrestler.values[:Set]}, #{wrestler.values[:PriorityS]}, #{wrestler.values[:PriorityT]}, #{wrestler.statistics[:tt_probability]}, #{wrestler.statistics[:card_rating]}, #{wrestler.statistics[:oc_probability]}, #{wrestler.statistics[:total_card_points_per_round]}, #{wrestler.statistics[:dq_probability_per_round]}, #{wrestler.statistics[:pa_probability_per_round]}, #{wrestler.statistics[:sub_probability_per_round]}, #{wrestler.statistics[:xx_probability_per_round]}, #{wrestler.statistics[:submission_loss_probabilty]}, #{wrestler.statistics[:tag_team_save_probabilty]}, \n")
 		f.close
 	end
+
+	def wrestler_values_output(wrestler)
+		f = File.new("files/#{wrestler.values[:name]}_values.csv", 'a')
+		f.write("Name, #{wrestler.values[:name]}\n")
+		f.write("Set, #{wrestler.values[:Set]}\n")
+	end
 end

@@ -28,9 +28,10 @@ def scraping(file)
 	# Add stats to wrestler instance
 	@wrestler.statistics = stats
 
-	binding.pry
+	# binding.pry
 
 	@wrestler.wrestler_output(@wrestler)
+	@wrestler.wrestler_values_output(@wrestler)
 end
 
 
