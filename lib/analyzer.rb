@@ -20,7 +20,6 @@ class Analyzer
 
 	def initialize
 		@statistics = Hash.new
-		@point_values = Hash.new
 	end
 
 	# TODO: Set up attr_reader and writers (=) for variables
@@ -175,7 +174,7 @@ class Analyzer
 		@statistics[:submission_loss_probabilty] = sub_tag_probability(wrestler.values[:Sub])
 		@statistics[:tag_team_save_probabilty] = sub_tag_probability(wrestler.values[:Tag])
 		@statistics[:card_rating] = total_card_rating
-
+		
 
 		return @statistics
 	end
@@ -318,7 +317,6 @@ end
 	def calculate_oc_and_ropes_points(wrestler)
 
 		points_per_roll_array = []
-
 
 		wrestler.each { |k, v|
 			a = v.split
