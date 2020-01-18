@@ -256,7 +256,6 @@ class Scraper
 			card_hash[k] = "REVERSE"
 		}
 
-
 		puts "Analyzing #{card_hash[:name]} of my Special set"
 		return card_hash
 	end

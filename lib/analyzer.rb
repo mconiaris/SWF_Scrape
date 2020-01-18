@@ -20,6 +20,7 @@ class Analyzer
 
 	def initialize
 		@statistics = Hash.new
+		@point_values = Hash.new
 	end
 
 	# TODO: Set up attr_reader and writers (=) for variables
