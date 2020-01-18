@@ -35,5 +35,8 @@ class Wrestler
 		f = File.new("files/#{wrestler.values[:name]}_values.csv", 'a')
 		wrestler.values.each { |k, v|
 			f.write(k, ",", v, "\n")  }
+		f.write("Sub:, #{wrestler.values[:Sub][0]}-#{wrestler.values[:Sub][1]}\n")
+		f.write("Tag:, #{wrestler.values[:Tag][0]}-#{wrestler.values[:Tag][1]}\n")
+		f.write("Priority:, #{wrestler.values[:PriorityS]}/#{wrestler.values[:PriorityT]}\n")
 	end
 end
