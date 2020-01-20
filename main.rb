@@ -22,6 +22,11 @@ def scraping(file)
 
 	# Create Wrestler object
 	@wrestler = Wrestler.new(moves)
+
+	# Isolate Moves Points Totals
+	points = @scrape.move_points(moves)
+	@wrestler.points = points
+
 	@analyzer = Analyzer.new
 	stats = @analyzer.analyze(@wrestler)
 

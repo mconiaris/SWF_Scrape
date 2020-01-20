@@ -156,7 +156,7 @@ class Scraper
 		h.each { |k,v| 
 			card_hash[k] = v.sub(' *', '*')
 		}
-		
+
 		puts "Analyzing #{card_hash[:name]} of #{card_hash[:Set]}"
 		return card_hash
 	end
@@ -339,10 +339,14 @@ class Scraper
 		end
 	end
 
+
 	def move_formatter(move)
 		a = move.split
 		a.each { |x| x.capitalize! }
 		a.join(' ')
 	end	
 
+	def move_points(hash)
+		
+	end
 end
