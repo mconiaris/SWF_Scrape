@@ -29,7 +29,101 @@ class Analyzer
 	# the probablities and points totals.
 	def move_points(hash)
 		points = Hash.new
+
+		gc_hash = hash.select { |k,v| k.to_s.include?('GC') }
+		oc_hash = gc_hash.select { |k,v| v.include?('OC') }
+
+		# Calculate OC count to calculate probablity.
+		points[:OC] = prob_points(oc_hash)
 		
+		# Create Symbols for Points
+		points[:DC02_points] = 0
+ 		points[:DC03_points] = 0
+ 		points[:DC04_points] = 0
+ 		points[:DC05_points] = 0
+ 		points[:DC06_points] = 0
+ 		points[:DC07_points] = 0
+ 		points[:DC08_points] = 0
+ 		points[:DC09_points] = 0
+ 		points[:DC10_points] = 0
+ 		points[:DC11_points] = 0
+ 		points[:DC12_points] = 0
+		
+		points[:Reverse] = 0
+		points[:Specialty_Roll_Probability_in_OC] = 0
+ 		
+ 		points[:S1_points] = 0
+ 		points[:S2_points] = 0
+ 		points[:S3_points] = 0
+ 		points[:S4_points] = 0
+ 		points[:S5_points] = 0
+ 		points[:S6_points] = 0
+
+ 		points[:OC02_points] = 0
+ 		points[:OC03_points] = 0
+ 		points[:OC04_points] = 0
+ 		points[:OC05_points] = 0
+ 		points[:OC06_points] = 0
+ 		points[:OC07_points] = 0
+ 		points[:OC08_points] = 0
+ 		points[:OC09_points] = 0
+ 		points[:OC10_points] = 0
+ 		points[:OC11_points] = 0
+ 		points[:OC12_points] = 0
+
+ 		points[:OC_Ropes_Roll_Probability] = 0
+ 		points[:Ropes_S_Roll_Probability] = 0
+
+ 		points[:RO02_points] = 0
+ 		points[:RO03_points] = 0
+ 		points[:RO04_points] = 0
+ 		points[:RO05_points] = 0
+ 		points[:RO06_points] = 0
+ 		points[:RO07_points] = 0
+ 		points[:RO08_points] = 0
+ 		points[:RO09_points] = 0
+ 		points[:RO10_points] = 0
+ 		points[:RO11_points] = 0
+ 		points[:RO12_points] = 0
+
+
+		# Determine Points for DC Rolls
+		dc_hash = hash.select { |k,v| k.to_s.include?('DC') }
+		dc_hash.each { | k,v|
+			if v == "A"
+				points["#{k}_points".to_sym] = 2
+			elsif v == "C"
+				points["#{k}_points".to_sym] = 4
+			else
+				points["#{k}_points".to_sym] = 0
+			end
+		}
+
+
+		binding.pry
+		return points
+	end
+
+	def prob_points(move)
+		# Calculate OC count to calculate probablity.
+		count = 0
+		move.each_key { |k|
+			if k.to_s.include?('02') || k.to_s.include?('12')
+				count = count + 1
+			elsif k.to_s.include?('03') || k.to_s.include?('11')
+				count = count +2
+			elsif k.to_s.include?('04') || k.to_s.include?('10')
+				count = count +3
+			elsif k.to_s.include?('05') || k.to_s.include?('09')
+				count = count +4
+			elsif k.to_s.include?('06') || k.to_s.include?('08')
+				count = count +5
+			else k.to_s.include?('07')
+				count = count +6
+			end
+		}
+
+		return count
 	end
 
 
