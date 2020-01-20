@@ -28,11 +28,11 @@ class Analyzer
 	# TODO: Consider a custom matcher for complicated math problems: https://github.com/dchelimsky/rspec/wiki/Custom-Matchers
 	# the probablities and points totals.
 	def move_points(hash)
-		binding.pry
+		points = Hash.new
 		
 	end
 
-	
+
 	def analyze(wrestler)
 
 		gc_oc_roll_probability = 0
