@@ -151,6 +151,12 @@ class Scraper
 			card_hash[k] = v.sub('Na', 'N/A')
 		}
 
+		# Fix formatting for * attempts
+		h = card_hash.select { |k,v| v.include?(' *') }
+		h.each { |k,v| 
+			card_hash[k] = v.sub(' *', '*')
+		}
+
 		puts "Analyzing #{card_hash[:name]} of #{card_hash[:Set]}"
 		return card_hash
 	end
