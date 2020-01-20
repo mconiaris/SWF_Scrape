@@ -270,7 +270,7 @@ class Analyzer
 	# TODO: Modify code so that REVERSE can be isolated
 	# no matter the case. Also make rspec test.
 	def calculate_reverse_roll_probability(wrestler_hash, gc_dc_roll_probability)
-		h = wrestler_hash.select { |k,v| v == 'REVERSE' }
+		h = wrestler_hash.select { |k,v| v == 'Reverse' }
 		prob = 0
 
 		h.each_key {

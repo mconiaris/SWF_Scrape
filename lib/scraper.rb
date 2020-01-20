@@ -156,8 +156,7 @@ class Scraper
 		h.each { |k,v| 
 			card_hash[k] = v.sub(' *', '*')
 		}
-# binding.pry
-
+		
 		puts "Analyzing #{card_hash[:name]} of #{card_hash[:Set]}"
 		return card_hash
 	end
