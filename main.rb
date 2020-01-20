@@ -30,7 +30,6 @@ def scraping(file)
 
 	@wrestler.wrestler_output(@wrestler)
 	@wrestler.wrestler_values_output(@wrestler)
-	@wrestler.wrestler_points_values(@wrestler)
 end
 
 

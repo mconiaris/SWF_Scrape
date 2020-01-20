@@ -40,11 +40,4 @@ class Wrestler
 		f.write("Priority:, #{wrestler.values[:PriorityS]}/#{wrestler.values[:PriorityT]}\n")
 	end
 
-	def wrestler_points_values(wrestler)
-		binding.pry
-		f = File.new("files/output/#{wrestler.values[:name]}_points_values.csv", 'a')
-		f.write("Sub:, #{wrestler.values[:Sub][0]}-#{wrestler.values[:Sub][1]}\n")
-		f.write("Tag:, #{wrestler.values[:Tag][0]}-#{wrestler.values[:Tag][1]}\n")
-		f.write("Priority:, #{wrestler.values[:PriorityS]}/#{wrestler.values[:PriorityT]}\n")
-	end
 end

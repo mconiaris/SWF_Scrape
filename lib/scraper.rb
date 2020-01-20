@@ -66,7 +66,7 @@ class Scraper
 		card_hash[:DC12] = left[14].split[1]
 
 		# Add Specialty Values to hash
-		card_hash[:Specialty] = left[16]
+		card_hash[:Specialty] = move_formatter(left[16])
 		card_hash[:S1] = left[17].split(/\d\s(.+)/)[1]
 		card_hash[:S2] = left[18].split(/\d\s(.+)/)[1]
 		card_hash[:S3] = left[19].split(/\d\s(.+)/)[1]
@@ -118,6 +118,14 @@ class Scraper
 				card_hash[:Set] = right[24]
 			end
 		end
+
+		# If Wrestler moves are in all caps, format it for consistency.
+		card_hash.each { |k,v| 
+			if k.to_s.include?('OC') || k.to_s.include?('RO') || v.include?('REVERSE')
+				card_hash[k] = move_formatter(v)
+			end
+		}
+
 
 		puts "Analyzing #{card_hash[:name]} of #{card_hash[:Set]}"
 		return card_hash
@@ -212,8 +220,9 @@ class Scraper
 		card_hash[:PriorityS] = calculate_singles_priority(singles_priority)
 		card_hash[:PriorityT] = calculate_tag_team_priority(tag_team_priority)
 
+
 		# Add Offensive Card to hash
-		card_hash[:OC02] = right[1].split(/\d+\s+(.+)/)[1]
+		card_hash[:OC02] = right[1].split(/\d+\s+(.+)/)[1]		
 		card_hash[:OC03] = right[2].split(/\d+\s+(.+)/)[1]
 		card_hash[:OC04] = right[3].split(/\d+\s+(.+)/)[1]
 		card_hash[:OC05] = right[4].split(/\d+\s+(.+)/)[1]
@@ -237,6 +246,8 @@ class Scraper
 		card_hash[:RO10] = right[21].split(/\d+\s+(.+)/)[1]
 		card_hash[:RO11] = right[22].split(/\d+\s+(.+)/)[1]
 		card_hash[:RO12] = right[23].split(/\d+\s+(.+)/)[1]
+
+
 
 		if right[24] != nil
 			card_hash[:Set] = right[24][0]
@@ -297,4 +308,11 @@ class Scraper
 			return priority.to_i.to_s
 		end
 	end
+
+	def move_formatter(move)
+		a = move.split
+		a.each { |x| x.capitalize! }
+		a.join(' ')
+	end	
+
 end
