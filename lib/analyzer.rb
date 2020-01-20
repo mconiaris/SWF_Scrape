@@ -105,15 +105,22 @@ class Analyzer
 		points[:Reverse] = prob_points(r_hash)
 
 		# Determine (S) Points
-		points[:S1_points] = hash[:S1].split
- 		points[:S2_points] = hash[:S2].split
- 		points[:S3_points] = hash[:S3].split
- 		points[:S4_points] = hash[:S4].split
- 		points[:S5_points] = hash[:S5].split
- 		points[:S6_points] = hash[:S6].split
+		points[:S1_points] = hash[:S1].split[0].to_i
+ 		points[:S2_points] = hash[:S2].split[0].to_i
+ 		points[:S3_points] = hash[:S3].split[0].to_i
+ 		points[:S4_points] = hash[:S4].split[0].to_i
+ 		points[:S5_points] = hash[:S5].split[0].to_i
+ 		points[:S6_points] = hash[:S6].split[0].to_i
 
  		o_moves = hash.select { |k,v| k.to_s.include?('OC') }
  		o_moves.each { |k,v|
+ 			key = "#{k}_points".to_sym
+ 			m = remove_move(v)
+ 			points[key] = m
+ 		}
+
+ 		r_moves = hash.select { |k,v| k.to_s.include?('RO') }
+ 		r_moves.each { |k,v|
  			key = "#{k}_points".to_sym
  			m = remove_move(v)
  			points[key] = m
@@ -151,8 +158,12 @@ class Analyzer
 
 		if m.size == 1
 			return 0
+		elsif m.last == "(S)" || m.last == "Ropes"
+			return 0
+		elsif m.last == "(DQ)"
+			return 5
 		elsif m.last.to_i == 0
-			return [m[-1].to_i, m.last]
+			return m[-1].to_i
 		elsif m.last.to_i != 0
 			return m.last.to_i
 		else
