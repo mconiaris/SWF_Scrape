@@ -138,6 +138,11 @@ class Scraper
 			card_hash[k] = v.sub('P/a', 'P/A')
 		}
 
+		# Make sure that (S) text is uppercase
+		h = card_hash.select { |k,v| v.include?('(s)') }
+		h.each { |k,v| 
+			card_hash[k] = v.sub('(s)', '(S)')
+		}
 
 
 		puts "Analyzing #{card_hash[:name]} of #{card_hash[:Set]}"
