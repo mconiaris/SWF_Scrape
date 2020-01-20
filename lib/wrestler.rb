@@ -26,7 +26,7 @@ class Wrestler
 		puts "Tag Team Save Probability: #{wrestler.statistics[:tag_team_save_probabilty]}"
 		puts "\n"
 
-		f = File.new('files/output/results.csv', 'a')
+		f = File.new('files/results.csv', 'a')
 		f.write("#{wrestler.values[:name]},#{wrestler.values[:Set]}, #{wrestler.values[:PriorityS]}, #{wrestler.values[:PriorityT]}, #{wrestler.statistics[:tt_probability]}, #{wrestler.statistics[:card_rating]}, #{wrestler.statistics[:oc_probability]}, #{wrestler.statistics[:total_card_points_per_round]}, #{wrestler.statistics[:dq_probability_per_round]}, #{wrestler.statistics[:pa_probability_per_round]}, #{wrestler.statistics[:sub_probability_per_round]}, #{wrestler.statistics[:xx_probability_per_round]}, #{wrestler.statistics[:submission_loss_probabilty]}, #{wrestler.statistics[:tag_team_save_probabilty]}, \n")
 		f.close
 	end
