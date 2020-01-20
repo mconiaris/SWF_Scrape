@@ -126,6 +126,13 @@ class Scraper
 			end
 		}
 
+		# Make sure that DQ text is uppercase
+		h = card_hash.select { |k,v| v.include?('(dq)') }
+		h.each { |k,v| 
+			card_hash[k] = v.sub('dq', 'DQ')
+		}
+
+
 
 		puts "Analyzing #{card_hash[:name]} of #{card_hash[:Set]}"
 		return card_hash
