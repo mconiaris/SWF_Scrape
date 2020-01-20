@@ -99,6 +99,25 @@ class Analyzer
 			end
 		}
 
+		# Calculate Reverse Roll in DC
+		reverse_roll = 0
+		r_hash = hash.select { |k,v| v.include?('Reverse') }
+		points[:Reverse] = prob_points(r_hash)
+
+		# Determine (S) Points
+		points[:S1_points] = hash[:S1].split
+ 		points[:S2_points] = hash[:S2].split
+ 		points[:S3_points] = hash[:S3].split
+ 		points[:S4_points] = hash[:S4].split
+ 		points[:S5_points] = hash[:S5].split
+ 		points[:S6_points] = hash[:S6].split
+
+ 		o_moves = hash.select { |k,v| k.to_s.include?('OC') }
+ 		o_moves.each { |k,v|
+ 			key = "#{k}_points".to_sym
+ 			m = remove_move(v)
+ 			points[key] = m
+ 		}
 
 		binding.pry
 		return points
@@ -125,6 +144,29 @@ class Analyzer
 
 		return count
 	end
+
+
+	def remove_move(move)
+		m = move.split
+
+		if m.size == 1
+			return 0
+		elsif m.last.to_i == 0
+			return [m[-1].to_i, m.last]
+		elsif m.last.to_i != 0
+			return m.last.to_i
+		else
+			return "Error"
+		end
+	end
+
+
+
+
+
+
+
+
 
 
 	def analyze(wrestler)
