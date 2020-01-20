@@ -145,7 +145,8 @@ class Scraper
 		}
 
 		# Make sure that N/A text is uppercase
-		h = card_hash.select { |k,v| v.include?('Na') }
+		h = card_hash.select { |k,v| k.to_s.include?('RO') }
+		h.select { |k,v| v.include?('Na') }
 		h.each { |k,v| 
 			card_hash[k] = v.sub('Na', 'N/A')
 		}
