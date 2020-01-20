@@ -63,7 +63,7 @@ class Analyzer
 		ropes_roll_probability_hash = calculate_specialty_dq_pa_subm_xx_probability(wrestler.values, 'ROPES')
 		specialty_roll_probability_hash = calculate_specialty_dq_pa_subm_xx_probability(wrestler.values, '(S)')
 		submission_move_roll_probability_hash = calculate_specialty_dq_pa_subm_xx_probability(wrestler.values, '*')
-		xx_roll_probability_hash = calculate_specialty_dq_pa_subm_xx_probability(wrestler.values, '(XX)')
+		xx_roll_probability_hash = calculate_specialty_dq_pa_subm_xx_probability(wrestler.values, '(xx)')
 
 		# This is from the Specialty card only.
 		specialty_points_and_attributes_hash = calculate_specialty_points_and_attributes(wrestler.values)
@@ -74,7 +74,7 @@ class Analyzer
 		oc_and_ropes_pa_probability = calculate_specialty_dq_pa_subm_xx_probability(wrestler.values, 'P/A')
 		oc_and_ropes_specialty_probability = calculate_specialty_dq_pa_subm_xx_probability(wrestler.values, '(S)')
 		oc_and_ropes_subm_probability = calculate_specialty_dq_pa_subm_xx_probability(wrestler.values, '*')
-		oc_and_ropes_xx_probability = calculate_specialty_dq_pa_subm_xx_probability(wrestler.values, '(XX)')
+		oc_and_ropes_xx_probability = calculate_specialty_dq_pa_subm_xx_probability(wrestler.values, '(xx)')
 
 		# Seperate OC and Ropes cards and then calculate
 		# points per roll
@@ -332,7 +332,7 @@ end
 				a.pop
 				x = a.last.to_f * calculate_probability(symbol_to_integer(k))
 				points_per_roll_array << x				
-			elsif a.last == '(XX)'
+			elsif a.last == '(xx)'
 				a.pop
 				x = a.last.to_f * calculate_probability(symbol_to_integer(k))
 				points_per_roll_array << x
