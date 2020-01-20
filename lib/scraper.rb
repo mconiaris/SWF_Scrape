@@ -345,8 +345,5 @@ class Scraper
 		a.each { |x| x.capitalize! }
 		a.join(' ')
 	end	
-
-	def move_points(hash)
-		
-	end
+	
 end
