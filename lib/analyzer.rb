@@ -241,7 +241,7 @@ class Analyzer
 		points[:s_roll_prob_sub] = get_s_extra_values(hash, '*')
 		points[:s_roll_prob_xx] = get_s_extra_values(hash, '(xx)')
  			
-		# Find DQ, P/A, * and XX Values in OC
+		# Find DQ, P/A, * and XX Values in OC and Ropes
  		dq_hash = create_value_hash(hash, "(DQ)")
  		pa_hash = create_value_hash(hash, "P/A")
  		sub_hash = create_value_hash(hash, "*")
@@ -267,9 +267,17 @@ class Analyzer
  			points[key.to_sym] = 1
  		}
 
+ 		# Determine Ropes Roll Enumerator
+ 		oc_ropes_hash = hash.select { |k,v| v.include?('Ropes') }
+ 		points[:OC_Ropes_Roll_Probability] = prob_points(oc_ropes_hash)
+
+ 		# Determine Enumerator of (S) rolls in Ropes
+ 		ropes_s_hash = hash.select { |k,v| k.to_s.include?("RO") && v.include?('(S)') }
+ 		points[:Ropes_S_Roll_Probability] = prob_points(ropes_s_hash)
+
  		points[:sub_numerator] = sub_tag_numerator(hash[:Sub])
  		points[:tag_save_numerator] = sub_tag_numerator(hash[:Tag])
-binding.pry
+
 		return points
 	end
 
