@@ -89,6 +89,7 @@ class Analyzer
 		points[:OC10_dq] = 0
 		points[:OC11_dq] = 0
 		points[:OC12_dq] = 0
+
 		points[:OC02_pa] = 0 
 		points[:OC03_pa] = 0 
 		points[:OC04_pa] = 0 
@@ -100,28 +101,30 @@ class Analyzer
 		points[:OC10_pa] = 0
 		points[:OC11_pa] = 0
 		points[:OC12_pa] = 0
-		points[:OC02_sub]
-		points[:OC03_sub]
-		points[:OC04_sub]
-		points[:OC05_sub]
-		points[:OC06_sub]
-		points[:OC07_sub]
-		points[:OC08_sub]
-		points[:OC09_sub]
-		points[:OC10_sub]
-		points[:OC11_sub]
-		points[:OC12_sub]
-		points[:OC02_xx]
-		points[:OC03_xx]
-		points[:OC04_xx]
-		points[:OC05_xx]
-		points[:OC06_xx]
-		points[:OC07_xx]
-		points[:OC08_xx]
-		points[:OC09_xx]
-		points[:OC10_xx]
-		points[:OC11_xx]
-		points[:OC12_xx]
+
+		points[:OC02_sub] = 0
+		points[:OC03_sub] = 0
+		points[:OC04_sub] = 0
+		points[:OC05_sub] = 0
+		points[:OC06_sub] = 0
+		points[:OC07_sub] = 0
+		points[:OC08_sub] = 0
+		points[:OC09_sub] = 0
+		points[:OC10_sub] = 0
+		points[:OC11_sub] = 0
+		points[:OC12_sub] = 0
+
+		points[:OC02_xx] = 0
+		points[:OC03_xx] = 0
+		points[:OC04_xx] = 0
+		points[:OC05_xx] = 0
+		points[:OC06_xx] = 0
+		points[:OC07_xx] = 0
+		points[:OC08_xx] = 0
+		points[:OC09_xx] = 0
+		points[:OC10_xx] = 0
+		points[:OC11_xx] = 0
+ 		points[:OC12_xx] = 0
 
  		points[:OC_Ropes_Roll_Probability] = 0
  		points[:Ropes_S_Roll_Probability] = 0
@@ -237,12 +240,34 @@ class Analyzer
  		points[:s_roll_prob_pa] = get_s_extra_values(hash, 'P/A')
 		points[:s_roll_prob_sub] = get_s_extra_values(hash, '*')
 		points[:s_roll_prob_xx] = get_s_extra_values(hash, '(xx)')
+ 			
+		# Find DQ, P/A, * and XX Values in OC
+ 		dq_hash = create_value_hash(hash, "(DQ)")
+ 		pa_hash = create_value_hash(hash, "P/A")
+ 		sub_hash = create_value_hash(hash, "*")
+ 		xx_hash = create_value_hash(hash, "(xx)")
 
- 		# Find (S) Values
- 		s = get_extra_values(hash, '(S)')
- 		s.each_key { |k| 
-
+ 		dq_hash.each { |k,v| 
+ 			key = k.to_s + "_dq"
+ 			points[key.to_sym] = 1
  		}
+
+		pa_hash.each { |k,v| 
+ 			key = k.to_s + "_pa"
+ 			points[key.to_sym] = 1
+ 		} 	
+
+ 		sub_hash.each { |k,v| 
+ 			key = k.to_s + "_sub"
+ 			points[key.to_sym] = 1
+ 		}
+
+ 		xx_hash.each { |k,v| 
+ 			key = k.to_s + "_xx"
+ 			points[key.to_sym] = 1
+ 		}
+ 		binding.pry
+ 		
 
 
 		return points
@@ -299,7 +324,9 @@ class Analyzer
 		return h.size
 	end
 
-
+	def create_value_hash(moves, value)
+		return moves.select { |k,v| v.include?(value)}
+	end
 
 
 
