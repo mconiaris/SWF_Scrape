@@ -37,6 +37,9 @@ class Analyzer
 
 		# Calculate OC count to calculate probablity.
 		points[:OC] = prob_points(oc_hash)
+
+		# Create SYmbols for TT
+		points[:GC_TT_Roll] = 0
 		
 		# Create Symbols for Points
 		points[:DC02_points] = 0
@@ -191,6 +194,11 @@ class Analyzer
 
 		points[:sub_numerator] = 0
 		points[:tag_save_numerator] = 0
+
+		# Calculate TT Roll in GC
+		r_hash = hash.select { |k,v| v.include?('OC/TT') }
+		points[:GC_TT_Roll] = prob_points(r_hash)
+
 
 		# Determine Points for DC Rolls
 		dc_hash = hash.select { |k,v| k.to_s.include?('DC') }
