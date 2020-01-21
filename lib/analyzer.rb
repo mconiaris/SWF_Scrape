@@ -162,7 +162,8 @@ class Analyzer
 		elsif m.last == "(DQ)"
 			return 5
 		elsif m.last.to_i == 0
-			return m[-1].to_i
+			binding.pry
+			return m[m.length-2].to_i
 		elsif m.last.to_i != 0
 			return m.last.to_i
 		else
