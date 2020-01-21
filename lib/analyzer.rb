@@ -61,6 +61,11 @@ class Analyzer
  		points[:S5_points] = 0
  		points[:S6_points] = 0
 
+ 		points[:s_roll_prob_dq] = 0
+		points[:s_roll_prob_pa] = 0
+		points[:s_roll_prob_sub] = 0
+		points[:s_roll_prob_xx] = 0
+
  		points[:OC02_points] = 0
  		points[:OC03_points] = 0
  		points[:OC04_points] = 0
@@ -72,6 +77,51 @@ class Analyzer
  		points[:OC10_points] = 0
  		points[:OC11_points] = 0
  		points[:OC12_points] = 0
+
+		points[:OC02_dq] = 0 
+		points[:OC03_dq] = 0 
+		points[:OC04_dq] = 0 
+		points[:OC05_dq] = 0 
+		points[:OC06_dq] = 0 
+		points[:OC07_dq] = 0 
+		points[:OC08_dq] = 0 
+		points[:OC09_dq] = 0 
+		points[:OC10_dq] = 0
+		points[:OC11_dq] = 0
+		points[:OC12_dq] = 0
+		points[:OC02_pa] = 0 
+		points[:OC03_pa] = 0 
+		points[:OC04_pa] = 0 
+		points[:OC05_pa] = 0 
+		points[:OC06_pa] = 0 
+		points[:OC07_pa] = 0 
+		points[:OC08_pa] = 0 
+		points[:OC09_pa] = 0 
+		points[:OC10_pa] = 0
+		points[:OC11_pa] = 0
+		points[:OC12_pa] = 0
+		points[:OC02_sub]
+		points[:OC03_sub]
+		points[:OC04_sub]
+		points[:OC05_sub]
+		points[:OC06_sub]
+		points[:OC07_sub]
+		points[:OC08_sub]
+		points[:OC09_sub]
+		points[:OC10_sub]
+		points[:OC11_sub]
+		points[:OC12_sub]
+		points[:OC02_xx]
+		points[:OC03_xx]
+		points[:OC04_xx]
+		points[:OC05_xx]
+		points[:OC06_xx]
+		points[:OC07_xx]
+		points[:OC08_xx]
+		points[:OC09_xx]
+		points[:OC10_xx]
+		points[:OC11_xx]
+		points[:OC12_xx]
 
  		points[:OC_Ropes_Roll_Probability] = 0
  		points[:Ropes_S_Roll_Probability] = 0
@@ -88,6 +138,56 @@ class Analyzer
  		points[:RO11_points] = 0
  		points[:RO12_points] = 0
 
+		points[:RO02_dq] = 0
+		points[:RO03_dq] = 0
+		points[:RO04_dq] = 0
+		points[:RO05_dq] = 0
+		points[:RO06_dq] = 0
+		points[:RO07_dq] = 0
+		points[:RO08_dq] = 0
+		points[:RO09_dq] = 0
+		points[:RO10_dq] = 0
+		points[:RO11_dq] = 0
+		points[:RO12_dq] = 0
+
+		points[:RO02_pa] = 0
+		points[:RO03_pa] = 0
+		points[:RO04_pa] = 0
+		points[:RO05_pa] = 0
+		points[:RO06_pa] = 0
+		points[:RO07_pa] = 0
+		points[:RO08_pa] = 0
+		points[:RO09_pa] = 0
+		points[:RO10_pa] = 0
+		points[:RO11_pa] = 0
+		points[:RO12_pa] = 0
+
+		points[:RO02_sub] = 0
+		points[:RO03_sub] = 0
+		points[:RO04_sub] = 0
+		points[:RO05_sub] = 0
+		points[:RO06_sub] = 0
+		points[:RO07_sub] = 0
+		points[:RO08_sub] = 0
+		points[:RO09_sub] = 0
+		points[:RO10_sub] = 0
+		points[:RO11_sub] = 0
+		points[:RO12_sub] = 0
+
+		points[:RO02_xx] = 0
+		points[:RO03_xx] = 0
+		points[:RO04_xx] = 0
+		points[:RO05_xx] = 0
+		points[:RO06_xx] = 0
+		points[:RO07_xx] = 0
+		points[:RO08_xx] = 0
+		points[:RO09_xx] = 0
+		points[:RO10_xx] = 0
+		points[:RO11_xx] = 0
+		points[:RO12_xx] = 0
+
+		points[:sub_numerator] = 0
+		points[:tag_save_numerator] = 0
 
 		# Determine Points for DC Rolls
 		dc_hash = hash.select { |k,v| k.to_s.include?('DC') }
@@ -127,6 +227,14 @@ class Analyzer
  			m = remove_move(v)
  			points[key] = m
  		}
+
+ 		# Find (S) Values
+ 		s = get_extra_values(hash, '(S)')
+ 		s.each { |k,v| 
+
+ 		}
+
+ 		binding.pry
 
 		return points
 	end
@@ -173,8 +281,8 @@ class Analyzer
 	end
 
 	# Generate the 
-	def get_oc_s_numerator(moves)
-		binding.pry
+	def get_extra_values(moves, value)
+		h = moves.select { |k,v| v.include?(value) }
 	end
 
 
