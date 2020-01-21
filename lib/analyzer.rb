@@ -228,13 +228,22 @@ class Analyzer
  			points[key] = m
  		}
 
+ 		# Get Specialty Roll Numerator in OC
+ 		s = hash.select { |k,v| k.to_s.include?('OC') && v.include?('(S)') }
+ 		points[:Specialty_Roll_Probability_in_OC] = prob_points(s)
+
+ 		# Get Specialty Roll Probability-DQ (x/6)
+ 		points[:s_roll_prob_dq] = get_s_extra_values(hash, '(DQ)')
+ 		points[:s_roll_prob_pa] = get_s_extra_values(hash, 'P/A')
+		points[:s_roll_prob_sub] = get_s_extra_values(hash, '*')
+		points[:s_roll_prob_xx] = get_s_extra_values(hash, '(xx)')
+
  		# Find (S) Values
  		s = get_extra_values(hash, '(S)')
- 		s.each { |k,v| 
+ 		s.each_key { |k| 
 
  		}
 
- 		binding.pry
 
 		return points
 	end
@@ -283,6 +292,11 @@ class Analyzer
 	# Generate the 
 	def get_extra_values(moves, value)
 		h = moves.select { |k,v| v.include?(value) }
+	end
+
+	def get_s_extra_values(moves, value)
+		h = moves.select { |k,v| k.to_s.include?('S') && v.include?(value) }
+		return h.size
 	end
 
 
