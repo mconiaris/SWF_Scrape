@@ -269,7 +269,7 @@ class Analyzer
 
  		points[:sub_numerator] = sub_tag_numerator(hash[:Sub])
  		points[:tag_save_numerator] = sub_tag_numerator(hash[:Tag])
-
+binding.pry
 		return points
 	end
 
