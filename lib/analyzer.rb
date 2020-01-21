@@ -266,8 +266,8 @@ class Analyzer
  			key = k.to_s + "_xx"
  			points[key.to_sym] = 1
  		}
- 		binding.pry
- 		
+
+binding.pry 		
 
 
 		return points
