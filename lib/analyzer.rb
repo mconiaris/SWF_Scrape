@@ -172,7 +172,10 @@ class Analyzer
 		end
 	end
 
-
+	# Generate the 
+	def get_oc_s_numerator(moves)
+		binding.pry
+	end
 
 
 
