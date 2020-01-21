@@ -36,6 +36,8 @@ def scraping(file)
 
 	@wrestler.wrestler_output(@wrestler)
 	@wrestler.wrestler_values_output(@wrestler)
+	@wrestler.wrestler_points_output(@wrestler)
+
 end
 
 
@@ -58,6 +60,7 @@ def scraping_converted(file)
 	@wrestler.statistics = stats
 	@wrestler.wrestler_output(@wrestler)
 	@wrestler.wrestler_points_values(@wrestler)
+	wrestler_points_output(@wrestler)
 end
 
 

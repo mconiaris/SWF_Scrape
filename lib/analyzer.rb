@@ -126,7 +126,6 @@ class Analyzer
  			points[key] = m
  		}
 
-		binding.pry
 		return points
 	end
 
