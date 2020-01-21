@@ -267,8 +267,8 @@ class Analyzer
  			points[key.to_sym] = 1
  		}
 
-binding.pry 		
-
+ 		points[:sub_numerator] = sub_tag_numerator(hash[:Sub])
+ 		points[:tag_save_numerator] = sub_tag_numerator(hash[:Tag])
 
 		return points
 	end
@@ -291,6 +291,27 @@ binding.pry
 				count = count +6
 			end
 		}
+		return count
+	end
+
+
+	def prob_sub_tag(value)
+		# Calculate OC count to calculate probablity.
+		count = 0
+
+		if value == '2' || value == '12'
+			count = count + 1
+		elsif value == '3' || value == '11'
+			count = count +2
+		elsif value == '4' || value == '10'
+			count = count +3
+		elsif value == '5' || value == '9'
+			count = count +4
+		elsif value == '6' || value == '8'
+			count = count +5
+		else value =='7'
+			count = count +6
+		end
 
 		return count
 	end
@@ -329,10 +350,30 @@ binding.pry
 	end
 
 
+	def sub_tag_numerator(values)
+		num = 0
+
+		if values.size == 2
+			s = Range.new(values[0], values[1])
+			s.each { |x|
+				num += prob_sub_tag(x)
+			}
+		elsif a.size == 1
+			x = values[0]
+			num += prob_sub_tag(x)
+		else
+			puts "Sub or Tag numbers are out of range."				
+		end
+		return num
+	end
 
 
 
 
+
+
+
+	# Determine Statistics
 	def analyze(wrestler)
 
 		gc_oc_roll_probability = 0
