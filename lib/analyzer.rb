@@ -27,6 +27,10 @@ class Analyzer
 	# Takes in Wrestler card information and calculates
 	# TODO: Consider a custom matcher for complicated math problems: https://github.com/dchelimsky/rspec/wiki/Custom-Matchers
 	# the probablities and points totals.
+
+	# ======================
+	# MOVE VALUES TO NUMBERS
+	# ======================
 	
 	# Isolate Numbers from Text
 	def move_points(hash)
