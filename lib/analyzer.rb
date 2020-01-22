@@ -16,15 +16,12 @@ class Analyzer
 	DC_C = 4
 	DC_R = 1
 
-
-
 	def initialize
 		@statistics = Hash.new
 	end
 
 	# TODO: Set up attr_reader and writers (=) for variables
 	# TODO: Use getters to add values to hash directly
-	# Takes in Wrestler card information and calculates
 	# TODO: Consider a custom matcher for complicated math problems: https://github.com/dchelimsky/rspec/wiki/Custom-Matchers
 	# the probablities and points totals.
 
