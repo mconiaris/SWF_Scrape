@@ -384,7 +384,9 @@ class Analyzer
 		return num
 	end
 
-
+	# ===================
+	# GENERATE STATISTICS
+	# ===================
 
 
 
