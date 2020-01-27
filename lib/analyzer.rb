@@ -416,7 +416,7 @@ class Analyzer
 		}
 
 		# Generate probabiity of OC roll in GC
-		gc_oc_roll_probability = wrestler.points[:OC]/36.to_r
+		gc_oc_roll_probability = calculate_gc_oc_roll_probability(wrestler.points[:OC])
 
 
 
@@ -593,6 +593,10 @@ class Analyzer
 	# ============
 	# GENERAL CARD
 	# ============
+	def calculate_gc_oc_roll_probability(oc)
+		oc/36.to_r
+	end
+
 
 	# Takes in probability of an OC roll and uses it to
 	# determine the probability of a DC roll.
