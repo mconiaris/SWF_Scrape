@@ -401,12 +401,10 @@ class Analyzer
 		dc_points_without_reverse = 0
 		dc_reverse_roll_probability = 0
 
+
 		wrestler.values.each {
 			|key, value| k = key.to_s
-				if k[0..1] == 'GC'
-					# puts "#{key}: #{value}"
-					gc_oc_roll_probability += calculate_gc_oc_roll_probability(key, value.strip)
-				elsif k[0..1] == 'DC'
+				if k[0..1] == 'DC'
 					# puts "#{key}: #{value}"
 					dc_points_without_reverse += calculate_dc_points(key, value.strip)
 				elsif k[0] == "S" && k[1] != "p" && k[1] != 'e'
@@ -416,6 +414,11 @@ class Analyzer
 					# puts "Else statement values: #{key}: #{value}"
 				end
 		}
+
+		# Generate probabiity of OC roll in GC
+		gc_oc_roll_probability = wrestler.points[:OC]/36.to_r
+
+
 
 		# Calculate temporary Variables
 		gc_dc_roll_probability = calculate_gc_dc_roll_probability(gc_oc_roll_probability)
@@ -590,22 +593,6 @@ class Analyzer
 	# ============
 	# GENERAL CARD
 	# ============
-
-	# Takes in wrestler hash and calculates the
-	# probability of an OC roll.
-	def calculate_gc_oc_roll_probability(key, value)
-
-		oc_roll_probability = 0
-
-		# Converts symbol key into a string so it can be 
-		# passed to the calculate_probabily method.
-		k = symbol_to_integer(key)
-
-		if value.include?('OC')
-			oc_roll_probability += calculate_probability(k)
-		else return 0
-		end
-	end
 
 	# Takes in probability of an OC roll and uses it to
 	# determine the probability of a DC roll.
