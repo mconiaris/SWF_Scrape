@@ -388,11 +388,6 @@ class Analyzer
 	# GENERATE STATISTICS
 	# ===================
 
-
-
-
-
-	# Determine Statistics
 	def analyze(wrestler)
 
 		gc_oc_roll_probability = 0
@@ -400,7 +395,6 @@ class Analyzer
 
 		dc_points_without_reverse = 0
 		dc_reverse_roll_probability = 0
-
 
 		wrestler.values.each {
 			|key, value| k = key.to_s
@@ -418,11 +412,14 @@ class Analyzer
 		# Generate probabiity of OC roll in GC
 		gc_oc_roll_probability = calculate_gc_oc_roll_probability(wrestler.points[:OC])
 
-
-
 		# Calculate temporary Variables
 		gc_dc_roll_probability = calculate_gc_dc_roll_probability(gc_oc_roll_probability)
 		
+
+
+
+
+
 		# DC roll probability x Reverse roll probability
 		dc_reverse_roll_probability = calculate_reverse_roll_probability(wrestler.values, gc_dc_roll_probability)
 		dc_points_without_reverse = gc_dc_roll_probability * dc_points_without_reverse
@@ -593,6 +590,8 @@ class Analyzer
 	# ============
 	# GENERAL CARD
 	# ============
+
+	# Takes in OC enumerator and divides it by 36
 	def calculate_gc_oc_roll_probability(oc)
 		oc/36.to_r
 	end
