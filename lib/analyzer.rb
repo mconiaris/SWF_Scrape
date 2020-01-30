@@ -396,18 +396,13 @@ class Analyzer
 		dc_points_without_reverse = 0
 		dc_reverse_roll_probability = 0
 
-		wrestler.values.each {
-			|key, value| k = key.to_s
-				if k[0..1] == 'DC'
-					# puts "#{key}: #{value}"
-					dc_points_without_reverse += calculate_dc_points(key, value.strip)
-				elsif k[0] == "S" && k[1] != "p" && k[1] != 'e'
-					# puts "#{key}: #{value}"
-					# s_stats_array.push(analyze_s(key, value))
-				else
-					# puts "Else statement values: #{key}: #{value}"
-				end
+
+		# Determine DC Points per roll
+		dc_hash = wrestler.points.select { |k,v| 
+			k.to_s.include?("DC")
 		}
+		dc_points_without_reverse = calculate_dc_points(dc_hash)
+
 
 		# Generate probabiity of OC roll in GC
 		gc_oc_roll_probability = calculate_gc_oc_roll_probability(wrestler.points[:OC])
@@ -417,6 +412,7 @@ class Analyzer
 		
 		# DC roll probability x Reverse roll probability
 		dc_reverse_roll_probability = calculate_reverse_roll_probability(wrestler.points, gc_dc_roll_probability)
+
 		dc_points_without_reverse = gc_dc_roll_probability * dc_points_without_reverse
 
 
@@ -630,25 +626,10 @@ class Analyzer
 		return prob * gc_dc_roll_probability
 	end
 
-	# Tabulates the A, B & C return values and multiplies
-	# it by the probability of rolling them.
-	def calculate_dc_points(k,v)
-
-		case v
-		when 'A'
-			return DC_A * calculate_probability(symbol_to_integer(k)).to_f
-		when 'B'
-			# puts result
-			return 0
-		when 'C'
-			# puts result
-			return DC_C * calculate_probability(symbol_to_integer(k)).to_f
-		when "REVERSE"
-			# puts result
-			return 0
-		when "Reverse"
-			return 0
-		end
+	# Multiplies DC roll point by probabiliy of rolling it.
+	def calculate_dc_points(hash)
+			binding.pry
+			return hash
 	end
 
 # Takes in the DC Points per roll (without Reverse)
