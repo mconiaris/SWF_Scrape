@@ -333,6 +333,27 @@ class Analyzer
 		return count
 	end
 
+	def individual_move_prob(value)
+		# Calculate OC count to calculate probablity.
+		count = 0
+
+		if value.include?('02') || value.include?('12')
+			count = count + 1
+		elsif value.include?('03') || value.include?('11')
+			count = count +2
+		elsif value.include?('04') || value.include?('10')
+			count = count +3
+		elsif value.include?('05') || value.include?('09')
+			count = count +4
+		elsif value.include?('06') || value.include?('08')
+			count = count +5
+		else value.include?('07')
+			count = count +6
+		end
+
+		return count
+	end
+
 
 	def remove_move(move)
 		m = move.split
@@ -628,8 +649,13 @@ class Analyzer
 
 	# Multiplies DC roll point by probabiliy of rolling it.
 	def calculate_dc_points(hash)
-			binding.pry
-			return hash
+			# Return sum of points per roll * probability
+			x = 0
+			hash.each { |k,v|
+				k = k.to_s.delete("_points")
+				x += v.to_f * (individual_move_prob(k)/36.to_r)
+			}
+			return x
 	end
 
 # Takes in the DC Points per roll (without Reverse)
