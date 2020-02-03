@@ -418,6 +418,7 @@ class Analyzer
 		# Generate probabiity of OC roll in GC
 		gc_oc_roll_probability = calculate_gc_oc_roll_probability(wrestler.points[:OC])
 
+
 		# Calculate temporary Variables
 		gc_dc_roll_probability = calculate_gc_dc_roll_probability(gc_oc_roll_probability)
 		
