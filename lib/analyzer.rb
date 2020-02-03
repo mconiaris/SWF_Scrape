@@ -290,6 +290,7 @@ class Analyzer
 		return points
 	end
 
+
 	def prob_points(move)
 		# Calculate OC count to calculate probablity.
 		count = 0
@@ -333,6 +334,7 @@ class Analyzer
 		return count
 	end
 
+
 	def individual_move_prob(value)
 		# Calculate OC count to calculate probablity.
 		count = 0
@@ -373,15 +375,18 @@ class Analyzer
 		end
 	end
 
+
 	# Generate the 
 	def get_extra_values(moves, value)
 		h = moves.select { |k,v| v.include?(value) }
 	end
 
+
 	def get_s_extra_values(moves, value)
 		h = moves.select { |k,v| k.to_s.include?('S') && v.include?(value) }
 		return h.size
 	end
+
 
 	def create_value_hash(moves, value)
 		return moves.select { |k,v| v.include?(value)}
@@ -404,6 +409,13 @@ class Analyzer
 		end
 		return num
 	end
+
+
+
+
+
+
+
 
 	# ===================
 	# GENERATE STATISTICS
@@ -442,7 +454,8 @@ class Analyzer
 
 		# 2d6 roll in Offensive and Ropes cards.
 		dq_roll_probability_hash = calculate_specialty_dq_pa_subm_xx_probability(wrestler.points, '_dq')
-		# ropes_roll_probability_hash = calculate_specialty_dq_pa_subm_xx_probability(wrestler.points, 'ROPES')
+
+		ropes_roll_probability_hash = calculate_specialty_dq_pa_subm_xx_probability(wrestler.points, 'ROPES')
 		# specialty_roll_probability_hash = calculate_specialty_dq_pa_subm_xx_probability(wrestler.points, '(S)')
 		submission_move_roll_probability_hash = calculate_specialty_dq_pa_subm_xx_probability(wrestler.points, '_sub')
 		xx_roll_probability_hash = calculate_specialty_dq_pa_subm_xx_probability(wrestler.points, '_xx')
@@ -454,7 +467,7 @@ class Analyzer
 		# 2d6 x Offensive Card roll or 2d6 * Ropes Card roll
 		oc_and_ropes_dq_probability = calculate_specialty_dq_pa_subm_xx_probability(wrestler.points, '_dq')
 		oc_and_ropes_pa_probability = calculate_specialty_dq_pa_subm_xx_probability(wrestler.points, '_pa')
-		# oc_and_ropes_specialty_probability = calculate_specialty_dq_pa_subm_xx_probability(wrestler.points, '(S)')
+		oc_and_ropes_specialty_probability = calculate_specialty_dq_pa_subm_xx_probability(wrestler.points, '(S)')
 		oc_and_ropes_subm_probability = calculate_specialty_dq_pa_subm_xx_probability(wrestler.points, '_sub')
 		oc_and_ropes_xx_probability = calculate_specialty_dq_pa_subm_xx_probability(wrestler.points, '_xx')
 
@@ -602,6 +615,13 @@ class Analyzer
 		end
 	end
 	
+
+
+
+
+
+
+
 
 	# ============
 	# GENERAL CARD
