@@ -290,6 +290,7 @@ class Analyzer
 		return points
 	end
 
+
 	def prob_points(move)
 		# Calculate OC count to calculate probablity.
 		count = 0
