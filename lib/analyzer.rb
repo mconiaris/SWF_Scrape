@@ -421,14 +421,14 @@ class Analyzer
 		# Calculate temporary Variables
 		gc_dc_roll_probability = calculate_gc_dc_roll_probability(gc_oc_roll_probability)
 		
+
+
+
+
+
 		# DC roll probability x Reverse roll probability
-		dc_reverse_roll_probability = calculate_reverse_roll_probability(wrestler.points, gc_dc_roll_probability)
-
+		dc_reverse_roll_probability = calculate_reverse_roll_probability(wrestler.values, gc_dc_roll_probability)
 		dc_points_without_reverse = gc_dc_roll_probability * dc_points_without_reverse
-
-
-
-
 
 		# 2d6 roll in Offensive and Ropes cards.
 		dq_roll_probability_hash = calculate_specialty_dq_pa_subm_xx_probability(wrestler.points, '_dq')
@@ -635,12 +635,17 @@ class Analyzer
 	# ==============
 	# DEFENSIVE CARD
 	# ==============
-	# Takes in wrestler card hash Reverse probabilty
-	# and multiplies it by the probability of rolling
-	# the DC card.
+	# Takes in wrestler card hash and searches for OC/TT
+	# rolls and then calculates their probability.
+	# TODO: Modify code so that REVERSE can be isolated
+	# no matter the case. Also make rspec test.
 	def calculate_reverse_roll_probability(wrestler_hash, gc_dc_roll_probability)
+		h = wrestler_hash.select { |k,v| v == 'Reverse' }
+		prob = 0
 
-		prob = wrestler_hash[:Reverse]/36.to_r
+		h.each_key {
+			|k| prob += calculate_probability(symbol_to_integer(k))
+		}
 
 		return prob * gc_dc_roll_probability
 	end
