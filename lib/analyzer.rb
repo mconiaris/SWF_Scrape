@@ -21,7 +21,6 @@ class Analyzer
 	end
 
 
-
 	# ==========
 	# OLDER CODE
 	# ==========
@@ -41,168 +40,111 @@ class Analyzer
 		# Calculate OC count to calculate probablity.
 		points[:OC] = prob_points(oc_hash)
 
-		# Create SYmbols for TT
-		points[:GC_TT_Roll] = 0
+		# Calculate TT Roll in GC
+		r_hash = hash.select { |k,v| v.include?('OC/TT') }
+		points[:GC_TT_Roll] = prob_points(r_hash)
+
 		
 		# Create Symbols for Points
-		points[:DC02_points] = 0
- 		points[:DC03_points] = 0
- 		points[:DC04_points] = 0
- 		points[:DC05_points] = 0
- 		points[:DC06_points] = 0
- 		points[:DC07_points] = 0
- 		points[:DC08_points] = 0
- 		points[:DC09_points] = 0
- 		points[:DC10_points] = 0
- 		points[:DC11_points] = 0
- 		points[:DC12_points] = 0
+		for i in 2..12 do
+			dc_points = "DC%02d_points" % i
+			points[dc_points.to_sym] = 0
+			i += 1
+		end
 		
 		points[:Reverse] = 0
 		points[:Specialty_Roll_Probability_in_OC] = 0
- 		
- 		points[:S1_points] = 0
- 		points[:S2_points] = 0
- 		points[:S3_points] = 0
- 		points[:S4_points] = 0
- 		points[:S5_points] = 0
- 		points[:S6_points] = 0
+
+ 		for i in 1..6 do
+			s_points = "S#{i}_points"
+			points[s_points.to_sym] = 0
+			i += 1
+		end
 
  		points[:s_roll_prob_dq] = 0
 		points[:s_roll_prob_pa] = 0
 		points[:s_roll_prob_sub] = 0
 		points[:s_roll_prob_xx] = 0
 
- 		points[:OC02_points] = 0
- 		points[:OC03_points] = 0
- 		points[:OC04_points] = 0
- 		points[:OC05_points] = 0
- 		points[:OC06_points] = 0
- 		points[:OC07_points] = 0
- 		points[:OC08_points] = 0
- 		points[:OC09_points] = 0
- 		points[:OC10_points] = 0
- 		points[:OC11_points] = 0
- 		points[:OC12_points] = 0
+		# TODO: Refactor this into one method
+		for i in 2..12 do
+			oc_points = "OC%02d_points" % i
+			points[oc_points.to_sym] = 0
+			i += 1
+		end
 
-		points[:OC02_dq] = 0 
-		points[:OC03_dq] = 0 
-		points[:OC04_dq] = 0 
-		points[:OC05_dq] = 0 
-		points[:OC06_dq] = 0 
-		points[:OC07_dq] = 0 
-		points[:OC08_dq] = 0 
-		points[:OC09_dq] = 0 
-		points[:OC10_dq] = 0
-		points[:OC11_dq] = 0
-		points[:OC12_dq] = 0
+		# TODO: Refactor this into one method
+		for i in 2..12 do
+			oc_dq = "OC%02d_dq" % i
+			points[oc_dq.to_sym] = 0
+			i += 1
+		end
 
-		points[:OC02_pa] = 0 
-		points[:OC03_pa] = 0 
-		points[:OC04_pa] = 0 
-		points[:OC05_pa] = 0 
-		points[:OC06_pa] = 0 
-		points[:OC07_pa] = 0 
-		points[:OC08_pa] = 0 
-		points[:OC09_pa] = 0 
-		points[:OC10_pa] = 0
-		points[:OC11_pa] = 0
-		points[:OC12_pa] = 0
+		# TODO: Refactor this into one method
+		for i in 2..12 do
+			oc_pa = "OC%02d_pa" % i
+			points[oc_pa.to_sym] = 0
+			i += 1
+		end
 
-		points[:OC02_sub] = 0
-		points[:OC03_sub] = 0
-		points[:OC04_sub] = 0
-		points[:OC05_sub] = 0
-		points[:OC06_sub] = 0
-		points[:OC07_sub] = 0
-		points[:OC08_sub] = 0
-		points[:OC09_sub] = 0
-		points[:OC10_sub] = 0
-		points[:OC11_sub] = 0
-		points[:OC12_sub] = 0
+		# TODO: Refactor this into one method
+		for i in 2..12 do
+			oc_sub = "OC%02d_sub" % i
+			points[oc_sub.to_sym] = 0
+			i += 1
+		end
 
-		points[:OC02_xx] = 0
-		points[:OC03_xx] = 0
-		points[:OC04_xx] = 0
-		points[:OC05_xx] = 0
-		points[:OC06_xx] = 0
-		points[:OC07_xx] = 0
-		points[:OC08_xx] = 0
-		points[:OC09_xx] = 0
-		points[:OC10_xx] = 0
-		points[:OC11_xx] = 0
- 		points[:OC12_xx] = 0
+		# TODO: Refactor this into one method
+		for i in 2..12 do
+			oc_xx = "OC%02d_xx" % i
+			points[oc_xx.to_sym] = 0
+			i += 1
+		end
+		
 
  		points[:OC_Ropes_Roll_Probability] = 0
  		points[:Ropes_S_Roll_Probability] = 0
 
- 		points[:RO02_points] = 0
- 		points[:RO03_points] = 0
- 		points[:RO04_points] = 0
- 		points[:RO05_points] = 0
- 		points[:RO06_points] = 0
- 		points[:RO07_points] = 0
- 		points[:RO08_points] = 0
- 		points[:RO09_points] = 0
- 		points[:RO10_points] = 0
- 		points[:RO11_points] = 0
- 		points[:RO12_points] = 0
+ 		# TODO: Refactor this into one method
+ 		for i in 2..12 do
+			r_points = "RO%02d_points" % i
+			points[r_points.to_sym] = 0
+			i += 1
+		end
 
-		points[:RO02_dq] = 0
-		points[:RO03_dq] = 0
-		points[:RO04_dq] = 0
-		points[:RO05_dq] = 0
-		points[:RO06_dq] = 0
-		points[:RO07_dq] = 0
-		points[:RO08_dq] = 0
-		points[:RO09_dq] = 0
-		points[:RO10_dq] = 0
-		points[:RO11_dq] = 0
-		points[:RO12_dq] = 0
+		# TODO: Refactor this into one method
+		for i in 2..12 do
+			r_dq = "RO%02d_dq" % i
+			points[r_dq.to_sym] = 0
+			i += 1
+		end
 
-		points[:RO02_pa] = 0
-		points[:RO03_pa] = 0
-		points[:RO04_pa] = 0
-		points[:RO05_pa] = 0
-		points[:RO06_pa] = 0
-		points[:RO07_pa] = 0
-		points[:RO08_pa] = 0
-		points[:RO09_pa] = 0
-		points[:RO10_pa] = 0
-		points[:RO11_pa] = 0
-		points[:RO12_pa] = 0
+		# TODO: Refactor this into one method
+		for i in 2..12 do
+			r_pa = "RO%02d_pa" % i
+			points[r_pa.to_sym] = 0
+			i += 1
+		end
 
-		points[:RO02_sub] = 0
-		points[:RO03_sub] = 0
-		points[:RO04_sub] = 0
-		points[:RO05_sub] = 0
-		points[:RO06_sub] = 0
-		points[:RO07_sub] = 0
-		points[:RO08_sub] = 0
-		points[:RO09_sub] = 0
-		points[:RO10_sub] = 0
-		points[:RO11_sub] = 0
-		points[:RO12_sub] = 0
+		# TODO: Refactor this into one method
+		for i in 2..12 do
+			r_sub = "RO%02d_sub" % i
+			points[r_sub.to_sym] = 0
+			i += 1
+		end
 
-		points[:RO02_xx] = 0
-		points[:RO03_xx] = 0
-		points[:RO04_xx] = 0
-		points[:RO05_xx] = 0
-		points[:RO06_xx] = 0
-		points[:RO07_xx] = 0
-		points[:RO08_xx] = 0
-		points[:RO09_xx] = 0
-		points[:RO10_xx] = 0
-		points[:RO11_xx] = 0
-		points[:RO12_xx] = 0
+		# TODO: Refactor this into one method
+		for i in 2..12 do
+			r_xx = "RO%02d_xx" % i
+			points[r_xx.to_sym] = 0
+			i += 1
+		end
 
 		points[:sub_numerator] = 0
 		points[:tag_save_numerator] = 0
 
-		# Calculate TT Roll in GC
-		r_hash = hash.select { |k,v| v.include?('OC/TT') }
-		points[:GC_TT_Roll] = prob_points(r_hash)
-
-
+binding.pry
+		
 		# Determine Points for DC Rolls
 		dc_hash = hash.select { |k,v| k.to_s.include?('DC') }
 		dc_hash.each { | k,v|
