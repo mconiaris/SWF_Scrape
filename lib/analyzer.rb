@@ -362,7 +362,6 @@ class Analyzer
 
 		# Calculate temporary Variables
 		gc_dc_roll_probability = return_rational(wrestler.points[:DC])
-binding.pry
 
 
 
@@ -385,7 +384,7 @@ binding.pry
 		
 		# DC roll probability x Reverse roll probability
 		dc_reverse_roll_probability = calculate_reverse_roll_probability(wrestler.points, gc_dc_roll_probability)
-
+binding.pry
 		dc_points_without_reverse = gc_dc_roll_probability * dc_points_without_reverse
 
 
@@ -554,8 +553,8 @@ binding.pry
 	# and multiplies it by the probability of rolling
 	# the DC card.
 	def calculate_reverse_roll_probability(wrestler_hash, gc_dc_roll_probability)
-
-		prob = wrestler_hash[:Reverse]/36.to_r
+		prob = return_rational(wrestler_hash[:Reverse])
+binding.pry
 
 		return prob * gc_dc_roll_probability
 	end
