@@ -1,25 +1,6 @@
 class Analyzer
 
-	attr_accessor :statistics
 	
-	# Constants for Dice Rolls
-	TWO_TWELVE = '1/36'.to_r
-	THREE_ELEVEN = '2/36'.to_r
-	FOUR_TEN = '3/36'.to_r
-	FIVE_NINE = '4/36'.to_r
-	SIX_EIGHT = '5/36'.to_r
-	SEVEN = '6/36'.to_r
-
-	# Constants for DC
-	DC_A = 2
-	DC_B = 0
-	DC_C = 4
-	DC_R = 1
-
-	def initialize
-		@statistics = Hash.new
-	end
-
 	# TODO: Set up attr_reader and writers (=) for variables
 	# TODO: Use getters to add values to hash directly
 	# TODO: Consider a custom matcher for complicated math problems: https://github.com/dchelimsky/rspec/wiki/Custom-Matchers
@@ -892,5 +873,24 @@ end
 	# REFACTORED CODE
 	# ===============
 
-
+	attr_accessor :statistics
 	
+	# Constants for Dice Rolls
+	TWO_TWELVE = '1/36'.to_r
+	THREE_ELEVEN = '2/36'.to_r
+	FOUR_TEN = '3/36'.to_r
+	FIVE_NINE = '4/36'.to_r
+	SIX_EIGHT = '5/36'.to_r
+	SEVEN = '6/36'.to_r
+
+	# Constants for DC
+	DC_A = 2
+	DC_B = 0
+	DC_C = 4
+	DC_R = 1
+
+	def initialize
+		@statistics = Hash.new
+	end
+
+
