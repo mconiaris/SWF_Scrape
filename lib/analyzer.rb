@@ -883,3 +883,9 @@ end
 		return num_range.to_f
 	end
 end
+
+
+	# ===============
+	# REFACTORED CODE
+	# ===============
+
