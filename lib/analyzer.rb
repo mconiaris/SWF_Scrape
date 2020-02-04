@@ -34,6 +34,7 @@ class Analyzer
 
 		# Calculate OC count to calculate probablity.
 		points[:OC] = prob_points(oc_hash)
+		points[:DC] = 36 - points[:OC]
 
 		# Calculate TT Roll in GC
 		r_hash = hash.select { |k,v| v.include?('OC/TT') }
@@ -139,7 +140,6 @@ class Analyzer
 		points[:tag_save_numerator] = 0
 
 
-
 		# Determine Points for DC Rolls
 		dc_hash = hash.select { |k,v| k.to_s.include?('DC') }
 		dc_hash.each { | k,v|
@@ -230,26 +230,98 @@ class Analyzer
 	end
 
 
+
+
+	# ==============================
+	# METHODS TO GENERATE STATISTICS
+	# ==============================
+
+	def symbol_to_integer(key)
+		key[-2..-1].to_i
+	end
+
+
+	# TODO: replace all pro_points with this
+	# 2d6 roll so that it can be used to calculate the
+	# probabilty of rolls for GC, OC & DC.
+	def calculate_probability(key)
+
+		k = key
+
+		case k
+		when 2
+			return TWO_TWELVE
+		when 3
+			return THREE_ELEVEN
+		when 4
+			return FOUR_TEN
+		when 5
+			return FIVE_NINE
+		when 6
+			return SIX_EIGHT
+		when 7
+			return SEVEN
+		when 8
+			return SIX_EIGHT
+		when 9
+			return FIVE_NINE
+		when 10
+			return FOUR_TEN
+		when 11
+			return THREE_ELEVEN
+		when 12
+			return TWO_TWELVE
+		else
+			return 0
+		end
+	end
+	
+
+	def remove_move(move)
+		m = move.split
+
+		if m.size == 1
+			return 0
+		elsif m.last == "(S)" || m.last == "Ropes"
+			return 0
+		elsif m.last == "(DQ)"
+			return 5
+		elsif m.last.to_i == 0
+			return m[m.length-2].to_i
+		elsif m.last.to_i != 0
+			return m.last.to_i
+		else
+			return "Error"
+		end
+	end
+
+
 	def prob_points(move)
 		# Calculate OC count to calculate probablity.
 		count = 0
 		move.each_key { |k|
-			if k.to_s.include?('02') || k.to_s.include?('12')
-				count = count + 1
-			elsif k.to_s.include?('03') || k.to_s.include?('11')
-				count = count +2
-			elsif k.to_s.include?('04') || k.to_s.include?('10')
-				count = count +3
-			elsif k.to_s.include?('05') || k.to_s.include?('09')
-				count = count +4
-			elsif k.to_s.include?('06') || k.to_s.include?('08')
-				count = count +5
-			else k.to_s.include?('07')
-				count = count +6
-			end
+			count += calculate_probability(symbol_to_integer(k))
 		}
 		return count
 	end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 	def prob_sub_tag(value)
@@ -295,23 +367,7 @@ class Analyzer
 	end
 
 
-	def remove_move(move)
-		m = move.split
-
-		if m.size == 1
-			return 0
-		elsif m.last == "(S)" || m.last == "Ropes"
-			return 0
-		elsif m.last == "(DQ)"
-			return 5
-		elsif m.last.to_i == 0
-			return m[m.length-2].to_i
-		elsif m.last.to_i != 0
-			return m.last.to_i
-		else
-			return "Error"
-		end
-	end
+	
 
 	# Generate the 
 	def get_extra_values(moves, value)
@@ -345,14 +401,28 @@ class Analyzer
 		return num
 	end
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 	# ===================
 	# GENERATE STATISTICS
 	# ===================
 
 	def analyze(wrestler)
-
-		gc_oc_roll_probability = 0
-		gc_dc_roll_probability = 0
 
 		dc_points_without_reverse = 0
 		dc_reverse_roll_probability = 0
@@ -502,46 +572,7 @@ class Analyzer
 	end
 
 
-	def symbol_to_integer(key)
-		key[-2..-1].to_i
-	end
 
-	# TODO: Refactor this.
-	# This returns the rational number (fraction) of a
-	# 2d6 roll so that it can be used to calculate the
-	# probabilty of rolls for GC, OC & DC.
-	def calculate_probability(key)
-
-		k = key
-
-		case k
-		when 2
-			return TWO_TWELVE
-		when 3
-			return THREE_ELEVEN
-		when 4
-			return FOUR_TEN
-		when 5
-			return FIVE_NINE
-		when 6
-			return SIX_EIGHT
-		when 7
-			return SEVEN
-		when 8
-			return SIX_EIGHT
-		when 9
-			return FIVE_NINE
-		when 10
-			return FOUR_TEN
-		when 11
-			return THREE_ELEVEN
-		when 12
-			return TWO_TWELVE
-		else
-			return 0
-		end
-	end
-	
 
 	# ============
 	# GENERAL CARD
