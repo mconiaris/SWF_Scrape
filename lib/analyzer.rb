@@ -408,13 +408,14 @@ class Analyzer
 
 		# Seperate OC and Ropes cards and then calculate
 		# points per roll
-		oc_hash = wrestler.values.select { |k,v| k.to_s.include?('OC') }
-		ropes_hash = wrestler.values.select { |k,v| k.to_s.include?('R') }
+		oc_hash = wrestler.points.select { |k,v| k.to_s.include?('OC') && k.to_s.include?("_points")}
+		ropes_hash = wrestler.points.select { |k,v| k.to_s.include?('R') && k.to_s.include?("_points")}
 		
 		# Takes the oc_hash and ropes_hash and calculates
 		# the points per roll (2d6 * card). These values 
 		# do not include Specialty rolls.
 		oc_points_per_roll = calculate_oc_and_ropes_points(oc_hash)
+
 		ropes_points_per_roll = calculate_oc_and_ropes_points(ropes_hash)
 
 		# Subtotals
@@ -437,7 +438,6 @@ class Analyzer
 				dc_points_without_reverse, 
 				dc_reverse_roll_probability, 
 				oc_points_per_roll_total)
-
 
 			# Calculate Total Card Values
 			card_points_per_round = oc_points_per_roll_total +
@@ -585,33 +585,15 @@ end
 	# ==============
 	# TODO: Factor out analyssis into a method to DRY
 	def calculate_oc_and_ropes_points(wrestler)
+		# points_per_roll_array = []
+		points_per_roll = 0
 
-		points_per_roll_array = []
-
-		wrestler.each { |k, v|
-			a = v.split
-
-			if a.last == '*'
-				a.pop
-				x = a.last.to_f * calculate_probability(symbol_to_integer(k))
-				points_per_roll_array << x
-			elsif a.last == '(DQ)'
-				x = 5 * calculate_probability(symbol_to_integer(k))
-				points_per_roll_array << x
-			elsif a.last == 'P/A'
-				a.pop
-				x = a.last.to_f * calculate_probability(symbol_to_integer(k))
-				points_per_roll_array << x				
-			elsif a.last == '(xx)'
-				a.pop
-				x = a.last.to_f * calculate_probability(symbol_to_integer(k))
-				points_per_roll_array << x
-			else
-				x = a.last.to_f * calculate_probability(symbol_to_integer(k))
-				points_per_roll_array << x
-			end
+		wrestler.each { |k,v|
+			k = k.to_s.delete("_points").to_sym
+			points_per_roll += (v * return_rational(calculate_probability(symbol_to_integer(k))).to_f)
 		}
-		return points_per_roll_array.sum
+
+		return points_per_roll
 	end
 
 	# Takes in average points per OC and multiplies
