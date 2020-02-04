@@ -97,7 +97,6 @@ class Analyzer
 			i += 1
 		end
 		
-
  		points[:OC_Ropes_Roll_Probability] = 0
  		points[:Ropes_S_Roll_Probability] = 0
 
@@ -138,7 +137,6 @@ class Analyzer
 
 		points[:sub_numerator] = 0
 		points[:tag_save_numerator] = 0
-
 
 		# Determine Points for DC Rolls
 		dc_hash = hash.select { |k,v| k.to_s.include?('DC') }
@@ -225,11 +223,8 @@ class Analyzer
 
  		points[:sub_numerator] = sub_tag_numerator(hash[:Sub])
  		points[:tag_save_numerator] = sub_tag_numerator(hash[:Tag])
-
 		return points
 	end
-
-
 
 
 	# ==============================
@@ -306,65 +301,47 @@ class Analyzer
 	end
 
 
+	# Takes in Wrestler Values Array of Sub values, 
+	# converts them to integers and then a range and
+	# determines the probabillity of a submission.
+	def sub_tag_numerator(values)
+		num = 0
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	def prob_sub_tag(value)
-		# Calculate OC count to calculate probablity.
-		count = 0
-
-		if value == '2' || value == '12'
-			count = count + 1
-		elsif value == '3' || value == '11'
-			count = count +2
-		elsif value == '4' || value == '10'
-			count = count +3
-		elsif value == '5' || value == '9'
-			count = count +4
-		elsif value == '6' || value == '8'
-			count = count +5
-		else value =='7'
-			count = count +6
+		if values.size == 2
+			s = Range.new(values[0].to_i, values[1].to_i)
+			s.each { |x|
+				num += calculate_probability(x)
+			}
+		elsif a.size == 1
+			x = values[0].to_i
+			num += calculate_probability(x)
+		else
+			puts "Sub or Tag numbers are out of range."				
 		end
-
-		return count
+		return num
 	end
 
-	def individual_move_prob(value)
-		# Calculate OC count to calculate probablity.
-		count = 0
 
-		if value.include?('02') || value.include?('12')
-			count = count + 1
-		elsif value.include?('03') || value.include?('11')
-			count = count +2
-		elsif value.include?('04') || value.include?('10')
-			count = count +3
-		elsif value.include?('05') || value.include?('09')
-			count = count +4
-		elsif value.include?('06') || value.include?('08')
-			count = count +5
-		else value.include?('07')
-			count = count +6
-		end
 
-		return count
-	end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 	
@@ -384,22 +361,6 @@ class Analyzer
 	end
 
 
-	def sub_tag_numerator(values)
-		num = 0
-
-		if values.size == 2
-			s = Range.new(values[0], values[1])
-			s.each { |x|
-				num += prob_sub_tag(x)
-			}
-		elsif a.size == 1
-			x = values[0]
-			num += prob_sub_tag(x)
-		else
-			puts "Sub or Tag numbers are out of range."				
-		end
-		return num
-	end
 
 
 
@@ -618,16 +579,21 @@ class Analyzer
 		return prob * gc_dc_roll_probability
 	end
 
+
 	# Multiplies DC roll point by probabiliy of rolling it.
 	def calculate_dc_points(hash)
+
+			# Remove DC Roll from hash
+			hash.delete(:DC)
 			# Return sum of points per roll * probability
 			x = 0
 			hash.each { |k,v|
 				k = k.to_s.delete("_points")
-				x += v.to_f * (individual_move_prob(k)/36.to_r)
+				x += v.to_f * calculate_probability(symbol_to_integer(k))/36.to_f
 			}
 			return x
 	end
+
 
 # Takes in the DC Points per roll (without Reverse)
 # and adds them to (DC roll probability x Total OC points)
