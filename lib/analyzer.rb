@@ -22,9 +22,9 @@ class Analyzer
 
 
 
-	# ===============
-	# REFACTORED CODE
-	# ===============
+	# ==========
+	# OLDER CODE
+	# ==========
 
 
 	
