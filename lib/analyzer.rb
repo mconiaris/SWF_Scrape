@@ -37,9 +37,7 @@ class Analyzer
 		points[:DC] = calculate_gc_dc_roll_probability(points[:OC])
 
 		# Calculate TT Roll in GC
-		r_hash = hash.select { |k,v| v.include?('OC/TT') }
-		points[:GC_TT_Roll] = prob_points(r_hash)
-
+		points[:GC_TT_Roll] = return_rational(calculate_gc_tt_roll_probability(hash))
 		
 		# Create Symbols for Points
 		for i in 2..12 do
@@ -495,7 +493,7 @@ class Analyzer
 		# Add values to wrestler's hash
 		@statistics[:oc_probability] = gc_oc_roll_probability
 		@statistics[:dc_probability] = gc_dc_roll_probability
-		@statistics[:tt_probability] = calculate_gc_tt_roll_probability(wrestler.values)
+		@statistics[:tt_probability] = wrestler.points[:GC_TT_Roll]
 		@statistics[:oc_card_points_per_round] = oc_points_per_roll_total
 		@statistics[:dc_card_points_per_round] = dc_points_per_roll_total
 		@statistics[:total_card_points_per_round] = card_points_per_round
