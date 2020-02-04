@@ -3,12 +3,12 @@ class Analyzer
 	attr_accessor :statistics
 	
 	# Constants for Dice Rolls
-	TWO_TWELVE = '1/36'.to_r
-	THREE_ELEVEN = '2/36'.to_r
-	FOUR_TEN = '3/36'.to_r
-	FIVE_NINE = '4/36'.to_r
-	SIX_EIGHT = '5/36'.to_r
-	SEVEN = '6/36'.to_r
+	TWO_TWELVE = 1
+	THREE_ELEVEN = 2
+	FOUR_TEN = 3
+	FIVE_NINE = 4
+	SIX_EIGHT = 5
+	SEVEN = 6
 
 	# Constants for DC
 	DC_A = 2
@@ -19,6 +19,21 @@ class Analyzer
 	def initialize
 		@statistics = Hash.new
 	end
+
+
+
+	# ===============
+	# REFACTORED CODE
+	# ===============
+
+
+	
+
+
+
+
+
+
 
 	# TODO: Set up attr_reader and writers (=) for variables
 	# TODO: Use getters to add values to hash directly
@@ -887,10 +902,3 @@ end
 	end
 end
 
-
-	# ===============
-	# REFACTORED CODE
-	# ===============
-
-
-	
