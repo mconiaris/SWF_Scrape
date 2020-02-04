@@ -223,6 +223,7 @@ class Analyzer
 
  		points[:sub_numerator] = sub_tag_numerator(hash[:Sub])
  		points[:tag_save_numerator] = sub_tag_numerator(hash[:Tag])
+
 		return points
 	end
 
@@ -348,6 +349,7 @@ class Analyzer
 
 	# Generate the 
 	def get_extra_values(moves, value)
+		binding.pry
 		h = moves.select { |k,v| v.include?(value) }
 	end
 
