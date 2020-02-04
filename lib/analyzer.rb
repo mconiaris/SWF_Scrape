@@ -148,7 +148,7 @@ class Analyzer
 			elsif v == "C"
 				points["#{k}_points".to_sym] = DC_C
 			else
-				points["#{k}_points".to_sym] = 0
+				points["#{k}_points".to_sym] = DC_B
 			end
 		}
 
