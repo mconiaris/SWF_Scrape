@@ -438,7 +438,6 @@ class Analyzer
 				dc_points_without_reverse, 
 				dc_reverse_roll_probability, 
 				oc_points_per_roll_total)
-
 			# Calculate Total Card Values
 			card_points_per_round = oc_points_per_roll_total +
 				dc_points_per_roll_total
@@ -575,7 +574,7 @@ class Analyzer
 # and adds them to (DC roll probability x Total OC points)
 def calculate_dc_points_per_round_subtotal(
 	dc_points, rev_prob, total_points)
-	
+
 	dc_points + (rev_prob * total_points)
 end
 
@@ -711,13 +710,13 @@ end
 		# Calculate Points Per OC (S) roll
 		# (S) roll probability on OC x OC probability on GC x
 		# Points per 1d6 (S) roll
-		x = s_prob[:OC].to_f * oc_prob.to_f * hash[:points_average]
+		x = return_rational(s_prob[:OC].to_f) * oc_prob.to_f * hash[:points_average]
 		specialty_hash[:oc_points_per_roll] = x
 
 		# (S) roll probability on Ropes Card x OC 
 		# probability on GC x Points per 1d6 (S) roll *
 		# probability of rolling Ropes in OC
-		y = s_prob[:R].to_f * oc_prob.to_f * 
+		y = return_rational(s_prob[:R].to_f) * oc_prob.to_f * 
 			hash[:points_average] * ropes_prob[:OC]
 
  		specialty_hash[:ropes_points_per_roll] = y
