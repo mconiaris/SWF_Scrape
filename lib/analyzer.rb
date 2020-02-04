@@ -360,28 +360,28 @@ class Analyzer
 		# Generate probabiity of OC roll in GC
 		gc_oc_roll_probability = return_rational(wrestler.points[:OC])
 
-
-
-
-
-
-
-
-
-	
-
-
-
-	
-
-
-
-
-
-
-
 		# Calculate temporary Variables
-		gc_dc_roll_probability = calculate_gc_dc_roll_probability(gc_oc_roll_probability)
+		gc_dc_roll_probability = return_rational(wrestler.points[:DC])
+binding.pry
+
+
+
+
+
+
+
+	
+
+
+
+	
+
+
+
+
+
+
+
 		
 		# DC roll probability x Reverse roll probability
 		dc_reverse_roll_probability = calculate_reverse_roll_probability(wrestler.points, gc_dc_roll_probability)
