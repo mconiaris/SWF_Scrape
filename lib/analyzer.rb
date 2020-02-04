@@ -322,60 +322,20 @@ class Analyzer
 		return num
 	end
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	
-
-	# Generate the 
-	def get_extra_values(moves, value)
-		binding.pry
-		h = moves.select { |k,v| v.include?(value) }
-	end
-
+	# Isolates P/A, DQ, xx or * results in Specialty
+	# Card and returns the number of them.
 	def get_s_extra_values(moves, value)
 		h = moves.select { |k,v| k.to_s.include?('S') && v.include?(value) }
 		return h.size
 	end
 
+	
+	# Takes in all of the Wrestler moves and returns a
+	# hash of the moves that contain either a P/A, DQ,
+	# * or xx that is passed to it.
 	def create_value_hash(moves, value)
 		return moves.select { |k,v| v.include?(value)}
 	end
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -397,9 +357,28 @@ class Analyzer
 		}
 		dc_points_without_reverse = calculate_dc_points(dc_hash)
 
-
 		# Generate probabiity of OC roll in GC
-		gc_oc_roll_probability = calculate_gc_oc_roll_probability(wrestler.points[:OC])
+		gc_oc_roll_probability = return_rational(wrestler.points[:OC])
+
+
+
+
+
+
+
+
+
+	
+
+
+
+	
+
+
+
+
+
+
 
 		# Calculate temporary Variables
 		gc_dc_roll_probability = calculate_gc_dc_roll_probability(gc_oc_roll_probability)
@@ -542,8 +521,8 @@ class Analyzer
 	# ============
 
 	# Takes in OC enumerator and divides it by 36
-	def calculate_gc_oc_roll_probability(oc)
-		oc/36.to_r
+	def return_rational(numerator)
+		numerator/36.to_r
 	end
 
 
