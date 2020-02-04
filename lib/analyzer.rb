@@ -27,19 +27,6 @@ class Analyzer
 	# ==========
 
 
-	
-
-
-
-
-
-
-
-	# TODO: Set up attr_reader and writers (=) for variables
-	# TODO: Use getters to add values to hash directly
-	# TODO: Consider a custom matcher for complicated math problems: https://github.com/dchelimsky/rspec/wiki/Custom-Matchers
-	# the probablities and points totals.
-
 	# ======================
 	# MOVE VALUES TO NUMBERS
 	# ======================
