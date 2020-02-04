@@ -34,7 +34,7 @@ class Analyzer
 
 		# Calculate OC count to calculate probablity.
 		points[:OC] = prob_points(oc_hash)
-		points[:DC] = 36 - points[:OC]
+		points[:DC] = calculate_gc_dc_roll_probability(points[:OC])
 
 		# Calculate TT Roll in GC
 		r_hash = hash.select { |k,v| v.include?('OC/TT') }
@@ -363,7 +363,10 @@ class Analyzer
 		# Calculate temporary Variables
 		gc_dc_roll_probability = return_rational(wrestler.points[:DC])
 
+		# DC roll probability x Reverse roll probability
+		dc_reverse_roll_probability = calculate_reverse_roll_probability(wrestler.points, gc_dc_roll_probability)
 
+		dc_points_without_reverse = gc_dc_roll_probability * dc_points_without_reverse
 
 
 
@@ -382,10 +385,6 @@ class Analyzer
 
 
 		
-		# DC roll probability x Reverse roll probability
-		dc_reverse_roll_probability = calculate_reverse_roll_probability(wrestler.points, gc_dc_roll_probability)
-binding.pry
-		dc_points_without_reverse = gc_dc_roll_probability * dc_points_without_reverse
 
 
 
@@ -528,7 +527,7 @@ binding.pry
 	# Takes in probability of an OC roll and uses it to
 	# determine the probability of a DC roll.
 	def calculate_gc_dc_roll_probability(oc_roll_probability)
-		return 36/36.to_r - oc_roll_probability
+		return 36/36.to_r - return_rational(oc_roll_probability)
 	end
 
 
@@ -554,7 +553,6 @@ binding.pry
 	# the DC card.
 	def calculate_reverse_roll_probability(wrestler_hash, gc_dc_roll_probability)
 		prob = return_rational(wrestler_hash[:Reverse])
-binding.pry
 
 		return prob * gc_dc_roll_probability
 	end
