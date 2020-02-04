@@ -21,11 +21,6 @@ class Analyzer
 	end
 
 
-	# ==========
-	# OLDER CODE
-	# ==========
-
-
 	# ======================
 	# MOVE VALUES TO NUMBERS
 	# ======================
@@ -143,15 +138,15 @@ class Analyzer
 		points[:sub_numerator] = 0
 		points[:tag_save_numerator] = 0
 
-binding.pry
-		
+
+
 		# Determine Points for DC Rolls
 		dc_hash = hash.select { |k,v| k.to_s.include?('DC') }
 		dc_hash.each { | k,v|
 			if v == "A"
-				points["#{k}_points".to_sym] = 2
+				points["#{k}_points".to_sym] = DC_A
 			elsif v == "C"
-				points["#{k}_points".to_sym] = 4
+				points["#{k}_points".to_sym] = DC_C
 			else
 				points["#{k}_points".to_sym] = 0
 			end
