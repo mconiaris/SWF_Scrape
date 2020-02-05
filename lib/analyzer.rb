@@ -378,32 +378,10 @@ class Analyzer
 		# Returns total (S) points / 6
 		average_specialty_points = calculate_specialty_points(wrestler.points)
 
-
-
-
-	
-
-
-
-	
-
-
-
-
-
-
-
-		
-
-
-
-
-
 		# Seperate OC and Ropes cards and then calculate
 		# points per roll
 		oc_hash = wrestler.points.select { |k,v| k.to_s.include?('OC') && k.to_s.include?("_points")}
 		ropes_hash = wrestler.points.select { |k,v| k.to_s.include?('R') && k.to_s.include?("_points")}
-		
 		# Takes the oc_hash and ropes_hash and calculates
 		# the points per roll (2d6 * card). These values 
 		# do not include Specialty rolls.
@@ -413,7 +391,29 @@ class Analyzer
 
 		# Subtotals
 		oc_points_per_roll_subtotal = calculate_oc_points_per_roll_subtotal(oc_points_per_roll, gc_oc_roll_probability)
-		ropes_points_per_roll_subtotal = calculate_ropes_points_per_roll_subtotal(ropes_points_per_roll, gc_oc_roll_probability, ropes_roll_probability_hash[:OC])
+
+
+
+	
+
+
+
+	
+
+
+
+
+
+
+
+		
+
+
+
+
+
+		ropes_points_per_roll_subtotal = calculate_ropes_points_per_roll_subtotal(ropes_points_per_roll, gc_oc_roll_probability, (wrestler.points[:Ropes_S_Roll_Probability]/36.to_f))
+
 		specialty_points_per_roll = calculate_specialty_points_and_attributes_per_round(specialty_points_and_attributes_hash, gc_oc_roll_probability, oc_and_ropes_specialty_probability, ropes_roll_probability_hash)
 
 		# Calculate Total OC Points Per Roll
@@ -672,6 +672,7 @@ end
 	# Returns points per roll of (S) move for OC and
 	# Ropes rolls.
 	def calculate_specialty_points_and_attributes_per_round(hash, oc_prob, s_prob, ropes_prob)
+	binding.pry
 		specialty_hash = Hash.new
 
 		# Calculate Points Per OC (S) roll
