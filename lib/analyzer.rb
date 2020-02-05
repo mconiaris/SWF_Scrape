@@ -366,6 +366,17 @@ class Analyzer
 
 		dc_points_without_reverse = gc_dc_roll_probability * dc_points_without_reverse
 
+		# Probability of rolling P/A, DQ, XX or * in 
+		# Offiensive Card or Ropes Card.
+		dq_roll_probability_hash = calculate_specialty_dq_pa_subm_xx_probability(wrestler.points, '_dq')
+		pa_roll_probability_hash = calculate_specialty_dq_pa_subm_xx_probability(wrestler.points, '_pa')
+		submission_move_roll_probability_hash = calculate_specialty_dq_pa_subm_xx_probability(wrestler.points, '_sub')
+		xx_roll_probability_hash = calculate_specialty_dq_pa_subm_xx_probability(wrestler.points, '_xx')
+
+
+		# This is from the Specialty card only.
+		specialty_points_and_attributes_hash = calculate_specialty_points_and_attributes(wrestler.values)
+
 
 
 
@@ -387,24 +398,6 @@ class Analyzer
 
 
 
-
-		# 2d6 roll in Offensive and Ropes cards.
-		dq_roll_probability_hash = calculate_specialty_dq_pa_subm_xx_probability(wrestler.values, '(DQ)')
-		ropes_roll_probability_hash = calculate_specialty_dq_pa_subm_xx_probability(wrestler.values, 'ROPES')
-		specialty_roll_probability_hash = calculate_specialty_dq_pa_subm_xx_probability(wrestler.values, '(S)')
-		submission_move_roll_probability_hash = calculate_specialty_dq_pa_subm_xx_probability(wrestler.values, '*')
-		xx_roll_probability_hash = calculate_specialty_dq_pa_subm_xx_probability(wrestler.values, '(xx)')
-
-		# This is from the Specialty card only.
-		specialty_points_and_attributes_hash = calculate_specialty_points_and_attributes(wrestler.values)
-
-		# Calculate attributes of OC and Ropes cards
-		# 2d6 x Offensive Card roll or 2d6 * Ropes Card roll
-		oc_and_ropes_dq_probability = calculate_specialty_dq_pa_subm_xx_probability(wrestler.values, '(DQ)')
-		oc_and_ropes_pa_probability = calculate_specialty_dq_pa_subm_xx_probability(wrestler.values, 'P/A')
-		oc_and_ropes_specialty_probability = calculate_specialty_dq_pa_subm_xx_probability(wrestler.values, '(S)')
-		oc_and_ropes_subm_probability = calculate_specialty_dq_pa_subm_xx_probability(wrestler.values, '*')
-		oc_and_ropes_xx_probability = calculate_specialty_dq_pa_subm_xx_probability(wrestler.values, '(xx)')
 
 		# Seperate OC and Ropes cards and then calculate
 		# points per roll
@@ -438,6 +431,7 @@ class Analyzer
 				dc_points_without_reverse, 
 				dc_reverse_roll_probability, 
 				oc_points_per_roll_total)
+
 			# Calculate Total Card Values
 			card_points_per_round = oc_points_per_roll_total +
 				dc_points_per_roll_total
@@ -504,6 +498,10 @@ class Analyzer
 		@statistics[:tag_team_save_probabilty] = sub_tag_probability(wrestler.values[:Tag])
 		@statistics[:card_rating] = total_card_rating
 		
+		# Check for Problems in :Set attribute of hash.
+		if wrestler[:Set] == nil
+			wrestler[:Set] = 'Special'
+		end
 
 		return @statistics
 	end
@@ -610,6 +608,7 @@ end
 	# then multip;ies it by the probability of rolling 
 	# Ropes
 	def calculate_ropes_points_per_roll_subtotal(points, oc_prob, ropes_prob)
+		binding.pry
 		points * oc_prob * ropes_prob
 	end
 
@@ -626,16 +625,10 @@ end
 	# determines the probabilities of both and then returns
 	# the values in a hash.
 	def calculate_specialty_dq_pa_subm_xx_probability(wrestler, move)
-
 		s_prob = Hash.new
 
-		# Check for Problems in :Set attribute of hash.
-		if wrestler[:Set] == nil
-			wrestler[:Set] = 'Special'
-		end
-
 		# Check for nil valcues
-		s = wrestler.select { |k,v| v.include?(move) }
+		s = wrestler.select { |k,v| k.to_s.include?(move) && v == 1 }
 		s_oc = s.select { |k,v| k.to_s.include?('OC') }
 		s_r = s.select { |k,v| k.to_s.include?('R') }
 
@@ -643,11 +636,15 @@ end
 		s_r_prob = 0
 
 		s_oc.each_key { |k| 
+			x = x = k[0..3]
+			k = x.to_sym
 			s_oc_prob += calculate_probability(symbol_to_integer(k))
 		}
 
 		# Does not include OC-Ropes roll probability
 		s_r.each_key { |k| 
+			x = x = k[0..3]
+			k = x.to_sym
 			s_r_prob += calculate_probability(symbol_to_integer(k))
 		}
 
@@ -779,4 +776,7 @@ end
 		return num_range.to_f
 	end
 end
+
+
+
 
