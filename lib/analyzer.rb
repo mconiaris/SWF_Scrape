@@ -375,8 +375,8 @@ class Analyzer
 
 
 		# This is from the Specialty card only.
-		specialty_points_and_attributes_hash = calculate_specialty_points_and_attributes(wrestler.values)
-
+		# Returns total (S) points / 6
+		average_specialty_points = calculate_specialty_points(wrestler.points)
 
 
 
@@ -608,7 +608,6 @@ end
 	# then multip;ies it by the probability of rolling 
 	# Ropes
 	def calculate_ropes_points_per_roll_subtotal(points, oc_prob, ropes_prob)
-		binding.pry
 		points * oc_prob * ropes_prob
 	end
 
@@ -659,43 +658,14 @@ end
 	# TODO factor out select hashes into a method for DRY
 	# Isolate the Specialty move and calculate the
 	# points and other values
-	def calculate_specialty_points_and_attributes(wrestler)
-		# Convert key Symbols to text and then isolate just
-		# the keys with a single number after it.
-		specialty_hash = Hash.new
+	def calculate_specialty_points(wrestler)
+		
 		s_points = 0
 
-		s = wrestler.select { |k,v| k.to_s =~ /S\d/ }
+		s = wrestler.select { |k,v| k.to_s =~ /S\d/ && k.to_s.include?("_points")}
+		s.each { |k, v| s_points += v }
 
-		# Calculate probability of a P/A roll in (S)
-		s_sub_hash = s.select { |k,v| v.include?('*') }
-		s_sub_prob = s_sub_hash.size / 6.to_f
-
-		# Calculate probability of a DQ roll in (S)
-		s_dq_hash = s.select { |k,v| v.include?('DQ') }
-		s_dq_prob = s_dq_hash.size / 6.to_f
-
-		# Calculate probability of a P/A roll in (S)
-		s_pa_hash = s.select { |k,v| v.include?('P/A') }
-		s_pa_prob = s_pa_hash.size / 6.to_f
-
-		# Isolate integer values of (S) hash and sum them.
-		s.each_value { |v| x = v.split
-			s_points += x[0].to_i
-		}
-		# Calculate Average Points from DQ Rolls
-		dq_points = s_dq_hash.size * 5
-		s_points += dq_points
-
-		s_points_average = s_points / 6.to_f
-
-
-		specialty_hash[:dq_probability] = s_dq_prob
-		specialty_hash[:pa_probability] = s_pa_prob
-		specialty_hash[:points_average] = s_points_average
-		specialty_hash[:submission_move_probability] = s_sub_prob
-
-		return specialty_hash
+		return s_points/6.to_f
 	end
 
 
