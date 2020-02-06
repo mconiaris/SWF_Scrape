@@ -25,8 +25,8 @@ class Wrestler
 		puts "P/A Probability-Per-Round: #{wrestler.statistics[:pa_probability_per_round]}"
 		puts "Submission Roll Probability-Per-Round: #{wrestler.statistics[:sub_probability_per_round]}"
 		puts "XX Roll Probability-Per-Round: #{wrestler.statistics[:xx_probability_per_round]}"
-		puts "Submission Loss Probability: #{wrestler.statistics[:submission_loss_probabilty]}"
-		puts "Tag Team Save Probability: #{wrestler.statistics[:tag_team_save_probabilty]}"
+		puts "Submission Loss Probability: #{wrestler.points[:Sub_prob]}"
+		puts "Tag Team Save Probability: #{wrestler.points[:Tag_prob]}"
 		puts "\n"
 
 		f = File.new('files/results.csv', 'a')
@@ -185,8 +185,8 @@ class Wrestler
 		f.write("R-12-(XX) (0 or 1), #{wrestler.points[:RO12_xx]}\n")
 		f.write("PriorityS:, #{wrestler.values[:PriorityS]}\n")
 		f.write("PRIORITY-TT, #{wrestler.values[:PriorityT]}\n")
-		f.write("SUBMISSION (x/36):, #{wrestler.points[:sub_numerator]}\n")
-		f.write("TAG TEAM SAVE (x/36):, #{wrestler.points[:tag_save_numerator]}\n")
+		f.write("SUBMISSION (x/36):, #{wrestler.points[:Sub_prob]}\n")
+		f.write("TAG TEAM SAVE (x/36):, #{wrestler.points[:Tag_prob]}\n")
 	
 	end
 

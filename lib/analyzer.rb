@@ -222,6 +222,9 @@ class Analyzer
  		points[:sub_numerator] = sub_tag_numerator(hash[:Sub])
  		points[:tag_save_numerator] = sub_tag_numerator(hash[:Tag])
 
+ 		points[:Sub_prob] = return_rational(points[:sub_numerator]).to_f
+ 		points[:Tag_prob] = return_rational(points[:tag_save_numerator]).to_f
+
 		return points
 	end
 
