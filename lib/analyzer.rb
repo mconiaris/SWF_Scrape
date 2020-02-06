@@ -365,7 +365,7 @@ class Analyzer
 	# card_points_per_round +
 	def calculate_card_points_per_round(wrestler)
 		dc_hash = get_dc_card_hash(wrestler)
-		binding.pry
+		calculate_dc_points_per_roll_subtotal(dc_hash)
 	end
 
 	# dq_probability_per_round
@@ -404,14 +404,23 @@ class Analyzer
 	end
 
 
-	# ============
-	# GENERAL CARD
-	# ============
+	# =========
+	# UTILITIES
+	# =========	
 
 	# Takes in OC enumerator and divides it by 36
 	def return_rational(numerator)
 		numerator/36.to_r
 	end
+
+	def remove_points_from_key(k)
+		k = k.to_s.delete("_points").to_sym
+	end
+
+	# ============
+	# GENERAL CARD
+	# ============
+
 
 
 	# Takes in probability of an OC roll and uses it to
@@ -456,14 +465,12 @@ class Analyzer
 
 
 	# Multiplies DC roll point by probabiliy of rolling it.
-	def calculate_dc_points(hash)
-
-			# Remove DC Roll from hash
-			hash.delete(:DC)
+	def calculate_dc_points_per_roll_subtotal(hash)
+			
 			# Return sum of points per roll * probability
 			x = 0
 			hash.each { |k,v|
-				k = k.to_s.delete("_points")
+				k = remove_points_from_key(k)
 				x += v.to_f * calculate_probability(symbol_to_integer(k))/36.to_f
 			}
 
@@ -471,36 +478,36 @@ class Analyzer
 	end
 
 
-# Takes in the DC Points per roll (without Reverse)
-# and adds them to (DC roll probability x Total OC points)
-def calculate_dc_points_per_round_subtotal(
-	dc_points, rev_prob, total_points)
+# # Takes in the DC Points per roll (without Reverse)
+# # and adds them to (DC roll probability x Total OC points)
+# def calculate_dc_points_per_round_subtotal(
+# 	dc_points, rev_prob, total_points)
 
-	dc_points + (rev_prob * total_points)
-end
+# 	dc_points + (rev_prob * total_points)
+# end
 
 
 	# ==============
 	# OFFENSIVE CARD
 	# ==============
 	# TODO: Factor out analyssis into a method to DRY
-	def calculate_oc_and_ropes_points(wrestler)
-		# points_per_roll_array = []
-		points_per_roll = 0
+	# def calculate_oc_and_ropes_points(wrestler)
+	# 	# points_per_roll_array = []
+	# 	points_per_roll = 0
 
-		wrestler.each { |k,v|
-			k = k.to_s.delete("_points").to_sym
-			points_per_roll += (v * return_rational(calculate_probability(symbol_to_integer(k))).to_f)
-		}
+	# 	wrestler.each { |k,v|
+	# 		k = k.to_s.delete("_points").to_sym
+	# 		points_per_roll += (v * return_rational(calculate_probability(symbol_to_integer(k))).to_f)
+	# 	}
 
-		return points_per_roll
-	end
+	# 	return points_per_roll
+	# end
 
-	# Takes in average points per OC and multiplies
-	# it by the probability of rolling OC
-	def calculate_oc_points_per_roll_subtotal(points, oc_prob)
-		points * oc_prob
-	end
+	# # Takes in average points per OC and multiplies
+	# # it by the probability of rolling OC
+	# def calculate_oc_points_per_roll_subtotal(points, oc_prob)
+	# 	points * oc_prob
+	# end
 
 
 	# ==========
@@ -510,9 +517,9 @@ end
 	# multiplies it by the probablilty of rollinc OC and
 	# then multip;ies it by the probability of rolling 
 	# Ropes
-	def calculate_ropes_points_per_roll_subtotal(points, oc_prob, ropes_prob)
-		points * oc_prob * ropes_prob
-	end
+	# def calculate_ropes_points_per_roll_subtotal(points, oc_prob, ropes_prob)
+	# 	points * oc_prob * ropes_prob
+	# end
 
 
 	# ==============
@@ -526,73 +533,73 @@ end
 	# It divides OC and Ropes cards into their own hashes,
 	# determines the probabilities of both and then returns
 	# the values in a hash.
-	def calculate_specialty_dq_pa_subm_xx_probability(wrestler, move)
-		s_prob = Hash.new
+	# def calculate_specialty_dq_pa_subm_xx_probability(wrestler, move)
+	# 	s_prob = Hash.new
 
-		# Check for nil valcues
-		s = wrestler.select { |k,v| k.to_s.include?(move) && v == 1 }
-		s_oc = s.select { |k,v| k.to_s.include?('OC') }
-		s_r = s.select { |k,v| k.to_s.include?('R') }
+	# 	# Check for nil valcues
+	# 	s = wrestler.select { |k,v| k.to_s.include?(move) && v == 1 }
+	# 	s_oc = s.select { |k,v| k.to_s.include?('OC') }
+	# 	s_r = s.select { |k,v| k.to_s.include?('R') }
 
-		s_oc_prob = 0
-		s_r_prob = 0
+	# 	s_oc_prob = 0
+	# 	s_r_prob = 0
 
-		s_oc.each_key { |k| 
-			x = x = k[0..3]
-			k = x.to_sym
-			s_oc_prob += calculate_probability(symbol_to_integer(k))
-		}
+	# 	s_oc.each_key { |k| 
+	# 		x = x = k[0..3]
+	# 		k = x.to_sym
+	# 		s_oc_prob += calculate_probability(symbol_to_integer(k))
+	# 	}
 
-		# Does not include OC-Ropes roll probability
-		s_r.each_key { |k| 
-			x = x = k[0..3]
-			k = x.to_sym
-			s_r_prob += calculate_probability(symbol_to_integer(k))
-		}
+	# 	# Does not include OC-Ropes roll probability
+	# 	s_r.each_key { |k| 
+	# 		x = x = k[0..3]
+	# 		k = x.to_sym
+	# 		s_r_prob += calculate_probability(symbol_to_integer(k))
+	# 	}
 
-		# Convert probability values into a hash
-		s_prob[:OC] = s_oc_prob
-		s_prob[:R] = s_r_prob
+	# 	# Convert probability values into a hash
+	# 	s_prob[:OC] = s_oc_prob
+	# 	s_prob[:R] = s_r_prob
 
-		return s_prob
-	end
+	# 	return s_prob
+	# end
 
 
 	# TODO factor out select hashes into a method for DRY
 	# Isolate the Specialty move and calculate the
 	# points and other values
-	def calculate_specialty_points(wrestler)
+	# def calculate_specialty_points(wrestler)
 		
-		s_points = 0
+	# 	s_points = 0
 
-		s = wrestler.select { |k,v| k.to_s =~ /S\d/ && k.to_s.include?("_points")}
-		s.each { |k, v| s_points += v }
+	# 	s = wrestler.select { |k,v| k.to_s =~ /S\d/ && k.to_s.include?("_points")}
+	# 	s.each { |k, v| s_points += v }
 
-		return s_points/6.to_f
-	end
+	# 	return s_points/6.to_f
+	# end
 
 
 	# Returns points per roll of (S) move for OC and
 	# Ropes rolls.
-	def calculate_specialty_points_and_attributes_per_round(s_points, oc_prob, s_prob, ropes_prob)
-		specialty_hash = Hash.new
+	# def calculate_specialty_points_and_attributes_per_round(s_points, oc_prob, s_prob, ropes_prob)
+	# 	specialty_hash = Hash.new
 
-		# Calculate Points Per OC (S) roll
-		# (S) roll probability on OC x OC probability on GC x
-		# Points per 1d6 (S) roll
-		x = return_rational(s_prob[:OC].to_f) * oc_prob.to_f * s_points
-		specialty_hash[:oc_points_per_roll] = x
+	# 	# Calculate Points Per OC (S) roll
+	# 	# (S) roll probability on OC x OC probability on GC x
+	# 	# Points per 1d6 (S) roll
+	# 	x = return_rational(s_prob[:OC].to_f) * oc_prob.to_f * s_points
+	# 	specialty_hash[:oc_points_per_roll] = x
 
-		# (S) roll probability on Ropes Card x OC 
-		# probability on GC x Points per 1d6 (S) roll *
-		# probability of rolling Ropes in OC
-		y = return_rational(s_prob[:R].to_f) * oc_prob.to_f * 
-			s_points * ropes_prob
+	# 	# (S) roll probability on Ropes Card x OC 
+	# 	# probability on GC x Points per 1d6 (S) roll *
+	# 	# probability of rolling Ropes in OC
+	# 	y = return_rational(s_prob[:R].to_f) * oc_prob.to_f * 
+	# 		s_points * ropes_prob
 
- 		specialty_hash[:ropes_points_per_roll] = y
+ # 		specialty_hash[:ropes_points_per_roll] = y
 
- 		return specialty_hash
-	end
+ # 		return specialty_hash
+	# end
 
 # OC
 
@@ -603,83 +610,83 @@ end
 # wrestler.points[:OC=>22]/36 * OC_S_probability * S_prob_attribute
 
 	# Calculate (DQ | P/A | * | XX) probability per Round
-	def calculate_total_dq_pa_sub_xx_per_round(attribute, wrestler)
-		# Generate Proabilities of attribute (dq, p/a, sub or xx)
-		# to be rolled in OC card.
-		h = wrestler.select { |k,v| k.to_s.include?(attribute) && v == 1 }
+	# def calculate_total_dq_pa_sub_xx_per_round(attribute, wrestler)
+	# 	# Generate Proabilities of attribute (dq, p/a, sub or xx)
+	# 	# to be rolled in OC card.
+	# 	h = wrestler.select { |k,v| k.to_s.include?(attribute) && v == 1 }
 
-		oc_h = h.select { |k,v| k.to_s.include?("OC") }
-		oc_prob = 0
-		oc_h.each { |k,v| 
-			k = k.to_s.delete(attribute).to_sym
-			oc_prob += calculate_probability(symbol_to_integer(k)) * v 
-		}
+	# 	oc_h = h.select { |k,v| k.to_s.include?("OC") }
+	# 	oc_prob = 0
+	# 	oc_h.each { |k,v| 
+	# 		k = k.to_s.delete(attribute).to_sym
+	# 		oc_prob += calculate_probability(symbol_to_integer(k)) * v 
+	# 	}
 
-		# Generate Proabilities of attribute (dq, p/a, sub or xx)
-		# to be rolled in Ropes card.
-		r_h = h.select { |k,v| k.to_s.include?("RO") }
-		r_prob = 0
-		r_h.each { |k,v| 
-			k = k.to_s.delete(attribute).to_sym
-			r_prob += calculate_probability(symbol_to_integer(k)) * v }
-
-
-		# Calculate OC (DQ | P/A | * | XX) probability 
-		# per round without (S)
-		x = return_rational(wrestler[:OC]).to_f * oc_prob
-
-		# Calculate Specialty Card proability of 
-		# OC (DQ | P/A | * | XX) probability per round
-		# First Dynamically generate symbol go get (S) Value
-		symb = "s_roll_prob" + attribute
-		symb = symb.to_sym
-
-		# Create Probability
-		y = return_rational(wrestler[:OC]).to_f * 
-			return_rational(wrestler[symb]).to_f * 
-			return_rational(wrestler[:Specialty_Roll_Probability_in_OC]).to_f
-
-		oc = x + y
+	# 	# Generate Proabilities of attribute (dq, p/a, sub or xx)
+	# 	# to be rolled in Ropes card.
+	# 	r_h = h.select { |k,v| k.to_s.include?("RO") }
+	# 	r_prob = 0
+	# 	r_h.each { |k,v| 
+	# 		k = k.to_s.delete(attribute).to_sym
+	# 		r_prob += calculate_probability(symbol_to_integer(k)) * v }
 
 
-		# Ropes (DQ | P/A | * | XX) probability per round
-		# Calculate Ropes (DQ | P/A | * | XX) probability 
-		# per round without (S)
-		x_r = return_rational(wrestler[:OC]).to_f * 
-			return_rational(wrestler[:OC_Ropes_Roll_Probability]).to_f *
-			r_prob
+	# 	# Calculate OC (DQ | P/A | * | XX) probability 
+	# 	# per round without (S)
+	# 	x = return_rational(wrestler[:OC]).to_f * oc_prob
 
-		# Calculate (S) Ropes (DQ | P/A | * | XX) probability 
-		# per round
-		y_r = return_rational(wrestler[:OC]).to_f * 
-			return_rational(wrestler[:OC_Ropes_Roll_Probability]).to_f *
-			r_prob * return_rational(wrestler[:Ropes_S_Roll_Probability]).to_f
+	# 	# Calculate Specialty Card proability of 
+	# 	# OC (DQ | P/A | * | XX) probability per round
+	# 	# First Dynamically generate symbol go get (S) Value
+	# 	symb = "s_roll_prob" + attribute
+	# 	symb = symb.to_sym
 
-		r = x_r + y_r
+	# 	# Create Probability
+	# 	y = return_rational(wrestler[:OC]).to_f * 
+	# 		return_rational(wrestler[symb]).to_f * 
+	# 		return_rational(wrestler[:Specialty_Roll_Probability_in_OC]).to_f
 
-		oc + r
-	end
+	# 	oc = x + y
 
-	# Takes SUB or TAG values and calculates probability 
-	# a card rolling that range.
-	def sub_tag_probability(a)
-		num_range = 0
 
-		if a.size == 2
-			s = Range.new(a[0].to_i, a[1].to_i)
+	# 	# Ropes (DQ | P/A | * | XX) probability per round
+	# 	# Calculate Ropes (DQ | P/A | * | XX) probability 
+	# 	# per round without (S)
+	# 	x_r = return_rational(wrestler[:OC]).to_f * 
+	# 		return_rational(wrestler[:OC_Ropes_Roll_Probability]).to_f *
+	# 		r_prob
 
-			s.each { |x|
-				num_range += calculate_probability(x)
-			}
-		elsif a.size == 1
-			x = a[0].to_i
-			num_range += calculate_probability(x)
-		else
-			puts "Sub or Tag numbers are out of range."				
-		end
+	# 	# Calculate (S) Ropes (DQ | P/A | * | XX) probability 
+	# 	# per round
+	# 	y_r = return_rational(wrestler[:OC]).to_f * 
+	# 		return_rational(wrestler[:OC_Ropes_Roll_Probability]).to_f *
+	# 		r_prob * return_rational(wrestler[:Ropes_S_Roll_Probability]).to_f
 
-		return num_range.to_f
-	end
+	# 	r = x_r + y_r
+
+	# 	oc + r
+	# end
+
+	# # Takes SUB or TAG values and calculates probability 
+	# # a card rolling that range.
+	# def sub_tag_probability(a)
+	# 	num_range = 0
+
+	# 	if a.size == 2
+	# 		s = Range.new(a[0].to_i, a[1].to_i)
+
+	# 		s.each { |x|
+	# 			num_range += calculate_probability(x)
+	# 		}
+	# 	elsif a.size == 1
+	# 		x = a[0].to_i
+	# 		num_range += calculate_probability(x)
+	# 	else
+	# 		puts "Sub or Tag numbers are out of range."				
+	# 	end
+
+	# 	return num_range.to_f
+	# end
 
 
 
@@ -696,111 +703,111 @@ end
 
 		# OLDER CODE
 
-		dc_points_without_reverse = 0
-		dc_reverse_roll_probability = 0
+		# dc_points_without_reverse = 0
+		# dc_reverse_roll_probability = 0
 
 
-		# Determine DC Points per roll
-		dc_hash = wrestler.points.select { |k,v| 
-			k.to_s.include?("DC")
-		}
-		dc_points_without_reverse = calculate_dc_points(dc_hash)
+		# # Determine DC Points per roll
+		# dc_hash = wrestler.points.select { |k,v| 
+		# 	k.to_s.include?("DC")
+		# }
+		# dc_points_without_reverse = calculate_dc_points(dc_hash)
 
-		# Generate probabiity of OC roll in GC
-		gc_oc_roll_probability = return_rational(wrestler.points[:OC])
+		# # Generate probabiity of OC roll in GC
+		# gc_oc_roll_probability = return_rational(wrestler.points[:OC])
 
-		# Calculate temporary Variables
-		gc_dc_roll_probability = return_rational(wrestler.points[:DC])
+		# # Calculate temporary Variables
+		# gc_dc_roll_probability = return_rational(wrestler.points[:DC])
 
-		# DC roll probability x Reverse roll probability
-		dc_reverse_roll_probability = calculate_reverse_roll_probability(wrestler.points, gc_dc_roll_probability)
+		# # DC roll probability x Reverse roll probability
+		# dc_reverse_roll_probability = calculate_reverse_roll_probability(wrestler.points, gc_dc_roll_probability)
 
-		dc_points_without_reverse = gc_dc_roll_probability * dc_points_without_reverse
+		# dc_points_without_reverse = gc_dc_roll_probability * dc_points_without_reverse
 
-		# Probability of rolling P/A, DQ, XX or * in 
-		# Offiensive Card or Ropes Card.
-		dq_roll_probability_hash = calculate_specialty_dq_pa_subm_xx_probability(wrestler.points, '_dq')
-		pa_roll_probability_hash = calculate_specialty_dq_pa_subm_xx_probability(wrestler.points, '_pa')
-		submission_move_roll_probability_hash = calculate_specialty_dq_pa_subm_xx_probability(wrestler.points, '_sub')
-		xx_roll_probability_hash = calculate_specialty_dq_pa_subm_xx_probability(wrestler.points, '_xx')
+		# # Probability of rolling P/A, DQ, XX or * in 
+		# # Offiensive Card or Ropes Card.
+		# dq_roll_probability_hash = calculate_specialty_dq_pa_subm_xx_probability(wrestler.points, '_dq')
+		# pa_roll_probability_hash = calculate_specialty_dq_pa_subm_xx_probability(wrestler.points, '_pa')
+		# submission_move_roll_probability_hash = calculate_specialty_dq_pa_subm_xx_probability(wrestler.points, '_sub')
+		# xx_roll_probability_hash = calculate_specialty_dq_pa_subm_xx_probability(wrestler.points, '_xx')
 
 
-		# This is from the Specialty card only.
-		# Returns total (S) points / 6
-		average_specialty_points = calculate_specialty_points(wrestler.points)
+		# # This is from the Specialty card only.
+		# # Returns total (S) points / 6
+		# average_specialty_points = calculate_specialty_points(wrestler.points)
 
-		# Seperate OC and Ropes cards and then calculate
-		# points per roll
-		oc_hash = wrestler.points.select { |k,v| k.to_s.include?('OC') && k.to_s.include?("_points")}
-		ropes_hash = wrestler.points.select { |k,v| k.to_s.include?('R') && k.to_s.include?("_points")}
-		# Takes the oc_hash and ropes_hash and calculates
-		# the points per roll (2d6 * card). These values 
-		# do not include Specialty rolls.
-		oc_points_per_roll = calculate_oc_and_ropes_points(oc_hash)
+		# # Seperate OC and Ropes cards and then calculate
+		# # points per roll
+		# oc_hash = wrestler.points.select { |k,v| k.to_s.include?('OC') && k.to_s.include?("_points")}
+		# ropes_hash = wrestler.points.select { |k,v| k.to_s.include?('R') && k.to_s.include?("_points")}
+		# # Takes the oc_hash and ropes_hash and calculates
+		# # the points per roll (2d6 * card). These values 
+		# # do not include Specialty rolls.
+		# oc_points_per_roll = calculate_oc_and_ropes_points(oc_hash)
 
-		ropes_points_per_roll = calculate_oc_and_ropes_points(ropes_hash)
+		# ropes_points_per_roll = calculate_oc_and_ropes_points(ropes_hash)
 
-		# Subtotals
-		oc_points_per_roll_subtotal = calculate_oc_points_per_roll_subtotal(oc_points_per_roll, gc_oc_roll_probability)
-		ropes_points_per_roll_subtotal = 
-			calculate_ropes_points_per_roll_subtotal(
-				ropes_points_per_roll, gc_oc_roll_probability, 
-				return_rational(wrestler.points[:Ropes_S_Roll_Probability]).to_f)
+		# # Subtotals
+		# oc_points_per_roll_subtotal = calculate_oc_points_per_roll_subtotal(oc_points_per_roll, gc_oc_roll_probability)
+		# ropes_points_per_roll_subtotal = 
+		# 	calculate_ropes_points_per_roll_subtotal(
+		# 		ropes_points_per_roll, gc_oc_roll_probability, 
+		# 		return_rational(wrestler.points[:Ropes_S_Roll_Probability]).to_f)
 
-		oc_and_ropes_specialty_probability = {
-			:OC => wrestler.points[:Specialty_Roll_Probability_in_OC], 
-			:R => wrestler.points[:Ropes_S_Roll_Probability]
-		}
+		# oc_and_ropes_specialty_probability = {
+		# 	:OC => wrestler.points[:Specialty_Roll_Probability_in_OC], 
+		# 	:R => wrestler.points[:Ropes_S_Roll_Probability]
+		# }
 
-		specialty_points_per_roll = 
-			calculate_specialty_points_and_attributes_per_round(
-				average_specialty_points, 
-				gc_oc_roll_probability, 
-				oc_and_ropes_specialty_probability, 
-				return_rational(wrestler.points[:Ropes_S_Roll_Probability]).to_f)
+		# specialty_points_per_roll = 
+		# 	calculate_specialty_points_and_attributes_per_round(
+		# 		average_specialty_points, 
+		# 		gc_oc_roll_probability, 
+		# 		oc_and_ropes_specialty_probability, 
+		# 		return_rational(wrestler.points[:Ropes_S_Roll_Probability]).to_f)
 
-		# Calculate Total OC Points Per Roll
-		ropes_points_per_roll_total = 
-			specialty_points_per_roll[:ropes_points_per_roll] + 
-			ropes_points_per_roll_subtotal
+		# # Calculate Total OC Points Per Roll
+		# ropes_points_per_roll_total = 
+		# 	specialty_points_per_roll[:ropes_points_per_roll] + 
+		# 	ropes_points_per_roll_subtotal
 
-		oc_points_per_roll_total = 
-			ropes_points_per_roll_total + 
-			specialty_points_per_roll[:oc_points_per_roll] +
-			oc_points_per_roll_subtotal
+		# oc_points_per_roll_total = 
+		# 	ropes_points_per_roll_total + 
+		# 	specialty_points_per_roll[:oc_points_per_roll] +
+		# 	oc_points_per_roll_subtotal
 
-		dc_points_per_roll_total = 
-			calculate_dc_points_per_round_subtotal(
-				dc_points_without_reverse, 
-				dc_reverse_roll_probability, 
-				oc_points_per_roll_total)
+		# dc_points_per_roll_total = 
+		# 	calculate_dc_points_per_round_subtotal(
+		# 		dc_points_without_reverse, 
+		# 		dc_reverse_roll_probability, 
+		# 		oc_points_per_roll_total)
 	
-			# Calculate Total Card Values
-			card_points_per_round = oc_points_per_roll_total +
-				dc_points_per_roll_total
+		# 	# Calculate Total Card Values
+		# 	card_points_per_round = oc_points_per_roll_total +
+		# 		dc_points_per_roll_total
 			
-			dq_probability_per_round = 
-				calculate_total_dq_pa_sub_xx_per_round("_dq", wrestler.points)
+		# 	dq_probability_per_round = 
+		# 		calculate_total_dq_pa_sub_xx_per_round("_dq", wrestler.points)
 
-			pa_probability_per_round = 
-				calculate_total_dq_pa_sub_xx_per_round("_pa", wrestler.points)
+		# 	pa_probability_per_round = 
+		# 		calculate_total_dq_pa_sub_xx_per_round("_pa", wrestler.points)
 
-			sub_probability_per_round = 
-				calculate_total_dq_pa_sub_xx_per_round("_sub", wrestler.points)
+		# 	sub_probability_per_round = 
+		# 		calculate_total_dq_pa_sub_xx_per_round("_sub", wrestler.points)
 
-			xx_probability_per_round = 
-				calculate_total_dq_pa_sub_xx_per_round("_xx", wrestler.points)
+		# 	xx_probability_per_round = 
+		# 		calculate_total_dq_pa_sub_xx_per_round("_xx", wrestler.points)
 
-		# Adds up the points_per_round with the probability
-		# of rolling P/A, Sub, XX, or DQ and then subtracts
-		# it by the probability of submission.
-		total_card_rating = card_points_per_round +
-			dq_probability_per_round + 
-			pa_probability_per_round + 
-			sub_probability_per_round + 
-			xx_probability_per_round +
-			wrestler.values[:PriorityS].to_f -
-			sub_tag_probability(wrestler.values[:Sub])
+		# # Adds up the points_per_round with the probability
+		# # of rolling P/A, Sub, XX, or DQ and then subtracts
+		# # it by the probability of submission.
+		# total_card_rating = card_points_per_round +
+		# 	dq_probability_per_round + 
+		# 	pa_probability_per_round + 
+		# 	sub_probability_per_round + 
+		# 	xx_probability_per_round +
+		# 	wrestler.values[:PriorityS].to_f -
+		# 	sub_tag_probability(wrestler.values[:Sub])
 
 
 		# Revise Wrestler Priority Numbers
