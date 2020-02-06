@@ -588,9 +588,19 @@ class Analyzer
 	# SPECIALTY CARD
 	# ==============
 
+	# Take in (S) hash, isolate points, add up points
+	# and then divide by 6.
 	def calculate_specialty_points_average(wrestler)
 		s_hash = get_specialty_hash(wrestler)
-		binding.pry
+		s_points_hash = s_hash.select { |k,v| k.to_s.include?("_points")}
+
+		s_points = 0
+
+		s_points_hash.each { |k,v| 
+			s_points += v
+
+		}
+		return s_points/6.to_f
 	end
 
 
