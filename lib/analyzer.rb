@@ -216,7 +216,7 @@ class Analyzer
  		}
 
  		# Determine Ropes Roll Enumerator
- 		oc_ropes_hash = hash.select { |k,v| v.include?('Ropes') }
+ 		oc_ropes_hash = hash.select { |k,v| v == 'Ropes' }
  		points[:OC_Ropes_Roll_Probability] = prob_points(oc_ropes_hash)
 
  		# Determine Enumerator of (S) rolls in Ropes
