@@ -596,17 +596,34 @@ class Analyzer
 	# then multip;ies it by the probability of rolling 
 	# Ropes
 
+	# TODO: Refactor into method that calcules hashes
+	# that deal with all kinds of points
 	# Ropes Points Subtotal without (S)
 	# 	points * oc_prob * ropes_prob
 	def calculate_ropes_points_per_roll_subtotal(wrestler)
-		get_ropes_hash(wrestler)
+		r_hash = get_ropes_hash(wrestler)
+		r_points_hash = r_hash.select { |k,v| k.to_s.include?("_points") }
 
+		r_points = 0
+		r_points_hash.each { |k,v| 
+			k = remove_attribute_from_key(k, "_points")
+			prob = return_rational(calculate_probability(symbol_to_integer(k))).to_f
+			r_points += v * prob
+		}
+
+		gc_oc_prob = wrestler[:oc_probability]
+		ropes_roll_prob = return_rational(wrestler[:OC_Ropes_Roll_Probability]).to_f
+
+		r_points_subtotal = gc_oc_prob * ropes_roll_prob * 
+			r_points
+
+		return r_points_subtotal
 	end
 
 
 	def get_ropes_hash(wrestler)
 		h = wrestler.select { |k,v| k.to_s.include?("RO") }
-
+		
 		return h
 	end
 
