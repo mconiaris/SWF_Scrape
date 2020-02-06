@@ -357,14 +357,15 @@ class Analyzer
 	# 		sub_tag_probability(wrestler.values[:Sub])
 
 	# total_card_rating
-	def calculate_total_card_rating()
-		
+	def calculate_total_card_rating(wrestler)
+		calculate_card_points_per_round(wrestler.points)
 	end
 
 
 	# card_points_per_round +
 	def calculate_card_points_per_round(wrestler)
-		
+		dc_hash = get_dc_card_hash(wrestler)
+		binding.pry
 	end
 
 	# dq_probability_per_round
@@ -380,13 +381,13 @@ class Analyzer
 
 
 	# sub_probability_per_round
-	def sub_probability_per_round
+	def calculate_sub_probability_per_round
 		
 	end
 
 
 	# xx_probability_per_round
-	def xx_probability_per_round
+	def calculate_xx_probability_per_round
 		
 	end
 
@@ -440,6 +441,13 @@ class Analyzer
 	# Takes in wrestler card hash Reverse probabilty
 	# and multiplies it by the probability of rolling
 	# the DC card.
+	def get_dc_card_hash(wrestler)
+		h = wrestler.select { |k,v| k.to_s.include?("DC") }
+		h.delete(:DC)
+		return h
+	end
+
+
 	def calculate_reverse_roll_probability(wrestler_hash, gc_dc_roll_probability)
 		prob = return_rational(wrestler_hash[:Reverse])
 
@@ -683,6 +691,10 @@ end
 	# ===================
 
 	def analyze(wrestler)
+
+		calculate_total_card_rating(wrestler)
+
+		# OLDER CODE
 
 		dc_points_without_reverse = 0
 		dc_reverse_roll_probability = 0
