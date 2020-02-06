@@ -377,6 +377,13 @@ class Analyzer
 		rev_prob = return_rational(wrestler[:Reverse])
 		reverse_points_per_roll = calculate_reverse_points_per_roll_subtotal(
 			wrestler[:DC], rev_prob, 4.65406378600823)
+
+		# DC points per round total
+		dc_points_per_roll_total = 
+			dc_points_per_roll_subtotal +
+			reverse_points_per_roll
+
+		return dc_points_per_roll_total + 0
 	end
 
 	# dq_probability_per_round
