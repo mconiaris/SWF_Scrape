@@ -362,10 +362,21 @@ class Analyzer
 	end
 
 
-	# card_points_per_round +
+	# card_points_per_round
 	def calculate_card_points_per_round(wrestler)
+
+		# DC Points
 		dc_hash = get_dc_card_hash(wrestler)
-		calculate_dc_points_per_roll_subtotal(dc_hash)
+		
+		dc_points_per_roll_subtotal = 
+			calculate_dc_points_per_roll_subtotal(
+				dc_hash, wrestler[:DC])
+
+		# TODO: replace hard coded number with
+		# total points variable
+		rev_prob = return_rational(wrestler[:Reverse])
+		reverse_points_per_roll = calculate_reverse_points_per_roll_subtotal(
+			wrestler[:DC], rev_prob, 4.65406378600823)
 	end
 
 	# dq_probability_per_round
@@ -421,8 +432,6 @@ class Analyzer
 	# GENERAL CARD
 	# ============
 
-
-
 	# Takes in probability of an OC roll and uses it to
 	# determine the probability of a DC roll.
 	def calculate_gc_dc_roll_probability(oc_roll_probability)
@@ -465,16 +474,21 @@ class Analyzer
 
 
 	# Multiplies DC roll point by probabiliy of rolling it.
-	def calculate_dc_points_per_roll_subtotal(hash)
+	def calculate_dc_points_per_roll_subtotal(hash, dc_prob)
 			
-			# Return sum of points per roll * probability
+			# Return sum of points per roll in DC
 			x = 0
 			hash.each { |k,v|
 				k = remove_points_from_key(k)
 				x += v.to_f * calculate_probability(symbol_to_integer(k))/36.to_f
 			}
 
-			return x
+			# Return Points per DC Roll * DC Roll Probability
+			return x * dc_prob
+	end
+
+	def calculate_reverse_points_per_roll_subtotal(dc_roll_prob, rev_prob, total_points)
+		dc_roll_prob * rev_prob * total_points
 	end
 
 
@@ -814,19 +828,19 @@ class Analyzer
 
 
 		# Add values to wrestler's hash
-		@statistics[:oc_probability] = gc_oc_roll_probability
-		@statistics[:dc_probability] = gc_dc_roll_probability
-		@statistics[:tt_probability] = wrestler.points[:GC_TT_Roll]
-		@statistics[:oc_card_points_per_round] = oc_points_per_roll_total
-		@statistics[:dc_card_points_per_round] = dc_points_per_roll_total
-		@statistics[:total_card_points_per_round] = card_points_per_round
-		@statistics[:dq_probability_per_round] = dq_probability_per_round
-		@statistics[:pa_probability_per_round] = pa_probability_per_round
-		@statistics[:sub_probability_per_round] = sub_probability_per_round
-		@statistics[:xx_probability_per_round] = xx_probability_per_round
-		@statistics[:submission_loss_probabilty] = sub_tag_probability(wrestler.values[:Sub])
-		@statistics[:tag_team_save_probabilty] = sub_tag_probability(wrestler.values[:Tag])
-		@statistics[:card_rating] = total_card_rating
+		# @statistics[:oc_probability] = gc_oc_roll_probability
+		# @statistics[:dc_probability] = gc_dc_roll_probability
+		# @statistics[:tt_probability] = wrestler.points[:GC_TT_Roll]
+		# @statistics[:oc_card_points_per_round] = oc_points_per_roll_total
+		# @statistics[:dc_card_points_per_round] = dc_points_per_roll_total
+		# @statistics[:total_card_points_per_round] = card_points_per_round
+		# @statistics[:dq_probability_per_round] = dq_probability_per_round
+		# @statistics[:pa_probability_per_round] = pa_probability_per_round
+		# @statistics[:sub_probability_per_round] = sub_probability_per_round
+		# @statistics[:xx_probability_per_round] = xx_probability_per_round
+		# @statistics[:submission_loss_probabilty] = sub_tag_probability(wrestler.values[:Sub])
+		# @statistics[:tag_team_save_probabilty] = sub_tag_probability(wrestler.values[:Tag])
+		# @statistics[:card_rating] = total_card_rating
 		
 		# Check for Problems in :Set attribute of hash.
 		if wrestler.values[:Set] == nil
