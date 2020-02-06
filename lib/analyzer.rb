@@ -397,7 +397,7 @@ class Analyzer
 			s.each { |x|
 				num += prob_sub_tag(x)
 			}
-		elsif a.size == 1
+		elsif values.size == 1
 			x = values[0]
 			num += prob_sub_tag(x)
 		else
