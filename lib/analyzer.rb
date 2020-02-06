@@ -442,8 +442,8 @@ class Analyzer
 		numerator/36.to_r
 	end
 
-	def remove_points_from_key(k)
-		k = k.to_s.delete("_points").to_sym
+	def remove_attribute_from_key(attribute)
+		k = k.to_s.delete(attribute).to_sym
 	end
 
 	# ============
