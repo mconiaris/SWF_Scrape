@@ -482,6 +482,63 @@ class Analyzer
 	end
 
 
+	# ==========================
+	# GENERATE TOTAL CARD RATING
+	# ==========================
+
+	# total_card_rating = card_points_per_round +
+	# 		dq_probability_per_round + 
+	# 		pa_probability_per_round + 
+	# 		sub_probability_per_round + 
+	# 		xx_probability_per_round +
+	# 		wrestler.values[:PriorityS].to_f -
+	# 		sub_tag_probability(wrestler.values[:Sub])
+
+	# total_card_rating
+	def calculate_total_card_rating()
+		
+	end
+
+
+	# card_points_per_round +
+	def calculate_card_points_per_round(wrestler)
+		
+	end
+
+	# dq_probability_per_round
+	def calculate_dq_probability_per_round
+		
+	end
+
+
+	# pa_probability_per_round
+	def calculate_pa_probability_per_round
+		
+	end
+
+
+	# sub_probability_per_round
+	def sub_probability_per_round
+		
+	end
+
+
+	# xx_probability_per_round
+	def xx_probability_per_round
+		
+	end
+
+
+	# wrestler.values[:PriorityS].to_f
+	def calculate_submission_loss_probability
+		
+	end
+
+
+	# 		sub_tag_probability(wrestler.values[:Sub])
+	def calculate_tag_team_save_probability
+		
+	end
 
 
 	# ============
