@@ -530,20 +530,24 @@ class Analyzer
 	# OFFENSIVE CARD
 	# ==============
 
-	def get_oc_hash(wrestler)
-		h = wrestler.select { |k,v| k.to_s.include?("OC") }
-		return h
-	end
-
 	def calculate_oc_points_per_round_total(wrestler)
 		oc_specialty_points_per_round = 
 			calculate_oc_specialty_points_per_round(wrestler)
 
 		oc_points_subtotal = 
 			calculate_oc_points_subtotal(wrestler)
+
+		ropes_points_per_roll_subtotal = 
+			calculate_ropes_points_per_roll_subtotal(wrestler)
+
 		return oc_specialty_points_per_round + oc_points_subtotal
 	end
 
+
+	def get_oc_hash(wrestler)
+		h = wrestler.select { |k,v| k.to_s.include?("OC") }
+		return h
+	end
 
 	# specialty points average (total / 6) * 
 	# oc_roll_probility * (S) probability
@@ -582,30 +586,6 @@ class Analyzer
 	end
 
 
-	
-
-	# TODO: Factor out analyssis into a method to DRY
-	def calculate_oc_and_ropes_points(wrestler)
-	# 	# points_per_roll_array = []
-	# 	points_per_roll = 0
-
-	# 	wrestler.each { |k,v|
-	# 		k = k.to_s.delete("_points").to_sym
-	# 		points_per_roll += (v * return_rational(calculate_probability(symbol_to_integer(k))).to_f)
-	# 	}
-
-	# 	return points_per_roll
-	end
-
-	# # Takes in average points per OC and multiplies
-	# # it by the probability of rolling OC
-	def calculate_oc_points_per_roll_subtotal(points, oc_prob)
-	# 	points * oc_prob
-	end
-
-
-
-
 
 
 	# ==========
@@ -615,8 +595,19 @@ class Analyzer
 	# multiplies it by the probablilty of rollinc OC and
 	# then multip;ies it by the probability of rolling 
 	# Ropes
-	def calculate_ropes_points_per_roll_subtotal(points, oc_prob, ropes_prob)
+
+	# Ropes Points Subtotal without (S)
 	# 	points * oc_prob * ropes_prob
+	def calculate_ropes_points_per_roll_subtotal(wrestler)
+		get_ropes_hash(wrestler)
+
+	end
+
+
+	def get_ropes_hash(wrestler)
+		h = wrestler.select { |k,v| k.to_s.include?("RO") }
+
+		return h
 	end
 
 
