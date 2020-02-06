@@ -368,32 +368,32 @@ class Analyzer
 
 		# DC points per round total
 		dc_points_per_roll_total = 
-			calculate_dc_points_per_roll_total(wrestler)
+			calculate_dc_points_per_round_total(wrestler)
 
 		return dc_points_per_roll_total + 0
 	end
 
 
-	def calculate_dc_points_per_roll_total(wrestler)
+	def calculate_dc_points_per_round_total(wrestler)
 		# DC Points
 		dc_hash = get_dc_card_hash(wrestler)
 		
-		dc_points_per_roll_subtotal = 
-			calculate_dc_points_per_roll_subtotal(
+		dc_points_per_round_subtotal = 
+			calculate_dc_points_per_round_subtotal(
 				dc_hash, wrestler[:DC])
 
 		# TODO: replace hard coded number with
 		# total points variable
 		rev_prob = return_rational(wrestler[:Reverse])
-		reverse_points_per_roll = calculate_reverse_points_per_roll_subtotal(
+		reverse_points_per_round = calculate_reverse_points_per_round_subtotal(
 			wrestler[:DC], rev_prob, 4.65406378600823)
 
 		# DC points per round total
-		dc_points_per_roll_total = 
-			dc_points_per_roll_subtotal +
-			reverse_points_per_roll
+		dc_points_per_round_total = 
+			dc_points_per_round_subtotal +
+			reverse_points_per_round
 
-		return dc_points_per_roll_total + 0
+		return dc_points_per_round_total + 0
 	end
 
 
@@ -484,7 +484,7 @@ class Analyzer
 	end
 
 
-	def calculate_reverse_roll_probability(wrestler_hash, gc_dc_roll_probability)
+	def calculate_reverse_round_probability(wrestler_hash, gc_dc_roll_probability)
 		prob = return_rational(wrestler_hash[:Reverse])
 
 		return prob * gc_dc_roll_probability
@@ -492,7 +492,7 @@ class Analyzer
 
 
 	# Multiplies DC roll point by probabiliy of rolling it.
-	def calculate_dc_points_per_roll_subtotal(hash, dc_prob)
+	def calculate_dc_points_per_round_subtotal(hash, dc_prob)
 			
 			# Return sum of points per roll in DC
 			x = 0
@@ -505,18 +505,9 @@ class Analyzer
 			return x * dc_prob
 	end
 
-	def calculate_reverse_points_per_roll_subtotal(dc_roll_prob, rev_prob, total_points)
+	def calculate_reverse_points_per_round_subtotal(dc_roll_prob, rev_prob, total_points)
 		dc_roll_prob * rev_prob * total_points
 	end
-
-
-# # Takes in the DC Points per roll (without Reverse)
-# # and adds them to (DC roll probability x Total OC points)
-def calculate_dc_points_per_round_subtotal(
-	dc_points, rev_prob, total_points)
-
-# 	dc_points + (rev_prob * total_points)
-end
 
 
 	# ==============
@@ -533,6 +524,12 @@ end
 	# 	}
 
 	# 	return points_per_roll
+	end
+
+	# # Takes in average points per OC and multiplies
+	# # it by the probability of rolling OC
+	def calculate_oc_points_per_roll_subtotal(points, oc_prob)
+	# 	points * oc_prob
 	end
 
 
