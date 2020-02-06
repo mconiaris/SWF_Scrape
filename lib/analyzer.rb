@@ -180,7 +180,8 @@ class Analyzer
 
  		# Get Specialty Roll Numerator in OC
  		s = hash.select { |k,v| k.to_s.include?('OC') && v.include?('(S)') }
- 		points[:Specialty_Roll_Probability_in_OC] = prob_points(s)
+ 		points[:Specialty_Roll_Enumerator_in_OC] = prob_points(s)
+ 		points[:Specialty_Roll_Probability_in_OC] = return_rational(points[:Specialty_Roll_Enumerator_in_OC])
 
  		# Get Specialty Roll Probability-DQ (x/6)
  		points[:s_roll_prob_dq] = get_s_extra_values(hash, '(DQ)')
@@ -539,6 +540,7 @@ class Analyzer
 	def calculate_oc_specialty_points_per_round(wrestler)
 		specialty_points_average = 
 			calculate_specialty_points_average(wrestler)
+			binding.pry
 	end
 
 
