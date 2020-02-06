@@ -531,14 +531,14 @@ class Analyzer
 	# ==============
 
 	def calculate_oc_points_per_round_total(wrestler)
-		oc_specialty_points_per_round = 
-			calculate_oc_specialty_points_per_round(wrestler)
-
 		oc_points_subtotal = 
 			calculate_oc_points_subtotal(wrestler)
 
 		ropes_points_per_roll_subtotal = 
 			calculate_ropes_points_per_roll_subtotal(wrestler)
+		
+		oc_specialty_points_per_round = 
+			calculate_oc_specialty_points_per_round(wrestler)
 
 		return oc_specialty_points_per_round + oc_points_subtotal
 	end
@@ -606,13 +606,19 @@ class Analyzer
 		ropes_points_per_roll_subtotal = 
 			calculate_ropes_points_per_roll_subtotal(r_hash)
 
-			ropes_total = ropes_points_per_roll_subtotal + 0
+		ropes_specialty_points = 
+			calculate_ropes_specialty_points(wrestler)
+
+			ropes_total = ropes_points_per_roll_subtotal + 
+				ropes_specialty_points
+
 		return ropes_total
 	end
 
 
 	def calculate_ropes_points_per_roll_subtotal(wrestler)
-		r_points_hash = wrestler.select { |k,v| k.to_s.include?("_points") }
+		r_hash = get_ropes_hash(wrestler)
+		r_points_hash = r_hash.select { |k,v| k.to_s.include?("_points") }
 
 		r_points = 0
 		r_points_hash.each { |k,v| 
@@ -626,8 +632,12 @@ class Analyzer
 
 		r_points_subtotal = gc_oc_prob * ropes_roll_prob * 
 			r_points
-
 		return r_points_subtotal
+	end
+
+
+	def calculate_ropes_specialty_points(wrestler)
+
 	end
 
 
