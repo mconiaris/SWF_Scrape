@@ -442,7 +442,7 @@ class Analyzer
 		numerator/36.to_r
 	end
 
-	def remove_attribute_from_key(attribute)
+	def remove_attribute_from_key(k, attribute)
 		k = k.to_s.delete(attribute).to_sym
 	end
 
@@ -497,7 +497,7 @@ class Analyzer
 			# Return sum of points per roll in DC
 			x = 0
 			hash.each { |k,v|
-				k = remove_points_from_key(k)
+				k = remove_attribute_from_key(k, "_points")
 				x += v.to_f * calculate_probability(symbol_to_integer(k))/36.to_f
 			}
 
