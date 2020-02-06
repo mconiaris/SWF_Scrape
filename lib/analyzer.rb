@@ -21,6 +21,8 @@ class Analyzer
 	end
 
 
+
+
 	# ======================
 	# MOVE VALUES TO NUMBERS
 	# ======================
@@ -230,6 +232,9 @@ class Analyzer
 	end
 
 
+
+
+
 	# ==============================
 	# METHODS TO GENERATE STATISTICS
 	# ==============================
@@ -367,10 +372,15 @@ class Analyzer
 	def calculate_card_points_per_round(wrestler)
 
 		# DC points per round total
-		dc_points_per_roll_total = 
+		dc_points_per_round_total = 
 			calculate_dc_points_per_round_total(wrestler)
 
-		return dc_points_per_roll_total + 0
+		oc_points_per_round_total = 
+			calculate_oc_points_per_round_total(wrestler)
+
+		return dc_points_per_round_total + 
+			oc_points_per_round_total +
+			0
 	end
 
 
@@ -510,9 +520,30 @@ class Analyzer
 	end
 
 
+
+
+
+
 	# ==============
 	# OFFENSIVE CARD
 	# ==============
+
+	def calculate_oc_points_per_round_total(wrestler)
+		oc_specialty_points_per_round = 
+			calculate_oc_specialty_points_per_round(wrestler)
+	end
+
+
+	# specialty points average (total / 6) * 
+	# oc_roll_probility * (S) probability
+	def calculate_oc_specialty_points_per_round(wrestler)
+		specialty_points_average = 
+			calculate_specialty_points_average(wrestler)
+	end
+
+
+	
+
 	# TODO: Factor out analyssis into a method to DRY
 	def calculate_oc_and_ropes_points(wrestler)
 	# 	# points_per_roll_array = []
@@ -533,6 +564,10 @@ class Analyzer
 	end
 
 
+
+
+
+
 	# ==========
 	# ROPES CARD
 	# ==========
@@ -545,10 +580,23 @@ class Analyzer
 	end
 
 
+
+
+
+
 	# ==============
 	# SPECIALTY CARD
 	# ==============
 
+	def calculate_specialty_points_average(wrestler)
+		s_hash = get_specialty_hash(wrestler)
+		binding.pry
+	end
+
+
+	def get_specialty_hash(wrestler)
+		wrestler.select { |k,v| k.to_s =~ /S\d/ }
+	end
 	# TODO: Check to see if DQ and XX is calculated somewhere else
 
 	# Takes in a wrestler hash and calculates the
@@ -591,7 +639,7 @@ class Analyzer
 	# TODO factor out select hashes into a method for DRY
 	# Isolate the Specialty move and calculate the
 	# points and other values
-	def calculate_specialty_points(wrestler)
+	def calculate_average_specialty_points_per_round(wrestler)
 		
 	# 	s_points = 0
 
@@ -624,7 +672,12 @@ class Analyzer
  # 		return specialty_hash
 	end
 
+
 # OC
+
+
+
+
 
 	# ==========
 	# TOTAL CARD
