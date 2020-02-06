@@ -321,7 +321,7 @@ class Analyzer
 			s.each { |x|
 				num += calculate_probability(x)
 			}
-		elsif a.size == 1
+		elsif values.size == 1
 			x = values[0].to_i
 			num += calculate_probability(x)
 		else
@@ -649,7 +649,7 @@ class Analyzer
 		
 		s_points = ropes_roll_prob.to_f * gc_oc_prob * 
 			ropes_s_roll_prob * s_points_av
-		
+
 		return s_points
 	end
 
