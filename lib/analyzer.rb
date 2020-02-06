@@ -530,17 +530,22 @@ class Analyzer
 	# OFFENSIVE CARD
 	# ==============
 
+	# OC Points Subtotal + Ropes + Speci
 	def calculate_oc_points_per_round_total(wrestler)
 		oc_points_subtotal = 
 			calculate_oc_points_subtotal(wrestler)
 
-		ropes_points_per_roll_subtotal = 
-			calculate_ropes_points_per_roll_subtotal(wrestler)
-		
 		oc_specialty_points_per_round = 
 			calculate_oc_specialty_points_per_round(wrestler)
 
-		return oc_specialty_points_per_round + oc_points_subtotal
+		ropes_points_total = 
+			calculate_ropes_points_total(wrestler)
+
+
+		oc_points_per_round_total = oc_points_subtotal +
+			oc_specialty_points_per_round + ropes_points_total
+		
+		return oc_points_per_round_total
 	end
 
 
@@ -600,23 +605,21 @@ class Analyzer
 	# that deal with all kinds of points
 	# Ropes Points Subtotal without (S)
 	# 	points * oc_prob * ropes_prob
-	def ropes_points_total(wrestler)
-		r_hash = get_ropes_hash(wrestler)
-		
-		ropes_points_per_roll_subtotal = 
-			calculate_ropes_points_per_roll_subtotal(r_hash)
+	def calculate_ropes_points_total(wrestler)
 
 		ropes_specialty_points = 
 			calculate_ropes_specialty_points(wrestler)
+		ropes_points_per_roll_subtotal = 
+			calculate_ropes_points_per_roll_total(wrestler)
 
-			ropes_total = ropes_points_per_roll_subtotal + 
+		ropes_total = ropes_points_per_roll_subtotal + 
 				ropes_specialty_points
 
 		return ropes_total
 	end
 
 
-	def calculate_ropes_points_per_roll_subtotal(wrestler)
+	def calculate_ropes_points_per_roll_total(wrestler)
 		r_hash = get_ropes_hash(wrestler)
 		r_points_hash = r_hash.select { |k,v| k.to_s.include?("_points") }
 
@@ -630,14 +633,24 @@ class Analyzer
 		gc_oc_prob = wrestler[:oc_probability]
 		ropes_roll_prob = return_rational(wrestler[:OC_Ropes_Roll_Probability]).to_f
 
-		r_points_subtotal = gc_oc_prob * ropes_roll_prob * 
-			r_points
+		r_points_subtotal = gc_oc_prob * r_points * 
+			ropes_roll_prob
+			
 		return r_points_subtotal
 	end
 
 
 	def calculate_ropes_specialty_points(wrestler)
 
+		gc_oc_prob = wrestler[:oc_probability]
+		ropes_roll_prob = return_rational(wrestler[:OC_Ropes_Roll_Probability])
+		ropes_s_roll_prob = return_rational(wrestler[:Ropes_S_Roll_Probability])
+		s_points_av = calculate_specialty_points_average(wrestler)
+		
+		s_points = ropes_roll_prob.to_f * gc_oc_prob * 
+			ropes_s_roll_prob * s_points_av
+		
+		return s_points
 	end
 
 
