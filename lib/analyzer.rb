@@ -471,9 +471,9 @@ class Analyzer
 		@statistics[:card_rating] = total_card_rating
 		
 		# Check for Problems in :Set attribute of hash.
-		# if wrestler[:Set] == nil
-		# 	wrestler[:Set] = 'Special'
-		# end
+		if wrestler.values[:Set] == nil
+			wrestler.values[:Set] = 'Special'
+		end
 
 		return @statistics
 	end
