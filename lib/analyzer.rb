@@ -511,18 +511,18 @@ class Analyzer
 
 # # Takes in the DC Points per roll (without Reverse)
 # # and adds them to (DC roll probability x Total OC points)
-# def calculate_dc_points_per_round_subtotal(
-# 	dc_points, rev_prob, total_points)
+def calculate_dc_points_per_round_subtotal(
+	dc_points, rev_prob, total_points)
 
 # 	dc_points + (rev_prob * total_points)
-# end
+end
 
 
 	# ==============
 	# OFFENSIVE CARD
 	# ==============
 	# TODO: Factor out analyssis into a method to DRY
-	# def calculate_oc_and_ropes_points(wrestler)
+	def calculate_oc_and_ropes_points(wrestler)
 	# 	# points_per_roll_array = []
 	# 	points_per_roll = 0
 
@@ -532,13 +532,13 @@ class Analyzer
 	# 	}
 
 	# 	return points_per_roll
-	# end
+	end
 
 	# # Takes in average points per OC and multiplies
 	# # it by the probability of rolling OC
-	# def calculate_oc_points_per_roll_subtotal(points, oc_prob)
+	def calculate_oc_points_per_roll_subtotal(points, oc_prob)
 	# 	points * oc_prob
-	# end
+	end
 
 
 	# ==========
@@ -548,9 +548,9 @@ class Analyzer
 	# multiplies it by the probablilty of rollinc OC and
 	# then multip;ies it by the probability of rolling 
 	# Ropes
-	# def calculate_ropes_points_per_roll_subtotal(points, oc_prob, ropes_prob)
+	def calculate_ropes_points_per_roll_subtotal(points, oc_prob, ropes_prob)
 	# 	points * oc_prob * ropes_prob
-	# end
+	end
 
 
 	# ==============
@@ -564,7 +564,7 @@ class Analyzer
 	# It divides OC and Ropes cards into their own hashes,
 	# determines the probabilities of both and then returns
 	# the values in a hash.
-	# def calculate_specialty_dq_pa_subm_xx_probability(wrestler, move)
+	def calculate_specialty_dq_pa_subm_xx_probability(wrestler, move)
 	# 	s_prob = Hash.new
 
 	# 	# Check for nil valcues
@@ -593,13 +593,13 @@ class Analyzer
 	# 	s_prob[:R] = s_r_prob
 
 	# 	return s_prob
-	# end
+	end
 
 
 	# TODO factor out select hashes into a method for DRY
 	# Isolate the Specialty move and calculate the
 	# points and other values
-	# def calculate_specialty_points(wrestler)
+	def calculate_specialty_points(wrestler)
 		
 	# 	s_points = 0
 
@@ -607,12 +607,12 @@ class Analyzer
 	# 	s.each { |k, v| s_points += v }
 
 	# 	return s_points/6.to_f
-	# end
+	end
 
 
 	# Returns points per roll of (S) move for OC and
 	# Ropes rolls.
-	# def calculate_specialty_points_and_attributes_per_round(s_points, oc_prob, s_prob, ropes_prob)
+	def calculate_specialty_points_and_attributes_per_round(s_points, oc_prob, s_prob, ropes_prob)
 	# 	specialty_hash = Hash.new
 
 	# 	# Calculate Points Per OC (S) roll
@@ -630,7 +630,7 @@ class Analyzer
  # 		specialty_hash[:ropes_points_per_roll] = y
 
  # 		return specialty_hash
-	# end
+	end
 
 # OC
 
@@ -641,7 +641,7 @@ class Analyzer
 # wrestler.points[:OC=>22]/36 * OC_S_probability * S_prob_attribute
 
 	# Calculate (DQ | P/A | * | XX) probability per Round
-	# def calculate_total_dq_pa_sub_xx_per_round(attribute, wrestler)
+	def calculate_total_dq_pa_sub_xx_per_round(attribute, wrestler)
 	# 	# Generate Proabilities of attribute (dq, p/a, sub or xx)
 	# 	# to be rolled in OC card.
 	# 	h = wrestler.select { |k,v| k.to_s.include?(attribute) && v == 1 }
@@ -696,11 +696,11 @@ class Analyzer
 	# 	r = x_r + y_r
 
 	# 	oc + r
-	# end
+	end
 
 	# # Takes SUB or TAG values and calculates probability 
 	# # a card rolling that range.
-	# def sub_tag_probability(a)
+	def sub_tag_probability(a)
 	# 	num_range = 0
 
 	# 	if a.size == 2
@@ -717,7 +717,7 @@ class Analyzer
 	# 	end
 
 	# 	return num_range.to_f
-	# end
+	end
 
 
 
@@ -845,9 +845,9 @@ class Analyzer
 
 
 		# Add values to wrestler's hash
-		# @statistics[:oc_probability] = gc_oc_roll_probability
-		# @statistics[:dc_probability] = gc_dc_roll_probability
-		# @statistics[:tt_probability] = wrestler.points[:GC_TT_Roll]
+		# @statistics[:oc_probability] = wrestler.points[:OC]
+		@statistics[:dc_probability] = wrestler.points[:DC]
+		@statistics[:tt_probability] = wrestler.points[:GC_TT_Roll]
 		# @statistics[:oc_card_points_per_round] = oc_points_per_roll_total
 		# @statistics[:dc_card_points_per_round] = dc_points_per_roll_total
 		# @statistics[:total_card_points_per_round] = card_points_per_round
