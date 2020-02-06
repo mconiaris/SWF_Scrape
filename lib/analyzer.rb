@@ -600,9 +600,19 @@ class Analyzer
 	# that deal with all kinds of points
 	# Ropes Points Subtotal without (S)
 	# 	points * oc_prob * ropes_prob
-	def calculate_ropes_points_per_roll_subtotal(wrestler)
+	def ropes_points_total(wrestler)
 		r_hash = get_ropes_hash(wrestler)
-		r_points_hash = r_hash.select { |k,v| k.to_s.include?("_points") }
+		
+		ropes_points_per_roll_subtotal = 
+			calculate_ropes_points_per_roll_subtotal(r_hash)
+
+			ropes_total = ropes_points_per_roll_subtotal + 0
+		return ropes_total
+	end
+
+
+	def calculate_ropes_points_per_roll_subtotal(wrestler)
+		r_points_hash = wrestler.select { |k,v| k.to_s.include?("_points") }
 
 		r_points = 0
 		r_points_hash.each { |k,v| 
