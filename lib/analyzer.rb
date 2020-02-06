@@ -380,8 +380,7 @@ class Analyzer
 			calculate_oc_points_per_round_total(wrestler)
 
 		return dc_points_per_round_total + 
-			oc_points_per_round_total +
-			0
+			oc_points_per_round_total + 0
 	end
 
 
@@ -529,9 +528,18 @@ class Analyzer
 	# OFFENSIVE CARD
 	# ==============
 
+	def get_oc_hash(wrestler)
+		h = wrestler.select { |k,v| k.to_s.include?("OC") }
+		return h
+	end
+
 	def calculate_oc_points_per_round_total(wrestler)
 		oc_specialty_points_per_round = 
 			calculate_oc_specialty_points_per_round(wrestler)
+
+		oc_points_subtotal = 
+			calculate_oc_points_subtotal(wrestler)
+		return oc_specialty_points_per_round + oc_points_subtotal
 	end
 
 
@@ -551,6 +559,23 @@ class Analyzer
 			specialty_roll_prob 
 
 		return oc_specialty_points_per_round
+	end
+
+
+	def calculate_oc_points_subtotal(wrestler)
+		oc_hash = get_oc_hash(wrestler)
+		oc_points_hash = oc_hash.select { |k,v| k.to_s.include?("_points") }
+
+		# Sum up points per roll * probability
+		oc_points = 0
+		oc_points_hash.each { |k,v| 
+			k = remove_attribute_from_key(k, "_points")
+			prob = return_rational(calculate_probability(symbol_to_integer(k))).to_f
+			oc_points += v * prob
+		}
+
+		oc_points_subtotal = wrestler[:oc_probability] * oc_points
+		return oc_points_subtotal
 	end
 
 
