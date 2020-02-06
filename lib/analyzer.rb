@@ -540,7 +540,17 @@ class Analyzer
 	def calculate_oc_specialty_points_per_round(wrestler)
 		specialty_points_average = 
 			calculate_specialty_points_average(wrestler)
-			binding.pry
+
+		specialty_roll_prob = 
+			wrestler[:Specialty_Roll_Probability_in_OC]
+
+		gc_oc_prob = wrestler[:oc_probability]
+
+		oc_specialty_points_per_round = gc_oc_prob *
+			specialty_points_average * 
+			specialty_roll_prob 
+
+		return oc_specialty_points_per_round
 	end
 
 
