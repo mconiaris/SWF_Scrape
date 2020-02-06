@@ -365,6 +365,15 @@ class Analyzer
 	# card_points_per_round
 	def calculate_card_points_per_round(wrestler)
 
+		# DC points per round total
+		dc_points_per_roll_total = 
+			calculate_dc_points_per_roll_total(wrestler)
+
+		return dc_points_per_roll_total + 0
+	end
+
+
+	def calculate_dc_points_per_roll_total(wrestler)
 		# DC Points
 		dc_hash = get_dc_card_hash(wrestler)
 		
@@ -385,6 +394,7 @@ class Analyzer
 
 		return dc_points_per_roll_total + 0
 	end
+
 
 	# dq_probability_per_round
 	def calculate_dq_probability_per_round
