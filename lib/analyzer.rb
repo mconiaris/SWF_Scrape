@@ -365,7 +365,9 @@ class Analyzer
 
 	# total_card_rating
 	def calculate_total_card_rating(wrestler)
-		calculate_card_points_per_round(wrestler.points)
+		total_points = calculate_card_points_per_round(wrestler.points)
+
+		return total_points
 	end
 
 
@@ -562,6 +564,7 @@ class Analyzer
 	end
 
 
+	# OC points per roll total not including (S) or Ropes
 	def calculate_oc_points_subtotal(wrestler)
 		oc_hash = get_oc_hash(wrestler)
 		oc_points_hash = oc_hash.select { |k,v| k.to_s.include?("_points") }
@@ -822,7 +825,7 @@ class Analyzer
 
 	def analyze(wrestler)
 
-		calculate_total_card_rating(wrestler)
+		card_points_per_round = calculate_total_card_rating(wrestler)
 
 		# OLDER CODE
 
@@ -942,7 +945,7 @@ class Analyzer
 		@statistics[:tt_probability] = wrestler.points[:GC_TT_Roll]
 		# @statistics[:oc_card_points_per_round] = oc_points_per_roll_total
 		# @statistics[:dc_card_points_per_round] = dc_points_per_roll_total
-		# @statistics[:total_card_points_per_round] = card_points_per_round
+		@statistics[:total_card_points_per_round] = card_points_per_round
 		# @statistics[:dq_probability_per_round] = dq_probability_per_round
 		# @statistics[:pa_probability_per_round] = pa_probability_per_round
 		# @statistics[:sub_probability_per_round] = sub_probability_per_round
