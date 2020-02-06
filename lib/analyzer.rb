@@ -374,19 +374,19 @@ class Analyzer
 	# card_points_per_round
 	def calculate_card_points_per_round(wrestler)
 
-		# DC points per round total
-		dc_points_per_round_total = 
-			calculate_dc_points_per_round_total(wrestler)
-
 		oc_points_per_round_total = 
 			calculate_oc_points_per_round_total(wrestler)
+
+		# DC points per round total
+		dc_points_per_round_total = 
+			calculate_dc_points_per_round_total(wrestler, oc_points_per_round_total)
 
 		return dc_points_per_round_total + 
 			oc_points_per_round_total + 0
 	end
 
 
-	def calculate_dc_points_per_round_total(wrestler)
+	def calculate_dc_points_per_round_total(wrestler, oc_sub_total)
 		# DC Points
 		dc_hash = get_dc_card_hash(wrestler)
 		
@@ -394,11 +394,16 @@ class Analyzer
 			calculate_dc_points_per_round_subtotal(
 				dc_hash, wrestler[:DC])
 
+
+
 		# TODO: replace hard coded number with
 		# total points variable
 		rev_prob = return_rational(wrestler[:Reverse])
+
+		rev_points = calculate_reverse_points(wrestler, oc_sub_total)
+
 		reverse_points_per_round = calculate_reverse_points_per_round_subtotal(
-			wrestler[:DC], rev_prob, 4.65406378600823)
+			wrestler[:DC], rev_prob, rev_points)
 
 		# DC points per round total
 		dc_points_per_round_total = 
@@ -522,6 +527,14 @@ class Analyzer
 	end
 
 
+	# DC Roll Probability * Reverse Roll in DC Probabiity *
+	# Total OC Points Per Round
+	def calculate_reverse_points(wrestler, oc_sub_total)
+		reverse_points = wrestler[:DC] * 
+			return_rational(wrestler[:Reverse]) * oc_sub_total
+
+		return reverse_points
+	end
 
 
 
