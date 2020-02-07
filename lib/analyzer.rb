@@ -365,7 +365,8 @@ class Analyzer
 
 	# total_card_rating
 	def calculate_total_card_rating(wrestler)
-		total_points = calculate_card_points_per_round(wrestler.points)
+		total_points = calculate_card_points_per_round(wrestler.points) + 
+			calculate_dq_probability_per_round(wrestler.points)
 
 		return total_points
 	end
@@ -385,34 +386,11 @@ class Analyzer
 			oc_points_per_round_total
 	end
 
-
-	def calculate_dc_points_per_round_total(wrestler, oc_sub_total)
-		# DC Points
-		dc_hash = get_dc_card_hash(wrestler)
-		
-		dc_points_per_round_subtotal = 
-			calculate_dc_points_per_round_subtotal(
-				dc_hash, wrestler[:DC])
-
-
-
-		# TODO: replace hard coded number with
-		# total points variable
-		rev_prob = return_rational(wrestler[:Reverse])
-
-		reverse_points_per_round = calculate_reverse_points(wrestler, oc_sub_total)
-		# DC points per round total
-		dc_points_per_round_total = 
-			dc_points_per_round_subtotal +
-			reverse_points_per_round
-
-		return dc_points_per_round_total
-	end
-
-
+	
 	# dq_probability_per_round
-	def calculate_dq_probability_per_round
-		
+	def calculate_dq_probability_per_round(wrestler)
+		return_attribute_hash(wrestler, "_dq")
+		return 0
 	end
 
 
@@ -459,6 +437,11 @@ class Analyzer
 		k = k.to_s.delete(attribute).to_sym
 	end
 
+	def return_attribute_hash(h, attribute)
+		dq_hash = h.select { |k,v| k.to_s.include?(attribute) }
+	end
+
+
 	# ============
 	# GENERAL CARD
 	# ============
@@ -490,6 +473,27 @@ class Analyzer
 	# Takes in wrestler card hash Reverse probabilty
 	# and multiplies it by the probability of rolling
 	# the DC card.
+	def calculate_dc_points_per_round_total(wrestler, oc_sub_total)
+		# DC Points
+		dc_hash = get_dc_card_hash(wrestler)
+		
+		dc_points_per_round_subtotal = 
+			calculate_dc_points_per_round_subtotal(
+				dc_hash, wrestler[:DC])
+
+		# TODO: replace hard coded number with
+		# total points variable
+		rev_prob = return_rational(wrestler[:Reverse])
+
+		reverse_points_per_round = calculate_reverse_points(wrestler, oc_sub_total)
+		# DC points per round total
+		dc_points_per_round_total = 
+			dc_points_per_round_subtotal +
+			reverse_points_per_round
+
+		return dc_points_per_round_total
+	end
+
 	def get_dc_card_hash(wrestler)
 		h = wrestler.select { |k,v| k.to_s.include?("DC") }
 		h.delete(:DC)
