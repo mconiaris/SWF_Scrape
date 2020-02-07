@@ -365,10 +365,20 @@ class Analyzer
 
 	# total_card_rating
 	def calculate_total_card_rating(wrestler)
-		total_points = calculate_card_points_per_round(wrestler.points) + 
-			calculate_dq_probability_per_round(wrestler.points)
+		points_per_round = calculate_card_points_per_round(wrestler.points)
+		dq_probability_per_round = calculate_dq_probability_per_round(wrestler.points)
+		pa_probability_per_round = 
 
-		return total_points
+		total_card_rating = points_per_round + 
+			dq_probability_per_round
+binding.pry
+		
+		@statistics[:total_card_rating] = total_card_rating
+		@statistics[:total_card_points_per_round] = points_per_round
+		@statistics[:dq_probability_per_round] = dq_probability_per_round
+
+
+		return total_card_rating
 	end
 
 
@@ -392,50 +402,7 @@ class Analyzer
 		
 		oc_dq_per_round_total = 
 			calculate_oc_dq_per_round_total(wrestler)
-
-
-		
-
-		# # OC Probability Per Round
-		# oc_dq_prob_per_round = 0.0
-		# oc_dq_hash = return_attribute_hash(dq_hash, "OC")
-		# oc_dq_hash.each { |k,v| 
-		# 	k = remove_attribute_from_key(k)
-		# 	oc_dq_prob_per_round += v * 
-		# 		return_rational(calculate_probability(symbol_to_integer(k)))
-		# }
-		# oc_dq_prob_per_round_sub_total = wrestler[:oc_probability] * 
-		# 	oc_dq_prob_per_round
-
-		# # Ropes Probability Per Round
-		# r_dq_prob_per_round = 0.0
-		# r_dq_hash = return_attribute_hash(dq_hash, "RO")
-		# r_dq_hash.each { |k,v| 
-		# 	k = remove_attribute_from_key(k)
-		# 	r_dq_prob_per_round += v * 
-		# 		return_rational(calculate_probability(symbol_to_integer(k)))
-		# }
-		# # Multiply sum by OC and Ropes Roll Probability
-		# r_dq_prob_per_round_sub_total = wrestler[:oc_probability] * 
-		# 	return_rational(wrestler[:OC_Ropes_Roll_Probability]).to_f * 
-		# 	r_dq_prob_per_round
-		
-		# # (S) Probability Per Round
-		# oc_s_dq_prob_per_round = 0.0
-		# oc_s_dq_hash = return_attribute_hash(dq_hash, "S")
-		# oc_s_dq_hash.each { |k,v| 
-		# 	k = remove_attribute_from_key(k)
-		# 	oc_s_dq_prob_per_round += v * 
-		# 		return_rational(calculate_probability(symbol_to_integer(k)))
-		# }
-		# # Multiply sum by OC and Ropes Roll Probability
-		# oc_s_dq_prob_per_round_sub_total = wrestler[:oc_probability] * 
-		# 	wrestler[:Specialty_Roll_Probability_in_OC].to_f * 
-		# 	oc_s_dq_prob_per_round
-
-		# # TODO: Factor this out into a method that can be resued.
-
-		return 0
+		return oc_dq_per_round_total
 	end
 
 
@@ -1173,7 +1140,7 @@ class Analyzer
 		@statistics[:tt_probability] = wrestler.points[:GC_TT_Roll]
 		# @statistics[:oc_card_points_per_round] = oc_points_per_roll_total
 		# @statistics[:dc_card_points_per_round] = dc_points_per_roll_total
-		@statistics[:total_card_points_per_round] = card_points_per_round
+		# @statistics[:total_card_points_per_round] = card_points_per_round
 		# @statistics[:dq_probability_per_round] = dq_probability_per_round
 		# @statistics[:pa_probability_per_round] = pa_probability_per_round
 		# @statistics[:sub_probability_per_round] = sub_probability_per_round
