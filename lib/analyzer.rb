@@ -435,7 +435,7 @@ class Analyzer
 		# 	oc_s_dq_prob_per_round
 
 		# # TODO: Factor this out into a method that can be resued.
-		# # binding.pry
+
 		return 0
 	end
 
@@ -610,7 +610,6 @@ class Analyzer
 
 		oc_specialty_dq_per_round = 
 			calculate_oc_specialty_dq_per_round(wrestler)
-binding.pry
 
 		ropes_dq_total = 
 			calculate_ropes_dq_total(wrestler)
@@ -645,7 +644,6 @@ binding.pry
 	def calculate_oc_specialty_dq_per_round(wrestler)
 		specialty_dq_average = 
 			calculate_specialty_dq_average(wrestler)
-		binding.pry
 	end
 
 	# OC points per roll total not including (S) or Ropes
