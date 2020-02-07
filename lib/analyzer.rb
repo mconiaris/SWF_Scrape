@@ -625,26 +625,29 @@ class Analyzer
 
 	# OC points per roll total not including (S) or Ropes
 	def calculate_oc_points_subtotal(wrestler)
-		calculate_oc_subtotal(wrestler, "_points")
+		oc_prob = wrestler[:oc_probability]
+
+		oc_hash = get_oc_hash(wrestler)
+		oc_points_hash = oc_hash.select { |k,v| k.to_s.include?("points") }
+		
+
+		calculate_oc_subtotal(oc_points_hash, oc_prob)
 	end
 
 
 
 
-	def calculate_oc_subtotal(wrestler, attribute)
-		
-		oc_hash = get_oc_hash(wrestler)
-		oc_points_hash = oc_hash.select { |k,v| k.to_s.include?(attribute) }
+	def calculate_oc_subtotal(wrestler, oc_prob)
 		
 		# Sum up points per roll * probability
 		oc_points = 0
-		oc_points_hash.each { |k,v| 
+		wrestler.each { |k,v| 
 			k = remove_attribute_from_key(k)
 			prob = return_rational(calculate_probability(symbol_to_integer(k))).to_f
 			oc_points += v * prob
 		}
 
-		oc_points_subtotal = wrestler[:oc_probability] * oc_points
+		oc_points_subtotal = oc_prob * oc_points
 		return oc_points_subtotal
 	end
 
