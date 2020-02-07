@@ -608,26 +608,25 @@ class Analyzer
 	# oc_roll_probility * (S) probability
 	def calculate_oc_specialty_points_per_round(wrestler)
 
-		specialty_roll_prob = 
-			wrestler[:Specialty_Roll_Probability_in_OC]
-
-		gc_oc_prob = wrestler[:oc_probability]
-
 		specialty_points_average = 
 			calculate_specialty_points_average(wrestler)
 
-
 		oc_specialty_points_per_round = 
-			calculate_oc_specialty_per_round(specialty_roll_prob, 
-				gc_oc_prob, specialty_points_average)
+			calculate_oc_specialty_per_round(
+				wrestler, specialty_points_average)
 
 		return oc_specialty_points_per_round
 	end
 
 
 	def calculate_oc_specialty_per_round(
-		specialty_roll_prob, gc_oc_prob, attribute)
+		wrestler, attribute)
 		
+		specialty_roll_prob = 
+			wrestler[:Specialty_Roll_Probability_in_OC]
+
+		gc_oc_prob = wrestler[:oc_probability]
+
 		oc_specialty_points_per_round = gc_oc_prob *
 			attribute * specialty_roll_prob 
 
