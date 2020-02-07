@@ -386,10 +386,50 @@ class Analyzer
 			oc_points_per_round_total
 	end
 
-	
+
 	# dq_probability_per_round
 	def calculate_dq_probability_per_round(wrestler)
-		return_attribute_hash(wrestler, "_dq")
+		dq_hash = return_attribute_hash(wrestler, "_dq")
+
+		# OC Probability Per Round
+		oc_dq_prob_per_round = 0.0
+		oc_dq_hash = return_attribute_hash(dq_hash, "OC")
+		oc_dq_hash.each { |k,v| 
+			k = remove_attribute_from_key(k, "_dq")
+			oc_dq_prob_per_round += v * 
+				return_rational(calculate_probability(symbol_to_integer(k)))
+		}
+		oc_dq_prob_per_round_sub_total = wrestler[:oc_probability] * 
+			oc_dq_prob_per_round
+
+		# Ropes Probability Per Round
+		r_dq_prob_per_round = 0.0
+		r_dq_hash = return_attribute_hash(dq_hash, "RO")
+		r_dq_hash.each { |k,v| 
+			k = remove_attribute_from_key(k, "_dq")
+			r_dq_prob_per_round += v * 
+				return_rational(calculate_probability(symbol_to_integer(k)))
+		}
+		# Multiply sum by OC and Ropes Roll Probability
+		r_dq_prob_per_round_sub_total = wrestler[:oc_probability] * 
+			return_rational(wrestler[:OC_Ropes_Roll_Probability]).to_f * 
+			r_dq_prob_per_round
+		
+		# (S) Probability Per Round
+		oc_s_dq_prob_per_round = 0.0
+		oc_s_dq_hash = return_attribute_hash(dq_hash, "S")
+		oc_s_dq_hash.each { |k,v| 
+			k = remove_attribute_from_key(k, "_dq")
+			oc_s_dq_prob_per_round += v * 
+				return_rational(calculate_probability(symbol_to_integer(k)))
+		}
+		# Multiply sum by OC and Ropes Roll Probability
+		oc_s_dq_prob_per_round_sub_total = wrestler[:oc_probability] * 
+			wrestler[:Specialty_Roll_Probability_in_OC].to_f * 
+			oc_s_dq_prob_per_round
+
+		# TODO: Factor this out into a method that can be resued.
+		binding.pry
 		return 0
 	end
 
