@@ -395,7 +395,7 @@ class Analyzer
 		oc_dq_prob_per_round = 0.0
 		oc_dq_hash = return_attribute_hash(dq_hash, "OC")
 		oc_dq_hash.each { |k,v| 
-			k = remove_attribute_from_key(k, "_dq")
+			k = remove_attribute_from_key(k)
 			oc_dq_prob_per_round += v * 
 				return_rational(calculate_probability(symbol_to_integer(k)))
 		}
@@ -406,7 +406,7 @@ class Analyzer
 		r_dq_prob_per_round = 0.0
 		r_dq_hash = return_attribute_hash(dq_hash, "RO")
 		r_dq_hash.each { |k,v| 
-			k = remove_attribute_from_key(k, "_dq")
+			k = remove_attribute_from_key(k)
 			r_dq_prob_per_round += v * 
 				return_rational(calculate_probability(symbol_to_integer(k)))
 		}
@@ -419,7 +419,7 @@ class Analyzer
 		oc_s_dq_prob_per_round = 0.0
 		oc_s_dq_hash = return_attribute_hash(dq_hash, "S")
 		oc_s_dq_hash.each { |k,v| 
-			k = remove_attribute_from_key(k, "_dq")
+			k = remove_attribute_from_key(k)
 			oc_s_dq_prob_per_round += v * 
 				return_rational(calculate_probability(symbol_to_integer(k)))
 		}
@@ -429,7 +429,7 @@ class Analyzer
 			oc_s_dq_prob_per_round
 
 		# TODO: Factor this out into a method that can be resued.
-		binding.pry
+		# binding.pry
 		return 0
 	end
 
@@ -473,8 +473,8 @@ class Analyzer
 		numerator/36.to_r
 	end
 
-	def remove_attribute_from_key(k, attribute)
-		k = k.to_s.delete(attribute).to_sym
+	def remove_attribute_from_key(k)
+		k = k[0..3].to_sym
 	end
 
 	def return_attribute_hash(h, attribute)
@@ -554,7 +554,7 @@ class Analyzer
 			# Return sum of points per roll in DC
 			x = 0
 			hash.each { |k,v|
-				k = remove_attribute_from_key(k, "_points")
+				k = remove_attribute_from_key(k)
 				x += v.to_f * calculate_probability(symbol_to_integer(k))/36.to_f
 			}
 
@@ -581,6 +581,7 @@ class Analyzer
 
 	# OC Points Subtotal + Ropes + Speci
 	def calculate_oc_points_per_round_total(wrestler)
+
 		oc_points_subtotal = 
 			calculate_oc_points_subtotal(wrestler)
 
@@ -624,13 +625,21 @@ class Analyzer
 
 	# OC points per roll total not including (S) or Ropes
 	def calculate_oc_points_subtotal(wrestler)
-		oc_hash = get_oc_hash(wrestler)
-		oc_points_hash = oc_hash.select { |k,v| k.to_s.include?("_points") }
+		calculate_oc_subtotal(wrestler, "_points")
+	end
 
+
+
+
+	def calculate_oc_subtotal(wrestler, attribute)
+		
+		oc_hash = get_oc_hash(wrestler)
+		oc_points_hash = oc_hash.select { |k,v| k.to_s.include?(attribute) }
+		
 		# Sum up points per roll * probability
 		oc_points = 0
 		oc_points_hash.each { |k,v| 
-			k = remove_attribute_from_key(k, "_points")
+			k = remove_attribute_from_key(k)
 			prob = return_rational(calculate_probability(symbol_to_integer(k))).to_f
 			oc_points += v * prob
 		}
@@ -638,8 +647,6 @@ class Analyzer
 		oc_points_subtotal = wrestler[:oc_probability] * oc_points
 		return oc_points_subtotal
 	end
-
-
 
 
 	# ==========
@@ -674,7 +681,7 @@ class Analyzer
 
 		r_points = 0
 		r_points_hash.each { |k,v| 
-			k = remove_attribute_from_key(k, "_points")
+			k = remove_attribute_from_key(k)
 			prob = return_rational(calculate_probability(symbol_to_integer(k))).to_f
 			r_points += v * prob
 		}
