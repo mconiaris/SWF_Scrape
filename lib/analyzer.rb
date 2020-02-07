@@ -277,13 +277,12 @@ class Analyzer
  		}
 
  		# Determine Ropes Roll Enumerator
- 		oc_ropes_hash = hash.select { |k,v| v.include?('Ropes') }
+ 		oc_ropes_hash = hash.select { |k,v| v =='Ropes' }
  		points[:OC_Ropes_Roll_Probability] = prob_points(oc_ropes_hash)
 
  		# Determine Enumerator of (S) rolls in Ropes
  		ropes_s_hash = hash.select { |k,v| k.to_s.include?("RO") && v.include?('(S)') }
  		points[:Ropes_S_Roll_Probability] = prob_points(ropes_s_hash)
-
  		points[:sub_numerator] = sub_tag_numerator(hash[:Sub])
  		points[:tag_save_numerator] = sub_tag_numerator(hash[:Tag])
 
@@ -444,6 +443,7 @@ class Analyzer
 		# 2d6 roll in Offensive and Ropes cards.
 		dq_roll_probability_hash = calculate_specialty_dq_pa_subm_xx_probability(wrestler.values, '(DQ)')
 		ropes_roll_probability_hash = calculate_specialty_dq_pa_subm_xx_probability(wrestler.values, 'ROPES')
+
 		specialty_roll_probability_hash = calculate_specialty_dq_pa_subm_xx_probability(wrestler.values, '(S)')
 		submission_move_roll_probability_hash = calculate_specialty_dq_pa_subm_xx_probability(wrestler.values, '*')
 		xx_roll_probability_hash = calculate_specialty_dq_pa_subm_xx_probability(wrestler.values, '(xx)')
@@ -475,11 +475,12 @@ class Analyzer
 		ropes_points_per_roll_subtotal = calculate_ropes_points_per_roll_subtotal(ropes_points_per_roll, gc_oc_roll_probability, ropes_roll_probability_hash[:OC])
 		specialty_points_per_roll = calculate_specialty_points_and_attributes_per_round(specialty_points_and_attributes_hash, gc_oc_roll_probability, oc_and_ropes_specialty_probability, ropes_roll_probability_hash)
 
+		# TODO: ropes_points_per_roll_total is not working
 		# Calculate Total OC Points Per Roll
 		ropes_points_per_roll_total = 
 			specialty_points_per_roll[:ropes_points_per_roll] + 
 			ropes_points_per_roll_subtotal
-		
+
 		oc_points_per_roll_total = 
 			ropes_points_per_roll_total + 
 			specialty_points_per_roll[:oc_points_per_roll] +
@@ -490,7 +491,6 @@ class Analyzer
 				dc_points_without_reverse, 
 				dc_reverse_roll_probability, 
 				oc_points_per_roll_total)
-
 
 			# Calculate Total Card Values
 			card_points_per_round = oc_points_per_roll_total +
@@ -733,7 +733,6 @@ end
 	# determines the probabilities of both and then returns
 	# the values in a hash.
 	def calculate_specialty_dq_pa_subm_xx_probability(wrestler, move)
-
 		s_prob = Hash.new
 
 		# Check for Problems in :Set attribute of hash.
@@ -825,7 +824,7 @@ end
 		# probability of rolling Ropes in OC
 		y = s_prob[:R].to_f * oc_prob.to_f * 
 			hash[:points_average] * ropes_prob[:OC]
-
+ 			
  		specialty_hash[:ropes_points_per_roll] = y
 
  		return specialty_hash
