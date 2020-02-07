@@ -608,9 +608,9 @@ class Analyzer
 		oc_dq_subtotal = 
 			calculate_oc_dq_subtotal(wrestler)
 
-
 		oc_specialty_dq_per_round = 
 			calculate_oc_specialty_dq_per_round(wrestler)
+binding.pry
 
 		ropes_dq_total = 
 			calculate_ropes_dq_total(wrestler)
@@ -642,7 +642,11 @@ class Analyzer
 		return oc_specialty_points_per_round
 	end
 
-
+	def calculate_oc_specialty_dq_per_round(wrestler)
+		specialty_dq_average = 
+			calculate_specialty_dq_average(wrestler)
+		binding.pry
+	end
 
 	# OC points per roll total not including (S) or Ropes
 	def calculate_oc_points_subtotal(wrestler)
@@ -765,6 +769,7 @@ class Analyzer
 	end
 
 
+
 	def get_ropes_hash(wrestler)
 		h = wrestler.select { |k,v| k.to_s.include?("RO") }
 		
@@ -794,6 +799,25 @@ class Analyzer
 
 		}
 		return s_points/6.to_f
+	end
+
+
+	def calculate_specialty_dq_average(wrestler)
+		s_hash = get_specialty_hash(wrestler)
+		s_dq_hash = s_hash.select { |k,v| k.to_s.include?("_dq")}
+
+		s_dq = 0
+
+		s_dq_hash.each { |k,v| 
+			s_dq += v
+
+		}
+
+		if s_dq =0
+			return 0
+		end
+
+		return s_dq/6.to_f
 	end
 
 
