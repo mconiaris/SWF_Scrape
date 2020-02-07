@@ -731,7 +731,6 @@ binding.pry
 
 		ropes_specialty_dq = 
 			calculate_ropes_specialty_dq(wrestler)
-		binding.pry
 		ropes_dq_per_roll_subtotal = 
 			calculate_ropes_dq_per_roll_total(wrestler)
 
