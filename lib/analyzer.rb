@@ -613,6 +613,7 @@ class Analyzer
 
 		ropes_dq_total = 
 			calculate_ropes_dq_total(wrestler)
+binding.pry
 
 		oc_dq_per_round_total = oc_dq_subtotal +
 			oc_specialty_dq_per_round + ropes_dq_total
@@ -726,6 +727,25 @@ class Analyzer
 		return ropes_total
 	end
 
+	def calculate_ropes_dq_total(wrestler)
+
+		ropes_specialty_dq = 
+			calculate_ropes_specialty_dq(wrestler)
+		binding.pry
+		ropes_dq_per_roll_subtotal = 
+			calculate_ropes_dq_per_roll_total(wrestler)
+
+		ropes_dq_total = ropes_dq_per_roll_subtotal + 
+				ropes_specialty_dq
+
+		return ropes_dq_total
+	end
+
+
+
+
+
+
 	def calculate_ropes_points_per_roll_total(wrestler)
 		r_hash = get_ropes_hash(wrestler)
 		r_points_hash = r_hash.select { |k,v| k.to_s.include?("_points") }
@@ -764,6 +784,18 @@ class Analyzer
 			ropes_s_roll_prob * s_points_av
 
 		return s_points
+	end
+
+	def calculate_ropes_specialty_dq(wrestler)
+		gc_oc_prob = wrestler[:oc_probability]
+		ropes_roll_prob = return_rational(wrestler[:OC_Ropes_Roll_Probability])
+		ropes_s_roll_prob = return_rational(wrestler[:Ropes_S_Roll_Probability])
+		s_dq_av = calculate_specialty_dq_average(wrestler)
+		
+		s_dq = ropes_roll_prob.to_f * gc_oc_prob * 
+			ropes_s_roll_prob * s_dq_av
+
+		return s_dq
 	end
 
 
