@@ -612,7 +612,6 @@ class Analyzer
 
 		ropes_dq_total = 
 			calculate_ropes_dq_total(wrestler)
-binding.pry
 
 		oc_dq_per_round_total = oc_dq_subtotal +
 			oc_specialty_dq_per_round + ropes_dq_total
