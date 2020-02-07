@@ -691,13 +691,24 @@ class Analyzer
 		return ropes_total
 	end
 
-
 	def calculate_ropes_points_per_roll_total(wrestler)
 		r_hash = get_ropes_hash(wrestler)
 		r_points_hash = r_hash.select { |k,v| k.to_s.include?("_points") }
 
+		calculate_ropes_per_roll_total(wrestler, r_points_hash)
+	end
+
+
+
+
+
+
+
+
+	def calculate_ropes_per_roll_total(wrestler, attribute)
+		
 		r_points = 0
-		r_points_hash.each { |k,v| 
+		attribute.each { |k,v| 
 			k = remove_attribute_from_key(k)
 			prob = return_rational(calculate_probability(symbol_to_integer(k))).to_f
 			r_points += v * prob
@@ -708,9 +719,16 @@ class Analyzer
 
 		r_points_subtotal = gc_oc_prob * r_points * 
 			ropes_roll_prob
-			
+
 		return r_points_subtotal
 	end
+
+
+
+
+
+
+
 
 
 	def calculate_ropes_specialty_points(wrestler)
