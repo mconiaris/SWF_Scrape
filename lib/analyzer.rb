@@ -753,6 +753,13 @@ binding.pry
 		calculate_ropes_per_roll_total(wrestler, r_points_hash)
 	end
 
+	def calculate_ropes_dq_per_roll_total(wrestler)
+		r_hash = get_ropes_hash(wrestler)
+		r_dq_hash = r_hash.select { |k,v| k.to_s.include?("_dq") }
+
+		calculate_ropes_per_roll_total(wrestler, r_dq_hash)
+	end
+
 
 	def calculate_ropes_per_roll_total(wrestler, attribute)
 		
