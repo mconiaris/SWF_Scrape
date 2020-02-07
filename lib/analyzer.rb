@@ -396,7 +396,6 @@ class Analyzer
 
 		
 
-		binding.pry
 		# # OC Probability Per Round
 		# oc_dq_prob_per_round = 0.0
 		# oc_dq_hash = return_attribute_hash(dq_hash, "OC")
@@ -664,7 +663,7 @@ binding.pry
 		dq_hash = return_attribute_hash(wrestler, "_dq")
 		oc_dq_hash = return_attribute_hash(dq_hash, "OC")
 
-		return oc_dq_hash
+		return calculate_dq_subtotal(oc_dq_hash, oc_prob)
 	end
 
 
@@ -699,6 +698,20 @@ binding.pry
 
 		oc_points_subtotal = oc_prob * oc_points
 		return oc_points_subtotal
+	end
+
+
+	def calculate_dq_subtotal(wrestler, oc_prob)
+		# Sum up points per roll * probability
+		dq_points = 0
+		wrestler.each { |k,v| 
+			k = remove_attribute_from_key(k)
+			prob = return_rational(calculate_probability(symbol_to_integer(k))).to_f
+			dq_points += v * prob
+		}
+
+		dq_points_subtotal = oc_prob * dq_points
+		return dq_points_subtotal
 	end
 
 
