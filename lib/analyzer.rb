@@ -368,14 +368,18 @@ class Analyzer
 		points_per_round = calculate_card_points_per_round(wrestler.points)
 		dq_probability_per_round = calculate_dq_probability_per_round(wrestler.points)
 		pa_probability_per_round = calculate_pa_probability_per_round(wrestler.points)
+		sub_probability_per_round = calculate_sub_probability_per_round(wrestler.points)
+		
 
 		total_card_rating = points_per_round + 
-			dq_probability_per_round + pa_probability_per_round
+			dq_probability_per_round + pa_probability_per_round +
+				sub_probability_per_round
 		
 		@statistics[:total_card_rating] = total_card_rating
 		@statistics[:total_card_points_per_round] = points_per_round
 		@statistics[:dq_probability_per_round] = dq_probability_per_round
 		@statistics[:pa_probability_per_round] = pa_probability_per_round
+		@statistics[:sub_probability_per_round] = sub_probability_per_round
 
 
 		return total_card_rating
@@ -415,7 +419,7 @@ class Analyzer
 
 
 	# sub_probability_per_round
-	def calculate_sub_probability_per_round
+	def calculate_sub_probability_per_round(wrestler)
 		oc_sub_per_round_total = 
 			calculate_oc_sub_per_round_total(wrestler)
 		return oc_sub_per_round_total
@@ -606,6 +610,22 @@ class Analyzer
 	end
 
 
+	def calculate_oc_sub_per_round_total(wrestler)
+		oc_sub_subtotal = 
+			calculate_oc_sub_subtotal(wrestler)
+		oc_specialty_sub_per_round = 
+			calculate_oc_specialty_sub_per_round(wrestler)
+
+		ropes_sub_total = 
+			calculate_ropes_sub_total(wrestler)
+
+
+		oc_sub_per_round_total = oc_sub_subtotal +
+			oc_specialty_sub_per_round + ropes_sub_total
+		return oc_sub_per_round_total
+	end
+
+
 	def get_oc_hash(wrestler)
 		h = wrestler.select { |k,v| k.to_s.include?("OC") }
 		return h
@@ -640,6 +660,15 @@ class Analyzer
 				wrestler, specialty_pa_average)
 	end
 
+	def calculate_oc_specialty_sub_per_round(wrestler)
+		specialty_sub_average = 
+			calculate_specialty_sub_average(wrestler)
+
+		oc_specialty_sub_per_round = 
+			calculate_oc_specialty_per_round(
+				wrestler, specialty_sub_average)
+	end
+
 
 	# OC points per roll total not including (S) or Ropes
 	def calculate_oc_points_subtotal(wrestler)
@@ -670,6 +699,17 @@ class Analyzer
 		pa_subtotal = calculate_pa_subtotal(oc_pa_hash, oc_prob)
 
 		return pa_subtotal
+	end
+
+	def calculate_oc_sub_subtotal(wrestler)
+		oc_prob = wrestler[:oc_probability]
+
+		sub_hash = return_attribute_hash(wrestler, "_sub")
+		oc_sub_hash = return_attribute_hash(sub_hash, "OC")
+
+		sub_subtotal = calculate_sub_subtotal(oc_sub_hash, oc_prob)
+
+		return sub_subtotal
 	end
 
 
@@ -733,6 +773,19 @@ class Analyzer
 		return pa_points_subtotal
 	end
 
+	def calculate_sub_subtotal(wrestler, oc_prob)
+		# Sum up points per roll * probability
+		sub_points = 0
+		wrestler.each { |k,v| 
+			k = remove_attribute_from_key(k)
+			prob = return_rational(calculate_probability(symbol_to_integer(k))).to_f
+			sub_points += v * prob
+		}
+
+		sub_points_subtotal = oc_prob * sub_points
+		return sub_points_subtotal
+	end
+
 
 	# ==========
 	# ROPES CARD
@@ -785,6 +838,18 @@ class Analyzer
 		return ropes_pa_total
 	end
 
+	def calculate_ropes_sub_total(wrestler)
+		
+		ropes_specialty_sub = 
+			calculate_ropes_specialty_sub(wrestler)
+		ropes_sub_per_roll_subtotal = 
+			calculate_ropes_sub_per_roll_total(wrestler)
+
+		ropes_sub_total = ropes_sub_per_roll_subtotal + 
+				ropes_specialty_sub
+
+	end
+
 
 
 
@@ -809,6 +874,13 @@ class Analyzer
 		r_pa_hash = r_hash.select { |k,v| k.to_s.include?("_pa") }
 
 		calculate_ropes_per_roll_total(wrestler, r_pa_hash)
+	end
+
+	def calculate_ropes_sub_per_roll_total(wrestler)
+		r_hash = get_ropes_hash(wrestler)
+		r_sub_hash = r_hash.select { |k,v| k.to_s.include?("_sub") }
+
+		calculate_ropes_per_roll_total(wrestler, r_sub_hash)
 	end
 
 
@@ -865,6 +937,17 @@ class Analyzer
 		s_pa = ropes_roll_prob.to_f * gc_oc_prob * 
 			ropes_s_roll_prob * s_pa_av
 		return s_pa
+	end
+
+	def calculate_ropes_specialty_sub(wrestler)
+		gc_oc_prob = wrestler[:oc_probability]
+		ropes_roll_prob = return_rational(wrestler[:OC_Ropes_Roll_Probability])
+		ropes_s_roll_prob = return_rational(wrestler[:Ropes_S_Roll_Probability])
+		s_sub_av = calculate_specialty_sub_average(wrestler)
+		
+		s_sub = ropes_roll_prob.to_f * gc_oc_prob * 
+			ropes_s_roll_prob * s_sub_av
+		return s_sub
 	end
 
 
@@ -937,6 +1020,25 @@ class Analyzer
 		end
 
 		return p_a_av
+	end
+
+	def calculate_specialty_sub_average(wrestler)
+		s_hash = get_specialty_hash(wrestler)
+		s_sub_hash = s_hash.select { |k,v| k.to_s.include?("_sub")}
+
+		s_sub = 0
+
+		s_sub_hash.each { |k,v| 
+			s_sub += v
+		}
+
+		if s_sub == 0
+			av = 0
+		else
+			av = s_pa/6.to_f
+		end
+
+		return av
 	end
 
 
