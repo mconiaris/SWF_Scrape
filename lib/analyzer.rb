@@ -367,15 +367,15 @@ class Analyzer
 	def calculate_total_card_rating(wrestler)
 		points_per_round = calculate_card_points_per_round(wrestler.points)
 		dq_probability_per_round = calculate_dq_probability_per_round(wrestler.points)
-		pa_probability_per_round = 
+		pa_probability_per_round = calculate_pa_probability_per_round(wrestler)
 
 		total_card_rating = points_per_round + 
-			dq_probability_per_round
-binding.pry
+			dq_probability_per_round + pa_probability_per_round
 		
 		@statistics[:total_card_rating] = total_card_rating
 		@statistics[:total_card_points_per_round] = points_per_round
 		@statistics[:dq_probability_per_round] = dq_probability_per_round
+		@statistics[:pa_probability_per_round] = pa_probability_per_round
 
 
 		return total_card_rating
@@ -408,7 +408,9 @@ binding.pry
 
 	# pa_probability_per_round
 	def calculate_pa_probability_per_round
-		
+		oc_pa_per_round_total = 
+			calculate_oc_pa_per_round_total(wrestler)
+		return oc_pa_per_round_total
 	end
 
 
