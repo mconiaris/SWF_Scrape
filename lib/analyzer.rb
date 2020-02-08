@@ -393,6 +393,7 @@ class Analyzer
 		@statistics[:sub_probability_per_round] = sub_probability_per_round
 		@statistics[:xx_probability_per_round] = xx_probability_per_round
 
+
 		return total_card_rating
 	end
 
