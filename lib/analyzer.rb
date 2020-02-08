@@ -416,7 +416,9 @@ class Analyzer
 
 	# sub_probability_per_round
 	def calculate_sub_probability_per_round
-		
+		oc_sub_per_round_total = 
+			calculate_oc_sub_per_round_total(wrestler)
+		return oc_sub_per_round_total
 	end
 
 
