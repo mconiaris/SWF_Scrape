@@ -590,6 +590,19 @@ class Analyzer
 
 	def calculate_oc_pa_per_round_total(wrestler)
 		binding.pry
+		oc_pa_subtotal = 
+			calculate_oc_pa_subtotal(wrestler)
+
+		oc_specialty_pa_per_round = 
+			calculate_oc_specialty_pa_per_round(wrestler)
+
+		ropes_pa_total = 
+			calculate_ropes_pa_total(wrestler)
+
+		oc_pa_per_round_total = oc_pa_subtotal +
+			oc_specialty_pa_per_round + ropes_pa_total
+		
+		return oc_pa_per_round_total
 	end
 
 
