@@ -217,6 +217,7 @@ class Analyzer
 
  		# Determine Ropes Roll Enumerator
  		oc_ropes_hash = hash.select { |k,v| v == 'Ropes' }
+
  		points[:OC_Ropes_Roll_Probability] = prob_points(oc_ropes_hash)
 
  		# Determine Enumerator of (S) rolls in Ropes
@@ -326,6 +327,7 @@ class Analyzer
 		elsif values.size == 1
 			x = values[0].to_i
 			num += calculate_probability(x)
+
 		else
 			puts "Sub or Tag numbers are out of range."				
 		end
@@ -393,13 +395,13 @@ class Analyzer
 		@statistics[:sub_probability_per_round] = sub_probability_per_round
 		@statistics[:xx_probability_per_round] = xx_probability_per_round
 
-
 		return total_card_rating
 	end
 
 
 	# card_points_per_round
 	def calculate_card_points_per_round(wrestler)
+
 
 		oc_points_per_round_total = 
 			calculate_oc_points_per_round_total(wrestler)
@@ -411,7 +413,6 @@ class Analyzer
 		return dc_points_per_round_total + 
 			oc_points_per_round_total
 	end
-
 
 	# dq_probability_per_round
 	def calculate_dq_probability_per_round(wrestler)
@@ -1473,3 +1474,4 @@ class Analyzer
 		return @statistics
 	end
 end
+
