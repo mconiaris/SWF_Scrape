@@ -367,7 +367,7 @@ class Analyzer
 	def calculate_total_card_rating(wrestler)
 		points_per_round = calculate_card_points_per_round(wrestler.points)
 		dq_probability_per_round = calculate_dq_probability_per_round(wrestler.points)
-		pa_probability_per_round = calculate_pa_probability_per_round(wrestler)
+		pa_probability_per_round = calculate_pa_probability_per_round(wrestler.points)
 
 		total_card_rating = points_per_round + 
 			dq_probability_per_round + pa_probability_per_round
@@ -407,7 +407,7 @@ class Analyzer
 
 
 	# pa_probability_per_round
-	def calculate_pa_probability_per_round
+	def calculate_pa_probability_per_round(wrestler)
 		oc_pa_per_round_total = 
 			calculate_oc_pa_per_round_total(wrestler)
 		return oc_pa_per_round_total
@@ -586,6 +586,10 @@ class Analyzer
 			oc_specialty_dq_per_round + ropes_dq_total
 		
 		return oc_dq_per_round_total
+	end
+
+	def calculate_oc_pa_per_round_total(wrestler)
+		binding.pry
 	end
 
 
