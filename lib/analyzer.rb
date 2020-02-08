@@ -245,7 +245,6 @@ class Analyzer
 	end
 
 
-	# TODO: replace all pro_points with this
 	# 2d6 roll so that it can be used to calculate the
 	# probabilty of rolls for GC, OC & DC.
 	def calculate_probability(key)
@@ -372,9 +371,11 @@ class Analyzer
 		xx_probability_per_round = calculate_xx_probability_per_round(wrestler.points)
 		
 
-		total_card_rating = points_per_round + 
+		total_card_points = points_per_round + 
 			dq_probability_per_round + pa_probability_per_round +
-				sub_probability_per_round
+				sub_probability_per_round + xx_probability_per_round
+
+		total_card_rating = total_card_points
 		
 		@statistics[:total_card_rating] = total_card_rating
 		@statistics[:total_card_points_per_round] = points_per_round
