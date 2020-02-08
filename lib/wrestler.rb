@@ -18,19 +18,30 @@ class Wrestler
 		puts "Singles Priority: #{wrestler.values[:PriorityS]}"
 		puts "Tag Team Priority: #{wrestler.values[:PriorityT]}"
 		puts "TT Probability: #{wrestler.statistics[:tt_probability]}"
-		puts "Card Rating: #{wrestler.statistics[:card_rating]}"
+		puts "Card Rating: #{wrestler.statistics[:total_card_rating]}"
 		puts "OC Probability: #{wrestler.statistics[:oc_probability]}"
 		puts "Total Points-Per-Round: #{wrestler.statistics[:total_card_points_per_round]}"
 		puts "DQ Probability-Per-Round: #{wrestler.statistics[:dq_probability_per_round]}"
 		puts "P/A Probability-Per-Round: #{wrestler.statistics[:pa_probability_per_round]}"
 		puts "Submission Roll Probability-Per-Round: #{wrestler.statistics[:sub_probability_per_round]}"
 		puts "XX Roll Probability-Per-Round: #{wrestler.statistics[:xx_probability_per_round]}"
-		puts "Submission Loss Probability: #{wrestler.statistics[:submission_loss_probabilty]}"
-		puts "Tag Team Save Probability: #{wrestler.statistics[:tag_team_save_probabilty]}"
+		puts "Submission Loss Probability: #{wrestler.points[:Sub_prob]}"
+		puts "Tag Team Save Probability: #{wrestler.points[:Tag_prob]}"
 		puts "\n"
 
+		tt_probability = "%.1f" % (wrestler.statistics[:tt_probability] * 100) + "%"
+		card_rating = "%.3f" % wrestler.statistics[:total_card_rating]
+		oc_probability = "%.1f" % (wrestler.statistics[:oc_probability] * 100) + "%"
+		total_card_points_per_round = "%.3f" % wrestler.statistics[:total_card_points_per_round]
+		dq_probability_per_round = "%.1f" % (wrestler.statistics[:dq_probability_per_round] * 100) + "%"
+		pa_probability_per_round = "%.1f" % (wrestler.statistics[:pa_probability_per_round] * 100) + "%"
+		sub_probability_per_round = "%.1f" % (wrestler.statistics[:sub_probability_per_round] * 100) + "%"
+		xx_probability_per_round = "%.1f" % (wrestler.statistics[:xx_probability_per_round] * 100) + "%"
+		sub_prob = "%.1f" % (wrestler.points[:Sub_prob] * 100) + "%"
+		tag_prob = "%.1f" % (wrestler.points[:Tag_prob] * 100) + "%"
+
 		f = File.new('files/results.csv', 'a')
-		f.write("#{wrestler.values[:name]},#{wrestler.values[:Set]}, #{wrestler.values[:PriorityS]}, #{wrestler.values[:PriorityT]}, #{wrestler.statistics[:tt_probability]}, #{wrestler.statistics[:card_rating]}, #{wrestler.statistics[:oc_probability]}, #{wrestler.statistics[:total_card_points_per_round]}, #{wrestler.statistics[:dq_probability_per_round]}, #{wrestler.statistics[:pa_probability_per_round]}, #{wrestler.statistics[:sub_probability_per_round]}, #{wrestler.statistics[:xx_probability_per_round]}, #{wrestler.statistics[:submission_loss_probabilty]}, #{wrestler.statistics[:tag_team_save_probabilty]}, \n")
+		f.write("#{wrestler.values[:name]},#{wrestler.values[:Set]}, #{wrestler.values[:PriorityS]}, #{wrestler.values[:PriorityT]}, #{tt_probability}, #{card_rating}, #{oc_probability}, #{total_card_points_per_round}, #{dq_probability_per_round}, #{pa_probability_per_round}, #{sub_probability_per_round}, #{xx_probability_per_round}, #{sub_prob}, #{tag_prob}, \n")
 		f.close
 	end
 
@@ -185,8 +196,8 @@ class Wrestler
 		f.write("R-12-(XX) (0 or 1), #{wrestler.points[:RO12_xx]}\n")
 		f.write("PriorityS:, #{wrestler.values[:PriorityS]}\n")
 		f.write("PRIORITY-TT, #{wrestler.values[:PriorityT]}\n")
-		f.write("SUBMISSION (x/36):, #{wrestler.points[:sub_numerator]}\n")
-		f.write("TAG TEAM SAVE (x/36):, #{wrestler.points[:tag_save_numerator]}\n")
+		f.write("SUBMISSION (x/36):, #{wrestler.points[:Sub_prob]}\n")
+		f.write("TAG TEAM SAVE (x/36):, #{wrestler.points[:Tag_prob]}\n")
 	
 	end
 
