@@ -18,7 +18,7 @@ class Wrestler
 		puts "Singles Priority: #{wrestler.values[:PriorityS]}"
 		puts "Tag Team Priority: #{wrestler.values[:PriorityT]}"
 		puts "TT Probability: #{wrestler.statistics[:tt_probability]}"
-		puts "Card Rating: #{wrestler.statistics[:card_rating]}"
+		puts "Card Rating: #{wrestler.statistics[:total_card_rating]}"
 		puts "OC Probability: #{wrestler.statistics[:oc_probability]}"
 		puts "Total Points-Per-Round: #{wrestler.statistics[:total_card_points_per_round]}"
 		puts "DQ Probability-Per-Round: #{wrestler.statistics[:dq_probability_per_round]}"
