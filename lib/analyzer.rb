@@ -223,6 +223,9 @@ class Analyzer
  		ropes_s_hash = hash.select { |k,v| k.to_s.include?("RO") && v.include?('(S)') }
  		points[:Ropes_S_Roll_Probability] = prob_points(ropes_s_hash)
 
+ 		points[:PriorityS] = hash[:PriorityS].to_i
+ 		points[:PriorityT] = hash[:PriorityT].to_i
+
  		points[:sub_numerator] = sub_tag_numerator(hash[:Sub])
  		points[:tag_save_numerator] = sub_tag_numerator(hash[:Tag])
 
@@ -375,15 +378,20 @@ class Analyzer
 			dq_probability_per_round + pa_probability_per_round +
 				sub_probability_per_round + xx_probability_per_round
 
-		total_card_rating = total_card_points
-		
+		singles_priority = wrestler.points[:PriorityS]
+		submission_loss_probabilty = wrestler.points[:Sub_prob]
+
+		total_card_rating = total_card_points + 
+			singles_priority - submission_loss_probabilty
+
+
 		@statistics[:total_card_rating] = total_card_rating
+		@statistics[:total_card_points] = total_card_points
 		@statistics[:total_card_points_per_round] = points_per_round
 		@statistics[:dq_probability_per_round] = dq_probability_per_round
 		@statistics[:pa_probability_per_round] = pa_probability_per_round
 		@statistics[:sub_probability_per_round] = sub_probability_per_round
 		@statistics[:xx_probability_per_round] = xx_probability_per_round
-
 
 		return total_card_rating
 	end
@@ -1444,7 +1452,7 @@ class Analyzer
 		# Add values to wrestler's hash
 		@statistics[:oc_probability] = wrestler.points[:oc_probability]
 		@statistics[:dc_probability] = wrestler.points[:DC]
-		@statistics[:tt_probability] = wrestler.points[:GC_TT_Roll]
+		@statistics[:tt_probability] = wrestler.points[:GC_TT_Roll].to_f
 		# @statistics[:oc_card_points_per_round] = oc_points_per_roll_total
 		# @statistics[:dc_card_points_per_round] = dc_points_per_roll_total
 		# @statistics[:total_card_points_per_round] = card_points_per_round
