@@ -1455,16 +1455,6 @@ class Analyzer
 		@statistics[:oc_probability] = wrestler.points[:oc_probability]
 		@statistics[:dc_probability] = wrestler.points[:DC]
 		@statistics[:tt_probability] = wrestler.points[:GC_TT_Roll].to_f
-		# @statistics[:oc_card_points_per_round] = oc_points_per_roll_total
-		# @statistics[:dc_card_points_per_round] = dc_points_per_roll_total
-		# @statistics[:total_card_points_per_round] = card_points_per_round
-		# @statistics[:dq_probability_per_round] = dq_probability_per_round
-		# @statistics[:pa_probability_per_round] = pa_probability_per_round
-		# @statistics[:sub_probability_per_round] = sub_probability_per_round
-		# @statistics[:xx_probability_per_round] = xx_probability_per_round
-		# @statistics[:submission_loss_probabilty] = sub_tag_probability(wrestler.values[:Sub])
-		# @statistics[:tag_team_save_probabilty] = sub_tag_probability(wrestler.values[:Tag])
-		# @statistics[:card_rating] = total_card_rating
 		
 		# Check for Problems in :Set attribute of hash.
 		if wrestler.values[:Set] == nil
