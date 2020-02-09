@@ -1126,7 +1126,7 @@ class Analyzer
 		if s_sub == 0
 			av = 0
 		else
-			av = s_pa/6.to_f
+			av = s_sub/6.to_f
 		end
 
 		return av
