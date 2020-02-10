@@ -858,8 +858,6 @@ class Analyzer
 	# then multip;ies it by the probability of rolling 
 	# Ropes
 
-	# TODO: Refactor into method that calcules hashes
-	# that deal with all kinds of points
 	# Ropes Points Subtotal without (S)
 	# 	points * oc_prob * ropes_prob
 	def calculate_ropes_points_total(wrestler)
@@ -925,10 +923,6 @@ class Analyzer
 	end
 
 
-
-
-
-
 	def calculate_ropes_points_per_roll_total(wrestler)
 		r_hash = get_ropes_hash(wrestler)
 		r_points_hash = r_hash.select { |k,v| k.to_s.include?("_points") }
@@ -950,12 +944,14 @@ class Analyzer
 		calculate_ropes_per_roll_total(wrestler, r_pa_hash)
 	end
 
+
 	def calculate_ropes_sub_per_roll_total(wrestler)
 		r_hash = get_ropes_hash(wrestler)
 		r_sub_hash = r_hash.select { |k,v| k.to_s.include?("_sub") }
 
 		calculate_ropes_per_roll_total(wrestler, r_sub_hash)
 	end
+
 
 	def calculate_ropes_xx_per_roll_total(wrestler)
 		r_hash = get_ropes_hash(wrestler)
@@ -1009,6 +1005,7 @@ class Analyzer
 		return s_dq
 	end
 
+
 	def calculate_ropes_specialty_pa(wrestler)
 		gc_oc_prob = wrestler[:oc_probability]
 		ropes_roll_prob = return_rational(wrestler[:OC_Ropes_Roll_Probability])
@@ -1020,6 +1017,7 @@ class Analyzer
 		return s_pa
 	end
 
+
 	def calculate_ropes_specialty_sub(wrestler)
 		gc_oc_prob = wrestler[:oc_probability]
 		ropes_roll_prob = return_rational(wrestler[:OC_Ropes_Roll_Probability])
@@ -1030,6 +1028,7 @@ class Analyzer
 			ropes_s_roll_prob * s_sub_av
 		return s_sub
 	end
+
 
 	def calculate_ropes_specialty_xx(wrestler)
 		gc_oc_prob = wrestler[:oc_probability]
@@ -1113,6 +1112,7 @@ class Analyzer
 		return p_a_av
 	end
 
+
 	def calculate_specialty_sub_average(wrestler)
 		s_hash = get_specialty_hash(wrestler)
 		s_sub_hash = s_hash.select { |k,v| k.to_s.include?("_sub")}
@@ -1155,46 +1155,6 @@ class Analyzer
 
 	def get_specialty_hash(wrestler)
 		wrestler.select { |k,v| k.to_s =~ /S\d/ }
-	end
-
-
-
-	# TODO: Check to see if DQ and XX is calculated somewhere else
-
-	# Takes in a wrestler hash and calculates the
-	# probability of either (S), (XX), * or (DQ) rolls.
-	# It divides OC and Ropes cards into their own hashes,
-	# determines the probabilities of both and then returns
-	# the values in a hash.
-	def calculate_specialty_dq_pa_subm_xx_probability(wrestler, move)
-	# 	s_prob = Hash.new
-
-	# 	# Check for nil valcues
-	# 	s = wrestler.select { |k,v| k.to_s.include?(move) && v == 1 }
-	# 	s_oc = s.select { |k,v| k.to_s.include?('OC') }
-	# 	s_r = s.select { |k,v| k.to_s.include?('R') }
-
-	# 	s_oc_prob = 0
-	# 	s_r_prob = 0
-
-	# 	s_oc.each_key { |k| 
-	# 		x = x = k[0..3]
-	# 		k = x.to_sym
-	# 		s_oc_prob += calculate_probability(symbol_to_integer(k))
-	# 	}
-
-	# 	# Does not include OC-Ropes roll probability
-	# 	s_r.each_key { |k| 
-	# 		x = x = k[0..3]
-	# 		k = x.to_sym
-	# 		s_r_prob += calculate_probability(symbol_to_integer(k))
-	# 	}
-
-	# 	# Convert probability values into a hash
-	# 	s_prob[:OC] = s_oc_prob
-	# 	s_prob[:R] = s_r_prob
-
-	# 	return s_prob
 	end
 
 
