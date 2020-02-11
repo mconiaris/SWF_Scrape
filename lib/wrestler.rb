@@ -57,7 +57,7 @@ class Wrestler
 	def wrestler_points_output(wrestler)
 		f = File.new("files/output/#{wrestler.values[:name]}_points.csv", 'a')
 		f.write("\nName:, #{wrestler.values[:name]}\n")
-		f.write("GC-OC Roll (x/36):, #{wrestler.points[:OC]}\n")
+		f.write("GC-OC Roll (x/36):, #{wrestler.points[:OC_enumerator]}\n")
 		f.write("GC-TT Roll (x/36):, #{wrestler.points[:GC_TT_Roll]}\n")
 		f.write("DC02_points:, #{wrestler.points[:DC02_points]}\n")
  		f.write("DC03_points:, #{wrestler.points[:DC03_points]}\n")
@@ -71,7 +71,7 @@ class Wrestler
  		f.write("DC11_points:, #{wrestler.points[:DC11_points]}\n")
  		f.write("DC12_points:, #{wrestler.points[:DC12_points]}\n")
  		f.write("Reverse (x/36), #{wrestler.points[:Reverse]}\n")
-		f.write("Specialty Roll Probability in OC (x/36), #{wrestler.points[:Specialty_Roll_Probability_in_OC]}\n")
+		f.write("Specialty Roll Probability in OC (x/36), #{wrestler.points[:Specialty_Roll_Enumerator_in_OC]}\n")
 		f.write("Specialty-1-Points, #{wrestler.points[:S1_points]}\n")
 		f.write("Specialty-2-Points, #{wrestler.points[:S2_points]}\n")
 		f.write("Specialty-3-Points, #{wrestler.points[:S3_points]}\n")
@@ -196,8 +196,8 @@ class Wrestler
 		f.write("R-12-(XX) (0 or 1), #{wrestler.points[:RO12_xx]}\n")
 		f.write("PriorityS:, #{wrestler.values[:PriorityS]}\n")
 		f.write("PRIORITY-TT, #{wrestler.values[:PriorityT]}\n")
-		f.write("SUBMISSION (x/36):, #{wrestler.points[:Sub_prob]}\n")
-		f.write("TAG TEAM SAVE (x/36):, #{wrestler.points[:Tag_prob]}\n")
+		f.write("SUBMISSION (x/36):, #{wrestler.points[:sub_numerator]}\n")
+		f.write("TAG TEAM SAVE (x/36):, #{wrestler.points[:tag_save_numerator]}\n")
 	
 	end
 
