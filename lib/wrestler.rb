@@ -58,7 +58,7 @@ class Wrestler
 		f = File.new("files/output/#{wrestler.values[:name]}_points.csv", 'a')
 		f.write("\nName:, #{wrestler.values[:name]}\n")
 		f.write("GC-OC Roll (x/36):, #{wrestler.points[:OC_enumerator]}\n")
-		f.write("GC-TT Roll (x/36):, #{wrestler.points[:GC_TT_Roll]}\n")
+		f.write("GC-TT Roll (x/36):, #{wrestler.points[:GC_TT_Enumerator]}\n")
 		f.write("DC02_points:, #{wrestler.points[:DC02_points]}\n")
  		f.write("DC03_points:, #{wrestler.points[:DC03_points]}\n")
  		f.write("DC04_points:, #{wrestler.points[:DC04_points]}\n")

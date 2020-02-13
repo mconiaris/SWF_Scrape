@@ -40,6 +40,7 @@ class Analyzer
 		points[:DC] = calculate_gc_dc_roll_probability(points[:OC_enumerator])
 
 		# Calculate TT Roll in GC
+		points[:GC_TT_Enumerator] = calculate_gc_tt_roll_probability(hash)
 		points[:GC_TT_Roll] = return_rational(calculate_gc_tt_roll_probability(hash))
 		
 		# Create Symbols for Points
