@@ -65,6 +65,12 @@ def scraping_converted(file)
 end
 
 
+def scraping_py(file)
+	@py_scraper = PyScraper.new
+	@py_scraper.process_card(file)
+end
+
+
 # Cycle through input file for PDF files.
 f = File.new('files/results.csv', 'a')
 f.write("Name, Set, Singles Priority, Tag Team Priority, TT Probability, Card Rating, OC Probability, Total Card Points Per Round, DQ Probability Per Round, P/A Probability Per Round, Sub Probability Per Round, XX Probability Per Round, Submission Loss Probabilty, Tag Team Save Probabilty, \n")
@@ -89,9 +95,9 @@ elsif x == '2'
 	  f.close
 	end
 elsif x == '3'
-	File.open("files/input_py.txt", "r") do |f|
+	File.open("files/input_py.txt", "r") do |f|		
 	  f.each_line do |line|
-	    scraping_py(line.chomp)
+	    scraping_py(line)
 	  end  
 	  f.close
 	end
