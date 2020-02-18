@@ -24,7 +24,8 @@ class PyScraper
 		card_hash = Hash.new
 
 		# Add card name to hash
-		card_hash[:name] = card.lines[1].chomp.split(/name = .(.+)'/).last
+		x = card.lines.select { |x| x.downcase.include?("name =") }
+		card_hash[:name] = x[0].chomp.split(/name = .(.+)'/).last
 		# Strip out empty spaces and redundant OC text
 
 		# Isolate General Card Rolls
@@ -57,7 +58,7 @@ class PyScraper
 
 		}
 
-
+binding.pry
 		# Strip DC redundant text and put values into the hash
 		card_hash[:DC02] = 
 		card_hash[:DC03] = 
