@@ -29,7 +29,8 @@ class PyScraper
 		# Strip out empty spaces and redundant OC text
 
 		# Isolate General Card Rolls
-		gc_array = card.lines[3].chomp.split(",")
+		x = card.lines.select { |x| x.include?("GeneralCard = ") }
+		gc_array = x[0].chomp.split(",")
 		gc_array[0] = gc_array[0].split(/GeneralCard = \[(100\d)/).last
 		gc_array[10] = gc_array[10].chop
 
@@ -58,7 +59,7 @@ class PyScraper
 
 		}
 
-binding.pry
+
 		# Strip DC redundant text and put values into the hash
 		card_hash[:DC02] = 
 		card_hash[:DC03] = 
