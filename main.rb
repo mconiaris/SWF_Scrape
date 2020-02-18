@@ -67,7 +67,8 @@ end
 
 def scraping_py(file)
 	@py_scraper = PyScraper.new
-	@py_scraper.process_card(file)
+	raw_values = @py_scraper.scrape_card(file)
+	moves = @py_scraper.process_card(raw_values)
 end
 
 
