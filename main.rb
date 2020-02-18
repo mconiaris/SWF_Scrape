@@ -1,6 +1,7 @@
 require 'pdf-reader'
 require 'pry'
 require_relative 'lib/analyzer'
+require_relative 'lib/py_scraper'
 require_relative 'lib/scraper'
 require_relative 'lib/wrestler'
 
@@ -84,6 +85,13 @@ elsif x == '2'
 	File.open("files/input_converted.txt", "r") do |f|
 	  f.each_line do |line|
 	    scraping_converted(line.chomp)
+	  end  
+	  f.close
+	end
+elsif x == '3'
+	File.open("files/input_py.txt", "r") do |f|
+	  f.each_line do |line|
+	    scraping_py(line.chomp)
 	  end  
 	  f.close
 	end
