@@ -64,14 +64,6 @@ def scraping_converted(file)
 	wrestler_points_output(@wrestler)
 end
 
-
-def scraping_py(file)
-	@py_scraper = PyScraper.new
-	raw_values = @py_scraper.scrape_card(file)
-	moves = @py_scraper.process_card(raw_values)
-end
-
-
 # Cycle through input file for PDF files.
 f = File.new('files/results.csv', 'a')
 f.write("Name, Set, Singles Priority, Tag Team Priority, TT Probability, Card Rating, OC Probability, Total Card Points Per Round, DQ Probability Per Round, P/A Probability Per Round, Sub Probability Per Round, XX Probability Per Round, Submission Loss Probabilty, Tag Team Save Probabilty, \n")
@@ -92,13 +84,6 @@ elsif x == '2'
 	File.open("files/input_converted.txt", "r") do |f|
 	  f.each_line do |line|
 	    scraping_converted(line.chomp)
-	  end  
-	  f.close
-	end
-elsif x == '3'
-	File.open("files/input_py.txt", "r") do |f|		
-	  f.each_line do |line|
-	    scraping_py(line)
 	  end  
 	  f.close
 	end
