@@ -205,7 +205,7 @@ class Scraper
 		card_hash[:GC11] = left[5][15..left[5].length].strip.split[1]
 
 		# Add OC12 to hash
-		card_hash[:GC12] = left[6].split('12')[1]
+		card_hash[:GC12] = left[6].split('12')[1].strip
 
 		# Strip DC redundant text and put values into the hash
 		card_hash[:DC02] = left[7][0..14].strip.split[1]
@@ -298,9 +298,6 @@ class Scraper
 		}
 		keys = dc_hash.select { |k,v|
 			v[0] == "R"
-		}
-		keys.each { |k,v| 
-			card_hash[k] = "REVERSE"
 		}
 
 		puts "Analyzing #{card_hash[:name]} of my Special set"
