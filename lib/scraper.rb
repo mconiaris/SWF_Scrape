@@ -279,9 +279,14 @@ class Scraper
 		card_hash[:RO12] = right[23].split(/\d+\s+(.+)/)[1]
 
 
+		card_hash[:Set] = "Special"
 
 		if right[24] != nil
-			card_hash[:Set] = right[24][0]
+			if card_hash[:Set].class == Array
+				card_hash[:Set] = right[24][0]
+			else
+				card_hash[:Set] = right[24]
+			end
 		end
 
 		# Fix Issues with Reverse in Converted Scans

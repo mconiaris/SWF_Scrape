@@ -154,7 +154,7 @@ class Analyzer
 
 		# Calculate Reverse Roll in DC
 		reverse_roll = 0
-		r_hash = hash.select { |k,v| v.include?('Reverse') && k.to_s.include?('DC') }
+		r_hash = hash.select { |k,v| k.to_s.include?('DC') && v.downcase.include?('reverse') }
 		points[:Reverse] = prob_points(r_hash)
 
 		# Determine (S) Points

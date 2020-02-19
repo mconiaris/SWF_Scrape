@@ -27,8 +27,8 @@ def scraping(file)
 
 	@analyzer = Analyzer.new
 	points = @analyzer.move_points(moves)
-	@wrestler.points = points
 
+	@wrestler.points = points
 	stats = @analyzer.analyze(@wrestler)
 
 	# Add stats to wrestler instance
@@ -44,7 +44,6 @@ end
 def scraping_converted(file)
 	# Scrape PDF
 	@scrape = Scraper.new(file)
-
 	# Isolate card moves array
 	card = @scrape.card
 
@@ -53,14 +52,23 @@ def scraping_converted(file)
 
 	# Create Wrestler object
 	@wrestler = Wrestler.new(moves)
+	
 	@analyzer = Analyzer.new
+	points = @analyzer.move_points(moves)
+
+	@wrestler.points = points
 	stats = @analyzer.analyze(@wrestler)
 
 	# Add stats to wrestler instance
 	@wrestler.statistics = stats
+
+	# @wrestler.wrestler_output(@wrestler)
+	# @wrestler.wrestler_points_values(@wrestler)
+	# wrestler_points_output(@wrestler)
 	@wrestler.wrestler_output(@wrestler)
-	@wrestler.wrestler_points_values(@wrestler)
-	wrestler_points_output(@wrestler)
+	@wrestler.wrestler_values_output(@wrestler)
+	@wrestler.wrestler_points_output(@wrestler)
+
 end
 
 # Cycle through input file for PDF files.
