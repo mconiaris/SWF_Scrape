@@ -1,7 +1,7 @@
 require 'pdf-reader'
 require 'pry'
 require_relative 'lib/analyzer'
-require_relative 'lib/py_scraper'
+require_relative 'lib/pages_scraper'
 require_relative 'lib/scraper'
 require_relative 'lib/wrestler'
 
