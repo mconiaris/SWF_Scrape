@@ -4,7 +4,6 @@ git_source(:github) {|repo_name| "https://github.com/#{repo_name}" }
 
 # gem "rails"
 gem 'pdf-reader', '2.1.0'
-gem 'henkei'
 
 group :test do
 	gem "rspec", '3.8'

@@ -87,6 +87,14 @@ elsif x == '2'
 	  end  
 	  f.close
 	end
+elsif x == '3'
+	# For my Specials
+	File.open("files/input_converted.txt", "r") do |f|
+	  f.each_line do |line|
+	    scraping_converted(line.chomp)
+	  end  
+	  f.close
+	end
 else
 	puts 'Inccorect option.'
 end
