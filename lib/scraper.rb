@@ -279,7 +279,6 @@ class Scraper
 		card_hash[:RO12] = right[23].split(/\d+\s+(.+)/)[1]
 
 
-		card_hash[:Set] = "Special"
 
 		if right[24] != nil
 			if card_hash[:Set].class == Array
@@ -288,6 +287,7 @@ class Scraper
 				card_hash[:Set] = right[24]
 			end
 		end
+		card_hash[:Set] = "Special"
 
 		# Fix Issues with Reverse in Converted Scans
 		# Find DC keys with values of R and replace
