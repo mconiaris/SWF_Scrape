@@ -35,7 +35,6 @@ class Scraper
 		}
 		# Create Hash for card and add vales.
 		card_hash = Hash.new
-
 		# Add card name to hash
 		card_hash[:name] = left[0]
 		# Strip out empty spaces and redundant OC text
@@ -287,7 +286,10 @@ class Scraper
 				card_hash[:Set] = right[24]
 			end
 		end
-		card_hash[:Set] = "Special"
+		
+		if card_hash[:Set] == nil
+			card_hash[:Set] = "Special"
+		end
 
 		# Fix Issues with Reverse in Converted Scans
 		# Find DC keys with values of R and replace
