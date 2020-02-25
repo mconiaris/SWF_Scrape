@@ -1266,32 +1266,6 @@ class Analyzer
 	# 	oc + r
 	end
 
-	# # Takes SUB or TAG values and calculates probability 
-	# # a card rolling that range.
-	def sub_tag_probability(a)
-	# 	num_range = 0
-
-	# 	if a.size == 2
-	# 		s = Range.new(a[0].to_i, a[1].to_i)
-
-	# 		s.each { |x|
-	# 			num_range += calculate_probability(x)
-	# 		}
-	# 	elsif a.size == 1
-	# 		x = a[0].to_i
-	# 		num_range += calculate_probability(x)
-	# 	else
-	# 		puts "Sub or Tag numbers are out of range."				
-	# 	end
-
-	# 	return num_range.to_f
-	end
-
-
-
-
-
-
 	# ===================
 	# GENERATE STATISTICS
 	# ===================
