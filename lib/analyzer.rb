@@ -1172,30 +1172,6 @@ class Analyzer
 	# 	return s_points/6.to_f
 	end
 
-
-	# Returns points per roll of (S) move for OC and
-	# Ropes rolls.
-	def calculate_specialty_points_and_attributes_per_round(s_points, oc_prob, s_prob, ropes_prob)
-	# 	specialty_hash = Hash.new
-
-	# 	# Calculate Points Per OC (S) roll
-	# 	# (S) roll probability on OC x OC probability on GC x
-	# 	# Points per 1d6 (S) roll
-	# 	x = return_rational(s_prob[:OC].to_f) * oc_prob.to_f * s_points
-	# 	specialty_hash[:oc_points_per_roll] = x
-
-	# 	# (S) roll probability on Ropes Card x OC 
-	# 	# probability on GC x Points per 1d6 (S) roll *
-	# 	# probability of rolling Ropes in OC
-	# 	y = return_rational(s_prob[:R].to_f) * oc_prob.to_f * 
-	# 		s_points * ropes_prob
-
- # 		specialty_hash[:ropes_points_per_roll] = y
-
- # 		return specialty_hash
-	end
-
-
 	# ===================
 	# GENERATE STATISTICS
 	# ===================
