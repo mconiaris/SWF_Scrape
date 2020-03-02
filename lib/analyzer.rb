@@ -1158,20 +1158,6 @@ class Analyzer
 		wrestler.select { |k,v| k.to_s =~ /S\d/ }
 	end
 
-
-	# TODO factor out select hashes into a method for DRY
-	# Isolate the Specialty move and calculate the
-	# points and other values
-	def calculate_average_specialty_points_per_round(wrestler)
-		
-	# 	s_points = 0
-
-	# 	s = wrestler.select { |k,v| k.to_s =~ /S\d/ && k.to_s.include?("_points")}
-	# 	s.each { |k, v| s_points += v }
-
-	# 	return s_points/6.to_f
-	end
-
 	# ===================
 	# GENERATE STATISTICS
 	# ===================
