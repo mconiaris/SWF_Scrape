@@ -360,14 +360,6 @@ class Analyzer
 	# GENERATE TOTAL CARD RATING
 	# ==========================
 
-	# total_card_rating = card_points_per_round +
-	# 		dq_probability_per_round + 
-	# 		pa_probability_per_round + 
-	# 		sub_probability_per_round + 
-	# 		xx_probability_per_round +
-	# 		wrestler.values[:PriorityS].to_f -
-	# 		sub_tag_probability(wrestler.values[:Sub])
-
 	# total_card_rating
 	def calculate_total_card_rating(wrestler)
 		points_per_round = calculate_card_points_per_round(wrestler.points)
