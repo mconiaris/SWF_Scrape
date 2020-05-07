@@ -30,7 +30,7 @@ class Wrestler
 		puts "\n"
 
 		tt_probability = "%.1f" % (wrestler.statistics[:tt_probability] * 100) + "%"
-		card_rating = "%.3f" % wrestler.statistics[:total_card_rating]
+		card_rating = "%.1f" % wrestler.statistics[:total_card_rating]
 		oc_probability = "%.1f" % (wrestler.statistics[:oc_probability] * 100) + "%"
 		total_card_points_per_round = "%.3f" % wrestler.statistics[:total_card_points_per_round]
 		dq_probability_per_round = "%.1f" % (wrestler.statistics[:dq_probability_per_round] * 100) + "%"
