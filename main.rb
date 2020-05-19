@@ -46,7 +46,7 @@ def scraping_converted(file)
 	@scrape = Scraper.new(file)
 	# Isolate card moves array
 	card = @scrape.card
-binding.pry
+
 	# Convert move array into a hash and fix formatting.
 	moves = @scrape.process_converted_card(card)
 	# Create Wrestler object
