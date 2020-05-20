@@ -219,7 +219,6 @@ class Scraper
 		card_hash[:DC11] = left[12][15..left[12].length].strip.split[1]
 		card_hash[:DC12] = left[13].split('12')[1]
 
-binding.pry
 		# Add Specialty Values to hash
 		card_hash[:Specialty] = left[15]
 		card_hash[:S1] = left[16].split(/\d\s(.+)/)[1]
