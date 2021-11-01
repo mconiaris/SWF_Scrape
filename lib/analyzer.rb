@@ -368,10 +368,11 @@ class Analyzer
 		sub_probability_per_round = calculate_sub_probability_per_round(wrestler.points)
 		xx_probability_per_round = calculate_xx_probability_per_round(wrestler.points)
 		
-
+		# Double P/A per round and divide XX per round for total card value
+		# to increase relative value of pin attempts.
 		total_card_points = points_per_round + 
-			dq_probability_per_round + pa_probability_per_round +
-				sub_probability_per_round + xx_probability_per_round
+			dq_probability_per_round + (pa_probability_per_round * 2) +
+				sub_probability_per_round + (xx_probability_per_round / 2)
 
 		singles_priority = wrestler.points[:PriorityS]
 		submission_loss_probabilty = wrestler.points[:Sub_prob]
