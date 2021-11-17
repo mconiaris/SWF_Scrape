@@ -307,6 +307,9 @@ class Scraper
 
 
 
+
+	private
+
 	def scrape_sub_and_tag(value)
 		v = value.split
 		v.delete_at(0)
