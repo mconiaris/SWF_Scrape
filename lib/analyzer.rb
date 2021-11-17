@@ -21,6 +21,26 @@ class Analyzer
 	end
 
 
+	# ===================
+	# GENERATE STATISTICS
+	# ===================
+
+	def analyze(wrestler)
+
+		card_points_per_round = calculate_total_card_rating(wrestler)
+
+		# Add values to wrestler's hash
+		@statistics[:oc_probability] = wrestler.points[:oc_probability]
+		@statistics[:dc_probability] = wrestler.points[:DC]
+		@statistics[:tt_probability] = wrestler.points[:GC_TT_Roll].to_f
+		
+		# Check for Problems in :Set attribute of hash.
+		if wrestler.values[:Set] == nil
+			wrestler.values[:Set] = 'Special'
+		end
+
+		return @statistics
+	end
 
 
 	# ======================
@@ -238,7 +258,7 @@ class Analyzer
 	end
 
 
-
+	private
 
 
 	# ==============================
@@ -1151,25 +1171,5 @@ class Analyzer
 		wrestler.select { |k,v| k.to_s =~ /S\d/ }
 	end
 
-	# ===================
-	# GENERATE STATISTICS
-	# ===================
-
-	def analyze(wrestler)
-
-		card_points_per_round = calculate_total_card_rating(wrestler)
-
-		# Add values to wrestler's hash
-		@statistics[:oc_probability] = wrestler.points[:oc_probability]
-		@statistics[:dc_probability] = wrestler.points[:DC]
-		@statistics[:tt_probability] = wrestler.points[:GC_TT_Roll].to_f
-		
-		# Check for Problems in :Set attribute of hash.
-		if wrestler.values[:Set] == nil
-			wrestler.values[:Set] = 'Special'
-		end
-
-		return @statistics
-	end
 end
 
