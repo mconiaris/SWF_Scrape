@@ -13,6 +13,7 @@ class Wrestler
 	# Takes Wrestler object statistics and prints them
 	# out to a CSV file.
 	def wrestler_output(wrestler)
+
 		puts "Name: #{wrestler.values[:name]}"
 		puts "Set: #{wrestler.values[:Set]}"
 		puts "Singles Priority: #{wrestler.values[:PriorityS]}"
@@ -42,6 +43,28 @@ class Wrestler
 
 		f = File.new('files/results.csv', 'a')
 		f.write("#{wrestler.values[:name]},#{wrestler.values[:Set]}, #{wrestler.values[:PriorityS]}, #{wrestler.values[:PriorityT]}, #{tt_probability}, #{card_rating}, #{oc_probability}, #{total_card_points_per_round}, #{dq_probability_per_round}, #{pa_probability_per_round}, #{sub_probability_per_round}, #{xx_probability_per_round}, #{sub_prob}, #{tag_prob}, \n")
+		f.close
+	end
+
+	# Method to seed database for web app.
+	def wrestler_raw_values_output(wrestler)
+		tt_probability = "%.1f" % (wrestler.statistics[:tt_probability] * 100) + "%"
+		card_rating = "%.1f" % wrestler.statistics[:total_card_rating]
+		oc_probability = "%.1f" % (wrestler.statistics[:oc_probability] * 100) + "%"
+		total_card_points_per_round = "%.3f" % wrestler.statistics[:total_card_points_per_round]
+		dq_probability_per_round = "%.1f" % (wrestler.statistics[:dq_probability_per_round] * 100) + "%"
+		pa_probability_per_round = "%.1f" % (wrestler.statistics[:pa_probability_per_round] * 100) + "%"
+		sub_probability_per_round = "%.1f" % (wrestler.statistics[:sub_probability_per_round] * 100) + "%"
+		xx_probability_per_round = "%.1f" % (wrestler.statistics[:xx_probability_per_round] * 100) + "%"
+		sub_prob = "%.1f" % (wrestler.points[:Sub_prob] * 100) + "%"
+		tag_prob = "%.1f" % (wrestler.points[:Tag_prob] * 100) + "%"
+
+		f = File.new('files/raw_results.csv', 'a')
+		f.write("#{wrestler.values[:Set]},")
+		wrestler.values.each { |k, v|
+			f.write(k, ",", v, ",") 
+		}
+		f.write("tt_probability, #{tt_probability}, card_rating, #{card_rating}, oc_probability, #{oc_probability}, total_card_points_per_round, #{total_card_points_per_round}, dq_probability_per_round. #{dq_probability_per_round}, pa_probability_per_round, #{pa_probability_per_round}, sub_probability_per_round, #{sub_probability_per_round}, xx_probability_per_round, #{xx_probability_per_round}, sub_prob, #{sub_prob}, tag_prob, #{tag_prob}, Sub(1):, #{wrestler.values[:Sub][0]}, Sub(2),#{wrestler.values[:Sub][1]}, Tag(1):, #{wrestler.values[:Tag][0]}, Tag(2), #{wrestler.values[:Tag][1]}\n")
 		f.close
 	end
 
