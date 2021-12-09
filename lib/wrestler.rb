@@ -62,16 +62,17 @@ class Wrestler
 		f = File.new('files/raw_results.csv', 'a')
 		f.write("#{wrestler.values[:Set]},")
 		wrestler.values.each { |k, v|
-			f.write(k, ",", v, ",") 
+			f.write(v, ",") 
 		}
-		f.write("tt_probability, #{tt_probability}, card_rating, #{card_rating}, oc_probability, #{oc_probability}, total_card_points_per_round, #{total_card_points_per_round}, dq_probability_per_round. #{dq_probability_per_round}, pa_probability_per_round, #{pa_probability_per_round}, sub_probability_per_round, #{sub_probability_per_round}, xx_probability_per_round, #{xx_probability_per_round}, sub_prob, #{sub_prob}, tag_prob, #{tag_prob}, Sub(1):, #{wrestler.values[:Sub][0]}, Sub(2),#{wrestler.values[:Sub][1]}, Tag(1):, #{wrestler.values[:Tag][0]}, Tag(2), #{wrestler.values[:Tag][1]}\n")
+		f.write("#{tt_probability}, #{card_rating}, #{oc_probability}, #{total_card_points_per_round}, #{dq_probability_per_round}, #{pa_probability_per_round}, #{sub_probability_per_round}, #{xx_probability_per_round}, #{sub_prob}, #{tag_prob}, #{wrestler.values[:Sub][0]}, #{wrestler.values[:Sub][1]}, #{wrestler.values[:Tag][0]}, #{wrestler.values[:Tag][1]}\n")
 		f.close
 	end
 
 	def wrestler_values_output(wrestler)
 		f = File.new("files/output/#{wrestler.values[:name]}_values.csv", 'a')
 		wrestler.values.each { |k, v|
-			f.write(k, ",", v, "\n")  }
+			f.write(k, ",", v, "\n")
+		}
 		f.write("Sub:, #{wrestler.values[:Sub][0]}-#{wrestler.values[:Sub][1]}\n")
 		f.write("Tag:, #{wrestler.values[:Tag][0]}-#{wrestler.values[:Tag][1]}\n")
 		f.write("Priority:, #{wrestler.values[:PriorityS]}/#{wrestler.values[:PriorityT]}\n")
