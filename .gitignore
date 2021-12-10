@@ -6,3 +6,4 @@ files/skip.txt
 files/values.csv
 files/output/*
 files/scanned specials/*
+files/raw_results.csv
