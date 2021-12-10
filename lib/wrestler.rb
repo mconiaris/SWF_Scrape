@@ -69,7 +69,7 @@ class Wrestler
 	end
 
 	def wrestler_values_output(wrestler)
-		f = File.new("files/output/#{wrestler.values[:name]}_values.csv", 'a')
+		f = File.new("files/output/#{wrestler.values[:name]}_#{wrestler.values[:Set]}_values.csv", 'a')
 		wrestler.values.each { |k, v|
 			f.write(k, ",", v, "\n")
 		}
@@ -79,7 +79,7 @@ class Wrestler
 	end
 
 	def wrestler_points_output(wrestler)
-		f = File.new("files/output/#{wrestler.values[:name]}_points.csv", 'a')
+		f = File.new("files/output/#{wrestler.values[:name]}_#{wrestler.values[:Set]}_points.csv", 'a')
 		f.write("\nName:, #{wrestler.values[:name]}\n")
 		f.write("GC-OC Roll (x/36):, #{wrestler.points[:OC_enumerator]}\n")
 		f.write("GC-TT Roll (x/36):, #{wrestler.points[:GC_TT_Enumerator]}\n")
