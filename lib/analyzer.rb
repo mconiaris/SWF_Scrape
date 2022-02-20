@@ -1102,7 +1102,6 @@ class Analyzer
 		if s_dq == 0
 			return 0
 		end
-
 		return s_dq/6.to_f
 	end
 

@@ -8,7 +8,7 @@ class Wrestler
 		@values = card
 	end
 
-
+# TODO: Fix output for csv when wrestler has one value for Sub or Tag save.
 
 	# Takes Wrestler object statistics and prints them
 	# out to a CSV file.
