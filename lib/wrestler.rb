@@ -225,4 +225,89 @@ class Wrestler
 	
 	end
 
+	def wrestler_hash_output
+		wrestler_hash_output = self.values
+
+		wrestler_hash_output["name"] = wrestler_hash_output.delete :name
+		wrestler_hash_output["set"] = wrestler_hash_output.delete :Set
+
+		wrestler_hash_output["gc02"] = wrestler_hash_output.delete :GC02
+		wrestler_hash_output["gc03"] = wrestler_hash_output.delete :GC03
+		wrestler_hash_output["gc04"] = wrestler_hash_output.delete :GC04
+		wrestler_hash_output["gc05"] = wrestler_hash_output.delete :GC05
+		wrestler_hash_output["gc06"] = wrestler_hash_output.delete :GC06
+		wrestler_hash_output["gc07"] = wrestler_hash_output.delete :GC07
+		wrestler_hash_output["gc08"] = wrestler_hash_output.delete :GC08
+		wrestler_hash_output["gc09"] = wrestler_hash_output.delete :GC09
+		wrestler_hash_output["gc10"] = wrestler_hash_output.delete :GC10
+		wrestler_hash_output["gc11"] = wrestler_hash_output.delete :GC11
+		wrestler_hash_output["gc12"] = wrestler_hash_output.delete :GC12
+
+		wrestler_hash_output["dc02"] = wrestler_hash_output.delete :DC02
+		wrestler_hash_output["dc03"] = wrestler_hash_output.delete :DC03
+		wrestler_hash_output["dc04"] = wrestler_hash_output.delete :DC04
+		wrestler_hash_output["dc05"] = wrestler_hash_output.delete :DC05
+		wrestler_hash_output["dc06"] = wrestler_hash_output.delete :DC06
+		wrestler_hash_output["dc07"] = wrestler_hash_output.delete :DC07
+		wrestler_hash_output["dc08"] = wrestler_hash_output.delete :DC08
+		wrestler_hash_output["dc09"] = wrestler_hash_output.delete :DC09
+		wrestler_hash_output["dc10"] = wrestler_hash_output.delete :DC10
+		wrestler_hash_output["dc11"] = wrestler_hash_output.delete :DC11
+		wrestler_hash_output["dc12"] = wrestler_hash_output.delete :DC12
+
+		wrestler_hash_output["specialty"] = wrestler_hash_output.delete :Specialty
+
+		wrestler_hash_output["s1"] = wrestler_hash_output.delete :S1
+		wrestler_hash_output["s2"] = wrestler_hash_output.delete :S2
+		wrestler_hash_output["s3"] = wrestler_hash_output.delete :S3
+		wrestler_hash_output["s4"] = wrestler_hash_output.delete :S4
+		wrestler_hash_output["s5"] = wrestler_hash_output.delete :S5
+		wrestler_hash_output["s6"] = wrestler_hash_output.delete :S6
+
+		wrestler_hash_output["subx"] = wrestler_hash_output[:Sub][0]
+		wrestler_hash_output["suby"] = wrestler_hash_output[:Sub][1]
+		wrestler_hash_output["tagx"] = wrestler_hash_output[:Sub][0]
+		wrestler_hash_output["tagy"] = wrestler_hash_output[:Sub][1]
+
+		wrestler_hash_output.delete :Sub
+		wrestler_hash_output.delete :Tag
+
+		wrestler_hash_output["prioritys"] = wrestler_hash_output.delete :PriorityS
+		wrestler_hash_output["priorityt"] = wrestler_hash_output.delete :PriorityT
+
+		wrestler_hash_output["oc02"] = wrestler_hash_output.delete :OC02
+		wrestler_hash_output["oc03"] = wrestler_hash_output.delete :OC03
+		wrestler_hash_output["oc04"] = wrestler_hash_output.delete :OC04
+		wrestler_hash_output["oc05"] = wrestler_hash_output.delete :OC05
+		wrestler_hash_output["oc06"] = wrestler_hash_output.delete :OC06
+		wrestler_hash_output["oc07"] = wrestler_hash_output.delete :OC07
+		wrestler_hash_output["oc08"] = wrestler_hash_output.delete :OC08
+		wrestler_hash_output["oc09"] = wrestler_hash_output.delete :OC09
+		wrestler_hash_output["oc10"] = wrestler_hash_output.delete :OC10
+		wrestler_hash_output["oc11"] = wrestler_hash_output.delete :OC11
+		wrestler_hash_output["oc12"] = wrestler_hash_output.delete :OC12
+
+		wrestler_hash_output["ro02"] = wrestler_hash_output.delete :RO02
+		wrestler_hash_output["ro03"] = wrestler_hash_output.delete :RO03
+		wrestler_hash_output["ro04"] = wrestler_hash_output.delete :RO04
+		wrestler_hash_output["ro05"] = wrestler_hash_output.delete :RO05
+		wrestler_hash_output["ro06"] = wrestler_hash_output.delete :RO06
+		wrestler_hash_output["ro07"] = wrestler_hash_output.delete :RO07
+		wrestler_hash_output["ro08"] = wrestler_hash_output.delete :RO08
+		wrestler_hash_output["ro09"] = wrestler_hash_output.delete :RO09
+		wrestler_hash_output["ro10"] = wrestler_hash_output.delete :RO10
+		wrestler_hash_output["ro11"] = wrestler_hash_output.delete :RO11
+		wrestler_hash_output["ro12"] = wrestler_hash_output.delete :RO12
+
+		f = File.new("files/output/#{wrestler_hash_output["name"]}_#{wrestler_hash_output["set"]}_hash.txt", 'a')
+
+		f.write("{")
+		wrestler_hash_output.each { |k,v|
+			f.write("\"#{k}\"=>\"#{v}\", ")
+		}
+		f.write("template: nil}")
+
+		f.write("\n\n")
+	end
+
 end
