@@ -47,21 +47,21 @@ class Wrestler
 	end
 
 	# Method to seed database for web app.
-	def wrestler_raw_values_output(wrestler)
-		tt_probability = "%.1f" % (wrestler.statistics[:tt_probability] * 100) + "%"
-		card_rating = "%.1f" % wrestler.statistics[:total_card_rating]
-		oc_probability = "%.1f" % (wrestler.statistics[:oc_probability] * 100) + "%"
-		total_card_points_per_round = "%.3f" % wrestler.statistics[:total_card_points_per_round]
-		dq_probability_per_round = "%.1f" % (wrestler.statistics[:dq_probability_per_round] * 100) + "%"
-		pa_probability_per_round = "%.1f" % (wrestler.statistics[:pa_probability_per_round] * 100) + "%"
-		sub_probability_per_round = "%.1f" % (wrestler.statistics[:sub_probability_per_round] * 100) + "%"
-		xx_probability_per_round = "%.1f" % (wrestler.statistics[:xx_probability_per_round] * 100) + "%"
-		sub_prob = "%.1f" % (wrestler.points[:Sub_prob] * 100) + "%"
-		tag_prob = "%.1f" % (wrestler.points[:Tag_prob] * 100) + "%"
+	def wrestler_raw_values_output
+		tt_probability = "%.1f" % (self.statistics[:tt_probability] * 100) + "%"
+		card_rating = "%.1f" % self.statistics[:total_card_rating]
+		oc_probability = "%.1f" % (self.statistics[:oc_probability] * 100) + "%"
+		total_card_points_per_round = "%.3f" % self.statistics[:total_card_points_per_round]
+		dq_probability_per_round = "%.1f" % (self.statistics[:dq_probability_per_round] * 100) + "%"
+		pa_probability_per_round = "%.1f" % (self.statistics[:pa_probability_per_round] * 100) + "%"
+		sub_probability_per_round = "%.1f" % (self.statistics[:sub_probability_per_round] * 100) + "%"
+		xx_probability_per_round = "%.1f" % (self.statistics[:xx_probability_per_round] * 100) + "%"
+		sub_prob = "%.1f" % (self.points[:Sub_prob] * 100) + "%"
+		tag_prob = "%.1f" % (self.points[:Tag_prob] * 100) + "%"
 
 		f = File.new('files/raw_results.csv', 'a')
-		f.write("#{wrestler.values[:Set]},")
-		wrestler.values.each { |k, v|
+		f.write("#{self.values[:Set]},")
+		self.values.each { |k, v|
 			f.write(v, ",") 
 		}
 		f.write("#{tt_probability}, #{card_rating}, #{oc_probability}, #{total_card_points_per_round}, #{dq_probability_per_round}, #{pa_probability_per_round}, #{sub_probability_per_round}, #{xx_probability_per_round}, #{sub_prob}, #{tag_prob}, #{wrestler.values[:Sub][0]}, #{wrestler.values[:Sub][1]}, #{wrestler.values[:Tag][0]}, #{wrestler.values[:Tag][1]}\n")
