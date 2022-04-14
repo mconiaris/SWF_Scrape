@@ -36,7 +36,7 @@ def scraping(file)
 
 	@wrestler.wrestler_output(@wrestler)
 	@wrestler.wrestler_values_output(@wrestler)
-	@wrestler.wrestler_points_output(@wrestler)
+	@wrestler.wrestler_points_output
 	@wrestler.wrestler_raw_values_output(@wrestler)
 
 	@wrestler.wrestler_hash_output
@@ -65,7 +65,7 @@ def scraping_converted(file)
 
 	@wrestler.wrestler_output(@wrestler)
 	@wrestler.wrestler_values_output(@wrestler)
-	@wrestler.wrestler_points_output(@wrestler)
+	@wrestler.wrestler_points_output
 
 end
 
