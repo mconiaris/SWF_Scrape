@@ -12,37 +12,37 @@ class Wrestler
 
 	# Takes Wrestler object statistics and prints them
 	# out to a CSV file.
-	def wrestler_output(wrestler)
+	def wrestler_output
 
-		puts "Name: #{wrestler.values[:name]}"
-		puts "Set: #{wrestler.values[:Set]}"
-		puts "Singles Priority: #{wrestler.values[:PriorityS]}"
-		puts "Tag Team Priority: #{wrestler.values[:PriorityT]}"
-		puts "TT Probability: #{wrestler.statistics[:tt_probability]}"
-		puts "Card Rating: #{wrestler.statistics[:total_card_rating]}"
-		puts "OC Probability: #{wrestler.statistics[:oc_probability]}"
-		puts "Total Points-Per-Round: #{wrestler.statistics[:total_card_points_per_round]}"
-		puts "DQ Probability-Per-Round: #{wrestler.statistics[:dq_probability_per_round]}"
-		puts "P/A Probability-Per-Round: #{wrestler.statistics[:pa_probability_per_round]}"
-		puts "Submission Roll Probability-Per-Round: #{wrestler.statistics[:sub_probability_per_round]}"
-		puts "XX Roll Probability-Per-Round: #{wrestler.statistics[:xx_probability_per_round]}"
-		puts "Submission Loss Probability: #{wrestler.points[:Sub_prob]}"
-		puts "Tag Team Save Probability: #{wrestler.points[:Tag_prob]}"
+		puts "Name: #{self.values[:name]}"
+		puts "Set: #{self.values[:Set]}"
+		puts "Singles Priority: #{self.values[:PriorityS]}"
+		puts "Tag Team Priority: #{self.values[:PriorityT]}"
+		puts "TT Probability: #{self.statistics[:tt_probability]}"
+		puts "Card Rating: #{self.statistics[:total_card_rating]}"
+		puts "OC Probability: #{self.statistics[:oc_probability]}"
+		puts "Total Points-Per-Round: #{self.statistics[:total_card_points_per_round]}"
+		puts "DQ Probability-Per-Round: #{self.statistics[:dq_probability_per_round]}"
+		puts "P/A Probability-Per-Round: #{self.statistics[:pa_probability_per_round]}"
+		puts "Submission Roll Probability-Per-Round: #{self.statistics[:sub_probability_per_round]}"
+		puts "XX Roll Probability-Per-Round: #{self.statistics[:xx_probability_per_round]}"
+		puts "Submission Loss Probability: #{self.points[:Sub_prob]}"
+		puts "Tag Team Save Probability: #{self.points[:Tag_prob]}"
 		puts "\n"
 
-		tt_probability = "%.1f" % (wrestler.statistics[:tt_probability] * 100) + "%"
-		card_rating = "%.1f" % wrestler.statistics[:total_card_rating]
-		oc_probability = "%.1f" % (wrestler.statistics[:oc_probability] * 100) + "%"
-		total_card_points_per_round = "%.3f" % wrestler.statistics[:total_card_points_per_round]
-		dq_probability_per_round = "%.1f" % (wrestler.statistics[:dq_probability_per_round] * 100) + "%"
-		pa_probability_per_round = "%.1f" % (wrestler.statistics[:pa_probability_per_round] * 100) + "%"
-		sub_probability_per_round = "%.1f" % (wrestler.statistics[:sub_probability_per_round] * 100) + "%"
-		xx_probability_per_round = "%.1f" % (wrestler.statistics[:xx_probability_per_round] * 100) + "%"
-		sub_prob = "%.1f" % (wrestler.points[:Sub_prob] * 100) + "%"
-		tag_prob = "%.1f" % (wrestler.points[:Tag_prob] * 100) + "%"
+		tt_probability = "%.1f" % (self.statistics[:tt_probability] * 100) + "%"
+		card_rating = "%.1f" % self.statistics[:total_card_rating]
+		oc_probability = "%.1f" % (self.statistics[:oc_probability] * 100) + "%"
+		total_card_points_per_round = "%.3f" % self.statistics[:total_card_points_per_round]
+		dq_probability_per_round = "%.1f" % (self.statistics[:dq_probability_per_round] * 100) + "%"
+		pa_probability_per_round = "%.1f" % (self.statistics[:pa_probability_per_round] * 100) + "%"
+		sub_probability_per_round = "%.1f" % (self.statistics[:sub_probability_per_round] * 100) + "%"
+		xx_probability_per_round = "%.1f" % (self.statistics[:xx_probability_per_round] * 100) + "%"
+		sub_prob = "%.1f" % (self.points[:Sub_prob] * 100) + "%"
+		tag_prob = "%.1f" % (self.points[:Tag_prob] * 100) + "%"
 
 		f = File.new('files/results.csv', 'a')
-		f.write("#{wrestler.values[:name]},#{wrestler.values[:Set]}, #{wrestler.values[:PriorityS]}, #{wrestler.values[:PriorityT]}, #{tt_probability}, #{card_rating}, #{oc_probability}, #{total_card_points_per_round}, #{dq_probability_per_round}, #{pa_probability_per_round}, #{sub_probability_per_round}, #{xx_probability_per_round}, #{sub_prob}, #{tag_prob}, \n")
+		f.write("#{self.values[:name]},#{self.values[:Set]}, #{self.values[:PriorityS]}, #{self.values[:PriorityT]}, #{tt_probability}, #{card_rating}, #{oc_probability}, #{total_card_points_per_round}, #{dq_probability_per_round}, #{pa_probability_per_round}, #{sub_probability_per_round}, #{xx_probability_per_round}, #{sub_prob}, #{tag_prob}, \n")
 		f.close
 	end
 
