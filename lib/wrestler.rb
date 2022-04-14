@@ -64,7 +64,7 @@ class Wrestler
 		self.values.each { |k, v|
 			f.write(v, ",") 
 		}
-		f.write("#{tt_probability}, #{card_rating}, #{oc_probability}, #{total_card_points_per_round}, #{dq_probability_per_round}, #{pa_probability_per_round}, #{sub_probability_per_round}, #{xx_probability_per_round}, #{sub_prob}, #{tag_prob}, #{wrestler.values[:Sub][0]}, #{wrestler.values[:Sub][1]}, #{wrestler.values[:Tag][0]}, #{wrestler.values[:Tag][1]}\n")
+		f.write("#{tt_probability}, #{card_rating}, #{oc_probability}, #{total_card_points_per_round}, #{dq_probability_per_round}, #{pa_probability_per_round}, #{sub_probability_per_round}, #{xx_probability_per_round}, #{sub_prob}, #{tag_prob}, #{self.values[:Sub][0]}, #{self.values[:Sub][1]}, #{self.values[:Tag][0]}, #{self.values[:Tag][1]}\n")
 		f.close
 	end
 
