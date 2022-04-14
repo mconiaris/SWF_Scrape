@@ -68,14 +68,14 @@ class Wrestler
 		f.close
 	end
 
-	def wrestler_values_output(wrestler)
-		f = File.new("files/output/#{wrestler.values[:name]}_#{wrestler.values[:Set]}_values.csv", 'a')
-		wrestler.values.each { |k, v|
+	def wrestler_values_output
+		f = File.new("files/output/#{self.values[:name]}_#{self.values[:Set]}_values.csv", 'a')
+		self.values.each { |k, v|
 			f.write(k, ",", v, "\n")
 		}
-		f.write("Sub:, #{wrestler.values[:Sub][0]}-#{wrestler.values[:Sub][1]}\n")
-		f.write("Tag:, #{wrestler.values[:Tag][0]}-#{wrestler.values[:Tag][1]}\n")
-		f.write("Priority:, #{wrestler.values[:PriorityS]}/#{wrestler.values[:PriorityT]}\n")
+		f.write("Sub:, #{self.values[:Sub][0]}-#{self.values[:Sub][1]}\n")
+		f.write("Tag:, #{self.values[:Tag][0]}-#{self.values[:Tag][1]}\n")
+		f.write("Priority:, #{self.values[:PriorityS]}/#{self.values[:PriorityT]}\n")
 	end
 
 	def wrestler_points_output
