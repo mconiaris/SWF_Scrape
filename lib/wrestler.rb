@@ -225,6 +225,7 @@ class Wrestler
 	
 	end
 
+	# TODO: Change hash values to that converting them is not needed.
 	def wrestler_hash_output
 		wrestler_hash_output = self.values
 
