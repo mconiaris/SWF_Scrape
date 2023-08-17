@@ -35,7 +35,6 @@ class Wrestler
 		card_rating = "%.1f" % self.statistics[:total_card_rating]
 		oc_probability = "%.1f" % (self.statistics[:oc_probability] * 100) + "%"
 		total_card_points_per_round = "%.3f" % self.statistics[:total_card_points_per_round]
-		
 		card_move_points = "%.3f" % self.statistics[:card_move_points]
 		dq_probability_per_round = "%.1f" % (self.statistics[:dq_probability_per_round] * 100) + "%"
 		pa_probability_per_round = "%.1f" % (self.statistics[:pa_probability_per_round] * 100) + "%"
