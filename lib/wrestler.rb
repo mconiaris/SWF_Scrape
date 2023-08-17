@@ -22,6 +22,7 @@ class Wrestler
 		puts "Card Rating: #{self.statistics[:total_card_rating]}"
 		puts "OC Probability: #{self.statistics[:oc_probability]}"
 		puts "Total Points-Per-Round: #{self.statistics[:total_card_points_per_round]}"
+		puts "Points / OC Probability: #{self.statistics[:card_move_points]}"
 		puts "DQ Probability-Per-Round: #{self.statistics[:dq_probability_per_round]}"
 		puts "P/A Probability-Per-Round: #{self.statistics[:pa_probability_per_round]}"
 		puts "Submission Roll Probability-Per-Round: #{self.statistics[:sub_probability_per_round]}"
@@ -34,6 +35,8 @@ class Wrestler
 		card_rating = "%.1f" % self.statistics[:total_card_rating]
 		oc_probability = "%.1f" % (self.statistics[:oc_probability] * 100) + "%"
 		total_card_points_per_round = "%.3f" % self.statistics[:total_card_points_per_round]
+		
+		card_move_points = "%.3f" % self.statistics[:card_move_points]
 		dq_probability_per_round = "%.1f" % (self.statistics[:dq_probability_per_round] * 100) + "%"
 		pa_probability_per_round = "%.1f" % (self.statistics[:pa_probability_per_round] * 100) + "%"
 		sub_probability_per_round = "%.1f" % (self.statistics[:sub_probability_per_round] * 100) + "%"
@@ -42,7 +45,7 @@ class Wrestler
 		tag_prob = "%.1f" % (self.points[:Tag_prob] * 100) + "%"
 
 		f = File.new('files/results.csv', 'a')
-		f.write("#{self.values[:name]},#{self.values[:Set]}, #{self.values[:PriorityS]}, #{self.values[:PriorityT]}, #{tt_probability}, #{card_rating}, #{oc_probability}, #{total_card_points_per_round}, #{dq_probability_per_round}, #{pa_probability_per_round}, #{sub_probability_per_round}, #{xx_probability_per_round}, #{sub_prob}, #{tag_prob}, \n")
+		f.write("#{self.values[:name]},#{self.values[:Set]}, #{self.values[:PriorityS]}, #{self.values[:PriorityT]}, #{tt_probability}, #{card_rating}, #{oc_probability}, #{total_card_points_per_round}, #{card_move_points}, #{dq_probability_per_round}, #{pa_probability_per_round}, #{sub_probability_per_round}, #{xx_probability_per_round}, #{sub_prob}, #{tag_prob}, \n")
 		f.close
 	end
 
@@ -52,6 +55,7 @@ class Wrestler
 		card_rating = "%.1f" % self.statistics[:total_card_rating]
 		oc_probability = "%.1f" % (self.statistics[:oc_probability] * 100) + "%"
 		total_card_points_per_round = "%.3f" % self.statistics[:total_card_points_per_round]
+		card_move_points = "%.3f" % self.statistics[:card_move_points]
 		dq_probability_per_round = "%.1f" % (self.statistics[:dq_probability_per_round] * 100) + "%"
 		pa_probability_per_round = "%.1f" % (self.statistics[:pa_probability_per_round] * 100) + "%"
 		sub_probability_per_round = "%.1f" % (self.statistics[:sub_probability_per_round] * 100) + "%"
@@ -64,7 +68,7 @@ class Wrestler
 		self.values.each { |k, v|
 			f.write(v, ",") 
 		}
-		f.write("#{tt_probability}, #{card_rating}, #{oc_probability}, #{total_card_points_per_round}, #{dq_probability_per_round}, #{pa_probability_per_round}, #{sub_probability_per_round}, #{xx_probability_per_round}, #{sub_prob}, #{tag_prob}, #{self.values[:Sub][0]}, #{self.values[:Sub][1]}, #{self.values[:Tag][0]}, #{self.values[:Tag][1]}\n")
+		f.write("#{tt_probability}, #{card_rating}, #{oc_probability}, #{total_card_points_per_round}, #{card_move_points}, #{dq_probability_per_round}, #{pa_probability_per_round}, #{sub_probability_per_round}, #{xx_probability_per_round}, #{sub_prob}, #{tag_prob}, #{self.values[:Sub][0]}, #{self.values[:Sub][1]}, #{self.values[:Tag][0]}, #{self.values[:Tag][1]}\n")
 		f.close
 	end
 
