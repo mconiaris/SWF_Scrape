@@ -382,6 +382,7 @@ class Analyzer
 
 	# total_card_rating
 	def calculate_total_card_rating(wrestler)
+		oc_roll_probability = wrestler.points[:oc_probability]
 		points_per_round = calculate_card_points_per_round(wrestler.points)
 		dq_probability_per_round = calculate_dq_probability_per_round(wrestler.points)
 		pa_probability_per_round = calculate_pa_probability_per_round(wrestler.points)
@@ -407,7 +408,6 @@ class Analyzer
 		@statistics[:total_card_rating] = total_card_rating
 		@statistics[:total_card_points] = total_card_points
 		@statistics[:total_card_points_per_round] = points_per_round
-		@statistics[:card_move_points] = points_without_oc_prob
 		@statistics[:dq_probability_per_round] = dq_probability_per_round
 		@statistics[:pa_probability_per_round] = pa_probability_per_round
 		@statistics[:sub_probability_per_round] = sub_probability_per_round
@@ -800,7 +800,7 @@ class Analyzer
 	
 	# Takes in points, P/A, sub, etc. and 
 	# Calculates the probability in the OC card.
-	def calculate_oc_subtotal(wrestler, oc_prob)
+	def calculate_oc_subtotal(wrestler)
 		
 		# Sum up points per roll * probability
 		oc_points = 0
@@ -815,7 +815,7 @@ class Analyzer
 	end
 
 
-	def calculate_dq_subtotal(wrestler, oc_prob)
+	def calculate_dq_subtotal(wrestler)
 		# Sum up points per roll * probability
 		dq_points = 0
 		wrestler.each { |k,v| 
@@ -824,11 +824,11 @@ class Analyzer
 			dq_points += v * prob
 		}
 
-		dq_points_subtotal dq_points
+		dq_points_subtotal = dq_points
 		return dq_points_subtotal
 	end
 
-	def calculate_pa_subtotal(wrestler, oc_prob)
+	def calculate_pa_subtotal(wrestler)
 		# Sum up points per roll * probability
 		pa_points = 0
 		wrestler.each { |k,v| 
@@ -841,7 +841,7 @@ class Analyzer
 		return pa_points_subtotal
 	end
 
-	def calculate_sub_subtotal(wrestler, oc_prob)
+	def calculate_sub_subtotal(wrestler)
 		# Sum up points per roll * probability
 		sub_points = 0
 		wrestler.each { |k,v| 
@@ -854,7 +854,7 @@ class Analyzer
 		return sub_points_subtotal
 	end
 
-	def calculate_xx_subtotal(wrestler, oc_prob)
+	def calculate_xx_subtotal(wrestler)
 		# Sum up points per roll * probability
 		xx_points = 0
 		wrestler.each { |k,v| 
