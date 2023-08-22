@@ -383,7 +383,6 @@ class Analyzer
 	# total_card_rating
 	def calculate_total_card_rating(wrestler)
 		points_per_round = calculate_card_points_per_round(wrestler.points)
-		points_without_oc_prob = points_per_round / wrestler.points[:oc_probability]
 		dq_probability_per_round = calculate_dq_probability_per_round(wrestler.points)
 		pa_probability_per_round = calculate_pa_probability_per_round(wrestler.points)
 		sub_probability_per_round = calculate_sub_probability_per_round(wrestler.points)
@@ -391,15 +390,18 @@ class Analyzer
 		
 		# Double P/A per round and divide XX per round for total card value
 		# to increase relative value of pin attempts.
-		total_card_points = points_per_round + 
-			dq_probability_per_round + (pa_probability_per_round * 2) +
-				sub_probability_per_round + (xx_probability_per_round / 2)
+		total_card_points = (points_per_round / 2) + 
+			(oc_roll_probability * 10) +
+			(dq_probability_per_round * 5) + 
+			(pa_probability_per_round * 20) +
+			(sub_probability_per_round * 10) + 
+			(xx_probability_per_round * 5)
 
 		singles_priority = wrestler.points[:PriorityS]
 		submission_loss_probabilty = wrestler.points[:Sub_prob]
 
-		total_card_rating = total_card_points + 
-			singles_priority - submission_loss_probabilty
+		total_card_rating = total_card_points + 10 + 
+			singles_priority - (submission_loss_probabilty * 10)
 
 
 		@statistics[:total_card_rating] = total_card_rating
@@ -570,7 +572,7 @@ class Analyzer
 			}
 
 			# Return Points per DC Roll * DC Roll Probability
-			return x * dc_prob
+			return x
 	end
 
 
@@ -733,7 +735,7 @@ class Analyzer
 		oc_points_hash = oc_hash.select { |k,v| k.to_s.include?("points") }
 		
 
-		return calculate_oc_subtotal(oc_points_hash, oc_prob)
+		return calculate_oc_subtotal(oc_points_hash)
 	end
 
 	def calculate_oc_dq_subtotal(wrestler)
@@ -742,7 +744,7 @@ class Analyzer
 		dq_hash = return_attribute_hash(wrestler, "_dq")
 		oc_dq_hash = return_attribute_hash(dq_hash, "OC")
 
-		return calculate_dq_subtotal(oc_dq_hash, oc_prob)
+		return calculate_dq_subtotal(oc_dq_hash)
 	end
 
 	def calculate_oc_pa_subtotal(wrestler)
@@ -751,7 +753,7 @@ class Analyzer
 		pa_hash = return_attribute_hash(wrestler, "_pa")
 		oc_pa_hash = return_attribute_hash(pa_hash, "OC")
 
-		pa_subtotal = calculate_pa_subtotal(oc_pa_hash, oc_prob)
+		pa_subtotal = calculate_pa_subtotal(oc_pa_hash)
 
 		return pa_subtotal
 	end
@@ -762,7 +764,7 @@ class Analyzer
 		sub_hash = return_attribute_hash(wrestler, "_sub")
 		oc_sub_hash = return_attribute_hash(sub_hash, "OC")
 
-		sub_subtotal = calculate_sub_subtotal(oc_sub_hash, oc_prob)
+		sub_subtotal = calculate_sub_subtotal(oc_sub_hash)
 
 		return sub_subtotal
 	end
@@ -773,7 +775,7 @@ class Analyzer
 		xx_hash = return_attribute_hash(wrestler, "_xx")
 		oc_xx_hash = return_attribute_hash(xx_hash, "OC")
 
-		xx_subtotal = calculate_xx_subtotal(oc_xx_hash, oc_prob)
+		xx_subtotal = calculate_xx_subtotal(oc_xx_hash)
 
 		return xx_subtotal
 	end
@@ -789,7 +791,7 @@ class Analyzer
 
 		gc_oc_prob = wrestler[:oc_probability]
 
-		oc_specialty_points_per_round = gc_oc_prob *
+		oc_specialty_points_per_round = 
 			attribute * specialty_roll_prob 
 
 		return oc_specialty_points_per_round
@@ -808,7 +810,7 @@ class Analyzer
 			oc_points += v * prob
 		}
 
-		oc_points_subtotal = oc_prob * oc_points
+		oc_points_subtotal = oc_points
 		return oc_points_subtotal
 	end
 
@@ -822,7 +824,7 @@ class Analyzer
 			dq_points += v * prob
 		}
 
-		dq_points_subtotal = oc_prob * dq_points
+		dq_points_subtotal dq_points
 		return dq_points_subtotal
 	end
 
@@ -835,7 +837,7 @@ class Analyzer
 			pa_points += v * prob
 		}
 
-		pa_points_subtotal = oc_prob * pa_points
+		pa_points_subtotal = pa_points
 		return pa_points_subtotal
 	end
 
@@ -848,7 +850,7 @@ class Analyzer
 			sub_points += v * prob
 		}
 
-		sub_points_subtotal = oc_prob * sub_points
+		sub_points_subtotal = sub_points
 		return sub_points_subtotal
 	end
 
@@ -861,7 +863,7 @@ class Analyzer
 			xx_points += v * prob
 		}
 
-		xx_points_subtotal = oc_prob * xx_points
+		xx_points_subtotal = xx_points
 		return xx_points_subtotal
 	end
 
@@ -989,7 +991,7 @@ class Analyzer
 		gc_oc_prob = wrestler[:oc_probability]
 		ropes_roll_prob = return_rational(wrestler[:OC_Ropes_Roll_Probability]).to_f
 
-		r_points_subtotal = gc_oc_prob * r_points * 
+		r_points_subtotal = r_points * 
 			ropes_roll_prob
 
 		return r_points_subtotal
@@ -1003,7 +1005,7 @@ class Analyzer
 		ropes_s_roll_prob = return_rational(wrestler[:Ropes_S_Roll_Probability])
 		s_points_av = calculate_specialty_points_average(wrestler)
 		
-		s_points = ropes_roll_prob.to_f * gc_oc_prob * 
+		s_points = ropes_roll_prob.to_f * 
 			ropes_s_roll_prob * s_points_av
 
 		return s_points
@@ -1015,7 +1017,7 @@ class Analyzer
 		ropes_s_roll_prob = return_rational(wrestler[:Ropes_S_Roll_Probability])
 		s_dq_av = calculate_specialty_dq_average(wrestler)
 		
-		s_dq = ropes_roll_prob.to_f * gc_oc_prob * 
+		s_dq = ropes_roll_prob.to_f * 
 			ropes_s_roll_prob * s_dq_av
 
 		return s_dq
@@ -1028,7 +1030,7 @@ class Analyzer
 		ropes_s_roll_prob = return_rational(wrestler[:Ropes_S_Roll_Probability])
 		s_pa_av = calculate_specialty_pa_average(wrestler)
 		
-		s_pa = ropes_roll_prob.to_f * gc_oc_prob * 
+		s_pa = ropes_roll_prob.to_f * 
 			ropes_s_roll_prob * s_pa_av
 		return s_pa
 	end
@@ -1040,7 +1042,7 @@ class Analyzer
 		ropes_s_roll_prob = return_rational(wrestler[:Ropes_S_Roll_Probability])
 		s_sub_av = calculate_specialty_sub_average(wrestler)
 		
-		s_sub = ropes_roll_prob.to_f * gc_oc_prob * 
+		s_sub = ropes_roll_prob.to_f * 
 			ropes_s_roll_prob * s_sub_av
 		return s_sub
 	end
@@ -1052,7 +1054,7 @@ class Analyzer
 		ropes_s_roll_prob = return_rational(wrestler[:Ropes_S_Roll_Probability])
 		s_xx_av = calculate_specialty_xx_average(wrestler)
 		
-		s_xx = ropes_roll_prob.to_f * gc_oc_prob * 
+		s_xx = ropes_roll_prob.to_f * 
 			ropes_s_roll_prob * s_xx_av
 		return s_xx
 	end
