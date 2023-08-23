@@ -1,0 +1,2 @@
+/Users/mconiaris/dev/SWF_Scrape/files/output/Andre the Giant_Promoter's Dream_hash.txt
+/Users/mconiaris/dev/SWF_Scrape/files/output/Bob Backlund_SuperSet '83_hash.txt

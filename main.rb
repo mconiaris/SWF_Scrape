@@ -50,8 +50,55 @@ def scraping_converted(file)
 	card = @scrape.card
 
 	# Convert move array into a hash and fix formatting.
-	moves = @scrape.process_converted_card(card)
+	moves = process_converted_card(card)
 	# Create Wrestler object
+	@wrestler = Wrestler.new(moves)
+	
+	@analyzer = Analyzer.new
+	points = @analyzer.move_points(moves)
+
+	@wrestler.points = points
+	stats = @analyzer.analyze(@wrestler)
+
+	# Add stats to wrestler instance
+	@wrestler.statistics = stats
+
+	@wrestler.wrestler_output
+	@wrestler.wrestler_values_output
+	@wrestler.wrestler_points_output
+
+end
+
+
+def scraping_hash(file)
+
+	f = File.open(file)
+	w = f.read()
+	f.close
+	card = w.strip
+	
+	# Create Hash for card and add vales.
+	card_hash = Hash.new
+
+	x = card.split(",")
+	x.each { |line|
+		y = line.split("=>")
+		k = y[0].gsub("{", "").gsub("\"", "").strip
+		k = k.to_sym
+		if y[1] != nil
+			v = y[1].gsub("}", "").gsub("\"", "")
+			card_hash[k] = v
+		end
+	}
+
+	sub_values = [card_hash[:subx], card_hash[:suby]]
+	card_hash[:sub] = sub_values
+
+	tag_values = [card_hash[:tagx], card_hash[:tagy]]
+	card_hash[:tag] = tag_values
+
+	moves = card_hash
+
 	@wrestler = Wrestler.new(moves)
 	
 	@analyzer = Analyzer.new
@@ -90,9 +137,9 @@ if x == '1'
 	end
 elsif x == '2'
 	# For my Specials
-	File.open("files/input_converted.txt", "r") do |f|
+	File.open("files/input_hashes.txt", "r") do |f|
 	  f.each_line do |line|
-	    scraping_converted(line.chomp)
+	    scraping_hash(line.chomp)
 	  end  
 	  f.close
 	end

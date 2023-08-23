@@ -1,5 +1,7 @@
 class Analyzer
 
+# TODO: 
+
 	attr_accessor :statistics
 	
 	# Constants for Dice Rolls
@@ -31,12 +33,12 @@ class Analyzer
 
 		# Add values to wrestler's hash
 		@statistics[:oc_probability] = wrestler.points[:oc_probability]
-		@statistics[:dc_probability] = wrestler.points[:DC]
-		@statistics[:tt_probability] = wrestler.points[:GC_TT_Roll].to_f
+		@statistics[:dc_probability] = wrestler.points[:dc]
+		@statistics[:tt_probability] = wrestler.points[:gc_tt_roll].to_f
 		
 		# Check for Problems in :Set attribute of hash.
-		if wrestler.values[:Set] == nil
-			wrestler.values[:Set] = 'Special'
+		if wrestler.values[:set] == nil
+			wrestler.values[:set] = 'Special'
 		end
 
 		return @statistics
@@ -49,32 +51,33 @@ class Analyzer
 	
 	# Isolate Numbers from Text
 	def move_points(hash)
+
 		points = Hash.new
 
-		gc_hash = hash.select { |k,v| k.to_s.include?('GC') }
+		gc_hash = hash.select { |k,v| k.to_s.include?('gc') }
 		oc_hash = gc_hash.select { |k,v| v.include?('OC') }
 
 		# Calculate OC count to calculate probablity.
-		points[:OC_enumerator] = prob_points(oc_hash)
-		points[:oc_probability] = return_rational(points[:OC_enumerator]).to_f
-		points[:DC] = calculate_gc_dc_roll_probability(points[:OC_enumerator])
+		points[:oc_enumerator] = prob_points(oc_hash)
+		points[:oc_probability] = return_rational(points[:oc_enumerator]).to_f
+		points[:dc] = calculate_gc_dc_roll_probability(points[:oc_enumerator])
 
 		# Calculate TT Roll in GC
-		points[:GC_TT_Enumerator] = calculate_gc_tt_roll_probability(hash)
-		points[:GC_TT_Roll] = return_rational(calculate_gc_tt_roll_probability(hash))
+		points[:gc_tt_enumerator] = calculate_gc_tt_roll_probability(hash)
+		points[:gc_tt_roll] = return_rational(calculate_gc_tt_roll_probability(hash))
 		
 		# Create Symbols for Points
 		for i in 2..12 do
-			dc_points = "DC%02d_points" % i
+			dc_points = "dc%02d_points" % i
 			points[dc_points.to_sym] = 0
 			i += 1
 		end
 		
-		points[:Reverse] = 0
-		points[:Specialty_Roll_Probability_in_OC] = 0
+		points[:reverse] = 0
+		points[:specialty_roll_probability_in_oc] = 0
 
  		for i in 1..6 do
-			s_points = "S#{i}_points"
+			s_points = "s#{i}_points"
 			points[s_points.to_sym] = 0
 			i += 1
 		end
@@ -86,73 +89,73 @@ class Analyzer
 
 		# TODO: Refactor this into one method
 		for i in 2..12 do
-			oc_points = "OC%02d_points" % i
+			oc_points = "oc%02d_points" % i
 			points[oc_points.to_sym] = 0
 			i += 1
 		end
 
 		# TODO: Refactor this into one method
 		for i in 2..12 do
-			oc_dq = "OC%02d_dq" % i
+			oc_dq = "oc%02d_dq" % i
 			points[oc_dq.to_sym] = 0
 			i += 1
 		end
 
 		# TODO: Refactor this into one method
 		for i in 2..12 do
-			oc_pa = "OC%02d_pa" % i
+			oc_pa = "oc%02d_pa" % i
 			points[oc_pa.to_sym] = 0
 			i += 1
 		end
 
 		# TODO: Refactor this into one method
 		for i in 2..12 do
-			oc_sub = "OC%02d_sub" % i
+			oc_sub = "oc%02d_sub" % i
 			points[oc_sub.to_sym] = 0
 			i += 1
 		end
 
 		# TODO: Refactor this into one method
 		for i in 2..12 do
-			oc_xx = "OC%02d_xx" % i
+			oc_xx = "oc%02d_xx" % i
 			points[oc_xx.to_sym] = 0
 			i += 1
 		end
 		
- 		points[:OC_Ropes_Roll_Probability] = 0
- 		points[:Ropes_S_Roll_Probability] = 0
+ 		points[:oc_ropes_roll_probability] = 0
+ 		points[:ropes_s_roll_probability] = 0
 
  		# TODO: Refactor this into one method
  		for i in 2..12 do
-			r_points = "RO%02d_points" % i
+			r_points = "ro%02d_points" % i
 			points[r_points.to_sym] = 0
 			i += 1
 		end
 
 		# TODO: Refactor this into one method
 		for i in 2..12 do
-			r_dq = "RO%02d_dq" % i
+			r_dq = "ro%02d_dq" % i
 			points[r_dq.to_sym] = 0
 			i += 1
 		end
 
 		# TODO: Refactor this into one method
 		for i in 2..12 do
-			r_pa = "RO%02d_pa" % i
+			r_pa = "ro%02d_pa" % i
 			points[r_pa.to_sym] = 0
 			i += 1
 		end
 
 		# TODO: Refactor this into one method
 		for i in 2..12 do
-			r_sub = "RO%02d_sub" % i
+			r_sub = "ro%02d_sub" % i
 			points[r_sub.to_sym] = 0
 			i += 1
 		end
 
 		# TODO: Refactor this into one method
 		for i in 2..12 do
-			r_xx = "RO%02d_xx" % i
+			r_xx = "ro%02d_xx" % i
 			points[r_xx.to_sym] = 0
 			i += 1
 		end
@@ -161,7 +164,7 @@ class Analyzer
 		points[:tag_save_numerator] = 0
 
 		# Determine Points for DC Rolls
-		dc_hash = hash.select { |k,v| k.to_s.include?('DC') }
+		dc_hash = hash.select { |k,v| k.to_s.include?('dc') }
 		dc_hash.each { | k,v|
 			if v == "A"
 				points["#{k}_points".to_sym] = DC_A
@@ -174,25 +177,25 @@ class Analyzer
 
 		# Calculate Reverse Roll in DC
 		reverse_roll = 0
-		r_hash = hash.select { |k,v| k.to_s.include?('DC') && v.downcase.include?('reverse') }
+		r_hash = hash.select { |k,v| k.to_s.include?('dc') && v.downcase.include?('reverse') }
 		points[:Reverse] = prob_points(r_hash)
 
 		# Determine (S) Points
-		points[:S1_points] = hash[:S1].split[0].to_i
- 		points[:S2_points] = hash[:S2].split[0].to_i
- 		points[:S3_points] = hash[:S3].split[0].to_i
- 		points[:S4_points] = hash[:S4].split[0].to_i
- 		points[:S5_points] = hash[:S5].split[0].to_i
- 		points[:S6_points] = hash[:S6].split[0].to_i
+		points[:s1_points] = hash[:s1].split[0].to_i
+ 		points[:s2_points] = hash[:s2].split[0].to_i
+ 		points[:s3_points] = hash[:s3].split[0].to_i
+ 		points[:s4_points] = hash[:s4].split[0].to_i
+ 		points[:s5_points] = hash[:s5].split[0].to_i
+ 		points[:s6_points] = hash[:s6].split[0].to_i
 
- 		o_moves = hash.select { |k,v| k.to_s.include?('OC') }
+ 		o_moves = hash.select { |k,v| k.to_s.include?('oc') }
  		o_moves.each { |k,v|
  			key = "#{k}_points".to_sym
  			m = remove_move(v)
  			points[key] = m
  		}
 
- 		r_moves = hash.select { |k,v| k.to_s.include?('RO') }
+ 		r_moves = hash.select { |k,v| k.to_s.include?('ro') }
  		r_moves.each { |k,v|
  			key = "#{k}_points".to_sym
  			m = remove_move(v)
@@ -200,9 +203,9 @@ class Analyzer
  		}
 
  		# Get Specialty Roll Numerator in OC
- 		s = hash.select { |k,v| k.to_s.include?('OC') && v.include?('(S)') }
- 		points[:Specialty_Roll_Enumerator_in_OC] = prob_points(s)
- 		points[:Specialty_Roll_Probability_in_OC] = return_rational(points[:Specialty_Roll_Enumerator_in_OC])
+ 		s = hash.select { |k,v| k.to_s.include?('oc') && v.include?('(S)') }
+ 		points[:specialty_roll_enumerator_in_oc] = prob_points(s)
+ 		points[:specialty_roll_probability_in_oc] = return_rational(points[:specialty_roll_enumerator_in_oc])
 
  		# Get Specialty Roll Probability-DQ (x/6)
  		points[:s_roll_prob_dq] = get_s_extra_values(hash, '(DQ)')
@@ -211,6 +214,7 @@ class Analyzer
 		points[:s_roll_prob_xx] = get_s_extra_values(hash, '(xx)')
  			
 		# Find DQ, P/A, * and XX Values in OC and Ropes
+		
  		dq_hash = create_value_hash(hash, "(DQ)")
  		pa_hash = create_value_hash(hash, "P/A")
  		sub_hash = create_value_hash(hash, "*")
@@ -242,17 +246,17 @@ class Analyzer
  		points[:OC_Ropes_Roll_Probability] = prob_points(oc_ropes_hash)
 
  		# Determine Enumerator of (S) rolls in Ropes
- 		ropes_s_hash = hash.select { |k,v| k.to_s.include?("RO") && v.include?('(S)') }
- 		points[:Ropes_S_Roll_Probability] = prob_points(ropes_s_hash)
+ 		ropes_s_hash = hash.select { |k,v| k.to_s.include?("ro") && v.include?('(S)') }
+ 		points[:ropes_s_roll_probability] = prob_points(ropes_s_hash)
 
- 		points[:PriorityS] = hash[:PriorityS].to_i
- 		points[:PriorityT] = hash[:PriorityT].to_i
+ 		points[:prioritys] = hash[:prioritys].to_i
+ 		points[:priorityt] = hash[:priorityt].to_i
 
- 		points[:sub_numerator] = sub_tag_numerator(hash[:Sub])
- 		points[:tag_save_numerator] = sub_tag_numerator(hash[:Tag])
+ 		points[:sub_numerator] = sub_tag_numerator(hash[:sub])
+ 		points[:tag_save_numerator] = sub_tag_numerator(hash[:tag])
 
- 		points[:Sub_prob] = return_rational(points[:sub_numerator]).to_f
- 		points[:Tag_prob] = return_rational(points[:tag_save_numerator]).to_f
+ 		points[:sub_prob] = return_rational(points[:sub_numerator]).to_f
+ 		points[:tag_prob] = return_rational(points[:tag_save_numerator]).to_f
 
 		return points
 	end
@@ -382,6 +386,7 @@ class Analyzer
 
 	# total_card_rating
 	def calculate_total_card_rating(wrestler)
+		
 		oc_roll_probability = wrestler.points[:oc_probability]
 		points_per_round = calculate_card_points_per_round(wrestler.points)
 		dq_probability_per_round = calculate_dq_probability_per_round(wrestler.points)
@@ -398,8 +403,8 @@ class Analyzer
 			(sub_probability_per_round * 10) + 
 			(xx_probability_per_round * 5)
 
-		singles_priority = wrestler.points[:PriorityS]
-		submission_loss_probabilty = wrestler.points[:Sub_prob]
+		singles_priority = wrestler.points[:prioritys]
+		submission_loss_probabilty = wrestler.points[:sub_prob]
 
 		total_card_rating = total_card_points + 10 + 
 			singles_priority - (submission_loss_probabilty * 10)
@@ -532,11 +537,11 @@ class Analyzer
 		
 		dc_points_per_round_subtotal = 
 			calculate_dc_points_per_round_subtotal(
-				dc_hash, wrestler[:DC])
+				dc_hash, wrestler[:dc])
 
 		# TODO: replace hard coded number with
 		# total points variable
-		rev_prob = return_rational(wrestler[:Reverse])
+		rev_prob = return_rational(wrestler[:reverse])
 
 		reverse_points_per_round = calculate_reverse_points(wrestler, oc_sub_total)
 		# DC points per round total
@@ -548,14 +553,14 @@ class Analyzer
 	end
 
 	def get_dc_card_hash(wrestler)
-		h = wrestler.select { |k,v| k.to_s.include?("DC") }
-		h.delete(:DC)
+		h = wrestler.select { |k,v| k.to_s.include?("dc") }
+		h.delete(:dc)
 		return h
 	end
 
 
 	def calculate_reverse_round_probability(wrestler_hash, gc_dc_roll_probability)
-		prob = return_rational(wrestler_hash[:Reverse])
+		prob = return_rational(wrestler_hash[:reverse])
 
 		return prob * gc_dc_roll_probability
 	end
@@ -579,8 +584,8 @@ class Analyzer
 	# DC Roll Probability * Reverse Roll in DC Probabiity *
 	# Total OC Points Per Round
 	def calculate_reverse_points(wrestler, oc_sub_total)
-		reverse_points = wrestler[:DC] * 
-			return_rational(wrestler[:Reverse]) * oc_sub_total
+		reverse_points = wrestler[:dc] * 
+			return_rational(wrestler[:reverse]) * oc_sub_total
 
 		return reverse_points
 	end
@@ -628,6 +633,7 @@ class Analyzer
 	end
 
 	def calculate_oc_pa_per_round_total(wrestler)
+
 		oc_pa_subtotal = 
 			calculate_oc_pa_subtotal(wrestler)
 
@@ -674,7 +680,7 @@ class Analyzer
 
 
 	def get_oc_hash(wrestler)
-		h = wrestler.select { |k,v| k.to_s.include?("OC") }
+		h = wrestler.select { |k,v| k.to_s.include?("oc") }
 		return h
 	end
 
@@ -742,7 +748,7 @@ class Analyzer
 		oc_prob = wrestler[:oc_probability]
 
 		dq_hash = return_attribute_hash(wrestler, "_dq")
-		oc_dq_hash = return_attribute_hash(dq_hash, "OC")
+		oc_dq_hash = return_attribute_hash(dq_hash, "oc")
 
 		return calculate_dq_subtotal(oc_dq_hash)
 	end
@@ -751,7 +757,7 @@ class Analyzer
 		oc_prob = wrestler[:oc_probability]
 
 		pa_hash = return_attribute_hash(wrestler, "_pa")
-		oc_pa_hash = return_attribute_hash(pa_hash, "OC")
+		oc_pa_hash = return_attribute_hash(pa_hash, "oc")
 
 		pa_subtotal = calculate_pa_subtotal(oc_pa_hash)
 
@@ -762,7 +768,7 @@ class Analyzer
 		oc_prob = wrestler[:oc_probability]
 
 		sub_hash = return_attribute_hash(wrestler, "_sub")
-		oc_sub_hash = return_attribute_hash(sub_hash, "OC")
+		oc_sub_hash = return_attribute_hash(sub_hash, "oc")
 
 		sub_subtotal = calculate_sub_subtotal(oc_sub_hash)
 
@@ -773,7 +779,7 @@ class Analyzer
 		oc_prob = wrestler[:oc_probability]
 
 		xx_hash = return_attribute_hash(wrestler, "_xx")
-		oc_xx_hash = return_attribute_hash(xx_hash, "OC")
+		oc_xx_hash = return_attribute_hash(xx_hash, "oc")
 
 		xx_subtotal = calculate_xx_subtotal(oc_xx_hash)
 
@@ -787,7 +793,7 @@ class Analyzer
 		wrestler, attribute)
 		
 		specialty_roll_prob = 
-			wrestler[:Specialty_Roll_Probability_in_OC]
+			wrestler[:specialty_roll_probability_in_oc]
 
 		gc_oc_prob = wrestler[:oc_probability]
 
@@ -989,7 +995,7 @@ class Analyzer
 		}
 
 		gc_oc_prob = wrestler[:oc_probability]
-		ropes_roll_prob = return_rational(wrestler[:OC_Ropes_Roll_Probability]).to_f
+		ropes_roll_prob = return_rational(wrestler[:oc_ropes_roll_probability]).to_f
 
 		r_points_subtotal = r_points * 
 			ropes_roll_prob
@@ -1001,8 +1007,8 @@ class Analyzer
 	def calculate_ropes_specialty_points(wrestler)
 
 		gc_oc_prob = wrestler[:oc_probability]
-		ropes_roll_prob = return_rational(wrestler[:OC_Ropes_Roll_Probability])
-		ropes_s_roll_prob = return_rational(wrestler[:Ropes_S_Roll_Probability])
+		ropes_roll_prob = return_rational(wrestler[:oc_ropes_roll_probability])
+		ropes_s_roll_prob = return_rational(wrestler[:ropes_s_roll_probability])
 		s_points_av = calculate_specialty_points_average(wrestler)
 		
 		s_points = ropes_roll_prob.to_f * 
@@ -1013,8 +1019,8 @@ class Analyzer
 
 	def calculate_ropes_specialty_dq(wrestler)
 		gc_oc_prob = wrestler[:oc_probability]
-		ropes_roll_prob = return_rational(wrestler[:OC_Ropes_Roll_Probability])
-		ropes_s_roll_prob = return_rational(wrestler[:Ropes_S_Roll_Probability])
+		ropes_roll_prob = return_rational(wrestler[:oc_ropes_roll_probability])
+		ropes_s_roll_prob = return_rational(wrestler[:ropes_s_roll_probability])
 		s_dq_av = calculate_specialty_dq_average(wrestler)
 		
 		s_dq = ropes_roll_prob.to_f * 
@@ -1025,9 +1031,10 @@ class Analyzer
 
 
 	def calculate_ropes_specialty_pa(wrestler)
+		
 		gc_oc_prob = wrestler[:oc_probability]
-		ropes_roll_prob = return_rational(wrestler[:OC_Ropes_Roll_Probability])
-		ropes_s_roll_prob = return_rational(wrestler[:Ropes_S_Roll_Probability])
+		ropes_roll_prob = return_rational(wrestler[:oc_ropes_roll_probability])
+		ropes_s_roll_prob = return_rational(wrestler[:ropes_s_roll_probability])
 		s_pa_av = calculate_specialty_pa_average(wrestler)
 		
 		s_pa = ropes_roll_prob.to_f * 
@@ -1038,8 +1045,8 @@ class Analyzer
 
 	def calculate_ropes_specialty_sub(wrestler)
 		gc_oc_prob = wrestler[:oc_probability]
-		ropes_roll_prob = return_rational(wrestler[:OC_Ropes_Roll_Probability])
-		ropes_s_roll_prob = return_rational(wrestler[:Ropes_S_Roll_Probability])
+		ropes_roll_prob = return_rational(wrestler[:oc_ropes_roll_probability])
+		ropes_s_roll_prob = return_rational(wrestler[:ropes_s_roll_probability])
 		s_sub_av = calculate_specialty_sub_average(wrestler)
 		
 		s_sub = ropes_roll_prob.to_f * 
@@ -1050,8 +1057,8 @@ class Analyzer
 
 	def calculate_ropes_specialty_xx(wrestler)
 		gc_oc_prob = wrestler[:oc_probability]
-		ropes_roll_prob = return_rational(wrestler[:OC_Ropes_Roll_Probability])
-		ropes_s_roll_prob = return_rational(wrestler[:Ropes_S_Roll_Probability])
+		ropes_roll_prob = return_rational(wrestler[:oc_ropes_roll_probability])
+		ropes_s_roll_prob = return_rational(wrestler[:ropes_s_roll_probability])
 		s_xx_av = calculate_specialty_xx_average(wrestler)
 		
 		s_xx = ropes_roll_prob.to_f * 
@@ -1061,7 +1068,7 @@ class Analyzer
 
 
 	def get_ropes_hash(wrestler)
-		h = wrestler.select { |k,v| k.to_s.include?("RO") }
+		h = wrestler.select { |k,v| k.to_s.include?("ro") }
 		
 		return h
 	end
