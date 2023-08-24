@@ -1,2 +1,1 @@
-/Users/mconiaris/dev/SWF_Scrape/files/output/Andre the Giant_Promoter's Dream_hash.txt
-/Users/mconiaris/dev/SWF_Scrape/files/output/Bob Backlund_SuperSet '83_hash.txt
+/Users/mconiaris/Documents/SWF/SWF Original Card Values/Test/Bob Backlund Test Test hash.txt

@@ -178,7 +178,7 @@ class Analyzer
 		# Calculate Reverse Roll in DC
 		reverse_roll = 0
 		r_hash = hash.select { |k,v| k.to_s.include?('dc') && v.downcase.include?('reverse') }
-		points[:Reverse] = prob_points(r_hash)
+		points[:reverse] = prob_points(r_hash)
 
 		# Determine (S) Points
 		points[:s1_points] = hash[:s1].split[0].to_i
@@ -243,7 +243,7 @@ class Analyzer
  		# Determine Ropes Roll Enumerator
  		oc_ropes_hash = hash.select { |k,v| v == 'Ropes' }
 
- 		points[:OC_Ropes_Roll_Probability] = prob_points(oc_ropes_hash)
+ 		points[:oc_ropes_roll_probability] = prob_points(oc_ropes_hash)
 
  		# Determine Enumerator of (S) rolls in Ropes
  		ropes_s_hash = hash.select { |k,v| k.to_s.include?("ro") && v.include?('(S)') }
@@ -611,7 +611,7 @@ class Analyzer
 
 		oc_points_per_round_total = oc_points_subtotal +
 			oc_specialty_points_per_round + ropes_points_total
-		
+
 		return oc_points_per_round_total
 	end
 
@@ -657,7 +657,6 @@ class Analyzer
 
 		ropes_sub_total = 
 			calculate_ropes_sub_total(wrestler)
-
 
 		oc_sub_per_round_total = oc_sub_subtotal +
 			oc_specialty_sub_per_round + ropes_sub_total
@@ -1178,7 +1177,7 @@ class Analyzer
 
 
 	def get_specialty_hash(wrestler)
-		wrestler.select { |k,v| k.to_s =~ /S\d/ }
+		wrestler.select { |k,v| k.to_s =~ /s\d/ }
 	end
 
 end
