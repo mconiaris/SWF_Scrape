@@ -1,6 +1,6 @@
 class Analyzer
 
-# TODO: 
+# TODO: Determine reason why this app and the other one come up with different results from total card rating.
 
 	attr_accessor :statistics
 	
