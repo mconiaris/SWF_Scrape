@@ -122,7 +122,7 @@ class Scraper
 
 		# If Wrestler moves are in all caps, format it for consistency.
 		card_hash.each { |k,v| 
-			if k.to_s.include?('oc') || k.to_s.include?('oc') || v.downcase.include?('reverse')
+			if k.to_s.include?('oc') || k.to_s.include?('oc') || v.include?('reverse')
 				card_hash[k] = move_formatter(v)
 			end
 		}
