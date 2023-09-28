@@ -1,10 +1,14 @@
-/Users/mconiaris/Documents/SWF/SWF Original Card Values/BMM 1980s (1987)/Ian McGregor BMM 1980s (1987) hash.txt
-/Users/mconiaris/Documents/SWF/SWF Original Card Values/BMM 1980s (1987)/Wayne Bridges BMM 1980s (1987) hash.txt
+
+
+
 
 BMM 1980s Women
 
 Check For Errors
 /Users/mconiaris/Documents/SWF/SWF Original Card Values/BMM 1980s (1981)/Relampago Leon BMM 1980s (1981) hash.txt
 /Users/mconiaris/Documents/SWF/SWF Original Card Values/BMM 1980s (1982)/Brian Adidas BMM 1980s (1982) hash.txt
+/Users/mconiaris/Documents/SWF/SWF Original Card Values/BMM 2000s/Orion Bishop Special 2000s hash.txt
+/Users/mconiaris/Documents/SWF/SWF Original Card Values/Special 1990s/Mr. Niebla Special 1990s hash.txt
+
 
 Fix Comma issue, that removes Jr. and separates women's weights 
